@@ -10,4 +10,28 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+# The French Revolution
+
+What do we know about French Revolution? Let's see what we know about it. The French Revolution happened in France:
+
+*What did they eat?
+*What did they drink?
+
+Some words in French
+
+1.French
+2.Francais
+3.Faguo
+
+![My picture](https://upload.wikimedia.org/wikipedia/commons/5/56/Jacques_Bertaux_-_Prise_du_palais_des_Tuileries_-_1793.jpg)
+
+
+```{r}
+my_special_number <- sin(sqrt(pi))
+my_special_number
+```
+
+```{r}
+asin(my_special_number)^2
+```
+
