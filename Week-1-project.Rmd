@@ -1,6 +1,6 @@
 # Week 1 Project  
 
-## Your name should appear here!
+##Micheala Sharp!
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,14 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+#DECEMBRIST REVOLT 
+
+One time the Russians revolted in the 1800s they failed. Miserably. it was called the Decembrist Revolution, it was very unorganized. 
+
+![My picture](https://upload.wikimedia.org/wikipedia/commons/4/4a/Au_service_des_Tsars_-_inv._%D0%ADP%D0%96-2379_-_Attaque_du_carr%C3%A9_des_d%C3%A9cabristes_par_le_r%C3%A9giment_des_gardes_%C3%A0_cheval_le_14_d%C3%A9cembre_1825.jpg)
+
+```{r}
+my_little_pony <- sin(sqrt(pi))
+my_little_pony 
+```
+
