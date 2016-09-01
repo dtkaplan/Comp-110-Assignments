@@ -22,9 +22,9 @@ When Rome fell, I wonder if it hurt. Here are some reasons why it might have hur
 
 ```{r}
 my_special_number <- sin(sqrt(pi))
-```
+``` 
  
-```{r}  
+```{r}    
 asin(my_special_number)^2
 ```
 
