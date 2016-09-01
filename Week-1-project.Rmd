@@ -1,6 +1,6 @@
 # Week 1 Project  
 
-## Your name should appear here!
+## Shelby Witherby
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,17 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+A while ago a gorilla named Harambe died. He was living in the Cincinnati Zoo when a kid when in his cage. Then they shot Harambe. It was really sad. RIP.
+
+![My picture](http://pixel.nymag.com/imgs/daily/selectall/2016/07/27/27-harambe-gorilla-heaven.w710.h473.2x.jpg)
+
+
+```{r}
+my_special_number <-sin(sqrt(pi))
+```
+
+```{r}
+asin(my_special_number)^2
+
+```
+
