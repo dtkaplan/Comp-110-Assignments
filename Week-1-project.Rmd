@@ -1,6 +1,6 @@
 # Week 1 Project  
 
-## Your name should appear here!
+## Nana Adom Mills-Robertson!
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,24 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+Ghana's Independence Day
+
+Ghana became an independent state on March 6, 1957, when Britain relinquished its control over the Gold Coast and Ashanti, the Northern Territories Protectorate, and British Togoland
+
+
+![**Ghana Independence Day**](http://kuulpeeps.com/wp-content/uploads/2016/03/bigsix.png)
+
+1. Ghanaians Finally gained their independence
+2. Everybody in Ghana was happy
+3. Kwame Nkrumah had triumphed 
+
+* To commemorate the day, there was a universal eating of fufu
+* People were all very happy that the situation had transpired
+* Also Omotuo was eaten on that day
+
+```{r my_number}
+sin(sqrt(pi))
+
+```
+```{r  my_number 2}
+sin(sqrt(pi))^2
