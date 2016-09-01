@@ -10,4 +10,15 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+## 
+
+```{r}
+my_special_number <- sin(sqrt(pi))
+```
+
+```{r}
+asin(my_special_number)^2
+```
+
+
+
