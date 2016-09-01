@@ -11,3 +11,43 @@ library(DataComputing)
 <!-- put your content after this line -->
 
 Here is my content!
+
+#French Revolution
+The French Revolution (French: Révolution française [ʁevɔlysjɔ̃ fʁɑ̃sɛːz]) was a period of far-reaching social and political upheaval in France that lasted from 1789 until 1799, and was partially carried forward by Napoleon during the later expansion of the French Empire. 
+
+The Revolution overthrew the monarchy, established a republic, experienced violent periods of political turmoil, and finally culminated in a dictatorship under Napoleon that rapidly brought many of its principles to Western Europe and beyond. 
+
+![French Revolution picture](https://upload.wikimedia.org/wikipedia/commons/5/56/Jacques_Bertaux_-_Prise_du_palais_des_Tuileries_-_1793.jpg)
+
+
+
+*Storming of the Bastille
+
+*Declaration of the Rights of Man
+
+1. hihih
+
+2. buhuh
+
+3. jihin
+
+```{r}
+my_special_number <- sin(sqrt(pi))
+my_special_number
+```
+
+
+
+
+```{r}
+star <- asin(my_special_number)^2
+star
+```
+
+
+
+
+```{r}
+
+```
+
