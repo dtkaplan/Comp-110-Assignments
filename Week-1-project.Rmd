@@ -12,10 +12,15 @@ library(DataComputing)
 
 Inheritance Patterns Uncovered: Mendel's Contribution to Genetics
 
-Natural historians in the 19th century were seeking to honor god while uncovering the natural laws. A humble gardener, and failed teacher, Gregor Mendel uncovered the mathematical patterns that underpinned inheritance.
+Natural historians in the 19th century were seeking to honor god while uncovering natural laws. A humble gardener, and failed teacher, Gregor Mendel uncovered the mathematical patterns that underpinned inheritance.
 
-*Natural historians had proposed many different theories as to how traits were inherited.
-*Some proposed that traits were acquired by information traveling throughout the body, gathering up information about 
+* Natural historians had proposed many different theories as to how traits were inherited.
+* Some proposed that traits were acquired by information traveling throughout the body, gathering up information and eventually transfering them to reproductive organs.
+* Other theories proposed acquired traits were acquired through animals using characteristics 
+
+1. The patterns of inheritance were not empirically supported at the time.
+2. Gregor's decision to breed thousands of plants and examine their offspring and patterns of inheritance was relatively novel.
+3. Despite his empirical data, most scientists were disinterested in his finding.
 
 ![My Picture](https://www.artexpertswebsite.com/portrait-id/scientists/scientists_images/mendel1.jpg)
 
