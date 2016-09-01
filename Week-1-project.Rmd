@@ -21,7 +21,11 @@ library(DataComputing)
 ![my picture](https://upload.wikimedia.org/wikipedia/commons/a/a6/Surrender_Singapore.jpg)
 
 ```{r}
+<<<<<<< HEAD
 my_number <- sin(sqrt(pi))
+=======
+my_number = sin(sqrt(pi))
+>>>>>>> 396cf80411270d938c204a43feac679d15305085
 my_number
 ```
 
