@@ -7,7 +7,27 @@ Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+
+my_special_number <- sin(sqrt(pi))
+my_special_number
+```
+
+```{r include = FALSE}
+library(DataComputing)
+
+my_arcsign_special_number <- sqrt(my_special_number)
+my_arcsign_special_number
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+# The 2016 Presidential Election
+
+* There is a female nominee this 2016 U.S Presidential Election.
+* Her name is Hilary Clinton.
+* Her main opponent is a controversial figure.
+
+![Hilary](https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Hillary_Clinton_official_Secretary_of_State_portrait_crop.jpg/220px-Hillary_Clinton_official_Secretary_of_State_portrait_crop.jpg)
+
+
+
+
