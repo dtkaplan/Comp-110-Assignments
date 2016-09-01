@@ -1,6 +1,6 @@
 # Week 1 Project  
 
-## Your name should appear here!
+## Lena Schaller!
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,34 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+# The Most Important Military Even to Happen in Liechtenstein
+
+In 1866, during the Austro-Prussian War, the Prince of Liechtenstein sent his army of 80 soldiers to defend the border between Liechtenstein and Austria from attacks by the Italians. The soldiers may have been named:
+
+* Friedrich
+* Johann
+* August
+
+When the war ended, the army returned, and the country celebrated. The story goes, that 80 soldiers left for the border, and 81 returned. Here are some numbers that are close to 81:
+
+1. 80
+2. 82
+3. 83
+
+    The Liechtensteiners had made an Austrian friend.
+      Hooray!
+
+![My picture](http://vignette2.wikia.nocookie.net/mlp/images/2/23/NBC's_The_More_You_Know.jpg/revision/latest?cb=20130825220525)
+
+
+ ```{r}
+ my_special_number <- sin(sqrt(pi))
+ my_special_number
+```
+
+ ```{r}
+  asin(my_special_number)^2
+ ```
+
+      
+  
