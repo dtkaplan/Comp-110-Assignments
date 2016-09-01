@@ -1,6 +1,6 @@
 # Week 1 Project  
 
-## Your name should appear here!
+##Brett Graham
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,26 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+#Chicago Cubs vs Pittsburg Pirates 8/30/2016
+
+On 8/30/2016 the Pirates played the Cubs at Wrigley Field.  Here are some key highlights from the game:
+
+*Kyle Hendricks pitched 7 shoutout innings and was given the win
+
+*Aroldis Chapman was given the save.
+
+*Anthony Rizzo has a two run homer in the first.
+
+*The Cubs won 3-0
+
+![My Picture](http://lakeshorepublicmedia.org/wp-content/uploads/2013/07/Wrigley.jpg)
+
+
+```{r}
+number <- sin(7)
+number
+```
+
+```{r}
+asin(number)^2
+```
