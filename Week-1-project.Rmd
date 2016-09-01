@@ -37,7 +37,7 @@ my_calculation
 
 
 ```{r}
-asin(my_calculation)^2
+asin(my_calculation)^2 
 
 ```
 
