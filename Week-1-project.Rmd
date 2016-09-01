@@ -1,6 +1,10 @@
 # Week 1 Project  
 
-## Your name should appear here!
+## SungEun Hong
+```{r}
+my_special_number <- sin(sqrt(pi))
+my_special_number
+```
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +14,16 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+## The French Revolution
+
+The French Revolution took place in France. France is a country in Europe. Some things about France:
+
+* They make a lot of cheeses.
+* They have long bread.
+
+Some words in French
+
+1. Revolution
+2. Di est la plumne de so tante.
+
+![My Picture](https://upload.wikimedia.org/wikipedia/commons/5/56/Jacques_Bertaux_-_Prise_du_palais_des_Tuileries_-_1793.jpg)
