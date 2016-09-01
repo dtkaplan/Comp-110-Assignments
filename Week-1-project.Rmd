@@ -1,6 +1,6 @@
 # Week 1 Project  
 
-## Your name should appear here!
+## Phuc Nguyen
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,28 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+# The 2016 US Presidential Election
+
+In 2016, two candidates from the Repulican and Democratic parties run for US presidency after Obama finishes his last term. They are:
+
+1. Hillary Clinton, nominee of the Democratic Party:
+  * She is the first female nominee of a large party
+  * Was the first lady under Clinton administration, senator of New York, and secretary of states
+  
+2. Donald Trump, nominee of the Repulican Party:
+  * A billionaire
+  * ...
+
+![Two Candidates](https://cmgajcpolitics.files.wordpress.com/2016/04/clinton-trump.jpg?w=640&h=474)
+
+```{r}
+my_special_number = sin(sqrt(pi))
+my_special_number
+
+```
+
+
+```{r}
+asin(my_special_number)^2
+```
+
