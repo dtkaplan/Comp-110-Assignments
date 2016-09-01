@@ -9,20 +9,28 @@ Compiled on `r date()`.
 library(DataComputing)
 ```
 <!-- put your content after this line -->
+Here is my content!
 
 #The first Industrial Revolution
 
 The first Industrial Revolution took place in England, during thr 18th century. There are mant great invents:
-*Steam machine
-*Trains
-*Knitting Machine
+
+-Steam machine
+
+-Trains
+
+-Knitting Machine
+
 
 There are many great impacts of this revolution:
+
 1. It enhanced the link between different countries
+
 2. It stimulated capitalist countries to colonize other countries.
+
 3. It improves the transportation system.
 
-![My picture](http://a.hiphotos.baidu.com/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=d13000bb5f6034a83defb0d3aa7a2231/4b90f603738da97771070f91b351f8198618e364.jpg)
+![My picture](https://kidskonnect.com/assets/uploads/2015/01/industrial-revolution.jpg)
 
 ```{r}
 Langs_number = sin(sqrt(pi))
@@ -33,4 +41,4 @@ Langs_number = sin(sqrt(pi))
 asin(Langs_number)^2
 ```
 
-Here is my content!
+
