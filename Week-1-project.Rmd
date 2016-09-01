@@ -21,7 +21,7 @@ When Rome fell, I wonder if it hurt. Here are some reasons why it might have hur
 ![My picture](http://i.telegraph.co.uk/multimedia/archive/02184/fall-of-rome_2184860b.jpg)
 
 ```{r}
-my_special_number <- sin(sqrt(pi))
+my_special_number <- sin(sqrt(pi)) 
 ``` 
  
 ```{r}    
