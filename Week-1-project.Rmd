@@ -1,6 +1,6 @@
 # Week 1 Project  
 
-## Your name should appear here!
+## Tristan Truttmann
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,22 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+## The fall of Rome
+
+When Rome fell, I wonder if it hurt. Here are some reasons why it might have hurt: 
+
+* Falling hurts. 
+* Rome was not very cool so that probably hurts anyways. 
+
+
+![My picture](http://i.telegraph.co.uk/multimedia/archive/02184/fall-of-rome_2184860b.jpg)
+
+```{r}
+my_special_number <- sin(sqrt(pi))
+```
+
+```{r}
+asin(my_special_number)^2
+```
+
+
