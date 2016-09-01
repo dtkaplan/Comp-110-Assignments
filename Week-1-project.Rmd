@@ -7,7 +7,27 @@ Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+
+my_special_number <- sin(sqrt(pi))
+my_special_number
 ```
+
+
+```{r include = FALSE}
+library(DataComputing)
+
+my_arcsign_special_number <- asin(my_special_number)^2
+my_arcsign_special_number
+```
+
 <!-- put your content after this line -->
 
-Here is my content!
+# 2016 Olympics
+
+* In August 2016, the summer Olympics games took place in Rio, Brazil
+* The United States won the most medals
+* The gymanstic events were very popular
+* This was Michael Phelps' last Olympics
+
+! [my picture](http://www.telegraph.co.uk/content/dam/sport/2016/04/14/rio-olympics-large_trans++ZgEkZX3M936N5BQK4Va8RWtT0gK_6EfZT336f62EI5U.jpg)
+
