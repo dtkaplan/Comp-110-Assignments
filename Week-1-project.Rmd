@@ -1,6 +1,6 @@
 # Week 1 Project  
 
-## Your name should appear here!
+## Katrin OGrady
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,34 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+##The Industrial Revolution
+Fast Facts
+
+* The Industrial revolution occurred in both Europe and the United States.
+
+* The Industrial Revolution in London was especially detrimental to the public because of excessive pollution.
+
+* Many children were forced to work in factories during this time.
+
+Effects of Industry
+
+1. People began to populate cities.
+
+2. Public health declined.
+
+3. There was a rise in humanitarian organizations to improve poverty and working conditions. 
+
+![My picture](https://aos.iacpublishinglabs.com/question/aq/700px-394px/interesting-industrial-revolution_cc5246e258a393ce.jpg?domain=cx.aos.ask.com)
+
+
+```{r}
+my_calculation <- sin(sqrt(pi))
+my_calculation
+```
+
+
+```{r}
+asin(my_calculation)^2
+
+```
+
