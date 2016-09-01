@@ -10,4 +10,25 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+# The 2014 World Cup 
+
+The 2014 World Cup took place in Brazil. The historic win of Germany vs. Brazil will go down in soccer history.
+
+Some results of the competition:
+
+* Germany - Brazil = 7:1
+* Germany - Argentina = 1:0 
+
+![My Picture](http://img.fifa.com/mm/Photo/Tournament/Competition/02/40/51/60/2405160_FULL-LND.jpg)
+
+1.1 
+```{r}
+
+my_special_number <- sin(sqrt(pi))
+my_special_number
+```
+
+```{r}
+asin(my_special_number)^2
+```
+
