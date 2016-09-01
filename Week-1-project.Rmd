@@ -6,8 +6,43 @@
 Compiled on `r date()`.
 
 ```{r include = FALSE}
+
 library(DataComputing)
 ```
 <!-- put your content after this line -->
 
 Here is my content!
+
+# The Punic Wars
+
+## Section 1:
+
+### Some facts about them Punic Wars:
+
+* Rome was involved
+* Carthage was involved
+* During the third war, the Carthaginian army marched war elephants from Carthage (Northern Africa) across the Iberian penninsula (spelling?) to Rome... Pretty cool, huh?
+
+![Elephants](https://upload.wikimedia.org/wikipedia/commons/3/37/African_Bush_Elephant.jpg)
+
+## Section 2:
+
+### Some numbers:
+
+1.  This is a number
+2.  Also a number
+
+
+
+```{r}
+my_number = sin(pi^(1/2))
+```
+
+
+```{r}
+my_better_number = asin(my_number)^2
+```
+
+
+
+
