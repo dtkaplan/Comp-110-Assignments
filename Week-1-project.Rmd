@@ -1,6 +1,6 @@
 # Week 1 Project  
 
-## Your name should appear here!
+## Eloa Franca Verona
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,26 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+## Today the Brazilian president was impeached.
+
+Reasons why she was impeached:
+
+* Curruption in congress 
+* Manipulation by the media
+* Frustration and anger from population
+
+Reasons she should have been impeached for
+
+1. she commited a crime 
+
+
+Here's a pic of her in speaking in congress:
+![Dilma Rousef](https://s16-us2.ixquick.com/cgi-bin/serveimage?url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2F8%2F81%2FDilma_Rousseff_-_foto_oficial_2011-01-09.jpg&sp=035751703701785e9db377caae3ce4f1)
+
+```{r}
+my_special_number = sin(sqrt(pi))
+```
+
+```{r}
+asin(my_special_number)^2
+```
