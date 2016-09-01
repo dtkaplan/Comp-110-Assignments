@@ -10,4 +10,50 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+## One Piece
+
+One Piece is one of the longest running anime series in Japan. It currently has 82 volumes and over 800 episodes. The main characters are named
+
+- Luffy
+- Zoro
+- Sanji
+- Usopp
+- Nami
+- Chopper
+- Robin
+- Franky
+- Brook
+- Merry Go
+- Thousand Sunny
+
+One Piece is the story of Luffy's journey to become the next King of the Pirates. The characters listed above are the current members of Luffy's crew, known as the the Strawhat Pirates. They are so named because Luffy wears a signature strawhat given to him by his childhood hero, Shanks. They currently are having an adventure on Zou Island, which is on the back of a giant elephant, and hope to meet up with Shanks sometime in the near future. Currently fans of the series believe that just a few things that Luffy will need to accomplish before the series ends are:
+
+1. Find the One Piece on Raftel and become King of the Pirates.
+2. Defeat all four of the Yonkou.
+3. Defeat Mihawk so Zoro becomes the greatest swordsman.
+4. Find All Blue for Sanji.
+5. Find out the truth about the Void Century and the D Clan.
+6. Visit the Village of Elbaf.
+7. Visit the Wano Kingdom.
+8. Meet up with Laboon again.
+9. Defeat Blackbeard.
+10. Confront/take down the World Government, possibly with the help of the Revolutionary Army.
+
+![Strawhat Pirates](http://static2.comicvine.com/uploads/scale_super/4/47703/3425312-0989065813-ebeca0.jpeg)
+
+```
+
+
+
+
+
+
+```{r}
+my_special_number <- sin(sqrt(pi))
+my_special_number
+```
+
+```{r}
+asin(my_special_number)^2
+```
+
