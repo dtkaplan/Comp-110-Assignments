@@ -1,6 +1,6 @@
 # Week 1 Project  
 
-## Your name should appear here!
+## Sam Erickson
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,22 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+# The Battle of Singapore
+
+* Singapore was a colony of the British Empire.
+* They had a lot of soldiers in Singapore. 
+* The Japanese invaded and won a battle
+* The British soldiers surrendered
+* Japanese soldiers ruled Singapore for years. They were really mean.
+
+![my picture](https://upload.wikimedia.org/wikipedia/commons/a/a6/Surrender_Singapore.jpg)
+
+```{r}
+my_number <- sin(sqrt(pi))
+my_number
+```
+
+```{r}
+asin(my_number)^2
+```
+
