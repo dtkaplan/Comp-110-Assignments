@@ -29,5 +29,5 @@ my_arcsign_special_number
 * The gymanstic events were very popular
 * This was Michael Phelps' last Olympics
 
-![my picture](https://heatholders.co.uk/sites/default/files//olympics.jpg)
+![Olympics Rings](https://heatholders.co.uk/sites/default/files//olympics.jpg)
 
