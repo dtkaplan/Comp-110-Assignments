@@ -15,11 +15,11 @@ Here is my content!
 
 The first Industrial Revolution took place in England, during thr 18th century. There are mant great invents:
 
--Steam machine
+* Steam machine
 
--Trains
+* Trains
 
--Knitting Machine
+* Knitting Machine
 
 
 There are many great impacts of this revolution:
