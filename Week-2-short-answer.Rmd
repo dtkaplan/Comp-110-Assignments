@@ -10,4 +10,218 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+#Problem 1.1
+(a) 3) It's the value of a variable for a particular case
+
+(b) 2) It's a quantitative variable
+
+(c) 1) It's a categorical variable
+
+(d) 1) It's a categorical variable
+
+(e) 2) It's a quantitative variable
+
+#Problem 1.2 
+
+What's untidy about this form is that first, the first column presents the name, but in two different types, one begins with surname and the other begins with name. The second thing is that the second column fails to give a number. It gives a range and in different format. The last point is that the first row of the third column gives "it depends" which is useless and should give a specific number as a quantitative variable.  
+
+#Problem 1.4
+
+1. The variables in the first table are "Year", "Algerie", "Brazil" and "Columbia". The variables in the second table are "Country", "Y2000" and "Y2001". The variables in the third table are "Country", "Year" and "Value".
+
+2. The meaning for the case in the first table is "a year", the meaning for the case in the second table is "a country" and the meaning for the case in the first table is "a country in year";
+
+#Problem 1.5
+
+1. There are 6 variables. 
+
+2. The cases represent the description of airports. 
+
+3. **faa** : categorical; **name**: categorical; **lat, lon**: quantitative; **alt**: quantitative; **tz**: categorical ; **dst**: categorical
+
+#Problem 2.2
+Function name can sometimes be wrapped with quotation marks, file name and othe name of an argument in a named argument are wrapped with quotation marks. 
+
+#Problem 2.3
+CPS means "Current Population Survey"
+
+#Problem 2.4
+The problem is the first assignment operator shoule be "=" instead of "<-" .
+
+#Problem 2.6
+first-essay is not a legitimate name because "-" is not allowed. "Mydata" is problematic because it is a constant rather than a object. small sample is also not a legitimate name because the blank between two words is not allowed as well, sqrt() is not a legitimated name because this represent a function instead of an object. 
+
+#Problem 2.7
+```{r}
+data(flights, package = "nycflights13")
+```
+1. There are 19 variables. 
+
+2. There are 336776 cases.
+
+3. The meaning of the cases is flights. Each case shows the on time data of a flight. 
+
+4. **year, month, day, dep_time, sched_dep_time, arr_time, sched_arr_time, carrier, tailnum, origin dest, time_hour** is categorical and the others are quantitative.
+
+5. The unit for airtime is minutes and the unit for distance is miles.
+
+#Problem 2.8
+
+a. Improper syntax for function argument
+
+b. No Assignment operator (it should be one "-")
+
+c. Invalid object name
+
+d. Unmatched quotes in character strings
+
+e. No mistake 
+
+#Problem 2.9
+1. "." and "_" can be used in the name of an object.
+
+2. All of them can be used in a quoted character string
+
+#Problem 2.10
+1. There are 76 variables.
+
+2. tfats measures mass of trunk fat
+
+3. There are 23018 cases.
+
+4. The third variable is "count".
+
+5. The codes and their interpretations are DEM=Democratic, LIB=Libertarian, REP=Republican, UNA=Unaffiliated.
+
+#Problem 3.1
+1. Data Frame :fireplace %>% nrow()
+
+2. Function: fireplace()
+
+3. The name of a named function function(fireplace = 7)
+
+4. Variable function(x = fireplace)
+
+#Problem 3.2
+
+The code is illegitimated because it does not identify the variable that is being filtered "BabyNames". So the legitimate code would be Result <- BabyNames%>% filter(name == "Prince")
+
+# Problem 3.3
+
+The problem is the first assignment operator shoule be "=" instead of "<-" .
+
+# Problem 3.4 
+
+1. BabyNames: data table name
+
+2. filter: function name
+
+3. name: variable name
+ 
+4. == : (Is this only a assignment operator?)
+
+5.  group_by: function name 
+
+6. year: variable name
+
+7. sex : variable name
+
+8. summaries: function name 
+
+9. yearlyTotal : name of a named argument 
+
+10. sum: function name
+
+11. count : variable name
+
+12. ggplot : function name
+
+13. aes: function name 
+
+14. x : name of a named argument
+
+15. y: name of a named argument
+
+16. geom_point: function name
+
+17. color : name of a named argument
+
+18. geom_vline: function name 
+
+19. xintercept: name of a named argument
+
+#Problem 3.5
+read in data:
+```{r}
+data(msleep, package = "ggplot2")
+```
+
+1. It means brain weight in kilograms
+
+2. There are 83 cases.
+
+3. The meaning of the cases is the mammels sleeping data.
+
+4. The levels are carnivore, omnivore or herbivore
+
+#Problem 3.6
+
+Statement c is different from the others. It takes the mean of the count instead of the sum.
+
+#Problem 4.1
+
+* One *　Italic "One"
+
+** Two ** Bold "Two"
+
+* Three A "three" in a bullet point list 
+
+#Four A section header
+
+'five' just a printed "five"
+
+##Six A second level header named "six"
+
+[seven](http://tiny.cc/dcf/index.html) A hyperlink named "seven" direct to the website "(http://tiny.cc/dcf/index.html)"
+
+#Problem 4.2 
+a. Should use backquotes instead of apostrophe.
+
+b. Should use backquotes instead of quotation marks and it should be curly brackets instead of normal one.
+
+c. There should be three backquotes at the end instead of only two.
+
+d.  Should be three lines instead of one. 
+
+e. There should be three backquotes instead of four. 
+
+#Problem 4.3
+
+Alright, let's simply compile that:
+
+### An Introduction
+Arithmetic is *easy*! For instance
+```{r}
+3 + 2
+```
+
+#Problem 4.4 
+1. It can be both a URL and a file name. 
+
+2. It is a file name.
+
+3. Neither. 
+
+4. It is a URL.
+
+5. It does not seem as a valid URL and it cannot be a file name.
+
+6. It can be a URL or a file name. 
+
+#Problem 4.5 
+
+```{r}
+library(DataComputing)
+```
+
+See Birds. rmd
