@@ -1,13 +1,37 @@
 # Week 1 Project  
 
-## Your name should appear here!
+## Gozong Lor
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+
+# chunk that calculates sin(sqrt(pi)) and assigns it to my_number
+my_number <- sin(sqrt(pi))
+my_number
+
+# second chunk that takes the square of the arcsin of my_sin
+my_number <- asin(my_number)
+
+# different way of executing these chunks
+my_number <- asin(sin(sqrt(pi)))
+
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+# Childhood in Japan
+
+This isn't necessarily historical, but it's still interesting, and could become historical at some point.
+
+I was watching a documentary about childhood in Japan so this is what I know the most about right now. 
+
+Just like in the United States of America, there are prestigious colleges that the majority of Japanese citizens know about and want their children to get into. 
+
+The best school in Japan is the University of Tokyo. It's similar to Stanford or Harvard in its prestige and exclusivity.
+
+According to the documentary, children as young as 5 years old are preparing to enter the University of Tokyo by attending many extracurriculars (swimming lessons, music lessons, etc) and are testing into exclusive kindergarten schools that will eventually put them on the track to becoming eligible to get into a good college.
+
+![Kindergarteners](http://www.rsct.ca/site/rudolf_steiner_centre_2012/assets/images/japanese_kindergarten.jpg)
+
