@@ -1,6 +1,6 @@
 # Week 2 Short Answer Questions
 
-## Your name should appear here!
+## Josh Marcus
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,185 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+# Chapter 1 Questions
+
+##1.1
+
+A) Taffy: 1). It's the value of a variable for a particular case
+B) Year:  2). It's a quantitative variable
+C) Sex: 1): It's a categorical variable
+D) Name: 1): It's a categorical variable
+E) count: 3): It's a quantitative variable
+
+##1.2
+
+First, the names of the presidents are not in the same format across cases. With "Lincoln, Abraham," it's last name then first name. With "George Washington," it's first name then last name. Second, there's a similar formatting inconsistency in the "in office" column. Some values for "in office"" are represented with words and numbers ("1837 to 1841"), while others are represented with just numbers ("1861-1865","1791-1799"). Third, the "in office" column actually contains two variables: the year each president began office and the year each president left office. Finally, the "number of states" column contains two different types of values, words ("it depends") and numbers ("26, 16"). Now those are some dirty data.
+
+##1.4
+
+#1 What are the variables in each table?
+
+Table A:
+The variables are Year, Algeria, Brazil, and Columbia.
+
+Table B:
+The variables are Country, Y2000, and Y2001.
+
+Table C:
+The variables are Country, Year, and Value.
+
+#2 What is the meaning of a case for each table?
+
+Table A: A year
+Table B: A country
+Table C: A country in a year
+
+##1.5
+#1 How many variables are there?
+  1 in airline
+  6 in airports 
+  18 in flights
+  7 in planes
++ 9 in weather
+----------------
+= 41 variables
+
+
+#2 What do the cases represent?
+
+Cases are single flights.
+
+#3 For each variable, make a reasonable guess whether the values will be numerical or quantitative. (WOULDN'T IT BE CATEGORICAL vs. QUANTITATIVE?)
+
+#1: How many variables are there?
+Seven: FAA airport code, name of airport, latitutde of airport, longitude of airport, location of airport, altitude, time zone, and daylight savings time zone
+
+#2: What do the cases represent?
+Airports.
+
+#3: For each variable, make a reasonable guess about whether the values will be numerical or categorical
+FAA airport code (cat.), name of airport (cat.), latitutde of airport (num.), longitude of airport (num.), location of airport (cat.), altitude (num.), time zone (cat./num.), and daylight savings time zone (cat.).
+
+# Chapter 2 Questions 
+
+##2.2: Which of these kinds of names should be wrapped with quotation marks when used in R?
+
+2. File Name
+
+##2.3
+It's data from the Current Population Survey
+
+##2.4: What's wrong with this statement?
+help(NHANES, package <- "NHANES") ****
+The first NHANES should be in quotes, and the <- should be an equals sign instead.
+
+##2.6
+2.first-essay is wrong because it contains punctuation that is no a period or underscore.
+3. "MyData" is wrong because it contains quotes. (Solutions in book say "s are okay, while chapter (ex. p 24, definition sidebar #3) says it does) *****
+5. small sample is wrong because it has a space.
+6 & 7. These names could be wrong if they are referring to the same object, as the case of distinguishes between different objects.
+9. sqrt() is wrong because parentheses aren't allowed in function names.
+
+
+##2.7
+
+#1
+There are 19 variables
+
+#2
+There are 336,776 cases.
+
+#3
+A case is an individual flight.
+
+#4
+Year (quant.)
+Month (cat.) * (I think these are cat b/c there's a fixed # of them, not a measurable quant)
+Day (cat.) * 
+departure time, arrival time (cat.) *
+Departure delay, arrival delay (quant.)
+hour, minute of departure (cat.)
+carrier (cat.)
+tail number (cat.)
+origin, destination (cat.)
+air time (quant.)
+distance (quant.)
+time_hour (cat.)
+
+#5
+
+The units for air_time are minutes, and the units for distance are miles.
+
+##2.8
+
+a. ralph <- sqrt 10
+Improper syntax for function argument. There should be () around 10.
+
+b. ralph <-- "Hello to you!"
+Invalid object name. There should only be one - after the <.
+
+c. 3ralph <- "Hello to you!"
+Invalid object name. An object's name can't start with a number.
+
+d. ralph4 <- "Hello to you!
+Unmatched quotes in character string. There should be quotes on both sides of Hello to you!
+
+e.ralph 5 <- date()
+No assigment operator (*** not sure what this means, but I think this is missing a value in here
+
+##2.9
+
+*Only a . and a _ can be used in the name of an R Object.
+*All of these characters can be used in a quoted character string.
+
+##2.10
+
+*There are 76 variables in CountryData.
+*tfat measures the mass of trunk fat.
+*There are 23,018 cases in WorldCities.
+*The third variable in BabyNames is count.
+*The codes in party are DEM=Democratic, LIB=Libertarian, REP=Republican, UNA=Unaffiliated.
+
+# Chapter 3 Questions 
+
+##3.1
+
+#1: a data frame
+fireplace %>% nrow()
+
+#2: a function
+fireplace (
+
+#3: the named of a named argument
+sqrt(fireplace = sum (count))
+
+#4: a variable
+sqrt(fireplace)
+
+##3.2: Explain why the following sentence is illegitimate:
+Result <- %>% filter(Babynames, name=="Prince")
+
+The %>% is used for chain notation, and it should be at the end of this sentence, after (Babynames, name=="Prince"). Also, there should be spaces after name and the == marks.
+
+##3.3: What's wrong with this statement?
+help(NHANES, package <- "NHANES")
+
+The <- should be an = sign, because the part
+
+##3.4
+
+##3.5
+
+##3.6
+
+# Chapter 4 Questions 
+
+##4.1
+
+##4.2
+
+##4.3
+
+##4.4
+
+##4.5
