@@ -14,11 +14,11 @@ library(DataComputing)
 
 ##1.1
 
-A) Taffy: 1). It's the value of a variable for a particular case
-B) Year:  2). It's a quantitative variable
-C) Sex: 1): It's a categorical variable
-D) Name: 1): It's a categorical variable
-E) count: 3): It's a quantitative variable
+A) Taffy: 1). It's the value of a variable for a particular case.
+B) Year:  2). It's a quantitative variable.
+C) Sex: 1): It's a categorical variable.
+D) Name: 1): It's a categorical variable.
+E) count: 3): It's a quantitative variable.
 
 ##1.2
 
@@ -26,47 +26,76 @@ First, the names of the presidents are not in the same format across cases. With
 
 ##1.4
 
-#1 What are the variables in each table?
+1. What are the variables in each table?
 
-Table A:
+*Table A:
 The variables are Year, Algeria, Brazil, and Columbia.
 
-Table B:
+*Table B:
 The variables are Country, Y2000, and Y2001.
 
-Table C:
+*Table C:
 The variables are Country, Year, and Value.
 
-#2 What is the meaning of a case for each table?
+2. What is the meaning of a case for each table?
 
-Table A: A year
-Table B: A country
-Table C: A country in a year
+*Table A: A year
+*Table B: A country
+*Table C: A country in a year
 
 ##1.5
-#1 How many variables are there?
-  1 in airline
-  6 in airports 
-  18 in flights
-  7 in planes
-+ 9 in weather
-----------------
-= 41 variables
+1. How many variables are there?
 
+41 variables
 
-#2 What do the cases represent?
+2. What do the cases represent?
 
 Cases are single flights.
 
-#3 For each variable, make a reasonable guess whether the values will be numerical or quantitative. (WOULDN'T IT BE CATEGORICAL vs. QUANTITATIVE?)
+3. For each variable, make a reasonable guess whether the values will be categorical or quantitative.
+* carrier is categorical (cat.)
+* name is cat.
+* faa is cat.
+* name is cat.
+* lat,lon are quant.
+* alt is quant.
+* tz is quant.
+* dst is cat.
+* year,month,day are categorical
+* dep_time, arr_time are categorical
+* dep_delay,arr_delay are quantitative
+* hour,minute are categorical
+* carrier is categorical
+* tailnum is categorical
+* flight is cat.
+* origin,dest is cat.
+* air_time is quant.
+* distance is quant.
+* time_hour is cat.
+* tailnum is cat.
+* year is cat.
+* type is cat.
+* manufacturer,model is cat.
+* engines,seats is quant.
+* speed is quant. 
+* engine is cat.
+* origin is cat.
+* year,month,day,hour is cat.
+* temp,dewp is quant.
+* humid is quant.
+* wind_dir,wind_speed,wind_gust is quant.
+* precip is quant.
+* pressure is quant
+* visib is quant.
+* time_hour 
 
-#1: How many variables are there?
+1. How many variables are there?
 Seven: FAA airport code, name of airport, latitutde of airport, longitude of airport, location of airport, altitude, time zone, and daylight savings time zone
 
-#2: What do the cases represent?
+2. What do the cases represent?
 Airports.
 
-#3: For each variable, make a reasonable guess about whether the values will be numerical or categorical
+3. For each variable, make a reasonable guess about whether the values will be numerical or categorical
 FAA airport code (cat.), name of airport (cat.), latitutde of airport (num.), longitude of airport (num.), location of airport (cat.), altitude (num.), time zone (cat./num.), and daylight savings time zone (cat.).
 
 # Chapter 2 Questions 
@@ -79,44 +108,52 @@ FAA airport code (cat.), name of airport (cat.), latitutde of airport (num.), lo
 It's data from the Current Population Survey
 
 ##2.4: What's wrong with this statement?
-help(NHANES, package <- "NHANES") ****
+help(NHANES, package <- "NHANES") 
 The first NHANES should be in quotes, and the <- should be an equals sign instead.
 
 ##2.6
-2.first-essay is wrong because it contains punctuation that is no a period or underscore.
-3. "MyData" is wrong because it contains quotes. (Solutions in book say "s are okay, while chapter (ex. p 24, definition sidebar #3) says it does) *****
-5. small sample is wrong because it has a space.
-6 & 7. These names could be wrong if they are referring to the same object, as the case of distinguishes between different objects.
-9. sqrt() is wrong because parentheses aren't allowed in function names.
+1. is correct
 
+2. first-essay is wrong because it contains punctuation that is no a period or underscore.
+
+3. "MyData" is wrong because it contains quotes. 
+
+4. is correct
+
+5. small sample is wrong because it has a space.
+
+6 & 7. These names could be wrong if they are referring to the same object, as the case of distinguishes between different objects.
+
+8. is correct.
+
+9. sqrt() is wrong because parentheses aren't allowed in function names.
 
 ##2.7
 
-#1
+1.
 There are 19 variables
 
-#2
+2.
 There are 336,776 cases.
 
-#3
+3.
 A case is an individual flight.
 
-#4
-Year (quant.)
-Month (cat.) * (I think these are cat b/c there's a fixed # of them, not a measurable quant)
-Day (cat.) * 
-departure time, arrival time (cat.) *
-Departure delay, arrival delay (quant.)
-hour, minute of departure (cat.)
-carrier (cat.)
-tail number (cat.)
-origin, destination (cat.)
-air time (quant.)
-distance (quant.)
-time_hour (cat.)
+4.
+* Year (quant.)
+* Month (cat.) * (I think these are cat b/c there's a fixed # of them, not a measurable quant)
+* Day (cat.) * 
+* departure time, arrival time (cat.) *
+* Departure delay, arrival delay (quant.)
+* hour, minute of departure (cat.)
+* carrier (cat.)
+* tail number (cat.)
+* origin, destination (cat.)
+* air time (quant.)
+* distance (quant.)
+* time_hour (cat.)
 
-#5
-
+5.
 The units for air_time are minutes, and the units for distance are miles.
 
 ##2.8
@@ -133,36 +170,37 @@ Invalid object name. An object's name can't start with a number.
 d. ralph4 <- "Hello to you!
 Unmatched quotes in character string. There should be quotes on both sides of Hello to you!
 
-e.ralph 5 <- date()
+e. ralph 5 <- date()
 No assigment operator (*** not sure what this means, but I think this is missing a value in here
 
 ##2.9
 
-*Only a . and a _ can be used in the name of an R Object.
-*All of these characters can be used in a quoted character string.
+* Only a . and a _ can be used in the name of an R Object.
+
+* All of these characters can be used in a quoted character string.
 
 ##2.10
 
-*There are 76 variables in CountryData.
-*tfat measures the mass of trunk fat.
-*There are 23,018 cases in WorldCities.
-*The third variable in BabyNames is count.
-*The codes in party are DEM=Democratic, LIB=Libertarian, REP=Republican, UNA=Unaffiliated.
+* There are 76 variables in CountryData.
+* tfat measures the mass of trunk fat.
+* There are 23,018 cases in WorldCities.
+* The third variable in BabyNames is count.
+* The codes in party are DEM=Democratic, LIB=Libertarian, REP=Republican, UNA=Unaffiliated.
 
 # Chapter 3 Questions 
 
 ##3.1
 
-#1: a data frame
+1. a data frame
 fireplace %>% nrow()
 
-#2: a function
+2. a function
 fireplace (
 
-#3: the named of a named argument
+3. the named of a named argument
 sqrt(fireplace = sum (count))
 
-#4: a variable
+4. a variable
 sqrt(fireplace)
 
 ##3.2: Explain why the following sentence is illegitimate:
@@ -173,22 +211,66 @@ The %>% is used for chain notation, and it should be at the end of this sentence
 ##3.3: What's wrong with this statement?
 help(NHANES, package <- "NHANES")
 
-The <- should be an = sign, because the part
+The <- should be an = sign, because the the package is part of a named argument. It would be a <- after package if we were talking about the name of an object.
 
-##3.4
+##3.4: 
+1. Babynames (b), filter (a), name (d), == (a)
+2. group_by (a), year (c), sex (c), summarise (a)
+3. yearlyTotal (d), sum (a), count (c), ggplot (a)
+4. aes (a), x (d), y (d), geom_point (a)
+5. color (d), geom_vline (a), xinterept (d)
 
 ##3.5
+*brainwt means brain weight in kilograms.
+*There are 83 cases.
+*The real-world meaning of the case in this data set is an individual type of mammal.
+*The vore variable has 3 levels: carnivore, omnivore, and herbivore.
 
 ##3.6
+(c) does not match the other statements because it is taking the mean of the count of various baby names rather than the sum.
 
 # Chapter 4 Questions 
 
 ##4.1
 
+* *one* will be read in italic
+* **two** will be read in bold
+* *three will be part of a bulleted list
+* # Four
+ will be a header 1
+* 'five' will be in Inline R Code
+* ## six will be a subheader
+
+[seven] (http://...) will be a link, with the characters between the brackets as its name and those between the parentheses as its URL.
+
 ##4.2
+
+(a) uses the apostrophe rather than a backquote
+(b) uses normal quotation marks instead of a backqoute
+(c) should have three backquotes above and below the operation inside the chunk, but there are only two on the bottom.
+(d) should have the backqoutes above and below the operation inside the chunk, with the {r} coming after the backqoutes on top.
+(e) has one too many backqoutes under the operation inside the chunk.
 
 ##4.3
 
+###An Introduction
+will be a header 3.
+
+Arithmetic is *easy*! will be a normal sentence with easy in italics.
+
+The chunk will show 3+2, then will have its solution underneath.
+
 ##4.4
 
+1. Neither
+2. A possible file
+3. Neither
+4. A possible URL
+5. Neither
+6. Neither
+
 ##4.5
+
+This file has been compiled seperately.
+
+
