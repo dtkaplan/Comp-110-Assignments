@@ -1,6 +1,6 @@
 # Week 2 Short Answer Questions
 
-## Your name should appear here!
+## Tristan Truttmann
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -11,3 +11,91 @@ library(DataComputing)
 <!-- put your content after this line -->
 
 Here is my content!
+
+### 1.1
+
+* a 3
+* b 2
+* c 1
+* d 1
+* e 2
+
+### 1.2 
+
+The data is not tidy bcuse the "number of states" variable is a string "it depends" in one case but qunatitative variables in the other cases. 
+
+### 1.4 
+
+* Table A: 
+(1) The variables are "Year", "Algeria", "Brazil", and "Columbia". 
+(2) Each case is a year. 
+
+* Table B: 
+(1) The variables are "Country", "Y2000", an "Y2001".  
+(2) Each case is a country.
+
+* Table C: 
+(1) The variables are "Country", "Year", and "Value". 
+(2) Each case is a country in a year. 
+
+### 1.5
+
+(1) There are 7 variables. 
+(2) Each case is a different airport.
+(3) 
+* faa: catagorical
+* name: catagorical
+* lat: quantitative
+* lon: quantitative
+* alt: quantitative
+* tz: catagorical
+* dst: catagorical
+
+### 2.2
+
+Only 2. (file name) should be in quotation marks. 
+
+### 2.3 
+
+It stands for "Curren Population Survey"
+
+### 2.4 
+
+The statement uses the assignment operator (<-) rather than the equals sign. 
+
+### 2.6
+
+(1) Legit
+(2) legit
+(3) object names should not be in quotes
+(4) legit
+(5) object names cannot contain spaces
+(6) legit
+(7) legit
+(8) legit
+(9) The paranthesis cause 9 to be a function not an object.  
+
+### 2.7
+
+(1) There are 19 variables. 
+(2) There are 336,776 cases. 
+(3) Each case is a flight. 
+(4) The variables year, month, day, dep_time, sched_dep_time, dep_delay, arr_time, sched_arr_time, arr_delay, flight, air_time, distance, hour, minute, time_hour are quantitative.  The variables carrier, tailnum, origin, dest are catagorical. 
+(5) air-time is in units of minutes.  distance is in units of miles. 
+
+### 2.8
+
+* a: 3
+* b: 1
+* c: 4
+* d: 2
+* e: 5
+
+### 2.9 
+
+Only . and _ and - can be used. 
+
+### 2.10
+
+* There are 76 variables
+* 
