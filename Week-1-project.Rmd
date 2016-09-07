@@ -11,7 +11,8 @@ library(DataComputing)
 <!-- put your content after this line -->
 
 This is Barry O:
-http://assets.nydailynews.com/polopoly_fs/1.2113054.1423771570!/img/httpImage/image.jpg_gen/derivatives/article_750/obama13n-1-web.jpg
+
+![Picture of Barry](http://assets.nydailynews.com/polopoly_fs/1.2113054.1423771570!/img/httpImage/image.jpg_gen/derivatives/article_750/obama13n-1-web.jpg)
 
 He's famous for a few things:
 
@@ -20,12 +21,23 @@ He's famous for a few things:
 * Being the center of that hilarious "Thanks, Obama" joke
 
 He's also ranked:
-#1 In presidential attractiveness, historically
-#2 In arriving to the (name of politician)-care trend in public policy
-#3 The Le Mans Grand Prix all-time standings
+
+1. In presidential attractiveness, historically
+1. In arriving to the (name of politician)-care trend in public policy
+1. The Le Mans Grand Prix all-time standings
 
 Some other notes. My grandparents, like Barry, are from Chicago. So, what do they think of him then? They're...nonplussed, to put it lightly. They're pretty conservative, after all. Not in that fire-wielding, climate-change denying way, but in the way that they're from a very different generation, and you can tell the second you meet 'em. When Barry won, their reaction was, "He wasn't even a professor at U. Chicago! He was just a teaching assisntant!"
 
-As for my opinions of him, I go to Macalester, so my guess is that pretty much says everything you need to know about that. And now for some sweet, sweet geometery.
+As for my opinions of him, I go to Macalester, so that pretty much says everything you need to know about that. And now for some sweet, sweet geometery.
+
+```{r}
+Fred <- sqrt(pi)
+Fred
+
+```
+```{r}
+(Fred)^2
+```
+
 
 
