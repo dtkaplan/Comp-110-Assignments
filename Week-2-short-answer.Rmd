@@ -98,4 +98,7 @@ Only . and _ and - can be used.
 ### 2.10
 
 * There are 76 variables
-* 
+* I do not know! 
+* There are 23018 cities. 
+* The third variable is count. 
+* I don't know.
