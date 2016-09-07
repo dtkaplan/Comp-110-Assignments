@@ -102,3 +102,56 @@ Only . and _ and - can be used.
 * There are 23018 cities. 
 * The third variable is count. 
 * I don't know.
+
+### 3.1
+
+(1) View(Fireplace)
+(2) fireplace()
+(3) function( fireplace="hot")
+(4) function <- 1 
+
+### 3.2 
+
+The statment uses a chaining syntax, but there isn't a "beginning" to the cahin
+
+### 3.3 
+
+There should be and equals sign rather than an assignment operator for the named argument. 
+
+### 3.4 
+
+(1) Data 
+(2) funciton 
+(3) named argument name
+(4) ? 
+(5) function
+(6) variable
+(7) variable
+(8) function
+(9) variable
+(10) function 
+(11) variable
+(12) function
+(13) function
+(14) named argument name
+(15) variable
+(16) function
+(17) named argument name
+(18) function 
+(19) named argument name
+
+### 3.5
+
+* My help() function doesn't seem to work so I'm not sure, but I'm guessing it is the weight of the animal in kilograms.
+
+*There are 83 cases. 
+
+* The real world meaning of a case in this data table is a species of animal.  
+
+* There are carnivore, imnivore, herbivore, and N/A. 
+
+### 3.6
+
+Statement c is different because it uses the mean of count rather than the sum, as the other statments do.  
+
+### 4.1
