@@ -9,7 +9,7 @@ Compiled on `r date()`.
 library(DataComputing)
 
 my_special_number <- sin(sqrt(pi))
-my_special_number
+my_special_number 
 ```
 
 
