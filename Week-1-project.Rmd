@@ -22,7 +22,7 @@ my_arcsign_special_number
 
 <!-- put your content after this line -->
 
-# 2016 Olympics
+# 2016 Rio Olympics
 
 * In August 2016, the summer Olympics games took place in Rio, Brazil
 * The United States won the most medals
