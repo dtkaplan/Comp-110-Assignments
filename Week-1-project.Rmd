@@ -1,6 +1,9 @@
+---
+output: html_document
+---
 # Week 1 Project  
 
-## Your name should appear here!
+## Makaya Resner
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -9,5 +12,33 @@ Compiled on `r date()`.
 library(DataComputing)
 ```
 <!-- put your content after this line -->
+Mao Zedong was the founder of the Community Party of China and the People's Republic of China. He originally was a peasant farmer who joined the Revolution Army and took down the Qing Dynasty. 
 
-Here is my content!
+After the Chinese Civil War, Mao declared China a communist state. His victory is not well-liked because he made his people march across China for 7,000 miles. The Long March killed many communists.
+
+![Mao Zedong](http://vignette2.wikia.nocookie.net/real-life-villains/images/3/3e/Mao_Zedong.jpg/revision/latest?cb=20151009204508)
+
+His reign included:
+
+* labor camps
+* starving 40 million people
+* communist obsession with color red (Red Guard, Little Red Book)
+
+His started to lose power when:
+
+1. The famine made everyone mad
+2. He shut down schools and replaced with hard labor
+3. He opened China up to the world by meeting President Nixon
+
+
+```{r}
+the_awesome_name <- sin(sqrt(pi))
+```
+
+
+```{r}
+asin(the_awesome_name)^2
+```
+
+
+
