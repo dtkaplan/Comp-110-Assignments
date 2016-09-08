@@ -1,6 +1,6 @@
 # Week 2 Project
 
-## Your name should appear here!
+## Yujin Jang
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,30 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+#1. I downloaded this data from the Library data resource"http://tiny.cc/dcf/Library-small.rda",dest= "Library-small.rda"
+
+#2,3
+<!--Basics-->
+```{r}
+load("Library-small.rda")
+```
+
+#4
+```{r}
+names(Inv)
+names(Bks)
+dim(Inv)
+dim(Bks)
+# Both files are similar. Both are about list of books. I think Inv is for Macalester Inventory since it has its location, barcode, current status etc. Bks could be more specific info of the books such as its title, edition, language etc. 
+```
+#5
+```{r}
+Inv %>% group_by(Current.Status) %>%tally()
+```
+# It shows books that are available or missing, on loan or withdrawn
+
+#6
+```{r}
+Inv %>% group_by(Issued.Count) %>% tally()
+```
+# It shows some sort of numbering system matched up with integer
