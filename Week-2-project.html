@@ -120,12 +120,80 @@ $(document).ready(function () {
 
 <div id="week-2-project" class="section level1">
 <h1>Week 2 Project</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="micheala-sharp" class="section level2">
+<h2>Micheala Sharp</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:30:09 2016.</p>
+<p>Compiled on Wed Sep 7 20:51:14 2016.</p>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
+</div>
+<div id="basic" class="section level2">
+<h2>Basic</h2>
+<div id="the-data-was-grabbed-from-online-httptiny.ccdcflibrary-small.rda" class="section level3">
+<h3>The data was grabbed from online <a href="http://tiny.cc/dcf/Library-small.rda" class="uri">http://tiny.cc/dcf/Library-small.rda</a></h3>
+<pre class="r"><code>load(&quot;Library-small.rda&quot;)</code></pre>
+</div>
+<div id="the-amount-of-rows-in-inv-and-bks" class="section level3">
+<h3>The amount of rows in Inv and Bks</h3>
+<pre class="r"><code>InvCases&lt;-nrow(Inv)
+InvCases</code></pre>
+<pre><code>## [1] 2000</code></pre>
+<pre class="r"><code>BksCases&lt;-nrow(Bks)
+BksCases</code></pre>
+<pre><code>## [1] 3765</code></pre>
+</div>
+<div id="the-names-of-variables-in-inv-and-bks" class="section level3">
+<h3>The names of variables in Inv and Bks</h3>
+<pre class="r"><code>InvVars&lt;-ls(Inv)
+InvVars</code></pre>
+<pre><code>##  [1] &quot;Author&quot;                &quot;Call.Number&quot;          
+##  [3] &quot;Cost&quot;                  &quot;Current.Status&quot;       
+##  [5] &quot;ISBN&quot;                  &quot;Issued.Count&quot;         
+##  [7] &quot;Issued.Count.YTD&quot;      &quot;Item.Barcode&quot;         
+##  [9] &quot;Item.Deleted.Date&quot;     &quot;Item.Type&quot;            
+## [11] &quot;Last.Inventoried.Date&quot; &quot;Last.Issued.Date&quot;     
+## [13] &quot;Loan.Date.Due&quot;         &quot;Material.Format&quot;      
+## [15] &quot;OCLC.Number&quot;           &quot;Shelving.Location&quot;    
+## [17] &quot;Textual.Holdings&quot;      &quot;Title.or.Description&quot;</code></pre>
+<pre class="r"><code>BksVars&lt;-ls(Bks)
+BksVars</code></pre>
+<pre><code>##  [1] &quot;Author&quot;               &quot;Dewey.Call.Number&quot;    &quot;Edition&quot;             
+##  [4] &quot;Format&quot;               &quot;Genre&quot;                &quot;ISBN&quot;                
+##  [7] &quot;Language&quot;             &quot;LC.Call.Number&quot;       &quot;Local.Call.Number&quot;   
+## [10] &quot;OCLC.Number&quot;          &quot;Physical.Description&quot; &quot;Publication.Date&quot;    
+## [13] &quot;Publisher&quot;            &quot;Subject&quot;              &quot;Title&quot;</code></pre>
+</div>
+<div id="what-does-it-mean" class="section level3">
+<h3>What does it mean?</h3>
+<p><em>In Inv every case represents the location and identification of each book in the Macalester Library</em> <em>In the Bks case each case represensents a specific book</em></p>
+</div>
+<div id="more-fun-things" class="section level3">
+<h3>More Fun Things</h3>
+<pre class="r"><code>Inv %&gt;% group_by(Current.Status) %&gt;% tally()</code></pre>
+<pre><code>## # A tibble: 4 × 2
+##   Current.Status     n
+##            &lt;chr&gt; &lt;int&gt;
+## 1      AVAILABLE  1866
+## 2        MISSING     1
+## 3        ON_LOAN    18
+## 4      WITHDRAWN   115</code></pre>
+<p><em>This chunk gives the variable Current.Status there are four different catagories Available, Missing, On Loan, or Withdrawn and the amount of books that corresponds to each catagory</em></p>
+<pre class="r"><code>Inv %&gt;% group_by(Issued.Count) %&gt;% tally()</code></pre>
+<pre><code>## # A tibble: 46 × 2
+##    Issued.Count     n
+##           &lt;int&gt; &lt;int&gt;
+## 1             0   996
+## 2             1   337
+## 3             2   203
+## 4             3   121
+## 5             4    69
+## 6             5    46
+## 7             6    38
+## 8             7    29
+## 9             8    24
+## 10            9    20
+## # ... with 36 more rows</code></pre>
+<p><em>This chunk tells you how many times a book has been issued</em></p>
+</div>
 </div>
 </div>
 
