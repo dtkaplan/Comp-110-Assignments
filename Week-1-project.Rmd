@@ -1,6 +1,6 @@
 # Week 1 Project  
- 
-## Your name should appear here!
+
+## Katie Jolly!
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,29 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+# The Cuban Revolution
+* Won in 1959
+* Was a communist revolution
+* Batista fled the country with millions of dollars worth of gold
+
+## Who Were The Leaders?
+1. Camilo Cienfuegos
+2. Raul Castro
+3. Fidel Castro
+4. Che Guevara
+
+![My Picture](https://upload.wikimedia.org/wikipedia/commons/4/47/CheyFidel.jpg)
+
+
+
+
+```{r}
+my_special_number <- sin(sqrt(pi))
+my_special_number
+
+```
+```{r}
+asin(my_special_number)^2
+
+```
+
