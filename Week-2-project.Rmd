@@ -1,6 +1,6 @@
 # Week 2 Project
 
-## Your name should appear here!
+## Wendy Chu
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,5 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+# In the first table, there are 1866 available books, 1 missing book, 18 on loan books, and 115 withdrawn books in the small library package.
+# In the second table, the maximum number of times a book has been checked out is 46 times. For each frequency, there is a 'n' that states how many books have been checked out that many times. For example, there are 996 books that have been checked out or issued out 0 times.
