@@ -1,6 +1,6 @@
 # Week 2 Project
 
-## Phuc Nguyen
+## Phuc Nguyen 
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
