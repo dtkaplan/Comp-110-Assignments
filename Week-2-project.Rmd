@@ -1,6 +1,6 @@
 # Week 2 Project
 
-## Your name should appear here!
+## Tristan Truttmann
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,50 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+(1) Here we analyze the number of books in the data set that Professor Kaplan prepared for this class.  The data was downloaded from the URL "http://tiny.cc/dcf/Library-small.rda".  
+
+### Basics 
+
+```{r}
+load("~/Comp-110-Assignments/Library-small.rda")
+```
+
+(4) 
+
+```{r}
+nrow(Bks)
+```
+
+This tells us that the Bks data frame contains 3765 cases. These represent a bunch of books that the library may or may not have.  
+
+```{r}
+nrow(Inv)
+```
+
+This tells us that the data frame contains 2000 cases.  These represent several book that our library does indeed have.  
+
+```{r}
+ncol(Bks)
+```
+
+```{r}
+ncol(Bks)
+```
+
+These two commands tells us that each dataframe has 15 variables.  
+
+(5)
+
+```{r}
+Inv %>% group_by(Current.Status) %>% tally()
+```
+
+This means that of the books in the data sample that Professor Kaplan has created, 1866 books are available, 1 book is missing, 18 books are on loan, and 115 and currently withdrawn.
+
+(6)
+
+```{r}
+Inv %>% group_by(Issued.Count) %>% tally() 
+```
+
+This means that, of the sample of Macalster library books that Professor Kaplan created, 996 have never been checked out and 337 have only been checked once, and so on.  

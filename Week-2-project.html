@@ -120,12 +120,63 @@ $(document).ready(function () {
 
 <div id="week-2-project" class="section level1">
 <h1>Week 2 Project</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="tristan-truttmann" class="section level2">
+<h2>Tristan Truttmann</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:30:09 2016.</p>
+<p>Compiled on Wed Sep 7 20:50:01 2016.</p>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
+<ol style="list-style-type: decimal">
+<li>Here we analyze the number of books in the data set that Professor Kaplan prepared for this class. The data was downloaded from the URL “<a href="http://tiny.cc/dcf/Library-small.rda" class="uri">http://tiny.cc/dcf/Library-small.rda</a>”.</li>
+</ol>
+<div id="basics" class="section level3">
+<h3>Basics</h3>
+<pre class="r"><code>load(&quot;~/Comp-110-Assignments/Library-small.rda&quot;)</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre class="r"><code>nrow(Bks)</code></pre>
+<pre><code>## [1] 3765</code></pre>
+<p>This tells us that the Bks data frame contains 3765 cases. These represent a bunch of books that the library may or may not have.</p>
+<pre class="r"><code>nrow(Inv)</code></pre>
+<pre><code>## [1] 2000</code></pre>
+<p>This tells us that the data frame contains 2000 cases. These represent several book that our library does indeed have.</p>
+<pre class="r"><code>ncol(Bks)</code></pre>
+<pre><code>## [1] 15</code></pre>
+<pre class="r"><code>ncol(Bks)</code></pre>
+<pre><code>## [1] 15</code></pre>
+<p>These two commands tells us that each dataframe has 15 variables.</p>
+<ol start="5" style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre class="r"><code>Inv %&gt;% group_by(Current.Status) %&gt;% tally()</code></pre>
+<pre><code>## # A tibble: 4 × 2
+##   Current.Status     n
+##            &lt;chr&gt; &lt;int&gt;
+## 1      AVAILABLE  1866
+## 2        MISSING     1
+## 3        ON_LOAN    18
+## 4      WITHDRAWN   115</code></pre>
+<p>This means that of the books in the data sample that Professor Kaplan has created, 1866 books are available, 1 book is missing, 18 books are on loan, and 115 and currently withdrawn.</p>
+<ol start="6" style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre class="r"><code>Inv %&gt;% group_by(Issued.Count) %&gt;% tally() </code></pre>
+<pre><code>## # A tibble: 46 × 2
+##    Issued.Count     n
+##           &lt;int&gt; &lt;int&gt;
+## 1             0   996
+## 2             1   337
+## 3             2   203
+## 4             3   121
+## 5             4    69
+## 6             5    46
+## 7             6    38
+## 8             7    29
+## 9             8    24
+## 10            9    20
+## # ... with 36 more rows</code></pre>
+<p>This means that, of the sample of Macalster library books that Professor Kaplan created, 996 have never been checked out and 337 have only been checked once, and so on.</p>
+</div>
 </div>
 </div>
 
