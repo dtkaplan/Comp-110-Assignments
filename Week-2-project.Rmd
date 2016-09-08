@@ -1,6 +1,6 @@
 # Week 2 Project
 
-## Your name should appear here!
+## Katie Jolly
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,24 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+```{r}
+download.file("http://tiny.cc/dcf/Library-small.rda",dest="Library-small.rda")
+```
+I downloaded the data from the url http://tiny.cc/dcf/Library-small.rda 
+
+##Basics
+```{r}
+load("Library-small.rda")
+```
+```{r}
+nrow(Inv)
+names(Inv)
+nrow(Bks)
+names(Bks)
+```
+The table Inv has 2000 cases, so 2000 items listed. Among some of the variables are the location, author, cost, item type, and ISBN. The table Bks has 3765 items (books) listed by the library. Some of the variables include the format, subject, title, genre.  
+```{r}
+Inv %>% group_by(Current.Status) %>% tally()
+Inv %>% group_by(Issued.Count) %>% tally()
+```
+Of the 2000 items in this sample, 1866 are available in the library, 1 is missing, 18 are on loan, and 115 are checked out. Far more books are available than are currently being used, likely because students are more often using the library's digital resources rather than print ones. The largest collection of books fall into the category of books never checked out. From there naturally books checked out once is the next largest category. Most books in the library are never or infrequently checked out and very few are "well used."
