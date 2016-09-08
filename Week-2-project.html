@@ -120,13 +120,58 @@ $(document).ready(function () {
 
 <div id="week-2-project" class="section level1">
 <h1>Week 2 Project</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="shelby-witherby" class="section level2">
+<h2>Shelby Witherby</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:30:09 2016.</p>
+<p>Compiled on Wed Sep 7 21:14:30 2016.</p>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
 </div>
+<div id="basics" class="section level2">
+<h2>Basics</h2>
+<pre class="r"><code>load(&quot;Library-small.rda&quot;)</code></pre>
+<pre class="r"><code>nrow(Inv)</code></pre>
+<pre><code>## [1] 2000</code></pre>
+</div>
+</div>
+<div id="the-code-above-tells-us-there-are-2000-books-in-the-macalester-library-inventory" class="section level1">
+<h1>The code above tells us there are 2000 books in the Macalester library inventory</h1>
+<pre class="r"><code>nrow(Bks)</code></pre>
+<pre><code>## [1] 3765</code></pre>
+</div>
+<div id="the-code-above-tells-us-there-are-3765-books-that-macalester-uses" class="section level1">
+<h1>The code above tells us there are 3765 books that Macalester uses</h1>
+<pre class="r"><code>Inv %&gt;% group_by(Current.Status) %&gt;% tally()</code></pre>
+<pre><code>## # A tibble: 4 × 2
+##   Current.Status     n
+##            &lt;chr&gt; &lt;int&gt;
+## 1      AVAILABLE  1866
+## 2        MISSING     1
+## 3        ON_LOAN    18
+## 4      WITHDRAWN   115</code></pre>
+</div>
+<div id="the-code-above-tells-us-how-many-books-are-available-how-many-are-withdrawn-etc.-they-are-grouped-by-the-current-status..-for-instance-1866-books-are-available." class="section level1">
+<h1>The code above tells us how many books are available, how many are withdrawn, etc. They are grouped by the “current status”.. For instance, 1866 books are available.</h1>
+<pre class="r"><code>Inv %&gt;% group_by(Issued.Count) %&gt;% tally()</code></pre>
+<pre><code>## # A tibble: 46 × 2
+##    Issued.Count     n
+##           &lt;int&gt; &lt;int&gt;
+## 1             0   996
+## 2             1   337
+## 3             2   203
+## 4             3   121
+## 5             4    69
+## 6             5    46
+## 7             6    38
+## 8             7    29
+## 9             8    24
+## 10            9    20
+## # ... with 36 more rows</code></pre>
+</div>
+<div id="the-code-above-tells-us-how-many-times-the-books-have-been-checked-out." class="section level1">
+<h1>The code above tells us how many times the books have been checked out.</h1>
+</div>
+<div id="i-downloaded-the-data-from-httptiny.ccdcflibrary-small.rda" class="section level1">
+<h1>I downloaded the data from “<a href="http://tiny.cc/dcf/Library-small.rda" class="uri">http://tiny.cc/dcf/Library-small.rda</a>”</h1>
 </div>
 
 

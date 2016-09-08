@@ -38,7 +38,7 @@ nrow(Bks)
 
 ```
 
-# The code above tells us there are 
+# The code above tells us there are 3765 books that Macalester uses
 
 ```{r}
 
@@ -52,7 +52,6 @@ Inv %>% group_by(Current.Status) %>% tally()
 Inv %>% group_by(Issued.Count) %>% tally()
 ```
 # The code above tells us how many times the books have been checked out.
-
 
 
 #I downloaded the data from "http://tiny.cc/dcf/Library-small.rda"
