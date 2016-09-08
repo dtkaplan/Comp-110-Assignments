@@ -1,0 +1,50 @@
+---
+title: "Small Project Books"
+author: "Joshua Doyle"
+date: ""
+output: 
+  html_document:
+    fig_height: 3
+    fig_width: 5
+---
+<!-- Don't edit in between this line and the one below -->
+```{r include=FALSE}
+# Don't delete this chunk if you are using the DataComputing package
+library(DataComputing)
+```
+*Source file* 
+```{r, results='asis', echo=FALSE}
+includeSourceDocuments()
+```
+<!-- Don't edit the material above this line -->
+
+The data was downloaded from the library website:
+http://tiny.cc/dcf/Library-small.rda
+
+## Basics 
+
+```{r}
+load("Library-small.rda")
+```
+
+Description of the dataset: There are 15 variables in the Bks dataset as well as 3765 cases. In the Inv. dataset there are 18 variables and 2000 cases. Looking at the Bks table one can read subject, title etc. 
+
+```{r}
+nrow(Bks)
+nrow(Inv)
+names(Bks)
+names(Inv)
+```
+
+```{r}
+Inv %>% group_by(Current.Status) %>% tally()
+```
+
+The code above results in a table that shows if Macalester College Library books are available, missing, on loan or withdrawn. Tallying allows to count these different categories. Overall, there are 1866 available, 1 missing, 18 on loan and 115 withdrawn. 
+
+```{r}
+Inv %>% group_by(Issued.Count) %>% tally()
+```
+The code above looks at the # of times books have been checked out. For example, 996 books have been checked out zero times at Macalester's library, while 337 have been checked out once. 
+
+
