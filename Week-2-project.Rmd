@@ -1,6 +1,6 @@
 # Week 2 Project
 
-## Your name should appear here!
+## Qiuhan Sun
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,30 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+I downloaded the library data from "http://tiny.cc/dcf/Library-small.rda",dest="Library-small.rda".
+
+##Basics
+```{r}
+load("Library-small.rda")
+```
+
+```{r}
+nrow(Inv)
+nrow(Bks)
+names(Inv)
+names(Bks)
+```
+
+Inv contains 2000 cases. It has the location, call number, author, title, material format, ISBN, cost, issued date and other charateristics of each individual book. Bks contains 3765 cases. It has the OCLC number, format, subject, title, author, publication date, edition, publisher, ISBN, Langugage and other charateristics of each individual book.
+
+```{r warning=FALSE}
+Inv %>% group_by(Current.Status) %>% tally()
+```
+
+The table shows that for the book collections in the library in our small dataset, there are 1866 abailable books, 1 missing book, 18 on-loan books and 115 withdrawn books.
+
+```{r}
+Inv %>% group_by(Issued.Count) %>% tally()
+```
+
+The table show that for the book collections in the library in our small dataset, there are 996 books that have never been checked out, 337 books that have been checked out once, 203 books that have been checked out twice, 121 books that have been checked out three times, 69 books that have been checked out four times, 38 books that have been checked out six times, 29 books that have been checked out seven times and so on...
