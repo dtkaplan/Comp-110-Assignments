@@ -1,13 +1,58 @@
 # Week 2 Project
 
-## Your name should appear here!
+## Shelby Witherby
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
+
 ```{r include = FALSE}
+
 library(DataComputing)
+
+
+
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+## Basics
+
+```{r}
+
+load("Library-small.rda")
+
+```
+
+```{r}
+
+nrow(Inv)
+
+```
+
+# The code above tells us there are 2000 books in the Macalester library inventory
+
+
+```{r}
+
+nrow(Bks)
+
+```
+
+# The code above tells us there are 
+
+```{r}
+
+Inv %>% group_by(Current.Status) %>% tally()
+
+```
+
+# The code above tells us how many books are available, how many are withdrawn, etc. They are grouped by the "current status".. For instance, 1866 books are available.
+
+```{r}
+Inv %>% group_by(Issued.Count) %>% tally()
+```
+# The code above tells us how many times the books have been checked out.
+
+
+
+#I downloaded the data from "http://tiny.cc/dcf/Library-small.rda"
