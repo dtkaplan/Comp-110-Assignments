@@ -10,6 +10,7 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
+<<<<<<< HEAD
 (1) Here we analyze the number of books in the data set that Professor Kaplan prepared for this class.  The data was downloaded from the URL "http://tiny.cc/dcf/Library-small.rda".  
 
 ### Basics 
@@ -57,3 +58,8 @@ Inv %>% group_by(Issued.Count) %>% tally()
 ```
 
 This means that, of the sample of Macalster library books that Professor Kaplan created, 996 have never been checked out and 337 have only been checked once, and so on.  
+=======
+Here is my content!
+
+### 1.1
+>>>>>>> 372607bd09667fbe0f19faa9d4f2a0de42407a56
