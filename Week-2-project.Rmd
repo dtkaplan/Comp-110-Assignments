@@ -14,3 +14,31 @@ library(DataComputing)
 download.file("http://tiny.cc/dcf/Library-small.rda", dest = "Library-small.rda")
 ```
 
+The data was downloaded from the library's website at: http://tiny.cc/dcf/Library-small.rda
+
+## Basics
+
+```{r}
+load("Library-small.rda")
+```
+
+```{r}
+names(Bks)
+nrow(Bks)
+names(Inv)
+nrow(Inv)
+```
+
+In the "Bks" dataset, there are 15 variables and 3765 cases. In the "Inv" dataset, there are 18 variables and 2000 variables. Mnay of these variables overlap, including "Call Number" and "ISBN". The dataset has a lot of information, including things like the Book Title, Author, Format, Publication Date, Language, and Subject.
+
+```{r}
+Inv %>% group_by(Current.Status) %>% tally()
+```
+
+```{r}
+Inv %>% group_by(Issued.Count) %>% tally()
+```
+
+These results show what the status of the books are and how frequently they are checked out. According to the current status, 1866 of the 2000 cases are available, 1 is missing, 18 are on loan, and 115 are withdrawn. 
+
+In terms of issued count, 996 of the 2000 books were never checked out, 337 were checked out only once, 203 were checked out twice, and the remaining ~500 were checked out three times or more. After assigning the data into a table to see the hidden 36 rows, I could see that, intrestingly, some popular titles were checked out hundreds of times. The library's most popular book was checked out 239 times.
