@@ -1,6 +1,6 @@
 # Week 2 Project
 
-## Your name should appear here!
+## Joseph Goodson-Gregg
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,30 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+1. My data was downloaded from. http://tiny.cc/dcf/Library-small.rda
+Within that address dest = "Library-small.rda" specified where exactly to download from.
+
+##Basics
+```
+load("~/Comp-110-Assignments/Library-small.rda")
+View(Inv)
+View(Bks)
+```
+```
+nrow(Inv)
+names(Inv)
+The Inv data describes where books are in the library, as well as if they are available.
+nrow(Bks)
+names(Bks)
+The Bks data describes each book in the library, and offers a wide range of identifying information. Such as ISBN and Year.
+```
+
+```
+Inv %>% group_by(Current.Status) %>% tally()
+This command displays the total number of books in the following categories: AVAILABLE, MISSING, ON_LOAN, WITHDRAWN.
+```
+
+```
+Inv %>% group_by(Issued.Count) %>% tally()
+This command displays the total number times books have been checked out. The cases are number of times checked out.
+```
