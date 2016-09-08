@@ -120,13 +120,79 @@ $(document).ready(function () {
 
 <div id="week-2-project" class="section level1">
 <h1>Week 2 Project</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="yujin-jang" class="section level2">
+<h2>Yujin Jang</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:30:09 2016.</p>
+<p>Compiled on Wed Sep 7 20:44:59 2016.</p>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
 </div>
+</div>
+<div id="i-downloaded-this-data-from-the-library-data-resourcehttptiny.ccdcflibrary-small.rdadest-library-small.rda" class="section level1">
+<h1>1. I downloaded this data from the Library data resource“<a href="http://tiny.cc/dcf/Library-small.rda" class="uri">http://tiny.cc/dcf/Library-small.rda</a>”,dest= “Library-small.rda”</h1>
+</div>
+<div id="section" class="section level1">
+<h1>2,3</h1>
+<!--Basics-->
+<pre class="r"><code>load(&quot;Library-small.rda&quot;)</code></pre>
+</div>
+<div id="section-1" class="section level1">
+<h1>4</h1>
+<pre class="r"><code>names(Inv)</code></pre>
+<pre><code>##  [1] &quot;Shelving.Location&quot;     &quot;Item.Type&quot;            
+##  [3] &quot;Call.Number&quot;           &quot;Author&quot;               
+##  [5] &quot;Title.or.Description&quot;  &quot;Textual.Holdings&quot;     
+##  [7] &quot;Material.Format&quot;       &quot;OCLC.Number&quot;          
+##  [9] &quot;ISBN&quot;                  &quot;Item.Barcode&quot;         
+## [11] &quot;Cost&quot;                  &quot;Current.Status&quot;       
+## [13] &quot;Loan.Date.Due&quot;         &quot;Issued.Count&quot;         
+## [15] &quot;Issued.Count.YTD&quot;      &quot;Last.Issued.Date&quot;     
+## [17] &quot;Last.Inventoried.Date&quot; &quot;Item.Deleted.Date&quot;</code></pre>
+<pre class="r"><code>names(Bks)</code></pre>
+<pre><code>##  [1] &quot;OCLC.Number&quot;          &quot;Format&quot;               &quot;Subject&quot;             
+##  [4] &quot;Title&quot;                &quot;Author&quot;               &quot;Publication.Date&quot;    
+##  [7] &quot;Edition&quot;              &quot;Publisher&quot;            &quot;ISBN&quot;                
+## [10] &quot;Language&quot;             &quot;Physical.Description&quot; &quot;Genre&quot;               
+## [13] &quot;LC.Call.Number&quot;       &quot;Dewey.Call.Number&quot;    &quot;Local.Call.Number&quot;</code></pre>
+<pre class="r"><code>dim(Inv)</code></pre>
+<pre><code>## [1] 2000   18</code></pre>
+<pre class="r"><code>dim(Bks)</code></pre>
+<pre><code>## [1] 3765   15</code></pre>
+<pre class="r"><code># Both files are similar. Both are about list of books. I think Inv is for Macalester Inventory since it has its location, barcode, current status etc. Bks could be more specific info of the books such as its title, edition, language etc. </code></pre>
+</div>
+<div id="section-2" class="section level1">
+<h1>5</h1>
+<pre class="r"><code>Inv %&gt;% group_by(Current.Status) %&gt;%tally()</code></pre>
+<pre><code>## # A tibble: 4 × 2
+##   Current.Status     n
+##            &lt;chr&gt; &lt;int&gt;
+## 1      AVAILABLE  1866
+## 2        MISSING     1
+## 3        ON_LOAN    18
+## 4      WITHDRAWN   115</code></pre>
+</div>
+<div id="it-shows-books-that-are-available-or-missing-on-loan-or-withdrawn" class="section level1">
+<h1>It shows books that are available or missing, on loan or withdrawn</h1>
+</div>
+<div id="section-3" class="section level1">
+<h1>6</h1>
+<pre class="r"><code>Inv %&gt;% group_by(Issued.Count) %&gt;% tally()</code></pre>
+<pre><code>## # A tibble: 46 × 2
+##    Issued.Count     n
+##           &lt;int&gt; &lt;int&gt;
+## 1             0   996
+## 2             1   337
+## 3             2   203
+## 4             3   121
+## 5             4    69
+## 6             5    46
+## 7             6    38
+## 8             7    29
+## 9             8    24
+## 10            9    20
+## # ... with 36 more rows</code></pre>
+</div>
+<div id="it-shows-some-sort-of-numbering-system-matched-up-with-integer" class="section level1">
+<h1>It shows some sort of numbering system matched up with integer</h1>
 </div>
 
 
