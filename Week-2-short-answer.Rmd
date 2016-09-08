@@ -155,3 +155,9 @@ There should be and equals sign rather than an assignment operator for the named
 Statement c is different because it uses the mean of count rather than the sum, as the other statments do.  
 
 ### 4.1
+
+'*one*' will be 
+**two**
+* three
+# Four
+ five 
