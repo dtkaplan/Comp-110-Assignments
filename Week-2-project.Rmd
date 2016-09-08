@@ -1,6 +1,6 @@
 # Week 2 Project
 
-## Your name should appear here!
+## Xing Gao
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -11,3 +11,6 @@ library(DataComputing)
 <!-- put your content after this line -->
 
 Here is my content!
+
+#5.There are 1866 available books, 1 missing, 18 books on loan, and 115 books withdrawn. 
+#6. the Count column shows how many times the book has been checked out. n shows how many books fit within the category of times checked out. For example, 996 books have never been checked out, 337 books have been checked out once, 203 books have been checked out twice, and so on. 
