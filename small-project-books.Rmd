@@ -1,0 +1,44 @@
+# Small Project Books
+
+## Adom Mills-Robertson
+
+<!-- leave this material as is -->
+Compiled on `r date()`.
+
+```{r include = FALSE}
+library(DataComputing)
+```
+<!-- put your content after this line -->
+
+I downloaded the data from the library's website, and it was really good. the URL is http://tiny.cc/dcf/Library-small.rda. 
+
+##Basics##
+
+```{r}
+load("Library-small.rda")
+```
+
+```{r}
+nrow(Bks)
+names(Bks)
+```
+The following refers to a mixed list of books, the author, Title, publication date, and other descriptors for books. 
+
+```{r}
+nrow(Inv)
+names(Inv)
+
+```
+
+The following refers to the item type, shelving locations, isbn numbers, author, title, and some other data that shows more description about books found at Macalester College's library.
+
+```{r}
+Inv %>% group_by(Current.Status) %>% tally()
+
+```
+in the code above, I grouped all the books located at Macalester College's library by current status, and then I decided to tally them so that I could see them without repetition and get the actual amounts. For e.g there were 1866 available books at the library. 
+
+```{r}
+ Inv %>% group_by(Issued.Count) %>% tally()
+```
+in the code above, I grouped all the books located at Macalester College's library by Issued count, and then I decided to tally them so that I could see them without repetition and get the actual amounts. For e.g there were 996 books that have never been checked out before. whilst 337 books have been checked out once. 203 books have been checked out twice and so on. You can see that some books have been checked out as many as 9 times.
