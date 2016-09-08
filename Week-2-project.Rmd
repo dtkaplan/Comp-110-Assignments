@@ -1,6 +1,6 @@
 # Week 2 Project
 
-## Your name should appear here!
+## Danielle Niederkorn!
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,33 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+I downloaded the data from "http://tinycc/dcf/Library-small.rda". There were originally two data tables: Inv and Bks.
+
+Basics
+
+```{r}
+load("Library-small.rda")
+
+```
+```{r}
+Inv %>% group_by(Cost) %>% tally()
+
+# Grouping by Cost shows that there are a lot of books that show that the cost of the books is 0.00. This could mean that any payments for the books are already paid off, and that the library has not spent money on their upkeep in the last year.
+
+Inv %>% group_by(Loan.Date.Due) %>% tally()
+
+# The loan date due probably means that these are the books that are checked out past their due date or in need of repair or held by faculty. The ones from 2014 are probably either waiting for someone to pay fines for a lost book or are in the process of being repaired.
+
+Inv %>% group_by(Issued.Count) %>% tally()
+
+# Issued.Count is a record of how often things at the library are checked out. For example, bikes are checked out most often at the library.
+
+Inv %>% group_by(Last.Issued.Date) %>% tally()
+
+#
+
+Inv %>% group_by(Current.Status) %>% tally()
+
+# Current.Status is most likely related to Loan.Due.Date. The status of many of the books is available, with a few that were recorded under the Loan.Due.Date with the status Withdrawn. It is odd that so few books are under the On Loan status. The only explanation I can think of to explain the small number of On Loan books is that the data was collected in the summer, when the campus had few students and faculty checking books out. 
+```
+
