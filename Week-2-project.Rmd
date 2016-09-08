@@ -1,13 +1,17 @@
 # Week 2 Project
 
-## Your name should appear here!
+## Gozong Lor
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+
+load("Library-small.rda")
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+The results from grouping the data by the status of the books shows how many books are available (1866), missing (1), on loan (18), and withdrawn (115). As of now, the data is still not very useful. For example, what it means for a book to be "withdrawn" is unknown.
+
+In the second table, a single case is the number of times books have been checked out. For example, the first row in the table tells us that 996 books have never been checked out in the entire library. 
