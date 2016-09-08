@@ -10,4 +10,18 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+## The American Revolution
+
+The American revolution took place over a period of six years from 1777 to 1783, involving the indpendance of the British American Colonies from the British Empire and the establishment of the United States of America.
+
+[https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Declaration_independence.jpg/1920px-Declaration_independence.jpg]
+
+```{r}
+pi_sin <- sin(sqrt(pi))
+
+```
+
+```{r}
+asin(pi_sin)^2
+```
+
