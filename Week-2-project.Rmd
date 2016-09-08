@@ -10,4 +10,42 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+I download the document from the URL "http://tiny.cc/dcf/Library-small.rda",dest = "#Library-small.rda". I use the function download.file() function in R to load it in my directory. 
+
+## Basics
+
+```{r}
+load("Library-small.rda")
+```
+
+The number of cases in each file, we can see there are 2000 cases in Inv and 3765 cases in Bks:
+```{r}
+nrow(Inv)
+nrow(Bks)
+```
+
+The names of variables in Inv:
+```{r}
+names(Inv)
+```
+
+The names of variables in Bks:
+```{r}
+names(Bks)
+```
+
+These two data sets are both about books, Bks contains the data about all the books that might or might not in the database while Inv talks about the collection of the library. So obviously they contain only parts of the library's books. 
+
+Ok, then we will look at the number of books with each different Current.Status.
+```{r}
+Inv %>% group_by(Current.Status) %>% tally()
+```
+
+The data table above shows the current status of the book as it indicates. There are 1866 books that are available right now, 1 book is unfortunately missing, there are 18 books that are on loan and there are 115 books that are withdrawn. 
+
+Next, we would look at how many times books have been checked out:
+```{r}
+Inv %>% group_by(Issued.Count) %>% tally()
+```
+
+So the number shown above indicates the number of books that have been checked out for n times. For example, there will be 996 books that have never been checked out and there are 337 books that have been check out once. 
