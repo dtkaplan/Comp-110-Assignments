@@ -1,6 +1,6 @@
 # Week 2 Project
 
-## Your name should appear here!
+## Phuc Nguyen
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,39 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+```{r}
+download.file("http://tiny.cc/dcf/Library-small.rda", dest = "Library-small.rda")
+```
+
+The data was downloaded from the link http://tiny.cc/dcf/Library-small.rda 
+
+## Basics
+
+```{r}
+load("Library-small.rda")
+```
+
+```{r}
+nrow(Inv)
+names(Inv)
+nrow(Bks)
+names(Bks)
+```
+
+There are two data tables called Inv and Bks.
+The library's collection is in Inv. Inv includes details about the books (i.e. author, title) and their library-related information (i.e. location, due date). Bks includes information of over 3000 books (i.e. genre, title) that may or may not be in the library's collection.
+
+```{r}
+library(dplyr)
+Inv %>% group_by(Current.Status) %>% tally()
+```
+
+Most of the books are available! This library is really good at keeping track of their books since only 1 book is missing.
+
+```{r}
+Inv %>% group_by(Issued.Count) %>% tally()
+```
+
+Many books have never been checked out ... Around half of the books have never been checked out...
+
+
