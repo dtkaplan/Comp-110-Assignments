@@ -10,4 +10,20 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+I downloaded my content from URL "http://tiny.cc/dcf/Library-small.rda",dest="Library-small.rda"
+
+Basics
+```{r}
+load("Library-small.rda")
+nrow(Inv)
+names(Inv)
+nrow(Bks)
+names(Bks)
+```
+Both Inv and Bks are not very big datasets (<4000 rows),w  with <20 dimensions/variables.
+
+```{r}
+Inv %>% group_by(Current.Status) %>% tally()
+Inv %>% group_by(Issued.Count) %>% tally()
+```
+Most cases in Inv were shown to be "Available" in the Current.Status variable. Most issued counts are 0.
