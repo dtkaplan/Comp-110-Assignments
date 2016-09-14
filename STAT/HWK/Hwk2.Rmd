@@ -1,0 +1,140 @@
+---
+title: "Hwk2"
+author: "Yujin Jang"
+date: "9/13/2016"
+output: html_document
+---
+
+# Exercise 1
+a.
+```{r}
+library(ggplot2)
+MJ = read.csv("http://www.macalester.edu/~ajohns24/data/MassShootings.csv")
+MJ$Date = as.Date(MJ$Day, format="%m/%d/%y")
+dim(MJ)
+```
+Since there are 82 cases, there are 82 shooting incidences.
+
+b.
+```{r}
+ggplot(MJ, aes(x=MentalIllness)) + 
+geom_bar(fill = "pink") +  
+labs(x="Mental Illness", y="Number of perpetrators") + 
+theme(text = element_text(size=16))
+```
+
+c.
+There's positive relationship between the mental illness and the perpetrators. 45 of perpetrators had mental illness while only 18 of them had no mental illneess.
+
+d.
+```{r}
+#1
+boxplot(MJ$Age)
+
+#2
+ggplot(MJ, aes(x=Age)) + 
+geom_histogram(fill="blue",color="white",binwidth=30) +  
+labs(x="Age", y="Number of perpetrators") + 
+theme(text = element_text(size=16))
+
+#3
+ggplot(MJ, aes(x=Age)) + 
+geom_density(fill ="blue") +  
+labs(x="Age", y="Density") + 
+theme(text = element_text(size=16)) + 
+theme_bw()
+```
+
+e. Typical age was 35. Many perpetrators' age are spread from around 25 to 45. Many were concentrated from 20 to 50. I don't think there's a significant outlier. Most perpetrators are not too young or too old. They are around 35 years old.
+
+# Exercise 2
+a.
+```{r}
+#1
+ggplot(MJ, aes(x=Venue, y=Age)) + 
+  geom_boxplot(fill="sienna") + 
+  labs(y="Age", x="Venue") + 
+  theme(text = element_text(size=16)) +
+  scale_x_discrete(labels= c("Other", "Religious", "School", "StoreOrRestaurant","Workplace"))
+
+#2
+ggplot(MJ, aes(x=Age, fill=Venue)) + 
+  geom_density(alpha=0.4) + 
+  labs(x="Age", y="Venue") + 
+  scale_fill_manual(name="Venue", values = c("red", "blue", "pink", "purple","yellow"))
+```
+
+b.
+School has relatively younger perpetrator, and Religious and Workplace has same age variability(35~45). Other and Store or Restarant had most variability. Typical age for Other was 37, Religious 43, School 22, Store 35, and Workplace 39.
+
+#3
+a.
+```{r}
+boxplot(MJ$Fatalities)
+```
+
+b.
+Most shooting fatalities are under 10.000. There are many outliers across the number up to 50.000.
+
+c.
+```{r}
+ggplot(MJ, aes(x=Date, y=Fatalities)) +
+  geom_point(color="blue") + 
+  labs(x="Date", y="Fatalities") + 
+  theme(text = element_text(size=16))
+```
+
+d.
+The severity level stays relatively the same throughout. However, more incidence of shooting is happening as we move to 2010. The outliers also tend to increase its fatality as the time passes. 
+
+#Exercise 4
+a.
+```{r}
+library(dplyr)
+TotalFatalities = summarise(group_by(MJ, State), Total=sum(Fatalities))
+states_map = map_data("state")
+ggplot(TotalFatalities, aes(map_id = State)) +
+  geom_map(aes(x=long, y=lat, map_id=region), data=states_map, map=states_map, fill="white", color="black") +
+  geom_map(aes(fill = Total), map = states_map, color="black") +
+  scale_fill_gradient(low="blue", high="hotpink") +
+  theme(axis.ticks = element_blank(), axis.title = element_blank(), axis.text =  element_blank(), line = element_blank())
+```
+
+b.
+California and Florida shows high fatalities and midwest has spread of fatalities but very low. 
+
+#Exercise 5
+a.
+```{r}
+BN = read.csv("http://www.macalester.edu/~ajohns24/data/BabyNames.csv")
+```
+
+b.
+```{r}
+MN<-subset(BN,Name=="Mary")
+head(MN)
+```
+
+c.
+```{r}
+ggplot(data =MN, aes(x=Year)) + 
+geom_density(aes(fill=Name), alpha = 0.4) + 
+facet_wrap( ~ Gender) + 
+labs(x="Name (%)", y="Density") 
+```
+
+d.
+The use of name Mary among female rose from 1900 to 1920 and stayed constant from 1925 to 1985 and it started to drop. The use of name Mary among male rose from 1900 to 1915 and stayed constant from 1925 to 1985 and dropped more dramatically compared to female from 1980.
+
+#Exercise 6
+a.
+```{r}
+MoreNames = subset(BN, Name=="Hillary" | Name=="Adolph" | Name=="Mary")
+ggplot(data =MoreNames, aes(x=Year)) + 
+geom_density(aes(fill=Name), alpha = 0.4) + 
+facet_wrap( ~ Name) + 
+labs(x="Name (%)", y="Density") 
+```
+
+b.
+Surprsingly, Adolph and Mary has a similar density shape. Adloph's name was constatnt from 1925 to late 1900s and it started to drop dramatically. Maybe people's perception of the name was very negative during that time. The name Hillary was constantly increasing until 1960 and started to constinuously drop until current. The name Mary had a constant use from 1925 to 1975 but constantly dropped until now.
