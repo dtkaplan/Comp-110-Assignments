@@ -120,12 +120,88 @@ $(document).ready(function () {
 
 <div id="week-2-project" class="section level1">
 <h1>Week 2 Project</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="josh-marcus" class="section level2">
+<h2>Josh Marcus</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:30:09 2016.</p>
+<p>Compiled on Fri Sep 16 23:13:43 2016.</p>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
+<p>I downloaded this data during the 9/7 session of Comp-110. I got it from <a href="http://tiny.cc/dcf/Library-small.rda" class="uri">http://tiny.cc/dcf/Library-small.rda</a>, and I’m going to use it to practice some basic data wrangling business.</p>
+</div>
+<div id="basics" class="section level2">
+<h2>Basics</h2>
+<p>First, I’m going to read the data into R using this chunk here:</p>
+<pre class="r"><code>load(&quot;Library-small.rda&quot;)</code></pre>
+<p>This leads to the creation of two data table objects, Inv and Bks. Inv stands for the library’s collection, and Bks is is about individual books that might or might not be in the library’s collection.</p>
+</div>
+<div id="slightly-less-basic-basics" class="section level2">
+<h2>Slightly Less Basic Basics</h2>
+<p>To get a better sense of data computing, I’m going to try and answer some sample questions using simple commands.</p>
+<ol style="list-style-type: decimal">
+<li>First question: How many cases are in each file?</li>
+</ol>
+<pre class="r"><code>nrow(Inv)</code></pre>
+<pre><code>## [1] 2000</code></pre>
+<pre class="r"><code>nrow(Bks)</code></pre>
+<pre><code>## [1] 3765</code></pre>
+<p>Cool. Inv and Bks have 2000 and 3765 cases, respectively.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Second question: What are the variables in Inv and Bks called?</li>
+</ol>
+<pre class="r"><code>names(Inv)</code></pre>
+<pre><code>##  [1] &quot;Shelving.Location&quot;     &quot;Item.Type&quot;            
+##  [3] &quot;Call.Number&quot;           &quot;Author&quot;               
+##  [5] &quot;Title.or.Description&quot;  &quot;Textual.Holdings&quot;     
+##  [7] &quot;Material.Format&quot;       &quot;OCLC.Number&quot;          
+##  [9] &quot;ISBN&quot;                  &quot;Item.Barcode&quot;         
+## [11] &quot;Cost&quot;                  &quot;Current.Status&quot;       
+## [13] &quot;Loan.Date.Due&quot;         &quot;Issued.Count&quot;         
+## [15] &quot;Issued.Count.YTD&quot;      &quot;Last.Issued.Date&quot;     
+## [17] &quot;Last.Inventoried.Date&quot; &quot;Item.Deleted.Date&quot;</code></pre>
+<pre class="r"><code>names(Bks)</code></pre>
+<pre><code>##  [1] &quot;OCLC.Number&quot;          &quot;Format&quot;               &quot;Subject&quot;             
+##  [4] &quot;Title&quot;                &quot;Author&quot;               &quot;Publication.Date&quot;    
+##  [7] &quot;Edition&quot;              &quot;Publisher&quot;            &quot;ISBN&quot;                
+## [10] &quot;Language&quot;             &quot;Physical.Description&quot; &quot;Genre&quot;               
+## [13] &quot;LC.Call.Number&quot;       &quot;Dewey.Call.Number&quot;    &quot;Local.Call.Number&quot;</code></pre>
+<p>Fun. Library jargon. That’s what those variables are all about.</p>
+</div>
+<div id="the-meaning-of-these-data-objects-the-meaning-of-life" class="section level2">
+<h2>The Meaning of These Data Objects (/ The Meaning of Life)</h2>
+<p>Okeydokey, diving in a little deeper, what exactly are Inv and Bks though? Inv, which stands for the library’s collection, helps describe the physical location and checkout status of the book within the library—where it is, what’s its call number, whether it’s checked out or on loan somewhere, etc. Bks, meanwhile, gives more information about each book in its own right, the stuff that doesn’t change no matter what library it’s in—its title, edition, publisher, author, etc. Basically, it’s anything you’d find on the bookjacket.</p>
+</div>
+<div id="fancier-commands" class="section level2">
+<h2>Fancier Commands</h2>
+<p>Next, we’re going to make a command that looks at the number of books with each different type of Current.Status.</p>
+<pre class="r"><code>Inv %&gt;%
+  group_by(Current.Status) %&gt;%
+  tally()</code></pre>
+<pre><code>## # A tibble: 4 × 2
+##   Current.Status     n
+##            &lt;chr&gt; &lt;int&gt;
+## 1      AVAILABLE  1866
+## 2        MISSING     1
+## 3        ON_LOAN    18
+## 4      WITHDRAWN   115</code></pre>
+<p>So, interpretting the results, we can see that within our lil’ slice of the library’s collection, there are 1866 available books, 1 missing one, 18 on loan, and 115 that are checked out to people.</p>
+<p>Let’s try another command. This one will tell us how many times books have been checked out.</p>
+<pre class="r"><code>Inv %&gt;%
+  group_by(Issued.Count) %&gt;%
+  tally()</code></pre>
+<pre><code>## # A tibble: 46 × 2
+##    Issued.Count     n
+##           &lt;int&gt; &lt;int&gt;
+## 1             0   996
+## 2             1   337
+## 3             2   203
+## 4             3   121
+## 5             4    69
+## 6             5    46
+## 7             6    38
+## 8             7    29
+## 9             8    24
+## 10            9    20
+## # ... with 36 more rows</code></pre>
+<p>Here’s how I interpret these results: the column starting with 0 represents the number of times individual books have been checked out. For example, that would mean the first case says that 996 books have been checked out 0 times—think about all that knowledge going to waste!—and the second case would mean that 337 books have been checked out once, and so on. I’m especially convinced of this because the results of the previous chunk indicate that our lil’ slice of the library’s collection has about 2,000 books in it, and if you make an educated guess about the sum of all numbers in the rightmost column in the Issued.Count chunk, that’d be about 2000 as well.</p>
 </div>
 </div>
 

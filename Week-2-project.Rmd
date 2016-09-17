@@ -1,6 +1,6 @@
 # Week 2 Project
 
-## Your name should appear here!
+## Josh Marcus
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,67 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+I downloaded this data during the 9/7 session of Comp-110. I got it from http://tiny.cc/dcf/Library-small.rda, and I'm going to use it to practice some basic data wrangling business.
+
+##Basics
+
+First, I'm going to read the data into R using this chunk here: 
+
+```{r}
+load("Library-small.rda")
+```
+
+This leads to the creation of two data table objects, Inv and Bks. Inv stands for the library's collection, and Bks is is about individual books that might or might not be in the library's collection. 
+
+##Slightly Less Basic Basics 
+To get a better sense of data computing, I'm going to try and answer some sample questions using simple commands.
+
+1. First question: How many cases are in each file?
+
+```{r}
+nrow(Inv)
+```
+
+```{r}
+nrow(Bks)
+```
+
+Cool. Inv and Bks have 2000 and 3765 cases, respectively.
+
+2. Second question: What are the variables in Inv and Bks called?
+
+```{r}
+names(Inv)
+```
+
+```{r}
+names(Bks)
+```
+
+Fun. Library jargon. That's what those variables are all about.
+
+##The Meaning of These Data Objects (/ The Meaning of Life)
+
+Okeydokey, diving in a little deeper, what exactly are Inv and Bks though? Inv, which stands for the library's collection, helps describe the physical location and checkout status of the book within the library—where it is, what's its call number, whether it's checked out or on loan somewhere, etc. Bks, meanwhile, gives more information about each book in its own right, the stuff that doesn't change no matter what library it's in—its title, edition, publisher, author, etc. Basically, it's anything you'd find on the bookjacket.
+
+##Fancier Commands
+
+Next, we're going to make a command that looks at the number of books with each different type of Current.Status.
+
+```{r}
+Inv %>%
+  group_by(Current.Status) %>%
+  tally()
+```
+
+So, interpretting the results, we can see that within our lil' slice of the library's collection, there are 1866 available books, 1 missing one, 18 on loan, and 115 that are checked out to people.
+
+Let's try another command. This one will tell us how many times books have been checked out.
+
+```{r}
+Inv %>%
+  group_by(Issued.Count) %>%
+  tally()
+```
+
+Here's how I interpret these results: the column starting with 0 represents the number of times individual books have been checked out. For example, that would mean the first case says that 996 books have been checked out 0 times---think about all that knowledge going to waste!---and the second case would mean that 337 books have been checked out once, and so on. I'm especially convinced of this because the results of the previous chunk indicate that our lil' slice of the library's collection has about 2,000 books in it, and if you make an educated guess about the sum of all numbers in the rightmost column in the Issued.Count chunk, that'd be about 2000 as well.
