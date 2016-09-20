@@ -123,7 +123,7 @@ $(document).ready(function () {
 <div id="qiuhan-sun" class="section level2">
 <h2>Qiuhan Sun</h2>
 <!-- leave this material as is -->
-<p>Compiled on Sun Sep 4 20:34:55 2016.</p>
+<p>Compiled on Tue Sep 20 16:57:44 2016.</p>
 <!-- put your content after this line -->
 <p>Here is my content!</p>
 <p>Problem 1.1</p>
@@ -135,7 +135,9 @@ $(document).ready(function () {
 <li>Count. It’s a quantitative variable.</li>
 </ol>
 <p>1.2</p>
-<p>To be a tidy table, each column needs to be a variable containing the same type of value for each case. Number of states is a quantitative variable. However, ‘it depends’ is not a number, which differs it to other values. Also, the format for values should be the same. ‘1837 to 1841’ should be ‘1837-1841’. ‘Lincoln, Abraham’ should be ‘Abraham Lincoln’.</p>
+<p>To be a tidy table, each column needs to be a variable containing the same type of value for each case. Number of states is a quantitative variable. However, ‘it depends’ is not a number, which differs it to other values.</p>
+<p>Also, the format for values should be the same. ‘Lincoln, Abraham’ should be ‘Abraham Lincoln’.</p>
+<p>We should also seperate the two numbers in the in office variable. ‘1837 to 1841’ and ‘1837-1841’ are not the same.</p>
 <p>1.4</p>
 <ol style="list-style-type: decimal">
 <li><p>In Table A, variables are Year, Algeria, Brazil and Columbia. In Table B, variables are Country, Y2000 and Y2001. In Table C, variables are Country, Year and Value.</p></li>
@@ -145,7 +147,7 @@ $(document).ready(function () {
 <ol style="list-style-type: decimal">
 <li>There are six variable, including ‘faa’, ‘name’, ‘lat,lon’, ‘alt’, ‘tz’, ‘dst’.</li>
 <li>A case is an individual airport.</li>
-<li>faa is a categorical variable. name is categorical. lat is catagorical. alt is quantitative. tz is categorical. dst is categorical.</li>
+<li>faa is a categorical variable. name is categorical. lat is quantitative. alt is quantitative. tz is categorical. dst is categorical.</li>
 </ol>
 <p>2.2</p>
 <p>File name should be wrapped in quotes.</p>
@@ -205,18 +207,19 @@ flights%&gt;% nrow()</code></pre>
 <li>a data frame</li>
 </ol>
 <pre class="r"><code>fireplace &lt;- BabyNames %&gt;% filter(sex == &quot;F&quot;)</code></pre>
+<pre><code>## Warning: failed to assign NativeSymbolInfo for lhs since lhs is already
+## defined in the 'lazyeval' namespace</code></pre>
+<pre><code>## Warning: failed to assign NativeSymbolInfo for rhs since rhs is already
+## defined in the 'lazyeval' namespace</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>a function</li>
+<li><p>a function fireplace(</p></li>
+<li><p>the name of a named argument</p></li>
 </ol>
-<pre class="r"><code>fireplace &lt;- sum(7,9)</code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li>the name of a named argument</li>
-</ol>
-<pre class="r"><code>fireplace &lt;- (result=sum(4,5))</code></pre>
+<pre class="r"><code>#functionverb(fireplace=sum(4,5))</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>a variable</li>
 </ol>
-<pre class="r"><code>fireplace &lt;- BabyNames %&gt;% filter(name==&quot;Mike&quot;)</code></pre>
+<pre class="r"><code>#mean(fireplace)</code></pre>
 <p>3.2</p>
 <pre class="r"><code>Result &lt;- BabyNames %&gt;% filter(name==&quot;Prince&quot;)</code></pre>
 <pre class="r"><code>Result &lt;- filter(BabyNames, name==&quot;Prince&quot;)</code></pre>
@@ -256,7 +259,7 @@ msleep%&gt;% nrow()</code></pre>
 <p>The vore variable can be carnivore, omnivore or herbivore.</p>
 <p>3.6</p>
 <ol start="3" style="list-style-type: lower-alpha">
-<li>summarizes the mean other than the sum.</li>
+<li>finds the mean other than the sum.</li>
 </ol>
 <p>4.1</p>
 <p><em>one</em> italic</p>
@@ -266,16 +269,16 @@ msleep%&gt;% nrow()</code></pre>
 </ul>
 </div>
 </div>
-<div id="four-header" class="section level1">
-<h1>Four Header</h1>
+<div id="four-header-first-level" class="section level1">
+<h1>Four Header (first-level)</h1>
 <p><code>five</code> monospaced text in grey shade (Inline R code)</p>
-<div id="six-header" class="section level2">
-<h2>Six Header</h2>
+<div id="six-header-second-level" class="section level2">
+<h2>Six Header (second-level)</h2>
 <p><a href="http://tiny.cc/dcf/index.html">seven</a> a link that direct to the website</p>
 <p>4.2</p>
 <ol style="list-style-type: lower-alpha">
 <li><p>Use ``` instead of ‘’’.</p></li>
-<li><p>Use ``` instead of “”“.</p></li>
+<li><p>Use ``` instead of “”“, use {} other than ()</p></li>
 <li><p>Missing a ` in closing.</p></li>
 <li><p>Opening and Closing delimiter should be in different sentence.</p></li>
 <li><p>Should only be 3 ` other than 4 in closing delimiter.</p></li>
@@ -284,11 +287,12 @@ msleep%&gt;% nrow()</code></pre>
 <p>An introduction as a header. The word “easy” in italic. R will also calculate 5.</p>
 <p>4.4</p>
 <ol style="list-style-type: decimal">
-<li>A possible URL.</li>
+<li>A possible URL; can also be a file name</li>
 <li>A possible file</li>
 <li>Neither.http other than ptth</li>
 <li>A possible URL.</li>
-<li>A possible URL.</li>
+<li>A possible URL. // is weird.</li>
+<li>A possible URL or file</li>
 </ol>
 </div>
 </div>
