@@ -1,6 +1,6 @@
 # Week 3 Short Answer Questions
 
-## Your name should appear here!
+## Qiuhan
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,116 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+Problem 5.1
+
+```{r}
+library(mosaicData)
+#barGraphHelper(CPS85)
+ggplot(data=CPS85,aes(x=sex,y=wage ,fill=married))+geom_bar(stat='identity',position='dodge', width=.9) 
+```
+
+
+5.2
+```{r}
+WorldMap(HappinessIndex, key=country, fill=corruption)
+```
+
+6.5
+
+b. State and polling organization.
+
+6.6
+
+d. Glyph is rectangle and graphical attribute is color and text.
+
+6.7
+a) State
+
+6.8
+```{r}
+Small <-NCHS %>%sample_n(size=5000)
+#scatterGraphHelper(Small)
+ggplot(data=Small,aes(x=bmi,y=weight))+geom_point()+aes(colour=smoker) 
+```
+
+Each dot represents a person, showing the person's bmi and weight. Color pink means that the person is not a smoker; blue means the person is.
+
+7.1
+
+a. mean()
+b. mutate(variableA/variableB)
+c. arrange(dataset, desc(variable))
+d. filter()
+e. select(datatable, A, X)
+f. group_by(A,B) and summarize(mvalue=max(X))
+
+7.4
+a)
+```{r}
+#BabyNames %>%group_by( First ) %>% summarise( votesReceived=n() )
+```
+don't need to quote First. Dataset is wrong.
+
+b)
+```{r}
+#Tmp <- group_by(BabyNames, year, sex ) %>% summarise( Tmp, totalBirths=sum(count))
+```
+You cannot call Tmp within the statement.
+
+c)
+```{r}
+#Tmp <- group_by(BabyNames, year, sex)summarise( BabyNames, totalBirths=sum(count) )
+```
+There's no link between the two verbs.
+
+7.5
+
+a) arrange(sex, count)
+b) filter(sex=="F")
+c) filter(sex=="M",count>9)
+d) summarise(total = sum(count))
+e) select (name, count)
+
+7.7
+a)
+```{r}
+BabyNames %>%group_by(year, sex) %>% summarise(total = sum(count))
+```
+Do not need to call BabyNames inside the verbs.
+
+b) 
+```{r}
+ZipGeography %>% group_by(State) %>% summarise(pop = sum(Population))
+```
+should use %>% other than <-
+
+c)
+```{r}
+Minneapolis2013 %>% group_by(First) %>%summarise(voteReceived = n())
+```
+should use %>% other than <-
+
+d) 
+```{r}
+Minneapolis2013 %>% group_by(First) %>%summarise(votesReceived = n()) 
+```
+Put Minneapolis2013 at the front, then group_by, then summarise.
+
+7.11
+a) sex, count (total number of patients with that sex), meanAge (average age of patients of that sex)
+
+b) diagnosis, count (total number of patients with that diagnosis), meanAge (average age of patients of that diagnosis)
+
+c) sex, diagnosis, count (total number of patients with that sex and that diagnosis), meanAge (average age of patients of that sex and that diagnosis)
+
+d) age, diagnosis, count (total number of patients with that age and that diagnosis), meanAge (average age of patients of that age and that diagnosis)
+
+e) age, count (total number of patients at that age), meanAge (should be the age)
+
+7.12
+1. nrow()
+2. names()
+3. help()
+4. library()
+5. group_by()
+6. summarise()
