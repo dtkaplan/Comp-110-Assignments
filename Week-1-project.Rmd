@@ -1,6 +1,6 @@
 # Week 1 Project  
 
-## Your name should appear here!
+## Kai Heen
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,28 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+# The Story of Davy Crockett
+
+* Davy Crockett killed a bear with his bear hands when he was 3 years old.
+* Davy Crockett was cool
+* Davy Crockett had a furry hat
+
+# More Davy Crockett
+1. Davy Crockett had 10 fingers
+2. Davy Crockett had 10 toes
+3. Davy Crockett is no longer with us
+
+
+
+![My picture](https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/David_Crockett.jpg/220px-David_Crockett.jpg)
+
+
+
+```{r}
+my_special_number <- sin(sqrt(pi))
+```
+
+
+```{r}
+asin(my_special_number)^2
+```
