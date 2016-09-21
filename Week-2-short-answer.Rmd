@@ -11,46 +11,137 @@ library(DataComputing)
 <!-- put your content after this line -->
 
 ## Section 1.1
-
+Categorical variable: (D)Name, (C)sex
+Quantitative variable: (B)Year, (E)count
+Value of a variable for a particular case: (A) Taffy
 
 ## Section 1.2
+President's names (inconsistent comma placement), number of states is a mix of integers and strings, in office format is also inconsistent.
 
 ## Section 1.4
+1. A: Year, Algeria, Brazil, Columbia
+B: Country, Y2000, Y2001
+C: Country, Year, Value
+
+2. A country: 
+* (A) A year
+(B) A country
+(C) A country in a year
 
 ## Section 1.5
+1. 5 variables
+2. Airline flights 
+3. airlines - Quantitative
+airports - Numberical
+flights - Numerical
+planes - Quantitative
+weather - Quantitative
 
 ## Section 2.2
+File name
 
 ## Section 2.3
+Population
 
 ## Section 2.4
+I can't find anything wrong with this statement. After running it in R Studio, it seems to work fine and does not have any error outputs.
 
 ## Section 2.6
+2. first-essay: You can't have '-' symbol in the middle of an object name
+
+5. small sample: You can't have blank/space symbol in the middle of an object name
+
+9. sqrt(): This is already a function in R and cannot be used as your object name.
 
 ## Section 2.8
+Mistakes:
+a. 3 - improper syntax for function argument
+c. 4 - invalid object name
+d. 2 - unmatched quotes in character string
 
 ## Section 2.9
+Characters that are valid in name of an R Object: 
+
+. (period), _ (underscore)
+
+All characters above can be used in a quoted character string.
 
 ## Section 2.10
+* Variables in CountryData data set: 76
+* tfat measures ... how much trans fat each group of people takes in on average?
+* WorldCities number of cases: 23018
+* Third variable in BabyNames: Count
+* Codes for levels of categorical varible party in RegisteredVoters: A, I
 
 ## Section 3.1
 
 ## Section 3.2
+The %>% symbols should always be proceeded by a table name.
 
 ## Section 3.3
+*May be a repeated question?
+I can't find anything wrong with this statement. After running it in R Studio, it seems to work fine and does not have any error outputs.
 
 ## Section 3.4
+1. Data table name
+2. Function name
+3. variable name
+4. function name
+5. function name
+6. variable
+7. variable
+8. function
+9. name of a named argument
+10. function
+11. function
+12. function
+13. function
+14. name of a named argument
+15. name of a named argument
+16. function
+17. name of a named argument
+18. function
+19. name of a named argument
 
 ## Section 3.5
+* brainwt is brain weight
+* 83 cases total
+* A case looks at a single animal and how much it sleeps, while using other characteristics (such as brain weight) to understand different sleeping patterns across other animals.
+* "Omni" and "Herbi" and "Carni" vore.
 
 ## Section 3.6
+(D) does not match the others.
 
 ## Section 4.1
+```*one*```
+italicized text
+
+```**two**```
+bold text
+
+```* three```
+a bullet
+
+```# Four ```
+
+```'five'```
+Text that is not evaluated.
+
+```#3 Six```
+A subheader
 
 ## Section 4.2
-
-## Section 4.3
+A) Wrong quotations used, new line.
+B) Wrong quotations used, new line.
+C) Missing quotation at the end, new line.
+D) Curly brackets.
+E) New line and extra quotation at the end.
 
 ## Section 4.4
+1. Possible
+2. Possible
+3. Not possible
+4. possible
+5. not possible
+6. possible
 
-## Section 4.5
