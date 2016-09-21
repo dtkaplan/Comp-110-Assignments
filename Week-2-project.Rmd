@@ -1,6 +1,6 @@
 # Week 2 Project
 
-## Your name should appear here!
+## Katrin O'Grady!
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -11,3 +11,40 @@ library(DataComputing)
 <!-- put your content after this line -->
 
 Here is my content!
+```{r}
+download.file("http://tiny.cc/dcf/Library-small.rda", dest = "Library-small.rda")
+```
+
+
+I downloaded the data from the url on the handout. I put the data into my rmd file and then loaded it. The url is http://tiny.cc/dcf/Library-small.rda. 
+
+###Basics 
+```{r}
+load("Library-small.rda")
+```
+
+```{r}
+nrow(Inv)
+```
+
+```{r}
+names(Inv)
+```
+
+```{r}
+nrow(Bks)
+names(Bks)
+
+```
+The Inv file contains the basic information such as the title, author, and where to find each book. There are 2000 cases in this file. There are 18 variables including the ISBN number , the current status, the cost, the date it is due, and the item barcode. The Bks file has 3765 cases and 15 variables. SOme of the variavles are format, subject, title, publisher, and genre. 
+```{r}
+Inv %>% group_by(Current.Status) %>% tally()
+
+```
+
+```{r}
+Inv %>% group_by(Issued.Count) %>% tally()
+
+```
+
+These results show how many times books have been checked out at the library. The first column indicates a particular book, the second column indicates, and the third column indicates the number of times that book was checked out. 
