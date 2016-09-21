@@ -1,6 +1,6 @@
 # Week 2 Project
 
-## Your name should appear here!
+## Kai Heen
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,37 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+The data used in this document was provided by the Macalester College Library. It can be accessed at http://tiny.cc/dcf/Library-small.rda. 
+
+#Basics
+
+```{r}
+load("Library-small.rda")
+```
+
+```{r}
+dim(Inv)
+dim(Bks)
+```
+
+
+```{r}
+names(Inv)
+names(Bks)
+```
+
+
+The Inv (Inventory) table has information about items in the Macalester College Library. There are 2000 items in this sample dataset, each with 18 variables. The variables describe the item (author, title, etc.) location of the item, and some of its checkout history. A complete list of these variables is shown above
+
+The Bks (Books) table has information describing books that may or may not be in Macalester's Library. It has 3765 entries, each with 15 variables. The variables are all atributes of the books - a complete list of them is shown above. 
+
+
+```{r}
+Inv %>% group_by(Current.Status) %>% tally ()
+```
+
+```{r}
+Inv %>% group_by(Issued.Count) %>% tally ()
+```
+
+

@@ -120,13 +120,62 @@ $(document).ready(function () {
 
 <div id="week-2-project" class="section level1">
 <h1>Week 2 Project</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="kai-heen" class="section level2">
+<h2>Kai Heen</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:30:09 2016.</p>
+<p>Compiled on Wed Sep 21 13:15:30 2016.</p>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
+<p>The data used in this document was provided by the Macalester College Library. It can be accessed at <a href="http://tiny.cc/dcf/Library-small.rda" class="uri">http://tiny.cc/dcf/Library-small.rda</a>.</p>
 </div>
+</div>
+<div id="basics" class="section level1">
+<h1>Basics</h1>
+<pre class="r"><code>load(&quot;Library-small.rda&quot;)</code></pre>
+<pre class="r"><code>dim(Inv)</code></pre>
+<pre><code>## [1] 2000   18</code></pre>
+<pre class="r"><code>dim(Bks)</code></pre>
+<pre><code>## [1] 3765   15</code></pre>
+<pre class="r"><code>names(Inv)</code></pre>
+<pre><code>##  [1] &quot;Shelving.Location&quot;     &quot;Item.Type&quot;            
+##  [3] &quot;Call.Number&quot;           &quot;Author&quot;               
+##  [5] &quot;Title.or.Description&quot;  &quot;Textual.Holdings&quot;     
+##  [7] &quot;Material.Format&quot;       &quot;OCLC.Number&quot;          
+##  [9] &quot;ISBN&quot;                  &quot;Item.Barcode&quot;         
+## [11] &quot;Cost&quot;                  &quot;Current.Status&quot;       
+## [13] &quot;Loan.Date.Due&quot;         &quot;Issued.Count&quot;         
+## [15] &quot;Issued.Count.YTD&quot;      &quot;Last.Issued.Date&quot;     
+## [17] &quot;Last.Inventoried.Date&quot; &quot;Item.Deleted.Date&quot;</code></pre>
+<pre class="r"><code>names(Bks)</code></pre>
+<pre><code>##  [1] &quot;OCLC.Number&quot;          &quot;Format&quot;               &quot;Subject&quot;             
+##  [4] &quot;Title&quot;                &quot;Author&quot;               &quot;Publication.Date&quot;    
+##  [7] &quot;Edition&quot;              &quot;Publisher&quot;            &quot;ISBN&quot;                
+## [10] &quot;Language&quot;             &quot;Physical.Description&quot; &quot;Genre&quot;               
+## [13] &quot;LC.Call.Number&quot;       &quot;Dewey.Call.Number&quot;    &quot;Local.Call.Number&quot;</code></pre>
+<p>The Inv (Inventory) table has information about items in the Macalester College Library. There are 2000 items in this sample dataset, each with 18 variables. The variables describe the item (author, title, etc.) location of the item, and some of its checkout history. A complete list of these variables is shown above</p>
+<p>The Bks (Books) table has information describing books that may or may not be in Macalester’s Library. It has 3765 entries, each with 15 variables. The variables are all atributes of the books - a complete list of them is shown above.</p>
+<pre class="r"><code>Inv %&gt;% group_by(Current.Status) %&gt;% tally ()</code></pre>
+<pre><code>## # A tibble: 4 × 2
+##   Current.Status     n
+##            &lt;chr&gt; &lt;int&gt;
+## 1      AVAILABLE  1866
+## 2        MISSING     1
+## 3        ON_LOAN    18
+## 4      WITHDRAWN   115</code></pre>
+<pre class="r"><code>Inv %&gt;% group_by(Issued.Count) %&gt;% tally ()</code></pre>
+<pre><code>## # A tibble: 46 × 2
+##    Issued.Count     n
+##           &lt;int&gt; &lt;int&gt;
+## 1             0   996
+## 2             1   337
+## 3             2   203
+## 4             3   121
+## 5             4    69
+## 6             5    46
+## 7             6    38
+## 8             7    29
+## 9             8    24
+## 10            9    20
+## # ... with 36 more rows</code></pre>
 </div>
 
 
