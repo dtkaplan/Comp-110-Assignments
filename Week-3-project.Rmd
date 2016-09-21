@@ -46,20 +46,38 @@ d) filter()
 e)
 f) group_by
 
+Problem 7.4
 
-
+a)BabyNames -> grup_by("First") %>%
+    summarises(voteReceived=n())
+    
+b)Tmp <- group_by(BabyNames, year, sex) %>%
+    summarises(totalBirths=sum(count))
+    
+c)Tmp <- group_by(BabyNames, year, sex) %>%
+    summarises(BabyNames, totalBirths=sum(count))
+    
+    
 Problem 7.5
 a)  
 b)filter(sex=="f")
+
 c)filter(sex=="m")
+
 d)summarizes(total = sum(count))
+
 e)select(name,count)
 
-
-
+ 
+ 
 Problem 7.11
+
 a) sex, count, meanAge
+
 b) diagnoses, count, meanAge
+
 c) age, diagnoses, count, meanAge
+
 d) age, count, meanAge
+
 c) sex, diagnoses,  count, meanAge

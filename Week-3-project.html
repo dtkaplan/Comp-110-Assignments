@@ -123,7 +123,7 @@ $(document).ready(function () {
 <div id="eloa" class="section level2">
 <h2>Eloa</h2>
 <!-- leave this material as is -->
-<p>Compiled on Wed Sep 21 17:24:41 2016.</p>
+<p>Compiled on Wed Sep 21 17:38:34 2016.</p>
 <!-- put your content after this line -->
 <p>Here is my content! Problem 5.1</p>
 <p>Using barGraphHelper(CPS85)</p>
@@ -142,9 +142,23 @@ $(document).ready(function () {
 <p>Problem 6.7 d)NYT probability for the Democrativ candidate.</p>
 <p>Problem 6.8 Frame: based on bmi and weight. glyphs: circle. graphical attribute: color (smoker/non-smoker), location (in relation to bmi and weight).</p>
 <p>Problem 7.1 a) sumarise() b) mutate() c) d) filter() e) f) group_by</p>
+<p>Problem 7.4</p>
+<p>a)BabyNames -&gt; grup_by(“First”) %&gt;% summarises(voteReceived=n())</p>
+<p>b)Tmp &lt;- group_by(BabyNames, year, sex) %&gt;% summarises(totalBirths=sum(count))</p>
+<p>c)Tmp &lt;- group_by(BabyNames, year, sex) %&gt;% summarises(BabyNames, totalBirths=sum(count))</p>
 <p>Problem 7.5 a)<br />
-b)filter(sex==“f”) c)filter(sex==“m”) d)summarizes(total = sum(count)) e)select(name,count)</p>
-<p>Problem 7.11 a) sex, count, meanAge b) diagnoses, count, meanAge c) age, diagnoses, count, meanAge d) age, count, meanAge c) sex, diagnoses, count, meanAge</p>
+b)filter(sex==“f”)</p>
+<p>c)filter(sex==“m”)</p>
+<p>d)summarizes(total = sum(count))</p>
+<p>e)select(name,count)</p>
+<p>Problem 7.11</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>sex, count, meanAge</p></li>
+<li><p>diagnoses, count, meanAge</p></li>
+<li><p>age, diagnoses, count, meanAge</p></li>
+<li><p>age, count, meanAge</p></li>
+<li><p>sex, diagnoses, count, meanAge</p></li>
+</ol>
 </div>
 </div>
 
