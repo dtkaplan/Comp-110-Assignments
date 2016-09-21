@@ -100,6 +100,7 @@ diamonds %>%
   head (1 )
 ```
 
+J-colored diamonds seem to be largest in terms of carats.
 
 #2
 
@@ -111,3 +112,5 @@ diamonds %>%
   arrange(desc (ave_table)) %>%
   head (1)
 ```
+
+I1 clarity diamonds have the largest average table per carat.

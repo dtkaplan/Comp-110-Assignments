@@ -94,28 +94,35 @@ e) Using select(name, count) makes it so  Output Table D only shows the name and
 #7.7
 
 a.
-
+```{r eval=FALSE}
 BabyName %>%
   group_by(year, sex) %>%
   summarise(BabyNames, total = sum(count))
-  
+```
+
 b. 
 
+```{r eval=FALSE}
 ZipGeography %>%
   group_by(State) %>%
   summarise(pop = sum(Population))
+```
   
 c. 
 
+```{r eval=FALSE}
 Minneapolis2013 %>%
   group_by(First) %>%
   summarise(voteReceived = n())
+```
 
 d. 
 
+```{r eval=FALSE}
 Minneapolis2013 %>%
   group_by(First) %>%
   summarise(votesReceived = n())
+```
   
 #7.11
 
