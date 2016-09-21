@@ -1,6 +1,6 @@
 # Week 4 Short Answer Questions
 
-## Your name should appear here!
+## Josh Marcus
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,104 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+##Chapter 8
+#8.1
+a) geom_point() 2) adds a layer of glyphs
+b) geom_histogram() 2) adds a layer of glyphs
+c) ggplot() 1) Constructs the graphics frame
+d) scale_y_log10() 5) Changes the scale for the frame
+e) ylab() 3) Sets an axis label
+f) facet_wrap() 4) divides the frame into facets
+g) geom_segment() 2) adds a layer of glyphs
+h) xlim() 5) changes the scale for the frame
+
+#8.2
+#1 
+
+```{r}
+CPS85 %>%
+  ggplot(aes(x = age, y = wage, shape = married)) +
+  geom_point() +
+  facet_wrap( ~ sector)
+```
+
+#2
+
+```{r}
+CPS85 %>%
+  ggplot(aes(x = age, y = wage)) +
+  geom_point() +
+  facet_grid(sex ~ married) 
+  
+```
+
+#8.3
+
+A)
+```{r}
+CPS85 %>%
+  ggplot(aes(x = age, y = wage)) +
+  geom_point() 
+```
+
+B)
+
+```{r}
+CPS85 %>%
+  ggplot(aes(x = age, y = wage, shape = sex)) +
+  geom_point() 
+```
+
+C)
+
+```{r}
+CPS85 %>%
+  ggplot(aes(x = age, y = wage, shape = sex)) +
+  geom_point() +
+  facet_grid(married ~ . )
+```
+
+D)
+
+```{r}
+CPS85 %>%
+  ggplot(aes(x = age, y = wage, shape = married)) +
+  geom_point() 
+```
+
+##Chapter 9
+#9.1
+a) str() is a quick presentation
+b) group_by() is a data verb
+c) rank () is a transformation
+d) mean() is a summary function
+e) filter() is a data verb
+f) summary() is a quick presentation
+g) summarise() is a data verb
+h) anti_join() is a transformation
+i) merge() is a data verb
+j) glimpse() is a quick presentation
+
+#9.3
+
+#1
+
+```{r}
+diamonds %>%
+  group_by(color) %>%
+  summarise(size=mean(carat, na.rm = TRUE)) %>%
+  arrange(desc (size)) %>%
+  head (1 )
+```
+
+
+#2
+
+```{r}
+diamonds %>%
+  group_by(clarity) %>%
+  summarise(
+    ave_table = mean(table, na.rm = TRUE)) %>%
+  arrange(desc (ave_table)) %>%
+  head (1)
+```

@@ -1,6 +1,6 @@
 # Week 3 Short Answer Questions
 
-## Your name should appear here!
+## Josh Marcus
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,126 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+##Chapter 5
+#5.1
+```{r eval=FALSE}
+library(mosaicData)
+library(DataComputing)
+barGraphHelper(CPS85)
+```
+
+```{r}
+ggplot(data=CPS85,
+       aes(x=sex,y=wage ,fill=married)) +
+  geom_bar(stat='identity',position='dodge', width=.9) + 
+  facet_wrap(~race,ncol=3)
+```
+
+#5.2
+
+```{r}
+HappinessIndex %>%
+  WorldMap (key="country", fill="corruption")
+```
+
+
+##Chapter 6
+#6.5
+
+b. State on the y axis, polling organization on the x axis
+
+#6.6
+
+d. Glyph: rectangle. Graphical attribute: color and text
+
+#6.7
+
+e. Date of the poll.
+
+#6.8
+
+```{r}
+Small <-
+  NCHS %>%
+  sample_n(size=5000)
+```
+
+
+```{r eval=FALSE}
+scatterGraphHelper(Small)
+```
+
+```{r}
+ggplot(data=Small,aes(x=bmi,y=weight))+geom_point()+aes(colour=smoker)
+```
+
+The y axis maps weight, and the x axis maps bmi. As for the glyphs, all cases recieve points of the same size, but cases that are smokers are blue and cases that aren't are red. As for order, cases with higher bmi are further right on the x axis, and cases with higher weight are higher on the y axis.
+
+##Chapter 7
+
+#7.1
+
+a. mean()
+b. mutate()
+c. arrange()
+d. filter()
+e. select()
+f. group_by() and summarise()
+
+#7.4
+
+a) "First" doesn't need to be in quotes. There doesn't need to be a space between summarise( and votesReceived.
+b) BabyNames doesn't work as an input into group_by because it is a data sheet, not a reduction function. Tmp doesn't work as an input into summarise because it's the end result of this whole statement, so it can't also be an input.
+c) There needs to be some chaining notation (%>%) after the group_by () argument. The line starting with summarise should be indented. Finally, BabyNames can't be an input into summarize because it's a data sheet, not a reduction function.
+
+#7.5
+
+a) Using arrange(sex, count) makes it so Output Table A rearranges itself to group the sexes together, and it orders the cases by count.
+b) Using filter(sex == "F") makes it so Output Table B only shows female cases, which predictably reduces the total number of cases from 1,792,091 to half of that, 896,046.
+c) Using filter(sex == "M", count > 10) makes it so Output Table C has only cases where the babies are male and have a name with a count of higher than 10.
+d) Using summarise(total = sum(count)) makes it so Output Table C just has a single case, which is the total number of babies being considered in BabyNames.
+e) Using select(name, count) makes it so  Output Table D only shows the name and count columns from the original BabyNames data table.
+
+
+#7.7
+
+a.
+
+BabyName %>%
+  group_by(year, sex) %>%
+  summarise(BabyNames, total = sum(count))
+  
+b. 
+
+ZipGeography %>%
+  group_by(State) %>%
+  summarise(pop = sum(Population))
+  
+c. 
+
+Minneapolis2013 %>%
+  group_by(First) %>%
+  summarise(voteReceived = n())
+
+d. 
+
+Minneapolis2013 %>%
+  group_by(First) %>%
+  summarise(votesReceived = n())
+  
+#7.11
+
+a. sex, count, meanAge
+b. diagnosis, count, meanAge
+c. sex, diagnosis, count, meanAge
+d. age, diagnosis, count, meanAge
+e. age, count, meanAge
+
+#7.12
+
+1. nrow()
+2. names()
+3. help()
+4. library()
+5. group_by()
+6. summarise()
