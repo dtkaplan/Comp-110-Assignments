@@ -1,6 +1,6 @@
 # Week 2 Short Answer Questions
 
-## Your name should appear here!
+## Xing Gao
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,86 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+#1.1 
+#a) Taffy is 3.the value of a variable for a particular case
+#b) year is a 2. quantitative variable
+#c) sex is a 1.catergorical variable
+#d) name is a 1.categorical variable
+#e) count is a 2. quatitative variable
+
+#1.2
+#this table violates rule 2, which states that each column is a variable containing the same type of value for each case. In the "number of state column", the value "it depends" for the case Lincoln, Abraham is different from the rest of the cases' values in this column. Lincoln's name is not formatted in the same way as the rest of the president column. Lastly, Martin Van Buren's value in the years in office column is not formatted in the same way as rest of the column's values for other cases. 
+
+#1.4
+#1. In table A, the variables are year and individual countries. In table B, the variables are country and year. In table C, the variables are country, year, and value. 
+#2. In table A, the meaning of the case is year. In table B, the meaning of case is country. In table C, the meaning of a case if a country in a particular year. 
+
+#1.5
+#1. there are six variables
+#2. the case represents each flight that departed NYC in 2013
+#3. faa-quantitative, name-categorical, lat,lon-quantitative, alt-quantitative, tz-categorical, dst-categorical. 
+
+#2.2
+#2. file name, 3.the name of an argument in a named argument
+
+#2.3
+#CPS stands for Current Population Survey
+
+#2.4
+#it should be package = "NHANES"
+
+#2.6
+# 2. the hyphen is not allowed, 3. quotation is not allowed, 5. the space between small and sample is not allowed
+
+#2.7
+#1. there are 19 variables. 2. there are 336,776 cases. 3. the meaning of a case is a flight departing NYC. 4. categorical variables include carrier, tailnum, origin, dest. Every other variables are quantitative variables. 
+
+#2.8
+#a-3, b-1, c-4, d-2, e-5 
+#2.9
+#. and _ can be used in the name of an R object. all of these characters can be used in a quoted string
+#2.10
+# there are 76 varibales in CountryData. tfat measures mass of trunk fat. there are  23,018 cases in WorldCities. The third variable in BabyNames is count.Party affiliation: DEM=Democratic, LIB=Libertarian,REP=Republican,UNA=Unaffiliated
+
+#3.1
+#dataframe: FirePlace, function: fireplace(), the name of a named argument: fireplace =, a variable: function(fireplace)
+
+#3.2
+#the chaining %>% cannot be the beginning of a command. 
+
+#3.3
+#it should be package =, not package <-
+
+#3.4
+#BabyNames-b.data table name, filter-a.function name, name-d.name of a named argument, ==-a, 
+#group_by-a.function name, year-c.variable name, sex-c.variable name, summarise-a.function name, 
+#yearlyTotal-d.name of a named argument, sum-a.function name, count-c.variable name, ggplot-a.function name
+#aes-a.function name, x-d.name of a named argument, y-d.name of a named argument, geom_point-a.function name
+#color-d. name of a named argument, geom_vline-d. function name, xintercept-d.name of a named argument
+
+#3.5
+#brainwt means brain weight in kilograms. There are 83 cases. The real world meaning of a case is a specific kind of animal. The vore variable is categorical and there are three categories-carnivore, omnivore, and herbivore
+
+#3.6
+#d will not accomplish the same thing, because the summarise function is not chained to the group_by function. 
+
+#4.1
+#*one* will be italic, **two** will be bold, * three will be item 1, # four will be header 1, 'five' will be an inline R code, ## six will be header 2
+
+#4.2
+#the correct markup should be:
+#```{r}
+#9+7
+#```. These five markups didn't have the right marks or the right number of enclosing marks,. the 9+7 should be on the second line too.
+
+#4.3
+#It will look like: 
+#header: Introduction. body: arithmetic is easy(bold)! For instance, 3+2 [1]5
+
+#4.4
+#1.neither, 2.possible file, 3.neither, 4.possible URL, 5.neither, 6.neither 
+
+#4.5
+
+
+
