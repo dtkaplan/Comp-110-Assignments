@@ -9,5 +9,17 @@ Compiled on `r date()`.
 library(DataComputing)
 ```
 <!-- put your content after this line -->
+#Basics
+
+```{r}
+load("Library-small.rda")
+```
+
+
+```{r}
+numberOfCasesInIvs = nrow(Inv)
+numberOfCasesInBks = nrow(Bks)
+
+```
 
 Here is my content!
