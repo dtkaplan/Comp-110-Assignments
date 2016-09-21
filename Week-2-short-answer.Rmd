@@ -1,6 +1,6 @@
 # Week 2 Short Answer Questions
 
-## Your name should appear here!
+## Shelby Witherby
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,119 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+1.1 :
+a) 3
+b) 1
+c) 1
+d) 1
+e) 2
+
+1.2 : Each column is a variable, but they do not contain the same type of value for each case. "It depends" is not a quantitative number.
+
+1.4 : 
+1) Year and Country
+2) a - year. b - Country. c - A country in a year
+
+1.5 :
+1) 5
+2) An airport
+3) name = categorical, lat,lon = categorical, alt = quantitative, tz = categorical, dst = categorical
+
+2.2: 2
+
+2.4: You shouldn't assign a name within a command
+
+2.6: 
+1) legit
+2) can't use "-"
+3) Cant use quotes
+4) legit
+5) can't use space
+6) legit
+7) legit
+8) legit
+9) can't use parentheses
+
+2.7: 
+
+1. 18
+2. 336,776
+3. Each case is a flight
+4. categorical: year, month, day, time, scheduled depart time, arr time, sched arr time, carrier, flight, tailnum, origin, dest, hour, minute, time_hour. quantitative: dep delay, arr delay, airtime, distance
+5. distance = miles, air_time = minutes
+
+
+2.8:
+
+a) forgot parentheses
+b) accidnetly added two "-"
+c) accidently started name with a number
+d) forgot quotes at end
+e) no mistake
+
+2.9: . and - can be used in a name. All can be used in a quoted character string.
+
+2.10:
+1) 75
+2) total fat of a person *
+3) 23,018
+4) Year *
+5) UNA = independent, DEM = democrat, REP = republican
+
+3.1: 
+1) nrow(fireplace)
+2) fireplace = sqrt()
+3) data(fireplace = "DataComputing")
+4) summarise(fireplace = sum(count))
+
+3.2: That sentence is illegitimate because there is the chaining syntax %>% in the middle of it
+
+3.3: You aren't supposed to assign a name to an object within a command. **
+
+3.4:
+
+1) b
+2) a
+3) d
+4) a
+5) a
+6) c
+7) c
+8) a
+9) d
+10) a
+11) c
+12) a
+13) a
+14) d
+15) d
+16) a
+17) c
+18) a
+19) d
+
+4.1:
+1) italic
+2) bold
+3) Unordered list
+4) Header 1
+5) inline r code
+6) Header 2
+7) links
+
+4.2:
+a) These are the wrong symbol
+b) They used the wrong symbol parentheses (r)
+c) They accidently only used two dashes at the end of their r code block
+d) It is all on the same line
+e) They used four dashes
+
+4.3: Are you sure you meant to assign this one?
+
+4.4:
+1) neither
+2) file
+3) 
+
+
+I skipped three problems, but I've been working on this for five hours and Professor Kaplan said to limit it to three hours!
