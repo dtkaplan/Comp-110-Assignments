@@ -69,8 +69,6 @@ Minneapolis2013 %>%
   summarise(count = n()) %>%
   arrange(desc(count)) %>%
   head(5)
-
-
 ```
 ```{r}
 Minneapolis2013 %>%
