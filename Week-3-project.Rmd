@@ -10,4 +10,53 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+The first graph:
+```{r}
+ggplot(data=CPS85,aes(x=exper,y=wage))+geom_point()+aes(colour=married)+scale_x_log10()+scale_y_log10()+facet_wrap(~sector,ncol=4) 
+```
+
+The second graph:
+```{r}
+ ggplot( data = NCHS, aes(x = bmi)) + geom_density(adjust=0.4) + aes(colour=sex) + facet_wrap(~pregnant, ncol=4) + labs(title="") + theme(legend.position="right") 
+```
+
+In figure 2, density function represents the probability that the some event happens while there is no need to add variable here.
+
+# Wrangling- Diamonds
+1.  J.
+```{r}
+diamonds %>% group_by(color,carat) %>% summarise(diam = mean(carat, na.rm = "True"))%>% arrange(desc(diam))%>% head(1)
+```
+
+2. SI2
+```{r}
+diamonds %>% group_by(clarity,carat) %>% summarise(diam1 = mean(table/carat, na.rm = "True"))%>%arrange(desc(diam1)) %>% head(1)
+```
+
+# Wrangling - Voting
+1. There are 80101 cases.
+```{r}
+nrow(Minneapolis2013)
+```
+
+2. The top five are Betsy Hodges, Don Samuels, Mark Andrew, Jackie Cherryhomes and Bob Fine.
+```{r}
+Minneapolis2013 %>% filter(Second != "undervote") %>% group_by(Second) %>% summarise(sum = n()) %>% arrange(desc(sum))%>% head(5)
+```
+
+3. There are 834 undervotes in first round, 10598 in the second and 19210 in the third.
+```{r}
+Minneapolis2013 %>% filter(First == "undervote") %>% summarize(sum = n()) %>% arrange(desc(sum))
+Minneapolis2013 %>% filter(Second == "undervote") %>% summarize(sum = n())
+Minneapolis2013 %>% filter(Third == "undervote") %>% summarize(sum = n())
+```
+
+4. The top three are Mark Andrew, Don Samuels and Jackie Cherryhomes.
+```{r}
+Minneapolis2013 %>% filter(First == "BETSY HODGES")%>%group_by(Second) %>% summarise(sec= n()) %>% arrange(desc(sec))%>% head(3)
+```
+
+5. P-02 is the hgihest fraction of first vote undervote.
+```{r}
+Minneapolis2013 %>% filter(First == "undervote") %>% group_by(Precinct) %>% summarise(prec= n() ) %>% arrange (desc(prec)) %>% head(1)
+```
