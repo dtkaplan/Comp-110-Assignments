@@ -1,13 +1,97 @@
 # Week 3 Project
 
-## Your name should appear here! 
+## HENRY ZUO!! 
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(mosaicData)
+library(ggplot2)
 ```
 <!-- put your content after this line -->
 
 Here is my content!
+
+What mode of grpahics is it?
+Figure 1 is a scatter plot with 8 different facets
+Figure 2 is a density plot with 2 facets
+
+What variables from the respective data tables are involved?
+Figure 1 involves 4 variables: marriage status, profession, years of experience, and wage.
+Figure 2 involes 3 variables: sex, bmi, pregnancy
+
+What role does each of those variables play in the graphics?
+Figure 1 variables demonstrate whether marrital status influence the relationship between wage and experience across different professions
+Figure 2 variables demonstrate if gender and pregnancy play a role in determining people's BMI
+
+In Figure 2, why is there no data variable being used for the y-axis?
+Y-axis is used to show count of cases, so no variables can be used.
+
+
+```{r}
+ggplot(data=CPS85,aes(x=educ,y=wage))+geom_point()+aes(colour=sex)+facet_wrap(~union,ncol=4)
+ggplot(data=CPS85,aes(x=educ))+geom_density(aes(color=sex))+facet_wrap(~union,ncol=4)
+```
+
+
+
+
+Diamonds
+
+
+
+
+Which color diamonds seem to be largest on average (in terms of carats)?
+```{r}
+diamonds %>% group_by(color) %>% summarize(mn=mean(carat)) %>% arrange(desc(mn)) %>% head(1)
+```
+As shown, color J has the largest carat on average.
+
+Which clarity of diamonds has the largest average "table" per carat?
+```{r}
+diamonds %>% mutate(var=table/carat) %>% group_by(clarity) %>% summarize(mn=mean(var)) %>% arrange(desc(mn)) %>% head(1)
+```
+As shown, clarity VVS1 has the largest average table per carat.
+
+
+
+
+Voting
+
+
+
+
+How many cases are there?
+```{r}
+nrow(Minneapolis2013)
+```
+80101 cases are in the dataset
+
+Who were the top 5 candidates in the Second vote selections?
+```{r}
+Minneapolis2013 %>% group_by(Second) %>% tally() %>% arrange(desc(n))
+```
+As shown, top 5 candidates in the Second vote selections are BETSY HODGES, DON SAMUELS, MARK ANDREW, JACKIE CHERRYHOMES, BOB FINE
+
+How many ballots are marked "undervote" in First, Second, and Third?
+```{r}
+Minneapolis2013 %>% group_by(First) %>% tally() %>% filter(First=="undervote")
+Minneapolis2013 %>% group_by(Second) %>% tally() %>% filter(Second=="undervote")
+Minneapolis2013 %>% group_by(Third) %>% tally() %>% filter(Third=="undervote")
+```
+The counts are 834, 10598, and 19210 respectively
+
+What are the top 3 Second vote selections among people who voted for Betsy Hodges as their first choice?
+```{r}
+Minneapolis2013 %>% filter(First=="BETSY HODGES") %>% group_by(Second) %>% tally() %>% arrange(desc(n)) %>% head(3)
+```
+They are MARK ANDREW, DON SAMUELS, and JACKIE CHERRYHOMES
+
+Which Precinct had the highest fraction of First vote selections marked as "undervote"?
+```{r}
+Minneapolis2013 %>% group_by(Precinct) %>% summarise(pc=mean(First=="undervote")) %>% arrange(desc(pc)) %>% head(1)
+```
+Precinct P-6C had the highest fraction.
+
