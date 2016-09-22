@@ -10,4 +10,46 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+1. Scatter plot for figure 1, and density plot for figure 2
+2. Figure 1 involves sector, marriage status, and wages. Figure 2's variables are sex: male and female. 
+3. Aesthetics, indicating the meaning of a data point.
+4. There is no data variable being used for the y-axis because we are plotting density, which is a new point of data produced from transforming the existing data.
+
+**R statements that generate Figure 1:** 
+ggplot(data=CPS85, aes(x=exper, y=wage, color=married))+geom_point() + facet_wrap( ~ sector)
+
+**R statesments that generate Figure 2:**
+ggplot(data=NCHS, aes(x=bmi))+ geom_density(aes(color = sex)) + facet_wrap( ~ pregnant)
+
+1. diamonds %>% group_by(color) %>% summarise(average=mean(carat)) %>% arrange(desc(average)) %>% head() 
+
+The largest diamonds are typically color J.
+
+2. Largest diamond "table" per carat: VVS1
+
+diamonds %>% group_by(clarity) %>% summarise(average=mean(table/carat)) %>% arrange(desc(average)) %>% head()
+
+**Voting**
+
+1. 80101 cases
+2. *second choice:* Betsy Hodges, Don Samuels, Mark Andrew, Jackie Cherryhomes, and Bob Fine
+3. First choice: 834
+Second choice: 10598
+Third choice: 19210
+
+Minneapolis2013 %>% group_by(Third) %>% filter(Third == "undervote") %>% group_by(Second) %>% tally(sort=TRUE)
+
+4. Top 3 Second vote selections: Mark Andrew, Don Samuels, Jackie Cherryhomes
+
+Minneapolis2013 %>% group_by(First) %>% filter(First == "BETSY HODGES") %>% group_by(Second) %>% tally(sort=TRUE)
+
+5. The highest fraction of first vote selections marked as undervote: 0.077 
+
+Minneapolis2013 %>% group_by(Precinct) %>% summarise(highest = mean(First == "undervote")) %>% arrange(desc(highest))
+
+
+
+
+
+
+
