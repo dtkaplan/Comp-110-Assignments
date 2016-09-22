@@ -1,13 +1,105 @@
 # Week 3 Project
 
-## Your name should appear here! 
+## Qiuhan Sun
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(mosaicData)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+##Deconstructing graphics
+
+It's a scatter plot. x-axis is experience and y-axis is wage. Different colors seperate married and single people. It is divided into eight sectors. 
+```{r}
+ggplot(data=CPS85,aes(x=exper,y=wage))+geom_point()+aes(colour=married)+scale_x_log10()+scale_y_log10()+facet_wrap(~sector,ncol=4) 
+```
+
+
+It's a density plot. x-axis is bmi and y-axis is its density. Different colors seperate female and male. It's divided into two sectors, pregnant and not pregnant. There's no data variable for the y-axis in figure 2 because men cannot get pregnant. 
+```{r}
+ggplot( data = NCHS, aes(x = bmi)) + geom_density(adjust=0.4) + aes(colour=sex) + facet_wrap(~pregnant, ncol=4) + labs(title="") + theme(legend.position="right") 
+```
+
+
+##Diamonds
+1.
+```{r}
+diamonds %>%
+  group_by(color) %>%
+  summarize(averagecarat = base::mean(carat)) %>%
+  arrange (desc(averagecarat)) %>%
+  head(1)
+```
+
+2.
+```{r}
+diamonds %>%
+  group_by(clarity) %>%
+  summarize(averageclarity=mean(table/carat)) %>%
+  arrange (desc(averageclarity)) %>%
+  head(1)
+```
+
+##Voting
+1.
+```{r}
+nrow(Minneapolis2013)
+```
+
+2.
+```{r}
+Minneapolis2013 %>%
+  group_by(Second) %>%
+  summarize(topsecond= n()) %>%
+  arrange (desc(topsecond)) %>%
+  head(5)
+```
+
+3.
+```{r}
+Minneapolis2013 %>%
+  filter(First=="undervote") %>%
+  summarize(number= n()) 
+```
+There are 834 undervote in First.
+
+```{r}
+Minneapolis2013 %>%
+  filter(Second=="undervote") %>%
+  summarize(number= n()) 
+```
+There are 10598 undervote in Second.
+
+```{r}
+Minneapolis2013 %>%
+  filter(Third=="undervote") %>%
+  summarize(number= n()) 
+```
+There are 19210 undervote in Third.
+
+
+4.
+```{r}
+Minneapolis2013 %>%
+  filter(First=="BETSY HODGES") %>%
+  group_by(Second) %>%
+  summarize(top3second= n()) %>%
+  arrange (desc(top3second)) %>%
+  head(3)
+```
+
+5.
+```{r}
+Minneapolis2013 %>%
+  group_by(Precinct) %>% 
+  summarize(abc=mean(First=="undervote")) %>%
+  arrange (desc(abc)) %>%
+  head(1)
+```
+
+
+
