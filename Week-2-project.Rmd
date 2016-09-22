@@ -1,6 +1,6 @@
 # Week 2 Project
 
-## Kai Heen
+## Kai Heen 
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
