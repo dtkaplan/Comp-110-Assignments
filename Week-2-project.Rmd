@@ -11,3 +11,13 @@ library(DataComputing)
 <!-- put your content after this line -->
 
 Here is my content!
+
+data from http://tiny.cc/dcf/Library-small.rda
+
+## Basics
+  
+```{r}
+load("Library-small.rda")
+```
+
+
