@@ -1,6 +1,6 @@
 # Week 3 Project
 
-## Your name should appear here! 
+## Xing Gao 
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -9,5 +9,54 @@ Compiled on `r date()`.
 library(DataComputing)
 ```
 <!-- put your content after this line -->
+figure 1 is a scatterplot, the second is a density plot
 
-Here is my content!
+the first has married, wage, exper, and sector; the second has bmi, density, sex, and pregnant
+
+each variable serves as an aesthetic and/or scale
+
+density describes data frequency
+
+ggplot(data = CPS85, aes(x = exper, y = wage, color = married)) + geom_point() + facet_wrap( ~ sector)
+ggplot(data = NCHS, aes(x = bmi)) + geom_density(aes(color = sex)) + facet_wrap(~ pregnant)
+
+diamonds %>%
+  group_by(color) %>%
+  summarise(average = mean(carat)) %>%
+  arrange(desc(average)) %>%
+  head(1)
+
+diamonds %>%
+  group_by(clarity) %>%
+  summarise(average = mean(table/carat)) %>%
+  arrange(desc(average)) %>%
+  head(1)
+
+There are 80,101 cases. 
+
+Minneapolis2013 %>%
+  group_by(Second) %>%
+  tally(sort = TRUE) %>%
+  head(5)
+The top five candidates are Betsy Hodges, Son Samuels, Mark Andrew, Jackie Cherryhomes, and Bob Fines
+
+
+Minneapolis2013 %>%
+  group_by(Third) %>%
+  filter(Third == "undervote") %>%
+  tally(sort = TRUE)
+  head(1)
+
+834 ballots in first choice election is marked with undervotes
+10598 ballots in first choice election is marked with undervotes
+19210 ballots in first choice election is marked with undervotes
+
+Minneapolis2013 %>%
+  group_by(First) %>%
+  filter(First == "BETSY HODGES") %>%
+  group_by(Second) %>%
+  tally(sort = TRUE) %>%
+  head()
+
+For people who voted for Betsy, the top 3 candidates in second election is Mark Andrew, Don Samuels, and Jackie Cherryhomes
+
