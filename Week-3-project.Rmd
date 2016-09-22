@@ -1,6 +1,6 @@
 # Week 3 Project
 
-## Your name should appear here! 
+## Shelby Witherby
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -9,5 +9,87 @@ Compiled on `r date()`.
 library(DataComputing)
 ```
 <!-- put your content after this line -->
+```{r}
 
-Here is my content!
+library(DataComputing)
+library(mosaicData)
+
+```
+
+```{r eval = FALSE}
+scatterGraphHelper(CPS85)
+
+```
+
+```{r eval = FALSE}
+scatterGraphHelper(NCHS)
+```
+
+
+```{r}
+
+ggplot(data = CPS85, aes(x=exper, y=wage, color = married)) + geom_point() + facet_wrap( ~ sector)
+
+
+```
+
+```{r}
+ggplot(data = NCHS, aes(x = bmi)) + geom_density(aes(color = sex, fill = sex), alpha = .3) + facet_wrap(~ pregnant)
+```
+
+
+```{r}
+
+diamonds %>%
+  group_by(color) %>%
+  summarise(ave = mean(carat)) %>%
+  arrange(desc(ave)) %>%
+  head(1)
+
+
+```
+
+```{r}
+
+diamonds %>%
+  group_by(clarity) %>%
+  summarise(ave = mean(table)) %>%
+  arrange(desc(ave)) %>%
+  head(1)
+```
+## Diamonds
+# 1. J color diamonds seem to be largest on average
+# Diamonds with a clarity of I1 have an average table of 58.3
+
+
+```{r}
+
+Minneapolis2013 %>%
+  group_by(Second) %>%
+  summarise(count = n()) %>%
+  arrange(desc(count)) %>%
+  head(5)
+
+
+```
+```{r}
+Minneapolis2013 %>%
+  group_by(First) %>%
+  summarise(count = n()) %>%
+  arrange(desc(count)) %>%
+  head(10)
+```
+```{r}
+Minneapolis2013 %>%
+  group_by(Third) %>%
+  summarise(count = n()) %>%
+  arrange(desc(count)) %>%
+  head(5)
+```
+
+
+## Voting
+# 1. In Minneapolis2013, there are 80101 cases
+# 2. The top 5 candidates in the Second vote selections are: Betsy Hodges, Don Samuels, Mark Andrew, undervote, Jackie Cherryhomes
+# 3. In the First vote selections, there were 834 marked undervote. In the Second vote selections, there were 10598 marked undervote. In the Third vote selections, there were 19210 marked undervote. 
+
