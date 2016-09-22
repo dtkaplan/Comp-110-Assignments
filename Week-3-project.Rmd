@@ -5,8 +5,13 @@
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
-```{r include = FALSE}
+```{r}
 library(DataComputing)
+library(mosaicData)
+```
+
+```{r}
+scatterGraphHelper(CPS85)
 ```
 <!-- put your content after this line -->
 
