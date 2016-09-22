@@ -1,5 +1,4 @@
 # Week 1 Project  
-
 ## Kai Heen
 
 <!-- leave this material as is -->
@@ -16,7 +15,7 @@ library(DataComputing)
 * Davy Crockett was cool
 * Davy Crockett had a furry hat
 
-# More Davy Crockett
+# Some More Davy Crockett
 1. Davy Crockett had 10 fingers
 2. Davy Crockett had 10 toes
 3. Davy Crockett is no longer with us
@@ -34,4 +33,5 @@ my_special_number <- sin(sqrt(pi))
 
 ```{r}
 asin(my_special_number)^2
+
 ```
