@@ -1,6 +1,6 @@
 # Week 3 Project
 
-## Your name should appear here! 
+## Wendy Chu
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,71 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+the first is a scatterplot, the second is a density plot
+
+the first has married, wage, exper, and sector; the second has bmi, density, sex, pregnant
+
+each variable serves as an aesthetic and or scale
+
+density describes frequency
+
+ggplot(data = CPS85, aes(x = exper, y = wage, color = married)) + geom_point() + facet_wrap( ~ sector)
+ggplot(data = NCHS, aes(x = bmi)) + geom_density(aes(color = sex)) + facet_wrap(~ pregnant)
+
+
+diamonds %>%
+  group_by(color) %>%
+  summarise(average = mean(carat)) %>%
+  arrange(desc(average)) %>%
+  head (1)
+  
+diamonds %>%
+  group_by(clarity) %>%
+  summarise(average = mean(table/carat)) %>%
+  arrange(desc(average)) %>%
+  head (1)
+  
+  
+there are 80101 cases
+
+Minneapolis2013 %>%
+  group_by(Second) %>%
+  tally(sort = TRUE) %>%
+  head (6)
+  
+#betsy hodges, don samuels, mark andrew, jackie cherryhomes, bob fine
+
+Minneapolis2013 %>%
+  group_by(First) %>%
+  filter(First == "undervote") %>%
+  tally(sort = TRUE)
+
+834
+
+Minneapolis2013 %>%
+  group_by(Second) %>%
+  filter(Second == "undervote") %>%
+  tally(sort = TRUE)
+
+10598
+
+Minneapolis2013 %>%
+  group_by(Third) %>%
+  filter(Third == "undervote") %>%
+  tally(sort = TRUE)
+  
+19210
+
+Minneapolis2013 %>%
+  group_by(First) %>%
+  filter(First == "BETSY HODGES") %>%
+  group_by(Second) %>%
+  tally(sort = TRUE) %>%
+  head (3)
+
+Minneapolis2013 %>%
+  group_by(Precinct) %>%
+  summarize(top = mean(First == "undervote")) %>%
+  arrange(desc(top)) %>%
+  head (1)
+  

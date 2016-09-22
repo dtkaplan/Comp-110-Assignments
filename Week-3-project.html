@@ -120,13 +120,32 @@ $(document).ready(function () {
 
 <div id="week-3-project" class="section level1">
 <h1>Week 3 Project</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="wendy-chu" class="section level2">
+<h2>Wendy Chu</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:30:30 2016.</p>
+<p>Compiled on Wed Sep 21 22:03:38 2016.</p>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
+<p>the first is a scatterplot, the second is a density plot</p>
+<p>the first has married, wage, exper, and sector; the second has bmi, density, sex, pregnant</p>
+<p>each variable serves as an aesthetic and or scale</p>
+<p>density describes frequency</p>
+<p>ggplot(data = CPS85, aes(x = exper, y = wage, color = married)) + geom_point() + facet_wrap( ~ sector) ggplot(data = NCHS, aes(x = bmi)) + geom_density(aes(color = sex)) + facet_wrap(~ pregnant)</p>
+<p>diamonds %&gt;% group_by(color) %&gt;% summarise(average = mean(carat)) %&gt;% arrange(desc(average)) %&gt;% head (1)</p>
+<p>diamonds %&gt;% group_by(clarity) %&gt;% summarise(average = mean(table/carat)) %&gt;% arrange(desc(average)) %&gt;% head (1)</p>
+<p>there are 80101 cases</p>
+<p>Minneapolis2013 %&gt;% group_by(Second) %&gt;% tally(sort = TRUE) %&gt;% head (6)</p>
 </div>
+</div>
+<div id="betsy-hodges-don-samuels-mark-andrew-jackie-cherryhomes-bob-fine" class="section level1">
+<h1>betsy hodges, don samuels, mark andrew, jackie cherryhomes, bob fine</h1>
+<p>Minneapolis2013 %&gt;% group_by(First) %&gt;% filter(First == “undervote”) %&gt;% tally(sort = TRUE)</p>
+<p>834</p>
+<p>Minneapolis2013 %&gt;% group_by(Second) %&gt;% filter(Second == “undervote”) %&gt;% tally(sort = TRUE)</p>
+<p>10598</p>
+<p>Minneapolis2013 %&gt;% group_by(Third) %&gt;% filter(Third == “undervote”) %&gt;% tally(sort = TRUE)</p>
+<p>19210</p>
+<p>Minneapolis2013 %&gt;% group_by(First) %&gt;% filter(First == “BETSY HODGES”) %&gt;% group_by(Second) %&gt;% tally(sort = TRUE) %&gt;% head (3)</p>
+<p>Minneapolis2013 %&gt;% group_by(Precinct) %&gt;% summarize(top = mean(First == “undervote”)) %&gt;% arrange(desc(top)) %&gt;% head (1)</p>
 </div>
 
 
