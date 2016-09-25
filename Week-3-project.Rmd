@@ -1,6 +1,6 @@
 # Week 3 Project
 
-## Your name should appear here! 
+## Tristan Truttmann
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,6 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+(1) The first is a scatter plot, the second is a density plot. 
+(2) The variables wage, exper, sector and married are involved for the first.  The variables density, bmi, sex, and ispregnant are involved in the second. 
+(3) In Figure 1, the variables cl

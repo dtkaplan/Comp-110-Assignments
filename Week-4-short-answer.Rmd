@@ -1,6 +1,6 @@
 # Week 4 Short Answer Questions
 
-## Your name should appear here!
+## Tristan Truttmann
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,114 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+### 8.1 
+
+```{r include=FALSE}
+library(ggplot2)
+```
+
+```{r}
+Small <- BabyNames %>% sample_n(500)
+Small %>%
+  ggplot(aes(x = year, y = count)) +
+  geom_point() + 
+  xlab('Year Born') + 
+  facet_wrap(~ sex) + 
+  ylim(0,1000)
+```
+
+### 8.2
+
+```{r include=FALSE}
+library(mosaicData)
+```
+
+(1) 
+
+```{r}
+CPS85 %>%
+  ggplot(aes(x=age,y=wage)) + 
+  geom_point(aes(shape=married)) + 
+  facet_wrap(~ sector) 
+  
+```
+
+(2) 
+
+```{r}
+CPS85 %>%
+  ggplot(aes(x=age,y=wage)) + 
+  geom_point() + 
+  facet_grid(sex ~ married)
+```
+
+### 8.3
+
+(A) 
+
+```{r}
+CPS85 %>% 
+  ggplot(aes(x=age,y=wage)) + 
+  geom_point()
+```
+
+(B)
+
+There exists neither a variable named "country" nor one named "corruption" in the CPS85 data table. 
+
+(C) 
+
+```{r}
+CPS85 %>% 
+  ggplot(aes(x=age,y=wage)) + 
+  geom_point(aes(shape=sex)) + 
+  facet_grid( married ~ . )
+```
+
+(D)
+
+```{r}
+CPS85 %>% 
+  ggplot(aes(x=age,y=wage)) + 
+  geom_point(aes(shape=married)) 
+```
+
+### 9.1
+
+(a) A reduciton berb
+(b) Data verb
+(c) Transformation verb? I don't know what it means by rank. 
+(d) Reduction Verb
+(e) Data verb
+(f) Reduciton verb
+(g) Data verb
+(h) Data verb
+(i) Reduction verb
+
+### 9.3
+
+(1) 
+
+```{r}
+diamonds %>%
+  group_by(color) %>% 
+  summarize(AveSize = mean(carat)) %>% 
+  arrange(-AveSize)
+```
+
+Based on this result, we see that color J is the largest on average.  J represents the worst quality of color.  
+
+(2) 
+
+```{r}
+diamonds %>%
+  group_by(clarity) %>%
+  mutate(TpC = table/carat) %>%
+  summarize(TpCAve = mean(TpC)) %>%
+  arrange(-TpCAve) %>% 
+  head(1)
+```
+
+Well the clarity VVS1 has the highest average table per carat. 
+
+
