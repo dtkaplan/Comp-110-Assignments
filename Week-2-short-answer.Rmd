@@ -156,8 +156,36 @@ Statement c is different because it uses the mean of count rather than the sum, 
 
 ### 4.1
 
-'*one*' will be 
+'*one*'
+
 **two**
+
 * three
+
 # Four
- five 
+
+`five`
+
+## Six
+
+[seven](http://tiny.cc/dcf/index.html)
+
+### 4.2
+
+(a) The wrong character is used.  ` should be used rather than '. 
+(b) Once again, the wrong character is used.  ` should be used rather than "
+(c) This is better, but three clossing quotes sould be used rather than two. 
+
+### 4.3 
+
+### An Introduction
+Arithmetic is *easy*! For instance
+``` {r}
+3+2
+```
+
+### 4.4 
+
+(1) This could be both
+(2) This can only be a URL.  This cannot be a file naem because of the / character. 
+(3) 

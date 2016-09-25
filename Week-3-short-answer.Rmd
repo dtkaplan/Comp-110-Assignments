@@ -1,6 +1,6 @@
 # Week 3 Short Answer Questions
 
-## Your name should appear here!
+## Tristan Truttmann
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,91 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+### 5.1
+
+```{r}
+library(mosaicData)
+library(DataComputing)
+ggplot(data=CPS85,aes(x=sex,y=wage ,fill=married))+geom_bar(stat='identity',position='dodge', width=.9)+scale_fill_brewer(type='qual',palette=1)+ facet_wrap(~race,ncol=3) 
+```
+
+### 5.2
+
+```{r}
+HappinessIndex %>% WorldMap(key="country",fill="corruption")
+```
+
+### 6.5
+
+(a) Probability is represended by color and by the percentage strings.  State is represented by y position. 
+(b) State is represented by y and poling organization is represented by x. 
+(c) Domograts are represented by shades of blue and Republicans are represented by shades of Red. 
+(d) State is represended b y y. 
+(e) Probability is represented by color and by the strings in the boxes. 
+
+### 6.6
+
+I don't understand the question. 
+
+### 6.7 
+
+(d) NYT poll probability for the Democratic candidate. 
+
+### 6.8 
+
+```{r}
+Small <- NCHS %>% sample_n(size=500)
+ggplot(data=Small,aes(x=bmi,y=weight))+geom_point()+aes(colour=smoker)
+```
+
+* x is mapped to bmi
+* y is mapped to weight
+* color is mapped to smoker
+
+### 7.1 
+
+(a) This is the data verb `summarize()` 
+(b) This is the `mutate()` verb
+(c) This is the `arrang()` verb
+(d) This is the `filter()` data verb
+(e) This is the `select()` data verb
+(f) This can be done with the `summarize()` data verb. 
+ 
+ ### 7.4
+ 
+ (a) There is not variable named `votesReceived` in the data table `BabyNames`.  
+ (b) There is a redundancey.  Tmp is already piped throught the chain syntax, but then it is also included as the first argument in the `summarize()` function. 
+ (c) Well it seams that the code is not doing what the use intended.  She defines Tmp, but then she uses summarize on the table `BabyNames`, but ruins the point of defining `Tmp` in the first placve. 
+
+### 7.5 
+
+(a) They seam to have done the operation `TableGiven %>% arrange(count) %>% filter(sex='F')` 
+(b) She seams to have done the command `TableGiven %>% filter(sex='F')`
+(c) She sheams to have done the operation `TableGiven %>% filter(sex='M',year<1980)`
+(d) She seams to have done `TableGiven %>% summarize(total=n())`
+(e) She seams to have run the command `TableGiven %>% select(name,count)
+
+### 7.7 
+
+(a) BabyNames should not be included as the first argument if the chain syntax is being used. 
+(b) There is not data table listed for the functions to act on. 
+(c) Once agian the user is using the assugment operator where she should be using the chain syntax operator. 
+(d) I have not clue what this person is trying to do, but you can't assign a called function with a varaible.  
+
+### 7.11
+
+(a) The output will show the number of patients of each sex and the mean age of the males and females that were patients. 
+(b) The output will show the number of each kind of diagnosis, and the mean age of those diagnoses. 
+(c) This will show the number of patients iwth each sex-diagnosis combination, and it will show the average age for each of those combinaitons. 
+(d) This will show the number of patients with each age-diagnosis combination, and it will show the average age, which is kind of redundant. 
+(e) This will show the number of patients at each age, and it will show the age again.  
+
+### 7.12
+
+(1) `n()`
+(2) `colnames()`
+(3) `help()`
+(4) `libarary()`
+(5) `group_by()`
+(6) `DataTable %>% sumarize(HowMany = sum(variable))'
+ 
