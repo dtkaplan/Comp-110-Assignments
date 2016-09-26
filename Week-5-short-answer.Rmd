@@ -1,6 +1,6 @@
 # Week 5 Short Answer Questions
 
-## Your name should appear here!
+## Tristan Truttmann
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,56 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+### 10.1
+
+Come on it's just because joining by definition takes two tables instead of one as arguments. 
+
+### 10.2
+
+This stratagie will not work becuase the `CountryCentroids` table must having mising countries as evidenced by the fact that it has 241 rows where the `Demographics` table has 256 rows.  
+
+### 10.3
+
+(1) I think that table B would be the easiest to calculate this becuase you would just use the `mutate()` data verb to add a new veriable by subtraticting `Y2000` from `Y2001`.  
+(2) I think that Table B is once again best for this.  First I would left join Table B and `ContinentData` with Table B on the left.  Then I would use the `group_by()` function to sort them by continent, and the `summarize()` funciton to sum of all the counries in each continent.  
+
+### 11.1
+
+(a) In Version one, each case is a given name for a given sex on a given year.  For vresion two, each case is a given name in a given year.  In Version Three, each case is a given name.  
+
+(b) Version One is narrrow, version two is wide. 
+
+(c) The sex is teh key veriable.  
+
+(d) The NA's in version Two and Three are represented by missing cases in Version One. 
+
+(e) Version 3 contains fewer cases but contains more variables, so one case in Three represents multple cases in Two and One. 
+
+(f) The `nbabies` variable was the `value` during the spread operation. 
+
+(g) 
+
+* The variables `F` and `M` were gathered into One.  
+* The `sex` variable was created as the key variable. 
+* The values `F` and `M` were taken from the variable names in Verson Two. 
+
+### 11.3
+
+(a) Table A is wide. Table B is narrow. 
+(b) Table B is wide. Table C is narrow. 
+(c) Table A is wide.  Table C is narrow. 
+
+### 11.4
+
+Okay I promise I did this.  
+
+### 11.5 
+
+(1) 
+
+```{r}
+"http://tiny.cc/dcf/MeasTreatTables.rda" %>%
+  url() %>% load()
+
+```
+
