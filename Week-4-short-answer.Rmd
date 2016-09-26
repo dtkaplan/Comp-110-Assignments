@@ -1,6 +1,6 @@
 # Week 4 Short Answer Questions
 
-## Your name should appear here!
+## Lang Li
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,96 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+```{r echo=FALSE}
+options(warn=-1)
+```
+
+# Problem 8.1
+
+(a) 2. Add a layer of glyphs.
+
+(b) 2. Add a layer of glyphs.
+
+(c) 1. Construct the graphics frame.
+
+(d) 5. Change the scale for the facet.
+
+(e) 3. Set an axis label.
+
+(f) 4. Divide the frame into facet.
+
+(g) 2. Add a layer of glyphs.
+
+(h) 3. Set an axis label.
+
+(i) 4. Divide the frame into facet.
+
+# Problem 8.2
+
+The graph for fig 1
+```{r}
+ggplot(data=CPS85,aes(x=age,y=wage))+geom_point()+aes(shape=married)+facet_wrap(~sector,ncol=4) 
+
+```
+
+The graph for fig 2
+```{r}
+ggplot(data=CPS85,aes(x=age,y=wage))+geom_point()+facet_wrap(sex~married) 
+```
+
+# Problem 8.3
+
+The graph a
+```{r}
+ggplot(data=CPS85,aes(x=age,y=wage))+geom_point()
+```
+
+The graph b
+
+```{r}
+HappinessIndex %>% WorldMap(key = "country", fill = "corruption")
+```
+
+
+The graph c
+```{r}
+ggplot(data=CPS85,aes(x=age,y=wage))+geom_point()+aes(shape=sex)+facet_grid(married~ . ) 
+```
+
+The graph d
+```{r}
+ggplot(data=CPS85,aes(x=age,y=wage))+geom_point()+aes(shape=married)
+```
+
+# Problem 9.1
+
+(a) Quick presentation
+
+(b) Data verb
+
+(c) Transformation
+
+(d) Summary function
+
+(e) Data verb
+
+(f) Quick presentation
+
+(g) Data verb
+
+(h) Data verb
+
+(i) Quick presentation
+
+# Problem 9.3
+
+1.  J.
+```{r}
+diamonds %>% group_by(color,carat) %>% summarise(diam = mean(carat, na.rm = "True"))%>% arrange(desc(diam))%>% head(1)
+```
+
+2. I1
+```{r}
+diamonds %>% group_by(clarity) %>% summarise(diam1 = mean(table, na.rm = TRUE)) %>% arrange(desc(diam1)) %>% head(1)
+```
+
