@@ -1,6 +1,6 @@
 # Week 2 Short Answer Questions
 
-## Your name should appear here!
+## Joseph Goodson-Gregg!
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -11,3 +11,159 @@ library(DataComputing)
 <!-- put your content after this line -->
 
 Here is my content!
+
+Chapter 1: (1.1, 1.2, 1.4, 1.5)
+Problem 1.1
+a. 1
+b. 2
+c. 1
+d. 1
+e. 3
+
+Problem 1.2
+In the 'president' column, the names do not follow the same pattern. Lincoln, Abraham has the format: last, first, in contrast to George Washington which follows the format: first, last.
+
+Similarly, the values for the 'in office' column, the formatting for year ranges is inconsistent. 1791-1799 and 1837-1841 are different formats.
+
+Further in the 'number of states' column categorical and quantitative values are mixed. 'it depends' and '16' should not be part of the same column.
+
+Problem 1.4
+1. 
+Data Table A: Year, Algeria, Brazil, Columbia.
+Data Table B: Country, Y2000, Y2001.
+Data Table C: Country, Year, Value.
+
+2.
+Data Table A: A year.
+Data Table B: A country.
+Data Table C: A country in a year.
+
+Problem 1.5
+1. 6.
+2. The cases represent specific airports.
+3. 
+faa: possesses categorical.
+name: categorical.
+lat,lon: quantitative.
+alt: quantitative.
+tz: quantitative.
+dst: categorical.
+
+_____________
+
+Chapter 2: (2.2, 2.3, 2.4, 2.6, 2.7, 2.8, 2.8, 2.9, 2.10)
+Problem 2.2:
+2.
+
+Problem 2.3:
+The Current Population Survey is a supplement to census information between years. It is random sampling info on characteristics of workers.
+
+Problem 2.4:*
+help(NHANES, package <- "NHANES")
+I am unsure on this one. 
+Perhaps it is poor form to assign the package inside the function, although after testing this doesn't seem to be the likely reason.
+When I tested this function it worked fine.View
+
+Problem 2.6:
+1. Legitimate.
+2. Not legitimate. Punctuation is included (hyphen).
+3. Not legitimate. Punctuation is included (quotation marks).
+4. Legitimate.
+5. Not legitimate. Punctuation is included (space).
+6. Legitimate.
+7. Legitimate.
+8. Legitimate.
+9. Not legitimate, this is a function.
+
+Problem 2.7:
+1. 19.
+2. 336,776.
+3. Flights departing from NYC on-time for 2013.
+4.
+year: quantitative.
+month: quantitative.
+day: quantitative.
+dep_time: quantitative.
+sched_dep_time: quantitative.
+dep_delay: quantitative.
+arr_time: quantitative.
+sched_arr_time: quantitative.
+arr_delay: quantitative.
+carrier: categorical.
+flight: quantitative.
+tailnum: categorical.
+origin: categorical.
+dest: categorical.
+air_time: quantitative.
+distance: quantitative.
+hour: quantitative.
+minute: quantitative.
+time_hour: categorical.
+
+Problem 2.8:
+a. 3.
+b. 1.
+c. 4.
+d. 2.
+e. 3.
+
+Problem 2.9:
+1. _ and .
+2. All can be used.
+
+Problem 2.10:
+1. 75.
+2. 256.
+3. Mass of trunk fat.
+4. 23,018.
+5. Count.
+6. UNA, DEM, REP, LIB. Respectively: Unaffiliated, Democratic, Republican, Libertarian.
+
+Chapter 3: (3.1, 3.2, 3.3, 3.4, 3.5, 3.6)
+Problem 3.1:
+1. Babynames %>%...
+2. sum(example)
+3. namedargument = sum(example)
+4. sum(variable)
+
+Problem 3.2:
+Chaining together a statement that is already non-chaining syntax is improper.
+Babynames %>%...
+or 
+Result <- filter... 
+would be fine. But not together.
+
+Problem 3.3:
+I am still unsure. This problem is a repeat of a chapter 2 problem.
+
+Problem 3.4:
+1. b.
+2. a.
+3. d.
+4. a.
+5. a.
+6. c.
+7. c.
+8. a.
+9. d.
+10. a.
+11. c.
+12. c.
+13. a.
+14. c.
+15. c.
+16. a.
+17. c.
+18. a.
+19. c.
+
+Problem 3.5:
+1. The weight of brain in kg.
+2. 83.
+3. These are for species of animal.
+4. insectivore, carnivore, herbivore, carnivore, NA.
+Problem 3.6:
+c.
+
+
+

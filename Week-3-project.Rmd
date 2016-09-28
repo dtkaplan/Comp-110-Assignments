@@ -1,6 +1,6 @@
 # Week 3 Project
 
-## Your name should appear here! 
+## Joseph Goodson-Gregg
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -11,3 +11,72 @@ library(DataComputing)
 <!-- put your content after this line -->
 
 Here is my content!
+
+(1) The first graphic is a scatter plot. The second graphic is density plot.
+(2) First graphic has wage, experience, marriage status, and type of worker. The second graphic has density, bmi, sex, pregnancy status.
+(3) Wage and experience set the frame for the first graphic. The other variables define the aesthetics. Density and bmi define the frame, the other variables define the aesthetics.
+(4) A density plot ranges from 0 to 1 with relative density. Since it is relative it is unitless.
+
+```{r}
+ggplot(data=CPS85,aes(x=exper,y=wage)) + 
+  geom_point()+aes(colour=married)+
+  scale_x_log10()+
+  scale_y_log10()+
+  facet_wrap(~sector,ncol=4) 
+ggplot( data = NCHS, aes(x = bmi)) + geom_density(adjust=0.4) + aes(colour=sex) + facet_wrap(~pregnant, ncol=4) + labs(title="") + theme(legend.position="right") 
+```
+
+```{r}
+diamonds %>% group_by(color, carat) %>% summarise(typical = mean(carat, na.rm = TRUE)) %>% arrange(desc(typical))
+
+diamonds %>% group_by(clarity) %>%
+    summarise(avgTypical = base::mean(table/carat)) %>%
+    arrange(desc(avgTypical)) %>%
+    head(1)
+```
+
+(1) The best quality diamonds (D) seem to be the largest.
+(2) The clarity of diamond with the largest average table per carat was VVS1, with a dbl of 141.4822.
+
+```{r}
+Minneapolis2013 %>%
+    group_by(First) %>%
+    summarise(top5 = n()) %>%
+    arrange(desc(top5)) %>%
+    head(5)
+    
+Minneapolis2013 %>%
+    group_by(First) %>%
+    filter(First == "undervote") %>%
+    summarise(firstchoice = n()) %>%
+    head(1)
+
+Minneapolis2013 %>%
+    group_by(Second) %>%
+    filter(Second == "undervote") %>%
+    summarise(secondchoice = n()) %>%
+    head(1)
+
+Minneapolis2013 %>%
+    group_by(Third) %>%
+    filter(Third == "undervote") %>%
+    summarise(thirdchoice = n()) %>%
+    head(1)
+
+Minneapolis2013 %>%
+    group_by(First) %>%
+    filter(First == "BETSY HODGES") %>%
+    group_by(Second) %>%
+    summarise(hodges = n()) %>%
+    arrange(desc(hodges)) %>%
+    head(3)
+```
+
+
+Voting
+(1) 80,101 cases
+(2) BETSY HODGES, MARK ANDREW, DON SAMUELS, CAM WINTON, JACKIE CHERRYHOMES.
+(3) First choice: 834. Second choice: 10598. Third choice: 19210.
+(4) MARK ANDREW, DON SAMUELS, JACKIE CHERRYHOMES.
+(5) 
+
