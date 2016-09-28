@@ -1,6 +1,6 @@
 # Week 4 Project
 
-## Your name should appear here!
+## Katrin O'Grady
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,72 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+###Problem 8.1
+1. construct the graphics frame: c) ggplot()
+2. add a layer of glyphs: a) geom_point(), g) geom_segment(), b) geom_histogram()
+3. Set an axis label: e) ylab()
+4. Divide the frame into facets: f) facet_wrap(), i) facet_grid()
+5. CHange the scale for the frame: h) xlim(), d) scale_y_log10()
+###Problem 8.2
+```{r}
+CPS85 %>%
+ggplot(aes(x=age, y=wage, shape=married)) + geom_point() + facet_wrap(~sector)
+
+```
+
+```{r}
+CPS85 %>%
+ggplot(aes(x=age, y=wage)) + geom_point() + facet_grid(sex~married)
+```
+
+###Problem 8.3
+```{r}
+CPS85 %>%
+ggplot(aes(x=age, y=wage)) + geom_point()
+
+```
+
+```{r}
+CountryData %>%
+WorldMap(key="country", fill="birth")
+```
+
+```{r}
+CPS85 %>%
+ggplot(aes(x=age, y=wage, shape=sex)) + geom_point() + facet_grid(married~.)
+```
+
+```{r}
+CPS85 %>%
+ggplot(aes(x=age, y=wage, shape=married)) + geom_point()
+```
+###Problem 9.1
+a) str() is a summary function
+b) group_by() is a data verb
+c) rank() is a comparison expression
+d) mean() is a reduction function
+e) filter() is a data verb
+f) summary() is a summary function
+g) summarise() is a data verb
+h) anti_join() is a comparison expression
+i) glimpse() is a summary function
+
+```{r}
+diamonds %>%
+group_by(color) %>%
+summarise(size= mean(carat)) %>%
+arrange(desc(size)) %>%
+head(1)
+
+```
+
+```{r}
+diamonds
+group_by(clarity) %>%
+mutate(table_carat= mean(table/carat) %>%
+arrange(desc(table_carat)) %>%
+head(1)
+
+```
+
+
