@@ -1,6 +1,6 @@
 # Week 1 Project  
 
-## Your name should appear here!
+## Becky Honnold
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,23 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+**Here is my content!**
+
+The historical event I chose to write about is the Daigo Fukuryu Maru.  
+
+List:
+
+1. This is an incident about a tuna fishing boat that housed twenty-three men.
+2. They were exposed to nuclear waste from the United States in March of 1954.
+3. They all suffered from acute radiation syndrome.
+
+[My Picture](https://tokyobling.files.wordpress.com/2013/06/daigo_fukuryu_maru_7852.jpg?w=1086&h=723)
+
+```{r}
+my_number = sin(sqrt(pi))
+my_number
+```
+
+```{r}
+(asin(my_number))^2
+```

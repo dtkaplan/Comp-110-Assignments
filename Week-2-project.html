@@ -120,12 +120,65 @@ $(document).ready(function () {
 
 <div id="week-2-project" class="section level1">
 <h1>Week 2 Project</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="becky-honnold" class="section level2">
+<h2>Becky Honnold</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:30:09 2016.</p>
+<p>Compiled on Wed Sep 7 21:03:20 2016.</p>
 <!-- put your content after this line -->
 <p>Here is my content!</p>
+<pre class="r"><code>download.file(&quot;http://tiny.cc/dcf/Library-small.rda&quot;,dest = &quot;Library-small.rda&quot;)</code></pre>
+<p>In your document…</p>
+<p>I downloaded the data from the url: <a href="http://tiny.cc/dcf/Library-small.rda" class="uri">http://tiny.cc/dcf/Library-small.rda</a>.</p>
+</div>
+<div id="basics" class="section level2">
+<h2>Basics</h2>
+<pre class="r"><code>load(&quot;Library-small.rda&quot;)</code></pre>
+<pre class="r"><code>nrow(Inv)</code></pre>
+<pre><code>## [1] 2000</code></pre>
+<pre class="r"><code>nrow(Bks)</code></pre>
+<pre><code>## [1] 3765</code></pre>
+<pre class="r"><code>names(Inv)</code></pre>
+<pre><code>##  [1] &quot;Shelving.Location&quot;     &quot;Item.Type&quot;            
+##  [3] &quot;Call.Number&quot;           &quot;Author&quot;               
+##  [5] &quot;Title.or.Description&quot;  &quot;Textual.Holdings&quot;     
+##  [7] &quot;Material.Format&quot;       &quot;OCLC.Number&quot;          
+##  [9] &quot;ISBN&quot;                  &quot;Item.Barcode&quot;         
+## [11] &quot;Cost&quot;                  &quot;Current.Status&quot;       
+## [13] &quot;Loan.Date.Due&quot;         &quot;Issued.Count&quot;         
+## [15] &quot;Issued.Count.YTD&quot;      &quot;Last.Issued.Date&quot;     
+## [17] &quot;Last.Inventoried.Date&quot; &quot;Item.Deleted.Date&quot;</code></pre>
+<pre class="r"><code>names(Bks)</code></pre>
+<pre><code>##  [1] &quot;OCLC.Number&quot;          &quot;Format&quot;               &quot;Subject&quot;             
+##  [4] &quot;Title&quot;                &quot;Author&quot;               &quot;Publication.Date&quot;    
+##  [7] &quot;Edition&quot;              &quot;Publisher&quot;            &quot;ISBN&quot;                
+## [10] &quot;Language&quot;             &quot;Physical.Description&quot; &quot;Genre&quot;               
+## [13] &quot;LC.Call.Number&quot;       &quot;Dewey.Call.Number&quot;    &quot;Local.Call.Number&quot;</code></pre>
+<p>The Bks dataset tells us about individual books. The Inv dataset tells us about what is in the library and where it is located in the library.</p>
+<pre class="r"><code>Inv %&gt;% group_by(Current.Status) %&gt;% tally()</code></pre>
+<pre><code>## # A tibble: 4 × 2
+##   Current.Status     n
+##            &lt;chr&gt; &lt;int&gt;
+## 1      AVAILABLE  1866
+## 2        MISSING     1
+## 3        ON_LOAN    18
+## 4      WITHDRAWN   115</code></pre>
+<p>This tells us the status of a book. For example, 1866 are available, 18 are on loan, one is missing, and 115 are withdrawn. This variable was very easy to interpret because the names are easy to understand.</p>
+<pre class="r"><code>Inv %&gt;% group_by(Issued.Count) %&gt;% tally()</code></pre>
+<pre><code>## # A tibble: 46 × 2
+##    Issued.Count     n
+##           &lt;int&gt; &lt;int&gt;
+## 1             0   996
+## 2             1   337
+## 3             2   203
+## 4             3   121
+## 5             4    69
+## 6             5    46
+## 7             6    38
+## 8             7    29
+## 9             8    24
+## 10            9    20
+## # ... with 36 more rows</code></pre>
+<p>This tells us how many times books have been checked out. The second column (Issued.Count) tells us how many times a book was checked out. The third column (n) tells us how many times this occured. For example, row one tells us that there are 996 books that have never been checked out or checked out zero times.</p>
 </div>
 </div>
 

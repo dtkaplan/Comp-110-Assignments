@@ -1,13 +1,172 @@
 # Week 2 Short Answer Questions
 
-## Your name should appear here!
+## Becky Honnold
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(mosaicData)
 ```
 <!-- put your content after this line -->
 
 Here is my content!
+
+##Chapter 5
+
+###Problem 5.1
+```{r}
+ggplot(data=CPS85,aes(x=sex,y=wage ))+geom_bar(stat='identity',position='stack', width=.9)+ facet_wrap(~race,ncol=3) 
+```
+
+###Problem 5.2
+
+```{r}
+WorldMap(HappinessIndex,key = "country",fill = "corruption")
+```
+
+##Chapter 6
+
+###Problem 6.5
+
+B - State and Polling Organization
+
+###Problem 6.6
+
+D - Glyph: Rectangle. Graphical Attribute: color and text.
+
+###Problem 6.7
+
+D - NYT poll probability for the Democratic Candidate
+
+###Problem 6.8
+
+```{r}
+Small <- 
+  NCHS %>%
+  sample_n(size = 5000)
+
+ggplot(data=Small,aes(x=bmi,y=weight))+geom_point()+aes(colour=smoker)
+```
+
+The variables that define the frame of this graphic are bmi and weight.  The glyph is a circle with color and location attributes.  Each observation tells us the BMI and weight of someone and whether or not they are a smoker.
+
+##Chapter 7
+
+###Problem 7.1
+
+a. summarise()
+b. summarise()
+c. summarise()
+d. summarise()
+e. group_by()
+f. summarise()
+
+###Problem 7.4
+
+a. When using the "group_by" data verb, you don't need to put quotes around the variable that you are grouping by.  After looking at the dataset BabyNames, it also looks as if they are choosing a variable that doesn't exist.  Instead, they should put name.
+
+b. In this statement, there is an error with the summarise data verb.  Rather than add in summarise(Tmp,totalBirths = sum(count)), they shoudl omit Tmp.  Summarise does not call for this argument.  It can also not call a dataset that is being created by the command it is in.
+
+c. This is similar to the command above.  Again, you need to omit the "BabyNames" at the beginning of the summarise() statement.  This is because the data is already alluded to in the group_by() statement.
+
+###Problem 7.5
+
+a. In this table, it looks as if it is ordering the data table by count in ascending order.
+The arguments would include the use of summarise() and another argument that puts the data into ascending order by count.
+
+b. I think that this output table only has females.  Therefore, the arguments would include summarise and a transformation variable that only allows for female names.
+
+c. This output table could be a table of only male names that were before a certain date.  Here you would again use summarise and a transformation variable to reduce sex and year.
+
+d. This is a table of the sum of counts.  Here you would use summarise and n().
+
+e. This reduces the data table to including only variables, name and count.  This includes group_by and summarise(count = n()).
+
+###Problem 7.7
+
+a. When you have the "BabyNames %>%" expression at the beginning of your code, you do not need to also have the data within the statements - this instead confuses R.  Instead you would put:
+
+```{r}
+Names_per_Sex_Yr <- 
+  BabyNames %>%
+  group_by(year, sex) %>%
+  summarise(total = sum(count))
+```
+
+b. I found two errors in this statement.  First of all, because it's calling data from the ZipGeography dataset rather than creating a new data table, ZipGeography needs to be followed by "%>%".  Secondly, because there are blanks within the State variable, "na.rm = TRUE" needs to be added to the sum statement within summarise.  Instead you should have:
+
+```{r}
+State_Pop <- 
+  ZipGeography %>%
+  group_by(State) %>%
+  summarise(pop = sum(Population, na.rm = TRUE))
+```
+
+c. After the group_by command, you need to use %>% to replace the arrow.
+
+```{r}
+Vote_Count <-
+  Minneapolis2013 %>%
+  group_by(First) %>%
+  summarise(voteReceived = n())
+```
+
+d. It looks as if this example is trying to copy the one above except backwards.  You would need to flip the commands around and have the %>% after Minneapolis2013 because it is calling from this dataset.
+
+```{r}
+Minneapolis2013 %>%
+  group_by(First) %>%
+  summarise(votesReceived = n())
+```
+
+###Problem 7.11
+
+a. Patients %>%
+    group_by(sex) %>%
+    summarise(count = n(),meanAge = mean(age))
+
+The variables that would come from this are the sex (male or female) and then the number of females/males in the dataset (the new variable count) and the mean age of males and females (the new variable meanAge).
+
+b. Patients %>%
+    group_by(diagnosis) %>%
+    summarise(count = n(), meanAge = mean(age))
+
+The variables that would come from this are diagnosis, count, and meanAge.  Within diagnosis, there would be each separate diagnosis in the dataset.  For count, it would contain the number of times each diagnosis shows up in the dataset. Lastly, meanAge would contain the meanAge of each diagnosis.
+
+c. Patients %>%
+    group_by(sex, diagnosis) %>%
+    summarise(count = n(), meanAge = mean(age))
+    
+The variables that would come from this would be Sex, Diagnosis, Count, and MeanAge.  In this case, every diagnosis would be paired with each sex - there would 2 * however many different diagnoses there are as the number of rows.  The count would include the number of males or females with each diagnosis.  The meanAge would include the average age for males/females with each separate diagnosis.
+
+d. Patients %>%
+    group_by(age, diagnosis) %>%
+    summarise(count = n(), meanAge = mean(age))
+    
+The variables that would come from this would be Age, Diagnosis, count, and meanAge.  For each age, there would be each of the different diagnoses that occurs with that age.  The count would include the number of observations that occur with that age and diagnosis.  Because the meanAge is the average of the age, but we're already grouping by age, the meanAge would be the age given.
+
+e. Patients %>%
+    group_by(age) %>%
+    summarise(count = n(), meanAge = mean(age))
+
+The variables that would could from this are Age, Count, and meanAge.  The Age variable would be all the different ages that occur in the dataset.  The count would be the number of times each age appears in the dataset.  Lastly, meanAge would be equivalent to the age in the first column.
+
+###Problem 7.12
+
+a. nrow()
+
+b. names()
+
+c. help()
+
+d. library()
+
+e. group_by()
+
+f. sum()
+
+
+
+

@@ -1,6 +1,6 @@
 # Week 2 Project
 
-## Your name should appear here!
+## Becky Honnold
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -11,3 +11,40 @@ library(DataComputing)
 <!-- put your content after this line -->
 
 Here is my content!
+
+```{r}
+download.file("http://tiny.cc/dcf/Library-small.rda",dest = "Library-small.rda")
+```
+
+In your document...
+
+I downloaded the data from the url: http://tiny.cc/dcf/Library-small.rda.
+
+##Basics
+
+```{r}
+load("Library-small.rda")
+```
+
+```{r}
+nrow(Inv)
+nrow(Bks)
+
+names(Inv)
+names(Bks)
+```
+
+The Bks dataset tells us about individual books.
+The Inv dataset tells us about what is in the library and where it is located in the library.
+
+```{r}
+Inv %>% group_by(Current.Status) %>% tally()
+```
+
+This tells us the status of a book.  For example, 1866 are available, 18 are on loan, one is missing, and 115 are withdrawn.  This variable was very easy to interpret because the names are easy to understand.
+
+```{r}
+Inv %>% group_by(Issued.Count) %>% tally()
+```
+
+This tells us how many times books have been checked out.  The second column (Issued.Count) tells us how many times a book was checked out.  The third column (n) tells us how many times this occured.  For example, row one tells us that there are 996 books that have never been checked out or checked out zero times.

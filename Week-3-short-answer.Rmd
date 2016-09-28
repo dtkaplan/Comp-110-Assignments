@@ -1,13 +1,119 @@
 # Week 3 Short Answer Questions
 
-## Your name should appear here!
+## Becky Honnold
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(mosaicData)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+#Chapter 8
+
+##Problem 8.1
+
+a. ggplot()
+
+b. geom_point()
+
+c. ylab()
+
+d. facet_wrap()
+
+e. scale_y_log10()
+
+##Problem 8.2
+
+a. 
+
+```{r}
+ggplot(data = CPS85,aes(x = age, y = wage)) + geom_point(data = CPS85,aes(shape = married)) + facet_wrap(~sector)
+```
+
+b. 
+
+```{r}
+layer_1 <- ggplot2(data = CPS85,aes(x = age, y = wage)) + geom_point() + facet_wrap(~married) 
+layer_2 <- facet_wrap(~sex)
+
+layer_1 + layer_2
+```
+
+##Problem 8.3
+
+a.
+
+```{r}
+ggplot(data = CPS85,aes(x = age, y = wage)) + geom_point()
+```
+
+b.
+
+```{r}
+ggplot(data = CPS85, aes(x = age, y = wage)) + geom_point(data = CPS85,aes(shape = sex))
+```
+
+c.
+
+```{r}
+ggplot(data = CPS85, aes(x = age, y = wage)) + geom_point(data = CPS85, aes(shape = sex)) + facet_wrap(~married)
+```
+
+d.
+
+```{r}
+ggplot(data = CPS85, aes(x = age, y = wage)) + geom_point(data = CPS85, aes(shape = married))
+```
+
+#Chapter 9
+
+##Problem 9.1
+
+a. Quick Presentation
+
+b. Data Verb
+
+c. Comparison Expression
+
+d. Summary Function
+
+e. Data Verb
+
+f. Summary Function
+
+g. Data Verb
+
+h. Transformation
+
+i.
+
+##Problem 9.3
+
+a.
+
+```{r}
+diamonds %>%
+  group_by(color) %>%
+  summarise(avg = mean(carat)) %>%
+  arrange(desc(avg)) %>%
+  head(1)
+```
+
+b.
+
+```{r}
+diamonds %>%
+  group_by(clarity) %>%
+  summarise(average = mean(table)) %>%
+  arrange(desc(average)) %>%
+  head(1)
+```
+
+
+
+
+
+

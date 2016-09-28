@@ -1,13 +1,150 @@
 # Week 3 Project
 
-## Your name should appear here! 
+---
+title: "Playing with Frames, Glyphs, Scales"
+output: html_notebook
+---
+
+## Becky Honnold
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
-```{r include = FALSE}
+```{r}
 library(DataComputing)
+library(mosaicData)
 ```
-<!-- put your content after this line -->
 
-Here is my content!
+```{r}
+#scatterGraphHelper(CPS85)
+```
+
+
+##Question 1
+
+A. The first mode of graphic is a scatterplot that uses the variables sector, marital status, years of experience, and wage.
+The second mode of graphic is a density plot that is looking at sex, bmi, and the 'yes', 'no' respresents pregnancy.
+
+In the first plot, the sectors break the graphs up, the wage is the y-axis, the years of experience is the x-axis, and the color change represents the marital status.
+In the second plot, the x-axis is BMI, theh color is sex, and the pregnancy indicator splits up the two graphs.
+
+There is no data variable being used for the x-axis because the this is a density plot so the y-axis represents the density of the data.  
+
+```{r}
+ggplot(data = CPS85,aes(x = exper, y = wage, color = married)) + geom_point() + facet_wrap(~ sector) + xlim(0,20) + ylim(0,20)
+       
+ggplot(data = NCHS, aes(x = bmi)) + geom_density(aes(col = sex)) + facet_wrap(~pregnant)
+```
+
+##Question 2
+
+```{r}
+diamonds %>%
+  group_by(color) %>%
+  summarize(avg_Carat = mean(carat))
+```
+
+On average, it looks like the J color diamonds seem to be the largest on average.
+
+##Question 3
+
+```{r}
+diamonds %>%
+  group_by(clarity) %>%
+  summarize(avg_table = mean(table))
+```
+
+On average, it looks like the I1 has the largest table per carat.
+
+##Using Minneapolis2013 Data
+
+##Question 1
+
+```{r}
+nrow(Minneapolis2013)
+```
+
+There are 80,101 cases.
+
+##Question 2
+
+```{r}
+Second_Votes <-
+  Minneapolis2013 %>%
+  group_by(Second) %>%
+  summarise(count  = n())
+
+attach(Second_Votes)
+Second_Votes <- Second_Votes[order(-count),]
+```
+
+The top 5 candidates in the Second vote selections were Betsy Hodges, Don Samuels, Mark Andrew, Jackie Cherryhomes, and Bob Fine.
+
+##Question 3
+
+```{r}
+First_Choice <- 
+  Minneapolis2013 %>%
+  group_by(First) %>%
+  summarise(count = n())
+
+
+```
+
+In the first choice selections, there were 834 undervotes.
+
+```{r}
+Second_Choice <- 
+  Minneapolis2013 %>%
+  group_by(Second) %>%
+  summarise(count = n())
+```
+
+In the second choice selections, there were 10598 undervotes.
+
+```{r}
+Third_Choice <- 
+  Minneapolis2013 %>%
+  group_by(Third) %>%
+  summarise(count = n())
+```
+
+In the third choice selections, there were 19210 undervotes.
+
+##Question 4
+
+```{r}
+Question_4 <-
+  Minneapolis2013 %>%
+  group_by(First,Second) %>%
+  summarise(count = n())
+  
+attach(Question_4)
+Question_4_N <- Question_4[order(First, -count),]
+```
+
+Mark Andrew, Don Samuels, Jackie Cherryhomes
+
+##Question 5
+
+```{r}
+Question_5 <-
+  Minneapolis2013 %>%
+  group_by(Precinct,First) %>%
+  summarise(count = n(),avg = mean(First == "undervote"))
+
+attach(Question_5)
+Question_5_N <- Question_5[order(First,-count),]
+
+```
+
+P-02
+
+
+
+
+
+
+
+
+
