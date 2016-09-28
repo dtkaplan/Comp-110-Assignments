@@ -1,6 +1,6 @@
 # Week 4 Short Answer Questions
 
-## Your name should appear here!
+##Wendy Chu
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,33 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+8.1
+(a) add layer of glyph
+(b) constructs frame
+(c) constructs frame
+(d) change scale for frame
+(e) set axis label
+(f) divide facet
+(g) add layer of glyph
+(h) set axis lavel
+
+8.2
+ggplot(data=CPS85,aes(x=age,y=wage))+geom_point()+aes(shape=married)+facet_wrap(~sector,ncol=4)
+ggplot(data=CPS85,aes(x=age,y=wage))+geom_point()+facet_wrap(sex~married) 
+
+8.3
+ggplot(data=CPS85,aes(x=age,y=wage))+geom_point()
+ggplot(data=CPS85,aes(x=age,y=wage))+geom_point()+aes(shape=sex)
+ggplot(data=CPS85,aes(x=age,y=wage))+geom_point()+aes(shape=sex)+facet_grid(married~.)
+ggplot(data=CPS85,aes(x=age,y=wage))+geom_point()+aes(shape=married)
+
+9.1
+quick pres
+data verb
+summary function
+summary function
+data verb
+quick presentation
+data verb
+summary funciton
+quick presentation
