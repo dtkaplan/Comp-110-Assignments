@@ -35,28 +35,10 @@ diamonds %>%
 There are 80,101 cases. 
 
 Minneapolis2013 %>%
-  group_by(Second) %>%
-  tally(sort = TRUE) %>%
+  select(Second) %>%
+  tally(count)
   head(5)
-The top five candidates are Betsy Hodges, Son Samuels, Mark Andrew, Jackie Cherryhomes, and Bob Fines
 
 
-Minneapolis2013 %>%
-  group_by(Third) %>%
-  filter(Third == "undervote") %>%
-  tally(sort = TRUE)
-  head(1)
 
-834 ballots in first choice election is marked with undervotes
-10598 ballots in first choice election is marked with undervotes
-19210 ballots in first choice election is marked with undervotes
-
-Minneapolis2013 %>%
-  group_by(First) %>%
-  filter(First == "BETSY HODGES") %>%
-  group_by(Second) %>%
-  tally(sort = TRUE) %>%
-  head()
-
-For people who voted for Betsy, the top 3 candidates in second election is Mark Andrew, Don Samuels, and Jackie Cherryhomes
 

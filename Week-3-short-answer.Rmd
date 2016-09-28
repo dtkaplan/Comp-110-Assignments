@@ -1,6 +1,6 @@
 # Week 3 Short Answer Questions
 
-## Your name should appear here!
+## Xing Gao
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,84 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+5.1. 
+library(mosaicData)
+library(DataComputing)
+barGraphHelper(CPS85)
+to get the graph shown in textbooks: x-axis:sex, y-axis:wage, bar fill: married, alignment: dodge, fill order:non, x order:none, color scheme:default, palette:two, facet variable: race
+
+5.2
+ WorldMap(data = HappinessIndex, key = "country", fill = "corruption")
+Not sure why but there are gray stripes on the map
+
+6.5 
+b.state and polling organization 
+
+6.6
+d.Glyph: rectangle, graphical attribute: color and text 
+
+6.7
+d. NYT poll probability for the Democratic candidate
+
+6.8
+X-axis: bmi, y-axis: weight
+glyphs: circle
+color: smoker versus non-smokers
+
+7.1
+a. summarise()
+b. mutate()
+c. arrange()
+d. filter()
+e. select()
+f. group_by()
+
+
+
+7.4
+a. First should not be in quotes
+b. the data set isn't defined before group_by
+c.summarise is not chained to the rest of the command
+
+7.5 
+a) BabyNames %>%
+filter(sex == "F") %>%
+arrange(a(count))%>%
+head(10)
+kinda stuck here, will come back later
+b)
+C)
+D)
+e)
+
+7.7 
+a. BabyNames %>% 
+   group_by(BabyNames, year, sex)%>%
+   summarise(BabyNames, total = sum(count))
+b. ZipGeography %>%
+    group_by(State) %>%
+    summarise(BabyNames, total = sum(count))
+c. Minneapolis2013 %>% 
+    group_by(First)%>% 
+    summarise(voteReceived = n())
+d. Minneapolis2013 %>%
+   group_by(First) %>%
+   summarise(voteReceived = n())
+
+7.11
+a. total number of male patients, total number of female patients, average age of male patients, average age of female patients. 
+b. total number of patient in each diagnosis category. mean age of all patients in diagnosis category
+c. total number of patients female, male, w each diagnosis. mean age of patients female, male, w each diagnosis.
+d. total num of patients in each age category & diagnosis. mean age of patients in each age category & diagnosis.
+e. total num and mean age of patients of patients in each age category & diagnosis. 
+
+7.12
+1. tally()
+2. list()
+3. help()
+4. data()
+5. group_by()
+6. sum()
+
+
+
