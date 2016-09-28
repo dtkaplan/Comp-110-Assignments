@@ -7,6 +7,123 @@ Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(mosaicData)
 ```
 <!-- put your content after this line -->
+## In class notes
 
+- Data verbs -> input = data tables, output = data tables
+- Reduction verbs -> input = variables, single number/measure
+- Transformation verv -> input = variable, output = new variable
+
+6- data verbs:
+deeplyedR?
+1. summarise() -> allows to take datatable and reduce to single case
+2. group_by() -> tell the systems to do other operations by given groups
+3. filter() -> select out certain cases
+4. mutate() -> apply a transformation verb
+5. select() -> select certain variables that are of interested to you
+6. arrange() -> re-order things 
+7. join
+
+## In Class 
+
+Graph 1:
+```{r}
+
+ggplot(data=CPS85,aes(x=exper,y=wage)) +
+  geom_point()+aes(colour=married) +
+  scale_y_log10() +
+  scale_x_log10() +
+  facet_wrap(~sector) 
+```
+
+Graph 2:
+```{r}
+
+ggplot(data=NCHS,aes(x=bmi)) +
+  geom_density(aes(colour=sex)) +
+  facet_wrap(~smoker) 
+```
+
+Diamonds:
+1.
+```{r}
+diamonds %>%
+  group_by(color) %>%
+  summarise(mean(carat)) %>%
+  arrange(desc(`mean(carat)`)) %>% 
+  head(1)
+
+```
+
+```{r}
+diamonds %>%
+  group_by(clarity) %>%
+  summarise(mean(table/carat)) %>%
+  arrange(desc(`mean(table/carat)`)) %>% 
+  head(1)
+
+```
+
+
+Minneapolis
+1-
+```{r}
+nrow(Minneapolis2013)
+```
+2-
+```{r}
+Minneapolis2013 %>%
+  group_by(Second) %>%
+  tally() %>%
+  arrange(desc(n)) %>% 
+  head(5)
+
+```
+3-
+```{r}
+Minneapolis2013 %>%
+  filter(First == "undervote")%>%
+  tally() %>%
+  arrange(desc(n)) %>% 
+  head(1)
+
+
+Minneapolis2013 %>%
+  filter(Second == "undervote")%>%
+  tally() %>%
+  arrange(desc(n)) %>% 
+  head(1)
+
+Minneapolis2013 %>%
+  filter(Third == "undervote")%>%
+  tally() %>%
+  arrange(desc(n)) %>% 
+  head(1)
+```
+
+
+
+4 - 
+```{r}
+Minneapolis2013 %>%
+  filter(First == "BETSY HODGES")%>%
+  group_by(Second) %>%
+  tally() %>%
+  arrange(desc(n)) %>% 
+  head(3)
+
+```
+
+5-
+```{r}
+Minneapolis2013 %>%
+  
+  group_by(Precinct) %>%
+  summarise(mean(First == "undervote")) %>%
+  
+  arrange(desc(`mean(First == "undervote")`))%>%
+  head(1)
+
+```
