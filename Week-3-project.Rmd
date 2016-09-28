@@ -1,6 +1,6 @@
 # Week 3 Project
 
-## Your name should appear here! 
+## Danielle Niederkorn 
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,75 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+The first graph is a scatterplot. Along the x-axis is the experience of the workers, the y-axis contains the wages, the different colors represent the marital status of the workers, and the different graphs are split up by sector.
+
+These variables allow comparisons between the different sectors, showing the relationship between wage and experience in different sectors. It also provides a visual cue as to societal expectations of workers in different sectors.
+
+The second figure shows the density plot of the bmis of pregnant people. On the y-axis is the density, the x-axis shows the bmi, shades of pink represent females, blue represents males, and one graph shows the cases of pregnant vs non-pregnant people. The two graphs split up density vs bmi, and provide a seperate consideration for pregnant women. Since the plot is a density plot, instead of using a data variable, instead the density is calculated.
+
+```{r}
+ggplot(data = CPS85, aes(x = age, y = wage, color = sector)) + geom_point()
+```
+
+
+```{r}
+ggplot(data = CPS85, aes(x = sector, y = wage, color = age)) + geom_point()
+
+```
+
+
+```{r}
+ggplot(data = NCHS, aes(x = bmi)) + geom_density(aes(color = pregnant))
+
+```
+```{r}
+diamonds %>%
+group_by(color) %>%
+summarise(mean(carat))
+
+
+```
+The D color diamonds have the highest average carats.
+
+```{r}
+ diamonds %>%
+group_by(clarity) %>%
+summarise(mean(table))
+
+
+```
+I1 has the largest average table per carat.
+
+
+Minneapolis2013 has 80,101 cases. 
+
+```{r}
+Minneapolis2013 %>%
+tally(x = Second)
+```
+1. Betsy Hodges 14399
+2. Don Samuels 14170
+3. Mark Andrew 12757
+4. Jackie Cherryhomes 6470
+5. Cam Winton and Bob Fine 3751
+
+1. Undervote = 834
+
+```{r}
+Minneapolis2013 %>%
+tally(x = First)
+```
+
+2. Undervote = 10598
+```{r}
+Minneapolis2013 %>%
+tally(x = Second)
+```
+
+3. Undervote = 19210
+
+```{r}
+Minneapolis2013 %>%
+tally(x = Third)
+```
+
