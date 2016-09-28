@@ -1,6 +1,6 @@
 # Week 3 Short Answer Questions
 
-## Your name should appear here!
+## Wendy Chu
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,56 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+5.1
+ggplot(data=CPS85,aes(x=sex,y=wage ,fill=married))+geom_bar(stat='identity',position='dodge', width=.9)+ facet_wrap(~race,ncol=3) 
+
+5.2 
+HappinessIndex %>% WorldMap(key = "country", fill = "corruption")
+
+
+7.1 
+a. summarise()
+b. mutate()
+c. arrange()
+d. filter()
+e. select()
+f. group_by() and summarise()
+
+7.4
+a. first shouldnt be in quotes
+b. cant have verbs after creating an object
+c. 
+
+7.7
+a.BabyNames %>% 
+  group_by(year, sex) %>% 
+  summarise(total = sum(count))
+
+b.ZipGeography %>% 
+  group_by(State) %>% 
+  summarise(pop = sum(Population))
+
+c.Minneapolis2013 %>% 
+  group_by(First)%>% 
+  summarise(voteReceived = n())
+
+d.Minneapolis2013 %>%
+  group_by(First) %>%
+  summarise(voteReceived = n())
+
+7.11
+a. sex, count, meanAge.
+b. diagnosis, count, meanAge.
+c. sex, diagnosis, count, meanAge.
+d. age, diagnosis, count, meanAge.
+e. age, count, meanAge.
+
+7.12
+a. nrow()
+b. names()
+c. help()
+d. library()
+e. group_by()
+f. summarise()
+
+
