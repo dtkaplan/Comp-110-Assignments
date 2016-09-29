@@ -7,9 +7,114 @@ Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(ggplot2)
 ```
 <!-- put your content after this line -->
 
 (1) The first is a scatter plot, the second is a density plot. 
-(2) The variables wage, exper, sector and married are involved for the first.  The variables density, bmi, sex, and ispregnant are involved in the second. 
-(3) In Figure 1, the variables cl
+(2) The variables wage, exper, sector and married are involved for the first.  The variables bmi, sex, and pregnant are involved in the second. 
+(3) In Figure 1, the variable `wage` is the y position.  Variable `exper` is the x coordinate of the points. Variable `sector` is indicated by which facet the points are in.  Variable `married` dictates the colors of the points.  In Figure 2, the density of `bmi` dictates the y values of the distribution glyphs.  `sex` dictates the colors of the distribution plots.  `pregnent` dictates which fasset the density is put in.  
+(4)  There are not data variables on the y-axis because the y values are being used to represent the *density* of the `bmi` variable.  
+
+### Graphing things: 
+
+```{r}
+CPS85 %>%
+  ggplot() + 
+  geom_point(aes(x=exper,y=wage,color = married)) + 
+  facet_wrap(~ sector) +
+  scale_y_log10()
+```
+
+```{r}
+NCHS %>% 
+  ggplot(aes(x=bmi)) + 
+  geom_density(aes(fill=sex,alpha=0.8)) + 
+  facet_grid(pregnant ~ . )
+```
+
+### Wrangling Diamonds! 
+
+(1) 
+
+```{r}
+diamonds %>% 
+  group_by(color) %>% 
+  summarise(AveSize = mean(carat))
+```
+
+Color J has the largest average size in carats.  J just means that it is the lowerst quality color.  
+
+(2) 
+
+```{r}
+diamonds %>% 
+  mutate(TperC = table / carat) %>% 
+  group_by(clarity) %>% 
+  summarise(aveTperC = mean(TperC)) %>% 
+  arrange(desc(aveTperC))
+```
+
+The VVS1 clarity has the largest everage "Table" per carat.  
+
+### Wrangling Votes! 
+
+```{r}
+nrow(Minneapolis2013)
+```
+
+(1) There are 80101 cases. 
+
+(2) 
+
+```{r}
+ Minneapolis2013 %>% 
+  group_by(Second) %>% 
+  summarize(votes = n()) %>% 
+  arrange(desc(votes))
+```
+
+The top 5 candidates of second votes were Betsy Hodges, Don Samuels, Mark Andrew, Jackie Cherryhomes, and Bob fine tied with Cam Winton.  
+
+(3) 
+
+```{r}
+Minneapolis2013 %>% 
+  filter(First == "undervote") %>% 
+  tally()
+Minneapolis2013 %>% 
+  filter(Second == "undervote") %>% 
+  tally()
+Minneapolis2013 %>% 
+  filter(Third == "undervote") %>% 
+  tally()
+```
+
+There were 834 "undervote" `First` choice selections, 10598 "undervote" `Second` choice selections, and 19210 "undervote" `Third` choice slections.  
+
+(4) 
+
+```{r}
+Minneapolis2013 %>% 
+  filter(First == "BETSY HODGES") %>% 
+  group_by(Second) %>% 
+  summarise(SecondVotes = n()) %>% 
+  arrange(desc(SecondVotes)) %>% head(3)
+```
+
+The top 3 `Second` vote selections among voters who voted for Betsy Hodges as their first choice were Mark Andrew, Don Samuels, and Jackie Cherryhomes. 
+
+(5) 
+
+```{r}
+Minneapolis2013 %>% 
+  group_by(Precinct) %>% 
+  summarize(total = n(),FirstUV = sum(First=="undervote")) %>% 
+  mutate(ratio = FirstUV/total) %>%
+  arrange(desc(ratio))
+```
+
+It seams that Precinct P-6C has the highest fraction.  7.7% of the votes had their `First` vote selections markes as "undervote". 
+
+
+
