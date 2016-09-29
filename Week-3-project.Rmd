@@ -5,9 +5,107 @@
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
+<!-- put your content after this line -->
 ```{r include = FALSE}
 library(DataComputing)
 ```
-<!-- put your content after this line -->
 
-Here is my content!
+## Deconstructing Graphics
+Figure 1 is a scatterplot. Wage (the y-axis), experience (x-axis), sector (facets) and marriage status (different color of datapoint) are the variables. 
+Figure 2 is a density plot. The BMI, sex and prenency status are variables used in the plot. There are two separate plots for "yes" and "no" prenency status. Colors of plot indicate sex and BMI values in the x-axis. Y-axis is used for the density of BMI, so there's no data variable.
+
+```{r}
+ggplot(data=CPS85, aes(x=exper,y=wage,color=married )) +geom_point()+ facet_wrap(~sector, nrow=2)
+ggplot(data = NCHS, aes(x=bmi)) + geom_density(aes(color = sex)) + facet_wrap(~pregnant) 
+```
+
+## Diamonds
+
+```{r}
+diamonds %>% 
+  group_by(color) %>%
+  summarise(mean(carat))%>%
+  arrange(desc(`mean(carat)`))%>%
+  head(1)
+
+diamonds %>% 
+  group_by(clarity) %>%
+  mutate(result = mean(table)/mean(carat)) %>%
+  arrange(desc(result)) %>%
+  head(1)
+```
+
+J (worst) color diamonds are the  largest on average.
+VVS1 (third to best clarity) has the largest average table per carat.
+
+## Voting
+1.
+```{r}
+Minneapolis2013%>% tally()
+```
+There are 80101 cases
+
+2. 
+```{r}
+Minneapolis2013 %>%
+  group_by(Second) %>%
+  tally()%>%
+  arrange(desc(n))%>%
+  head(5)
+```
+
+Five most popular candidates for Second vote selection
+1        BETSY HODGES 14399
+2        DON SAMUELS 14170
+3        MARK ANDREW 12757
+4          undervote 10598
+5 JACKIE CHERRYHOMES  6470
+
+3.
+```{r}
+Minneapolis2013%>%
+  group_by(First)%>%
+  tally()%>%
+  filter(First == "undervote")
+
+Minneapolis2013%>%
+  group_by(Second)%>%
+  tally()%>%
+  filter(Second == "undervote")
+
+Minneapolis2013%>%
+  group_by(Third)%>%
+  tally()%>%
+  filter(Third == "undervote")
+```
+
+First: 834
+Second:10598
+Third: 19210
+
+4. JAMES "JIMMY" L. STROUD, JR., JOHN CHARLES WILSON, JOHN LESLIE HARTWIG 
+
+```{r}
+Minneapolis2013 %>% 
+  filter(First == "BETSY HODGES") %>%
+  group_by(Second)%>%
+  tally()%>%
+  filter(rank(n) <= 3)
+```
+
+
+5. 
+```{r}
+Minneapolis2013%>%
+  group_by(Precinct, Ward, First)%>%
+  tally() %>%
+  group_by(Precinct, Ward)%>%
+  mutate(total = sum(n))%>%
+  filter(First == "undervote")%>%
+  mutate(fraction = n/total)%>%
+  arrange(desc(fraction))%>%
+  head(1)
+```
+
+Precinct 5 in Ward 6 as the highest fraction of undervote to all votes
+
