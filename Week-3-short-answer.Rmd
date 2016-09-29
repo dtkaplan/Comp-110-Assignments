@@ -23,12 +23,9 @@ library(mosaicData)
 
 ```{r}
 
-ggplot(data = CPS85, aes(x = sex, y = wage)) + facet_wrap(~ married)
+ggplot(data = CPS85, aes(x = sex, y = wage)) + facet_wrap(~ married) + geom_point()
 
 ```
-
-
-## I have an error... + geom_point?
 
 ## 5.2
 ```{r}
