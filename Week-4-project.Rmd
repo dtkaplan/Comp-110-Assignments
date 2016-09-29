@@ -1,6 +1,6 @@
 # Week 4 Project
 
-## Your name should appear here!
+## Qiuhan Sun
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,58 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+## Bicycle Rentals
+```{r cache=TRUE}
+data_site <- "http://tiny.cc/dcf/2014-Q4-Trips-History-Data-Small.rds"
+Trips <- readRDS(gzcon(url(data_site)))
+```
+
+## 1
+```{r}
+ggplot(data = Trips, aes(x = sdate)) + geom_density(adjust=0.4) + labs(title="Trip density plot") + theme(legend.position="right") 
+```
+
+##2
+```{r}
+Trips <- Trips %>%
+  mutate(time_of_day =
+           lubridate::hour(sdate) +
+           lubridate::minute(sdate) / 60)
+  
+ggplot(data = Trips, aes(x = time_of_day)) + geom_density(adjust=0.4) + labs(title="Trip density plot") + theme(legend.position="right")   
+```
+
+##3
+```{r}
+Trips <- Trips %>% mutate(day_of_week = lubridate::wday(sdate))
+ggplot(data = Trips, aes(x = time_of_day)) + geom_density(adjust=0.4) + labs(title="Trip density plot") + theme(legend.position="right")+facet_wrap(~day_of_week)
+```
+
+##4
+```{r}
+ggplot(data = Trips, aes(x = time_of_day)) + geom_density(aes(fill=client),alpha=0.3,color=NA)+ labs(title="Trip density plot") + theme(legend.position="right")+facet_wrap(~day_of_week)
+```
+
+##5
+```{r}
+ggplot(data = Trips, aes(x = time_of_day)) + geom_density(aes(fill=client),alpha=0.3,color=NA,position=position_stack())+ labs(title="Trip density plot") + theme(legend.position="right")+facet_wrap(~day_of_week)
+```
+
+I like the graph from question 4 because we can compare different days of the week and also the difference between casual and registered riders. It's also easier to compare the overlap and unoverlap areas for both clients.
+
+##6
+```{r}
+Trips <- Trips %>% mutate(wday = ifelse(lubridate::wday(sdate)%in% c(1,7),'weekend','weekday'))
+ggplot(data = Trips, aes(x = time_of_day)) + geom_density(aes(fill=client),alpha=0.3,color=NA) + labs(title="Trip density plot") + theme(legend.position="right")+facet_wrap(~wday)
+```
+
+On weekday, there are 2 peaks for registed clients, as they are communting to work or school, then back. For casual clients, the density is centered at the middle of the day. They are just riding for fun.
+On weekend, casual riders has a higher frequency than registered riders between 10 am to 3 pm, which further shows that casual clients are riding for leisure.
+
+
+```{r}
+ggplot(data = Trips, aes(x = time_of_day)) + geom_density(aes(fill=wday),alpha=0.3,color=NA) + labs(title="Trip density plot") + theme(legend.position="right")+facet_wrap(~client)
+```
+
+This graph just shows that same thing as the previous one. For casual riders, they ride more frequntly on weekend from 10 am and 3 pm. for registed riders, they commute the most during the rush hours on weekday.
+I personally prefer the first pair as we can compare different groups on weekday and weekend.
