@@ -1,6 +1,6 @@
 # Week 5 Project
 
-## Your name should appear here!
+## Tristan Truttmann
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -8,6 +8,67 @@ Compiled on `r date()`.
 ```{r include = FALSE}
 library(DataComputing)
 ```
-<!-- put your content after this line -->
 
-Here is my content!
+```{r}
+download.file("http://tiny.cc/dcf/ScorecardSmall.Rda", destfile = "ScorecardSmall.Rda")
+load("ScorecardSmall.Rda")
+```
+
+(1) 
+
+To create the graphic, I will need the variables `CONTROL`, `ADM_RATE`, `NPT41_PUB`, `NPT41_PRIV`, `NPT43_PUB`, `NPT43_PRIV`, `NPT45_PUB`, and `NPT45_PRIV`.  To demonstrate this explicitly, I will drop the unneeded terms: 
+
+```{r}
+CleanScorecard <- ScorecardSmall %>%
+  select(CONTROL, ADM_RATE, NPT41_PUB, NPT41_PRIV, NPT43_PUB, NPT43_PRIV, NPT45_PUB, NPT45_PRIV)
+```
+
+(2)
+
+```{r}
+NarrowCleanScorecard <- CleanScorecard %>%
+  gather(key=IncomeLevel,value=net_cost,NPT41_PUB, NPT41_PRIV, NPT43_PUB, NPT43_PRIV, NPT45_PUB, NPT45_PRIV)
+head(NarrowCleanScorecard)
+```
+
+(3) 
+
+First I will download the key you gave me:
+
+```{r}
+income_key = read.csv("http://tiny.cc/dcf/NPT4-names.csv")
+```
+
+Then I will crate a new table that has the ``new`` names: 
+
+```{r}
+NarrowCleanScorecard2 <- NarrowCleanScorecard %>%
+  inner_join(income_key,by = c("IncomeLevel" = "long_name"))
+```
+
+### Creating the final graph: 
+
+Now I will do some filtering to remove `CONTROL=3`: 
+
+```{r}
+NarrowCleanScorecard3 <- NarrowCleanScorecard2 %>%
+  filter(CONTROL != 3)
+```
+
+```{r}
+NarrowCleanScorecard3 %>%
+  ggplot() +
+  geom_point(aes(x = ADM_RATE,y = net_cost,color="#56B4E9")) +
+  facet_grid( CONTROL ~ short_name ) + 
+  xlab("Admissions rate") + 
+  ylab("Net cost per year $'000") + 
+  stat_smooth(aes(x = ADM_RATE,y = net_cost))
+```
+
+Great!  As you can see 1 is public and 2 represents private institutions.  I could make this a little bit more similar to the economist graph, but I think this would be inefficient with my limited time.  
+
+
+
+
+
+

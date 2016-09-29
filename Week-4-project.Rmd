@@ -1,6 +1,6 @@
 # Week 4 Project
 
-## Your name should appear here!
+## Tristan Truttmann
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,75 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+```{r chache = TRUE, include=FALSE}
+data_site <- "http://tiny.cc/dcf/2014-Q4-Trips-History-Data-Small.rds"
+Trips <- readRDS(gzcon(url(data_site)))
+```
+
+(1)
+
+```{r}
+Trips %>% 
+  ggplot(aes(x=sdate)) + 
+  geom_density()
+```
+
+(2) 
+
+```{r}
+Trips %>% 
+  ggplot(aes(x=lubridate::hour(sdate) + lubridate::minute(sdate) / 60 )) + 
+  geom_density() + 
+  xlab("time of day")
+```
+
+(3) 
+
+```{r}
+Trips %>% 
+  mutate(day_of_week = lubridate::wday(sdate)) %>%
+  ggplot(aes(x=lubridate::hour(sdate) + lubridate::minute(sdate) / 60 )) + 
+  geom_density() + 
+  facet_wrap( ~ day_of_week)
+```
+
+(4) 
+
+```{r}
+Trips %>% 
+  mutate(day_of_week = lubridate::wday(sdate)) %>%
+  ggplot(aes(x=lubridate::hour(sdate) + lubridate::minute(sdate) / 60 )) + 
+  geom_density(aes(fill=client,alpha=0.8)) + 
+  facet_wrap( ~ day_of_week)
+```
+
+(5) 
+
+```{r}
+Trips %>% 
+  mutate(day_of_week = lubridate::wday(sdate)) %>%
+  ggplot(aes(x=lubridate::hour(sdate) + lubridate::minute(sdate) / 60 )) + 
+  geom_density(aes(fill=client,alpha=0.8),position=position_stack()) + 
+  facet_wrap( ~ day_of_week)
+```
+
+* In my opinion, the graphic in (5) was most effective, because I'm interested in the two kinds of clinets summed up and the contribution from each, not in the rides from each.  
+
+(6) 
+
+```{r}
+Trips %>% 
+  mutate(wday = ifelse(lubridate::wday(sdate) %in% c(1,7), "weekend", "weekday"), day_of_week = wday(sdate)) %>%
+  ggplot(aes(x=lubridate::hour(sdate) + lubridate::minute(sdate) / 60 )) + 
+  geom_density(aes(fill=client,alpha=0.8),position=position_stack()) + 
+  facet_wrap( ~ wday)
+```
+
+* I prefer to facet with wday and fill with client as we have already done.  This is because filling with client gives the "summation" information that it relevent in the problem.  
+
+* I think this is nice because it shows how during the week days there are spikes during "rush hours".  It also shows us that causal users don't have that same rush hour time problem.  
+
+
+### Dear Professor Kaplin
+
+It seams that the whole assignment wasn't printed.  :(  I'll try to come talk to you about this.  
