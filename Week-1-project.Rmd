@@ -10,7 +10,7 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-# The Battle of Singapore reprised in clay
+# The Battle of Singapore 
 
 * Singapore was a colony of the British Empire.
 * They had a lot of soldiers in Singapore. 
