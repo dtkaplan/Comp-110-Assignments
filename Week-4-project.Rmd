@@ -38,7 +38,10 @@ JulianBirths<-
 ```
 #3
 ```{r}
-
+WdayBirths<-
+  Birthdays %>%
+  group_by(wday)%>%
+  summarise(WdayBirthNumber = sum(births))
 ```
 #4
 ```{r}
@@ -53,3 +56,29 @@ geom_point(aes(color=wday))
   
 ```
 
+There are way more births on Tuesday, Wednesday, Thursday than on Friday, Saturday Sunday.
+
+#5
+
+```{r}
+Holidays <- read.csv("http://tiny.cc/dcf/US-Holidays.csv") %>%
+  mutate(date = as.POSIXct(lubridate::dmy(date)))%>%
+  filter(year(date) %in% c(1980,1981))
+```
+
+#6
+
+```{r}
+MyTwoYears <-
+  Birthdays%>%
+  filter(year %in% c(1980,1981))%>%
+  group_by(date,wday)%>%
+  summarise(TotalDayBirths = sum(births))
+  
+ggplot(MyTwoYears,aes(x=date,y=TotalDayBirths))+
+geom_point(aes(color=wday))+
+  geom_vline(data=Holidays,aes(xintercept=as.numeric(date)))+
+  geom_text(data=Holidays,aes(x=date,label=holiday,y=9000),angle = 45)
+```
+
+To finish
