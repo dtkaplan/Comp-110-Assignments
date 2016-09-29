@@ -123,7 +123,11 @@ $(document).ready(function () {
 <div id="danielle-niederkorn" class="section level2">
 <h2>Danielle Niederkorn</h2>
 <!-- leave this material as is -->
+<<<<<<< HEAD
 <p>Compiled on Wed Sep 28 21:03:14 2016.</p>
+=======
+<p>Compiled on Wed Sep 28 07:42:15 2016.</p>
+>>>>>>> 4ef714609bdb3c3add02f887bdbab8b58de4d10a
 <!-- put your content after this line -->
 <p>The first graph is a scatterplot. Along the x-axis is the experience of the workers, the y-axis contains the wages, the different colors represent the marital status of the workers, and the different graphs are split up by sector.</p>
 <p>These variables allow comparisons between the different sectors, showing the relationship between wage and experience in different sectors. It also provides a visual cue as to societal expectations of workers in different sectors.</p>
@@ -166,6 +170,7 @@ summarise(mean(table))</code></pre>
 <p>I1 has the largest average table per carat.</p>
 <p>Minneapolis2013 has 80,101 cases.</p>
 <pre class="r"><code>Minneapolis2013 %&gt;%
+<<<<<<< HEAD
   group_by(Second) %&gt;%
   tally() %&gt;%
   arrange(desc(n))</code></pre>
@@ -183,12 +188,56 @@ summarise(mean(table))</code></pre>
 ## 9  STEPHANIE WOODRUFF  2128
 ## 10          DOUG MANN  1052
 ## # ... with 28 more rows</code></pre>
+=======
+tally(x = Second)</code></pre>
+<pre><code>## First argument should be a formula... But I'll try to guess what you meant</code></pre>
+<pre><code>## 
+##   ABDUL M RAHAMAN &quot;THE ROCK&quot;            ALICIA K. BENNETT 
+##                          363                          628 
+##                 BETSY HODGES                    BILL KAHN 
+##                        14399                          164 
+##        BOB &quot;AGAIN&quot; CARNEY JR                     BOB FINE 
+##                           98                         3751 
+##                   CAM WINTON         CAPTAIN JACK SPARROW 
+##                         3751                          583 
+##            CHRISTOPHER CLARK  CHRISTOPHER ROBIN ZIMMERMAN 
+##                          449                          435 
+##                   CYD GORMAN                    DAN COHEN 
+##                           96                         2283 
+##                  DON SAMUELS                    DOUG MANN 
+##                        14170                         1052 
+##       EDMUND BERNARD BRUYERE             GREGG A. IVERSON 
+##                           59                          215 
+##           JACKIE CHERRYHOMES JAMES &quot;JIMMY&quot; L. STROUD, JR. 
+##                         6470                           98 
+##                JAMES EVERETT                 JAYMIE KELLY 
+##                          550                          419 
+##          JEFFREY ALAN WAGNER          JOHN CHARLES WILSON 
+##                          292                           66 
+##          JOHN LESLIE HARTWIG                   JOSHUA REA 
+##                          185                          190 
+##              KURTIS W. HANNA                  MARK ANDREW 
+##                          250                        12757 
+##              MARK V ANDERSON             MERRILL ANDERSON 
+##                         1035                          190 
+##                   MIKE GOULD                  NEAL BAXTER 
+##                          368                          337 
+##                   OLE SAVIOR                     overvote 
+##                          795                           75 
+##             RAHN V. WORKCUFF           STEPHANIE WOODRUFF 
+##                          118                         2128 
+##                    TONY LANE             TROY BENJEGERDES 
+##                          265                          224 
+##                    undervote                          UWI 
+##                        10598                          195</code></pre>
+>>>>>>> 4ef714609bdb3c3add02f887bdbab8b58de4d10a
 <ol style="list-style-type: decimal">
 <li>Betsy Hodges 14399</li>
 <li>Don Samuels 14170</li>
 <li>Mark Andrew 12757</li>
 <li>Jackie Cherryhomes 6470</li>
 <li><p>Cam Winton and Bob Fine 3751</p></li>
+<<<<<<< HEAD
 <li><p>first_under = 834, second_under = 10598, third_under = 19210</p></li>
 </ol>
 <pre class="r"><code>Minneapolis2013 %&gt;%
@@ -208,6 +257,142 @@ summarise(mean(table))</code></pre>
   tally() %&gt;%
   mutate(position = rank(desc(n))) %&gt;%
   filter(position &lt;= 3)</code></pre>
+=======
+<li><p>Undervote = 834</p></li>
+</ol>
+<pre class="r"><code>Minneapolis2013 %&gt;%
+tally(x = First)</code></pre>
+<pre><code>## First argument should be a formula... But I'll try to guess what you meant</code></pre>
+<pre><code>## 
+##   ABDUL M RAHAMAN &quot;THE ROCK&quot;            ALICIA K. BENNETT 
+##                          338                          351 
+##                 BETSY HODGES                    BILL KAHN 
+##                        28935                           97 
+##        BOB &quot;AGAIN&quot; CARNEY JR                     BOB FINE 
+##                           56                         2094 
+##                   CAM WINTON         CAPTAIN JACK SPARROW 
+##                         7511                          264 
+##            CHRISTOPHER CLARK  CHRISTOPHER ROBIN ZIMMERMAN 
+##                          188                          170 
+##                   CYD GORMAN                    DAN COHEN 
+##                           39                         1798 
+##                  DON SAMUELS                    DOUG MANN 
+##                         8335                          779 
+##       EDMUND BERNARD BRUYERE             GREGG A. IVERSON 
+##                           70                          144 
+##           JACKIE CHERRYHOMES JAMES &quot;JIMMY&quot; L. STROUD, JR. 
+##                         3524                           64 
+##                JAMES EVERETT                 JAYMIE KELLY 
+##                          347                          196 
+##          JEFFREY ALAN WAGNER          JOHN CHARLES WILSON 
+##                          164                           37 
+##          JOHN LESLIE HARTWIG                   JOSHUA REA 
+##                           97                          108 
+##              KURTIS W. HANNA                  MARK ANDREW 
+##                          200                        19584 
+##              MARK V ANDERSON             MERRILL ANDERSON 
+##                          975                          108 
+##                   MIKE GOULD                  NEAL BAXTER 
+##                          204                          145 
+##                   OLE SAVIOR                     overvote 
+##                          693                           93 
+##             RAHN V. WORKCUFF           STEPHANIE WOODRUFF 
+##                           65                         1010 
+##                    TONY LANE             TROY BENJEGERDES 
+##                          219                          148 
+##                    undervote                          UWI 
+##                          834                          117</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Undervote = 10598</li>
+</ol>
+<pre class="r"><code>Minneapolis2013 %&gt;%
+tally(x = Second)</code></pre>
+<pre><code>## First argument should be a formula... But I'll try to guess what you meant</code></pre>
+<pre><code>## 
+##   ABDUL M RAHAMAN &quot;THE ROCK&quot;            ALICIA K. BENNETT 
+##                          363                          628 
+##                 BETSY HODGES                    BILL KAHN 
+##                        14399                          164 
+##        BOB &quot;AGAIN&quot; CARNEY JR                     BOB FINE 
+##                           98                         3751 
+##                   CAM WINTON         CAPTAIN JACK SPARROW 
+##                         3751                          583 
+##            CHRISTOPHER CLARK  CHRISTOPHER ROBIN ZIMMERMAN 
+##                          449                          435 
+##                   CYD GORMAN                    DAN COHEN 
+##                           96                         2283 
+##                  DON SAMUELS                    DOUG MANN 
+##                        14170                         1052 
+##       EDMUND BERNARD BRUYERE             GREGG A. IVERSON 
+##                           59                          215 
+##           JACKIE CHERRYHOMES JAMES &quot;JIMMY&quot; L. STROUD, JR. 
+##                         6470                           98 
+##                JAMES EVERETT                 JAYMIE KELLY 
+##                          550                          419 
+##          JEFFREY ALAN WAGNER          JOHN CHARLES WILSON 
+##                          292                           66 
+##          JOHN LESLIE HARTWIG                   JOSHUA REA 
+##                          185                          190 
+##              KURTIS W. HANNA                  MARK ANDREW 
+##                          250                        12757 
+##              MARK V ANDERSON             MERRILL ANDERSON 
+##                         1035                          190 
+##                   MIKE GOULD                  NEAL BAXTER 
+##                          368                          337 
+##                   OLE SAVIOR                     overvote 
+##                          795                           75 
+##             RAHN V. WORKCUFF           STEPHANIE WOODRUFF 
+##                          118                         2128 
+##                    TONY LANE             TROY BENJEGERDES 
+##                          265                          224 
+##                    undervote                          UWI 
+##                        10598                          195</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Undervote = 19210</li>
+</ol>
+<pre class="r"><code>Minneapolis2013 %&gt;%
+tally(x = Third)</code></pre>
+<pre><code>## First argument should be a formula... But I'll try to guess what you meant</code></pre>
+<pre><code>## 
+##   ABDUL M RAHAMAN &quot;THE ROCK&quot;            ALICIA K. BENNETT 
+##                          367                          854 
+##                 BETSY HODGES                    BILL KAHN 
+##                         6742                          194 
+##        BOB &quot;AGAIN&quot; CARNEY JR                     BOB FINE 
+##                          172                         4506 
+##                   CAM WINTON         CAPTAIN JACK SPARROW 
+##                         3974                         1440 
+##            CHRISTOPHER CLARK  CHRISTOPHER ROBIN ZIMMERMAN 
+##                          531                          422 
+##                   CYD GORMAN                    DAN COHEN 
+##                          136                         2072 
+##                  DON SAMUELS                    DOUG MANN 
+##                        11178                         1105 
+##       EDMUND BERNARD BRUYERE             GREGG A. IVERSON 
+##                           83                          437 
+##           JACKIE CHERRYHOMES JAMES &quot;JIMMY&quot; L. STROUD, JR. 
+##                         8045                          154 
+##                JAMES EVERETT                 JAYMIE KELLY 
+##                          806                          412 
+##          JEFFREY ALAN WAGNER          JOHN CHARLES WILSON 
+##                          375                          112 
+##          JOHN LESLIE HARTWIG                   JOSHUA REA 
+##                          248                          267 
+##              KURTIS W. HANNA                  MARK ANDREW 
+##                          418                         8977 
+##              MARK V ANDERSON             MERRILL ANDERSON 
+##                          905                          216 
+##                   MIKE GOULD                  NEAL BAXTER 
+##                          548                          493 
+##                   OLE SAVIOR                     overvote 
+##                          657                           67 
+##             RAHN V. WORKCUFF           STEPHANIE WOODRUFF 
+##                          162                         2633 
+##                    TONY LANE             TROY BENJEGERDES 
+##                          397                          323 
+##                    undervote                          UWI 
+##                        19210                          463</code></pre>
+>>>>>>> 4ef714609bdb3c3add02f887bdbab8b58de4d10a
 </div>
 </div>
 
