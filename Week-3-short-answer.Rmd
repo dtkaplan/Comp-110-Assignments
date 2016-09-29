@@ -1,6 +1,6 @@
 # Week 3 Short Answer Questions
 
-## Your name should appear here!
+## Danielle Niederkorn
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -9,11 +9,30 @@ Compiled on `r date()`.
 library(DataComputing)
 ```
 <!-- put your content after this line -->
-
+5.1 Bar Graph
 ```{r}
 library(mosaicData)
 library(DataComputing)
 ggplot(data=CPS85,aes(x=sex,y=wage ,fill=married))+geom_bar(stat='identity',position='dodge', width=.9)+ facet_wrap(~race,ncol=3)
 ```
+5.2 Corruption World Happiness Map
+```{r}
+WorldMap(HappinessIndex, key = country, fill = corruption)
+```
+6.5
+e.
 
+6.6
+d.
 
+6.7
+d.
+
+6.8
+```{r}
+ggplot(data=Small,aes(x=bmi,y=weight))+geom_point()+aes(colour=smoker)
+```
+7.1
+a. summarise(x = mean(y))
+b. mutate()
+c. arrange(desc(x))

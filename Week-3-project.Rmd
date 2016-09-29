@@ -54,13 +54,9 @@ Minneapolis2013 has 80,101 cases.
 
 ```{r}
 Minneapolis2013 %>%
-<<<<<<< HEAD
   group_by(Second) %>%
   tally() %>%
   arrange(desc(n))
-=======
-tally(x = Second)
->>>>>>> 4ef714609bdb3c3add02f887bdbab8b58de4d10a
 ```
 1. Betsy Hodges 14399
 2. Don Samuels 14170
@@ -68,7 +64,6 @@ tally(x = Second)
 4. Jackie Cherryhomes 6470
 5. Cam Winton and Bob Fine 3751
 
-<<<<<<< HEAD
 
 3. first_under = 834, second_under = 10598, third_under = 19210
 
@@ -89,25 +84,5 @@ four <-
   tally() %>%
   mutate(position = rank(desc(n))) %>%
   filter(position <= 3)
-=======
-1. Undervote = 834
-
-```{r}
-Minneapolis2013 %>%
-tally(x = First)
-```
-
-2. Undervote = 10598
-```{r}
-Minneapolis2013 %>%
-tally(x = Second)
-```
-
-3. Undervote = 19210
-
-```{r}
-Minneapolis2013 %>%
-tally(x = Third)
->>>>>>> 4ef714609bdb3c3add02f887bdbab8b58de4d10a
 ```
 
