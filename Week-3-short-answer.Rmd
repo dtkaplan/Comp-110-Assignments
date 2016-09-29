@@ -1,13 +1,77 @@
 # Week 3 Short Answer Questions
 
-## Your name should appear here!
+## Shelby Witherby
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(ggplot2)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+## 5.1:
+```{r}
+
+library(DataComputing)
+library(mosaicData)
+
+
+
+```
+
+```{r}
+
+ggplot(data = CPS85, aes(x = sex, y = wage)) + facet_wrap(~ married)
+
+```
+
+
+## I have an error... + geom_point?
+
+## 5.2
+```{r}
+
+HappinessIndex %>%
+  WorldMap(key = "country", fill = "corruption")
+
+```
+
+## 6.5
+ b
+ 
+## 6.6
+ d
+ 
+## 6.7
+d
+
+## 7.1
+a. summarise( ave = mean())
+b. mutate
+c. arrange(desc())
+d. filter()
+e. select
+f. mutate
+
+## 7.5
+a. arrange(sex, count)
+b. filter(sex = M)
+c. filter(sex = F)
+d. n(row)
+e. select(name, count)
+
+## 7.11
+a. mean age of each sex, total count of each sex
+b. mean age of each diagnosis, total count of each diagnosis
+c. mean age of each group of sex&diagnosis, with a count of each category
+d. count of every age group, mean age
+
+##7.12
+1. n(row)
+2. summarise
+3. help
+4. library()
+5. group_By
+6. summarise(totalPop = sum())
