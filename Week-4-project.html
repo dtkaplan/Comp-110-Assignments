@@ -120,12 +120,23 @@ $(document).ready(function () {
 
 <div id="week-4-project" class="section level1">
 <h1>Week 4 Project</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="xing-gao" class="section level2">
+<h2>Xing Gao</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:30:54 2016.</p>
+<p>Compiled on Wed Sep 28 21:10:44 2016.</p>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
+<pre class="r"><code>data_site &lt;-&quot;http://tiny.cc/dcf/2014-Q4-Trips-History-Data-Small.rds&quot;
+Trips &lt;-readRDS(gzcon(url(data_site)))</code></pre>
+<ol style="list-style-type: decimal">
+<li><p>Trips %&gt;% ggplot(aes(sdate)) + geom_density() This shows a density plot of how many events took place on each date</p></li>
+<li><p>Trips %&gt;% mutate(time_of_day = lubridate::hour(sdate) + lubridate::minute(sdate)/60)%&gt;% ggplot(aes(time_of_day)) + geom_density() This shows how how often events took place on certain minutes and hours during the day</p></li>
+<li><p>Trips %&gt;% mutate(time_of_day = lubridate::hour(sdate) + lubridate::minute(sdate)/60) %&gt;% mutate(day_of_week = lubridate::wday(sdate)) %&gt;% ggplot(aes(time_of_day)) + geom_density()+ facet_wrap(~day_of_week) This shows on each day of the week, the frequency of the event at certain hours and minutes within each day.</p></li>
+<li><p>Trips %&gt;% mutate(time_of_day = lubridate::hour(sdate) + lubridate::minute(sdate)/60) %&gt;% mutate(day_of_week = lubridate::wday(sdate)) %&gt;% ggplot(aes(time_of_day)) + geom_density(aes(fill=client), alpha=1, color=NA)+ facet_wrap(~day_of_week) This shows 4, but also the variation between registered clients and casual clients.</p></li>
+<li><p>Trips %&gt;% mutate(time_of_day = lubridate::hour(sdate) + lubridate::minute(sdate)/60) %&gt;% mutate(day_of_week = lubridate::wday(sdate)) %&gt;% ggplot(aes(time_of_day)) + geom_density(aes(fill=client), alpha=1, color=NA, position=position_stack())+ facet_wrap(~day_of_week) This graphic is more effective at telling an interesting story, because you can see the difference between the registered and casual riders.</p></li>
+<li><p>Trips %&gt;% mutate(time_of_day = lubridate::hour(sdate) + lubridate::minute(sdate)/60) %&gt;% mutate(wday = ifelse(lubridate::wday(sdate) %in% c(1,7), “weekend”, “weekday”)) %&gt;% ggplot(aes(time_of_day)) + geom_density(aes(fill=client), alpha=1, color=NA, position=position_stack())+ facet_wrap(~wday)</p></li>
+</ol>
+<p>Trips %&gt;% mutate(time_of_day = lubridate::hour(sdate) + lubridate::minute(sdate)/60) %&gt;% mutate(wday = ifelse(lubridate::wday(sdate) %in% c(1,7), “weekend”, “weekday”)) %&gt;% ggplot(aes(time_of_day)) + geom_density(aes(fill=wday), alpha=1, color=NA, position=position_stack())+ facet_wrap(~client)</p>
+<p>In my opinion, both ways are useful, depending on what you were interested in knowing. When the graph facets on client, and fill in with wday, this shows that both types of client ride more on the weekend. Furthermore, the patterns for registered users are different from patterns for casual users. When the graph facets on wday, and fill in with client, this shows that the pattern between casual and registered riders on the weekdays are different, but on the weekends, they’re similar.</p>
 </div>
 </div>
 
