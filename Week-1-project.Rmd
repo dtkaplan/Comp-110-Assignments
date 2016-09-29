@@ -3,7 +3,7 @@
 ## Sam Erickson
 
 <!-- leave this material as is -->
-Compiled on `r date()`.
+Compiled on `r date()`.  
 
 ```{r include = FALSE}
 library(DataComputing)
