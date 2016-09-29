@@ -123,10 +123,79 @@ $(document).ready(function () {
 <div id="your-name-should-appear-here" class="section level2">
 <h2>Your name should appear here!</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:27:09 2016.</p>
+<p>Compiled on Wed Sep 28 18:52:59 2016.</p>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
 </div>
+<div id="chapter-10-questions" class="section level2">
+<h2>Chapter 10 Questions</h2>
+</div>
+</div>
+<div id="section" class="section level1">
+<h1>10.1</h1>
+<p>Most data verbs take one data table as an input then do their magic–mutating the variables around, filtering for a select group of cases, putting the table in a different order, etc.–whereas the join family–a great family, by the way–takes two data tables as its inputs and turns them into a single data table. To do this, you need a special kind of syntax.</p>
+<p>For example, a join command might look like:</p>
+<p>MigrationFlows %&gt;% left_join(InfantMortality, by = c(“desetcoded” = “iso_a3”))</p>
+<p>MigrationFlows is one of our data tables, the left one, so it goes at the top of this command chain. To connect the other data table, InfantMortality, to MigrationFlows, we need to tell the computer to join that data table back to our original, Migration Flows, which is how data tables end up being the inputs to join verbs.</p>
+</div>
+<div id="section-1" class="section level1">
+<h1>10.2</h1>
+<p>You can’t do this simply side-byside copy job because the tables are not identical. For example, the second case in Demographics is about Akrotiri, while the second case in CountryCentroids is Aland. If you copied straight from one to other, side-by-side, you’d be listing the long and lat for Aland as that of Akrotiri, which is incorrect information. Moreover, Demographics has more rows than CountryCentroids, so a side-by-side copy would would mean some cases wouldn’t have an attached lat and long.</p>
+</div>
+<div id="section-2" class="section level1">
+<h1>10.3</h1>
+</div>
+<div id="section-3" class="section level1">
+<h1>1</h1>
+<p>Table B would make it easiest.</p>
+<p>tableB %&gt;% mutate(diff = Y2001-Y2000)</p>
+</div>
+<div id="section-4" class="section level1">
+<h1>2</h1>
+<p>Table C would make it the easiest.</p>
+<pre class="r"><code>tableC %&gt;%
+  join( ContinentData ) %&gt;%
+  group_by( Continent, Year) %&gt;%
+  summarise( total = sum(Value))</code></pre>
+<div id="chapter-11-exercises" class="section level2">
+<h2>Chapter 11 Exercises</h2>
+</div>
+</div>
+<div id="section-5" class="section level1">
+<h1>11.1</h1>
+<ol style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<ul>
+<li>A case is in Version One is a group of people within one gender who have a certain name in a certain year.</li>
+<li>A case in Version Two is a name in a certain year.</li>
+<li>A case in Version Three is a group of people with a certain name in a certain gender.</li>
+</ul>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Version One is narrow and Version Two is wide.</li>
+<li>The key variable being used in the narrow table is sex.</li>
+<li><p>Version One doesn’t have any NAs because it is in a narrow arrangement, and an individual case is the group of people who have a certain name WITHIN A CERTAIN GENDER WITHIN A CERTAIN YEAR. Names that would be listed with an NA in the other two versions simply wouldn’t appear in Version One. If there was no group of people in a given year and gender with a certain name, there’s no point in listing it all.</p></li>
+<li>This is possible because Version Three is in a slightly narrower arrangement than Version 2. In Version 2, there are columns for Female and Male, whereas Version 3 condenses that variable into one, sex, reducing the number of cases.</li>
+<li>Year was spread into 1912 and 2012 in Version 3.</li>
+<li></li>
+</ol>
+<ul>
+<li>F and M are gathered into sex, and the values inside of F and M in Version Two are placed into nbabies.</li>
+<li>Sex appears as a key variable in Version 1.</li>
+<li>The values that are used as levels for the key variable in Version 1 are drawn from F and M in Version 2.</li>
+</ul>
+</div>
+<div id="section-6" class="section level1">
+<h1>11.3</h1>
+<p>a). A is wide and C is narrow. b). B is wide and C is narrow. c). A is wide and C is narrow. d). Also, for good measure, A is a little bit wider than B.</p>
+</div>
+<div id="section-7" class="section level1">
+<h1>11.4</h1>
+<p>See paper turned in during class from 9/28.</p>
+</div>
+<div id="section-8" class="section level1">
+<h1>11.5</h1>
+<pre class="r"><code>&quot;http://tiny.cc/dcf/MeasTreatTables.rda&quot; %&gt;%
+  url() %&gt;% load()</code></pre>
 </div>
 
 
