@@ -11,3 +11,41 @@ library(DataComputing)
 <!-- put your content after this line -->
 
 Here is my content!
+
+```{r cache=TRUE}
+data_site <- "http://tiny.cc/dcf/2014-Q4-Trips-History-Data-Small.rds"
+Trips <- readRDS(gzcon(url(data_site)))
+```
+
+1. density plot of events versus sdate
+```{r}
+ggplot(data=Trips,aes(x=sdate))+geom_density()
+```
+
+2. density plot of events versus time of day
+```{r}
+Trips %>% mutate(time_of_day=lubridate::hour(sdate)+lubridate::minute(sdate)/60) %>% ggplot(aes(x=time_of_day))+geom_density()
+```
+
+3. Facet (2) by day of week
+```{r}
+Trips %>% mutate(time_of_day=lubridate::hour(sdate)+lubridate::minute(sdate)/60) %>%  mutate(day_of_week=lubridate::wday(sdate)) %>% ggplot(aes(x=time_of_day))+geom_density()+facet_wrap(~day_of_week)
+```
+
+4. set fill aesthetic to client variable
+```{r}
+Trips %>% mutate(time_of_day=lubridate::hour(sdate)+lubridate::minute(sdate)/60) %>%  mutate(day_of_week=lubridate::wday(sdate)) %>% ggplot(aes(x=time_of_day))+geom_density()+facet_wrap(~day_of_week)+aes(fill=client,alpha=0.1)
+```
+
+5. 
+```{r}
+Trips %>% mutate(time_of_day=lubridate::hour(sdate)+lubridate::minute(sdate)/60) %>%  mutate(day_of_week=lubridate::wday(sdate)) %>% ggplot(aes(x=time_of_day))+geom_density(position=position_stack())+facet_wrap(~day_of_week)+aes(fill=client,alpha=0.02)
+```
+Qn: which of these graphics is most effective?
+I will argue part (4) is the most effective. this allows us to segment the users and target accordingly.
+
+6.
+```{r}
+Trips %>% mutate(time_of_day=lubridate::hour(sdate)+lubridate::minute(sdate)/60) %>%  mutate(wday=ifelse(lubridate::wday(sdate) %in% c(1,7),"weekend","weekday")) %>% ggplot(aes(x=time_of_day))+geom_density()+facet_wrap(~wday)+aes(fill=client,alpha=0.1)
+```
+It seems to be better facet on wday because there is more information. But we need to do both to really know.
