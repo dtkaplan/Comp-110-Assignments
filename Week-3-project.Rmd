@@ -77,6 +77,8 @@ Minneapolis2013%>%
   group_by(Third)%>%
   tally()%>%
   filter(Third == "undervote")
+
+# Is there a way to do this without repeating the command three times?
 ```
 
 First: 834
