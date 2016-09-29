@@ -1,13 +1,49 @@
 # Week 4 Project
 
-## Your name should appear here!
+## Yujin Jang
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(dplyr)
+library(lubridate)
 ```
 <!-- put your content after this line -->
+#Holiday Birthdays
 
-Here is my content!
+##1
+```{r}
+DailyBirths <-
+  Birthdays %>%
+  group_by(date)%>%
+  summarise(Births=sum(births))
+ggplot(DailyBirths, aes(x=date,y=Births))+
+  geom_point()
+```
+
+##2
+{r}
+Eweek <-
+  Birthdays%>%
+  lubridate(yday(date()))
+
+
+##3
+{r}
+DayoftheweekBirths <-
+  Birthdays %>%
+  group_by(wday)%>%
+
+
+
+##4
+```{r}
+MyTwoYears <-
+  Birthdays%>%
+  filter(year%in% c("1981","1982"))
+  group_by(MyTwoYears)
+```
+
+
