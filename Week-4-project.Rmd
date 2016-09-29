@@ -56,4 +56,4 @@ Let's do the vice versa version
 ggplot(data = Trips, aes(x = time_of_day)) + geom_density(aes(fill = wday), alpha = 0.2, color = NA)+ labs(title="Trip density plot") + theme(legend.position="right")+facet_wrap(~client)
 ```
 
-I think it is better to do fill of client and facet on facet because it can tell the story better with different behavior happens with different groups of group under certain days. It is clear that during the day in the weekend, maybe visitors may use the bike more as they are generally not registered but things reversed in the weekdays. The second plot shows few information like this.
+I think it is better to do fill of client and facet on facet because it can tell the story better with different behavior happens with different groups of group under certain days. It is clear that during the day in the weekend, maybe visitors may use the bike more as they are generally not registered but things reversed in the weekdays. The second plot will generate the same result but it is not that obvious than the first one.
