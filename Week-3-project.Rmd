@@ -1,13 +1,53 @@
 # Week 3 Project
 
-## Your name should appear here! 
+## Yujin Jang 
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(mosaicData)
 ```
 <!-- put your content after this line -->
+#```{r}
+scatterGraphHelper(CPS85)
+```
+#```{r}
+ggplot(data=CPS85,aes(x=educ,y=wage))+
+  geom_point()+
+  aes(colour=sex)+
+  scale_y_log10()+
+  facet_wrap(~union,ncol-4)+
+  stat_smooth(method-lm)
+```
 
-Here is my content!
+- first one is scatter plot and the second one is density plot
+
+-first one with wage,married, exper, and second one with bmi and sex.
+
+-It gives frame to the graphic
+
+-Since it is density, it shows where the the population is at certain bmi.
+
+#```{r}
+ggplot(data=CPS85, aes(x=exper,y=wage))+
+  geom_point(married)+
+  facet_wrap(sector)
+```
+#```{r}
+ggplot (data=NCHS, aes(x=bmi))+
+  geom_density(aes(color=blue))+
+  facet_wrap(sex)
+```
+
+#Wrangling
+#```{r}
+diamonds%>%
+  verb1(args1)%>%
+  verb2(args2)%>%
+  arrange(desc(args3))%>%
+  head(1)
+
+```
+
