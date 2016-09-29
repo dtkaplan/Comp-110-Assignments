@@ -7,7 +7,95 @@ Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(lubridate)
 ```
 <!-- put your content after this line -->
 
 Here is my content!
+
+1)
+```{r}
+DailyBirths <-Birthdays %>%
+  group_by(date) %>%
+  summarize(TotalBirths = sum(births) )
+
+ggplot(DailyBirths, aes(x = date, y= TotalBirths)) + geom_point()
+```
+
+2) 
+
+```{r}
+weeklybirths <- 
+  Birthdays%>%
+    mutate(Weeks=week(date))%>%
+    group_by(Weeks)%>%
+    summarise(BirthsThisWeek=sum(births))
+    
+```
+
+b)
+
+```{r}
+monthlybirths <-
+  Birthdays%>%
+  mutate(Months=month(date))%>%
+  group_by(Months)%>%
+  summarise(BirthsThisMonth=sum(births))
+```
+
+c) 
+```{r}
+JulianDay <-
+  Birthdays%>%
+  mutate(JD=yday(date))%>%
+  group_by(JD)%>%
+  summarise(BirthsEachJulianDay=sum(births))
+  
+```
+
+3) 
+```{r}
+BirthsByDay <-
+  Birthdays%>%
+  mutate(Days=wday(date))%>%
+  group_by(Days)%>%
+  summarise(BirthdaysPerWeekday=sum(births))
+```
+
+4) 
+
+```{r}
+MyTwoYears <-
+  Birthdays %>%
+  filter(year(date)%in% 1985:1986) %>%
+  group_by(date) %>%
+  summarise(births =sum(births))
+
+MyTwoYears %>%
+  ggplot(aes(x= date, y = births)) +
+  geom_point()
+```
+You can see two distinct patterns among the data that closely resemble each other. The first wave is slightly higher than the second. Because we are looking at day to day data, the lower wave might be weekends, while the higher one is weekdays. This is an assumption I made looking at the data.  
+
+5) 
+
+```{r}
+Holidays <- read.csv("http://tiny.cc/dcf/US-Holidays.csv")%>% mutate(date=as.POSIXct(lubridate::dmy(date)))
+```
+
+6) 
+
+```{r}
+  TwoYears <-
+    Birthdays %>% 
+    filter(year(date)%in% 1985:1987) %>%
+    group_by(date, wday) %>%
+    summarise(BirthsEachDate=sum(births))
+
+Holidays <- Holidays %>% filter(year(date)%in% (1985:1987))
+ggplot(TwoYears,aes(x=date, y= BirthsEachDate)) +
+    geom_line(aes(color=wday)) + 
+  geom_vline(data= Holidays, aes( xintercept = as.numeric(date())))
+
+```
+
