@@ -160,7 +160,7 @@ data(msleep, package = "ggplot2")
 
 2. There are 83 cases.
 
-3. The meaning of the cases is the mammels sleeping data.
+3. The meaning of the cases is different mammels.
 
 4. The levels are carnivore, omnivore or herbivore
 

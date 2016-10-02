@@ -30,7 +30,7 @@ options(warn=-1)
 
 (g) 2. Add a layer of glyphs.
 
-(h) 3. Set an axis label.
+(h) 5. Change the scale for the frame.
 
 (i) 4. Divide the frame into facet.
 
