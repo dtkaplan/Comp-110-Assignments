@@ -10,49 +10,49 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-##8.1
+##Problem 8.1
 
-a) 2)
-b) 2)
-c) 1)
-d) 5)
-e) 3)
-f) 4)
-g) 2)
-h) 5)
-i) 4)
+a) 2
+b) 2
+c) 1
+d) 5
+e) 3
+f) 4
+g) 2
+h) 5
+i) 4
 
-## 8.2
+##Problem  8.2
 ```{r}
 library(mosaicData)
 
 ggplot(data=CPS85,aes(x=age,y=wage))+xlim(0,60)+ylim(0,30)+geom_point(aes(shape=married))+facet_wrap(~sector,ncol=3)
 
-ggplot(data=CPS85,aes(x=age,y=wage))+geom_point()+facet_grid(married~ .)+facet_grid(sex~.)
+ggplot(data=CPS85,aes(x=age,y=wage))+geom_point()+facet_wrap(sex~married)
 ```
 
-##8.3
-#a
+##Problem 8.3
+a)
 ```{r}
 ggplot(data=CPS85,aes(x=age,y=wage))+geom_point()
 ```
 
-#b
+b)
 ```{r}
 WorldMap(HappinessIndex, key=country, fill=corruption)
 ```
 
-#c
+c)
 ```{r}
 ggplot(data=CPS85,aes(x=age,y=wage))+ geom_point(aes(shape=sex)) +facet_grid( married ~ .)
 ```
 
-#d
+d)
 ```{r}
 ggplot(data=CPS85,aes(x=age,y=wage))+ geom_point(aes(shape=married)) +ylim(0,30)
 ```
 
-##9.1
+##Problem 9.1
 a) quick presentation
 b) data verb
 c) transformation
@@ -60,11 +60,11 @@ d) summary function
 e) data verb
 f) quick presentation
 g) data verb
-h) comparison expression
+h) data verb
 i) quick presentation
 
-##9.3
-#1
+##Problem 9.3
+1)
 ```{r}
 diamonds %>%
   group_by(color) %>%
@@ -73,7 +73,7 @@ diamonds %>%
   head(1)
 ```
 
-#2
+2)
 ```{r}
 diamonds %>%
   group_by(clarity) %>%

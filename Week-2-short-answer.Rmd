@@ -12,7 +12,7 @@ library(DataComputing)
 
 Here is my content!
 
-Problem 1.1
+##Problem 1.1
 
 a) Taffy. It’s the value of a variable for a particular case.
 b) Year. It's a quantitative variable.
@@ -20,7 +20,7 @@ c) Sex. It's a categorical variable.
 d) Name. It's a categorical variable.
 e) Count. It's a quantitative variable.
 
-1.2
+##Problem 1.2
 
 To be a tidy table, each column needs to be a variable containing the same type of value for each case. Number of states is a quantitative variable. However, 'it depends' is not a number, which differs it to other values. 
 
@@ -28,7 +28,7 @@ Also, the format for values should be the same. 'Lincoln, Abraham' should be 'Ab
 
 We should also seperate the two numbers in the in office variable. '1837 to 1841' and '1837-1841' are not the same.
 
-1.4
+## Problem 1.4
 
 1.
 In Table A, variables are Year, Algeria, Brazil and Columbia.
@@ -40,19 +40,19 @@ For Table A, a case is a year.
 For Table B, a case is a country.
 For Table C, a case is a country in a year.
 
-1.5
+## Problem 1.5
 
 1. There are six variable, including 'faa', 'name', 'lat,lon', 'alt', 'tz', 'dst'.
 2. A case is an individual airport.
 3. faa is a categorical variable. name is categorical. lat is quantitative. alt is quantitative. tz is categorical. dst is categorical.
 
 
-2.2
+##Problem 2.2
 
 File name should be wrapped in quotes.
 
 
-2.3
+##Problem 2.3
 ```{r}
 help("CPS85")
 ```
@@ -60,21 +60,21 @@ help("CPS85")
 CPS stands for The Current Population Survey, which is used to supplement census information between census years. It contains worker's wages, sex, years of education, years of work experience, occupational status, regino of residence and union membership.
 
 
-2.4
+##Problem 2.4
 ```{r}
 help(NHANES, package <- "NHANES")
 ```
 
 Instead of naming NHANES as package, we should use named argument package = "NHANES". 
 
-2.6
+##Problem 2.6
 
 2. first-essay. Punctuation symbol is not allowe in object name except . and _ .
 3. "MyData". Object names are never in quotes.
 5. small sample. There should be no space in object name.
 9. sqrt(). There should be no punctuation symbol in an object name.
 
-2.7
+##Problem 2.7
 ```{r}
 data(flights, package="nycflights13")
 flights%>% nrow()
@@ -94,7 +94,7 @@ Arr_delay, dep_delay, air_time, distance, hour, minute are quantitative.
 5. The unit for air_time is minutes , for distance is miles.
 
 
-2.8
+##Problem 2.8
 
 a) Improprt syntax for function argument
 
@@ -106,14 +106,14 @@ d) Unmatched quotes in character string
 
 e) No mistake
 
-2.9
+##Problem 2.9
 
 Only . and _ can be used in the object name.
 
 All the characters can be used in a quoted character string.
 
 
-2.10
+##Problem 2.10
 
 ```{r}
 dim(CountryData)
@@ -145,28 +145,17 @@ help(RegisteredVoters)
 DEM stands for Democratic. LIB stands for Libertarian. REP stands for Republican. UNA stands for Unaffiliated.
 
 
-3.1
+##Problem 3.1
 
-1) a data frame
-```{r}
-fireplace <- BabyNames %>% filter(sex == "F")
-```
+1) a data frame, e.g. fireplace <- BabyNames %>% filter(sex == "F")
 
-2) a function
-fireplace(
+2) a function, e.g. fireplace()
 
-3) the name of a named argument
-```{r}
-#functionverb(fireplace=sum(4,5))
-```
+3) the name of a named argument, e.g. functionverb(fireplace=sum(4,5))
 
-4) a variable
-```{r}
-#mean(fireplace)
-```
+4) a variable, e.g. mean(fireplace)
 
-
-3.2
+##Problem 3.2
 
 ```{r}
 Result <- BabyNames %>% filter(name=="Prince")
@@ -180,11 +169,11 @@ If this is a chaining pattern, the name of the dataset should be in the front, f
 
 If this is a non-chaining patter, we should not use %>%.
 
-3.3
+##Problem3.3
 
 Instead of naming NHANES as package, we should use named argument package = "NHANES". 
 
-3.4
+##Problem 3.4
 
 1) BabyNames (b)
 2) filter (a)
@@ -206,7 +195,7 @@ Instead of naming NHANES as package, we should use named argument package = "NHA
 18) geom_vline (a)
 19) xintercept (d)
 
-3.5
+##Problem 3.5
 ```{r}
 data(msleep, package="ggplot2")
 msleep%>% nrow()
@@ -220,11 +209,11 @@ A case is a kind of animals.
 
 The vore variable can be carnivore, omnivore or herbivore.
 
-3.6
+##Problem 3.6
 
 c) finds the mean other than the sum.
 
-4.1
+##Problem 4.1
 
 *one* italic
 
@@ -241,7 +230,7 @@ c) finds the mean other than the sum.
 [seven](http://tiny.cc/dcf/index.html) a link that direct to the website
 
 
-4.2
+##Problem 4.2
 
 a) Use ``` instead of '''.
 
@@ -253,11 +242,11 @@ d) Opening and Closing delimiter should be in different sentence.
 
 e) Should only be 3 ` other than 4 in closing delimiter.
 
-4.3
+##Problem 4.3
 
 An introduction as a header. The word "easy" in italic. R will also calculate 5.
 
-4.4
+##Problem 4.4
 
 1. A possible URL; can also be a file name
 2. A possible file
