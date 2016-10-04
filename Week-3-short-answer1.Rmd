@@ -1,0 +1,91 @@
+# Week 3 Short Answer Questions
+
+## Katrin O'Grady
+
+<!-- leave this material as is -->
+Compiled on `r date()`.
+
+```{r include = FALSE}
+library(DataComputing)
+```
+<!-- put your content after this line -->
+###Problem 5.1
+```{r}
+barGraphHelper(CPS85)
+```
+
+
+###Problem 5.2
+```{r}
+library("mosaicData")
+libaray("DataComputing")
+data(package="mosaicData")
+data(package="DataComputing")
+data("HappinessIndex")
+CountryData %>%
+WorldMap(key="country", fill="corruption")
+```
+
+
+###Problem 6.5
+b. State and Polling Organization
+###Problem 6.6
+C. Glyph: Rectangle. Graphical Attribute: color. 
+###Problem 6.7
+e. Date of the poll
+
+###Problem 6.8
+```{r}
+Small <-
+  NCHS %>%
+  sample_n(size=5000)
+scatterGraphHelper(Small)
+
+```
+
+###Problem 7.1
+a) summarise
+b) mutate
+c) arrange
+d) filter
+e) select
+f) group by
+
+###Problem 7.4
+a) error is summarizing votesReceived. That variable is not in the data table
+b) The name of the data table is missing after Tmp. Also, Tmp should not be in the parentheses after summarise
+c) The %>% is missing after the first line. Also, the name of the data table is not given. Babynames is not necessary in the parentheses after summarise. 
+###Problem 7.5
+a) To get from the input to table A, the arguement filter(sex== "F") and arrange(desc(count))was used. 
+b) For table B, filter(sex=="F") was used. 
+c) In talbe C, filter(sex=="M") was used.
+d) Table D includes the total number of cases. 
+e) Output table E, selects just two of the variables with select(name, count)
+
+###Problem 7.7
+a) Babynames %>%
+    group_by(Babynames, year, sex) %>%
+    summarise(total= sum(count))
+b) ZipGeography %>%
+    group_by(State) %>%
+    summarise(pop= sum(population))
+c) Minneapolis2013 %>%
+    group_by(first) %>%
+    summarise(votesReceived= n())
+d) Minneapolis2013 %>%
+    group_by(First) %>%
+    summarise(votesReceived = n())
+###Problem 7.11
+a) This output will group the patients into male and female, count the total number of male and female patients, and give the mean age of the male and female patient groups. 
+b) This output would group the patients by their diagnosis, give the total number of patients with each diagnosis and give the mean age of the patients with each diagnosis. 
+c) This output would group the patients by both sex and diagnosis, giving the total number of patients of each sex with each diagnosis, and giving the mean age for each group as well.
+d) This output would give the total number of all the patients of a particular age that have a specific diagnosis and the average age of each specific age group.
+e) Age will give the total number of patients at each age and mean age will give the average age of each age group. 
+
+###Problem 7.12
+1. nrow()
+2. names()
+3. help()
+4. library()
+5. array()
+6. str()
