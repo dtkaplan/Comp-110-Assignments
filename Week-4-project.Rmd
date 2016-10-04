@@ -113,18 +113,18 @@ holidays <- read.csv("http://tiny.cc/dcf/US-Holidays.csv") %>%
   mutate(date=as.POSIXct(lubridate::dmy(date)))
 ```
 
-```{r}
-MyTwoYears <-
-  Birthdays %>%
-  filter(year<=1981,year>=1980) %>%
-  group_by(date) %>%
-  summarize(totalBirths=sum(births)) %>%
-  mutate(day = wday(date, label=TRUE)) 
-
-ggplot(MyTwoYears,aes(x=date,y=totalBirths)) +
-  geom_point(aes(color= day)) +
-  geom_vline(data=(1980-01-20))
-
-```
+# ```{r}
+# MyTwoYears <-
+#   Birthdays %>%
+#   filter(year<=1981,year>=1980) %>%
+#   group_by(date) %>%
+#   summarize(totalBirths=sum(births)) %>%
+#   mutate(day = wday(date, label=TRUE)) 
+# 
+# ggplot(MyTwoYears,aes(x=date,y=totalBirths)) +
+#   geom_point(aes(color= day)) +
+#   geom_vline(data=(1980-01-20))
+# 
+# ```
 
 [CONTINUE HERE with VLINE Work]
