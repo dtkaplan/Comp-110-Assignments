@@ -1,13 +1,130 @@
 # Week 4 Project
 
-## Your name should appear here!
+## Sam Erickson! 
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(ggplot2)
+library(mosaicData)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+```{r}
+names(Birthdays)
+```
+
+```{r}
+DailyBirths <-
+  Birthdays %>%
+  group_by(date) %>%
+  summarize(totalBirths=sum(births))
+```
+
+# Consider births per day for all states
+```{r}
+ggplot(DailyBirths,aes(x=date,y=totalBirths)) +
+  geom_point()
+```
+
+
+```{r}
+WeeklyBirths <-
+DailyBirths %>%
+  mutate(weekIndex = week(date)) %>%
+  group_by(weekIndex) %>%
+  summarize(totalBirths=sum(totalBirths))
+
+```
+
+# Consider births per week for all states and years
+```{r}
+ggplot(WeeklyBirths,aes(x=weekIndex,y=totalBirths)) +
+  geom_line()
+```
+
+```{r}
+MonthlyBirths <-
+DailyBirths %>%
+  mutate(month = month(date)) %>%
+  group_by(month) %>%
+  summarize(totalBirths=sum(totalBirths))
+
+```
+
+# Consider births per month for all states and years
+```{r}
+ggplot(MonthlyBirths,aes(x=month,y=totalBirths)) +
+  geom_line()
+```
+
+# Consider births per julian day for all states
+
+```{r}
+JulianDayBirths <-
+DailyBirths %>%
+  mutate(julianDay = yday(date)) %>%
+  group_by(julianDay) %>%
+  summarize(totalBirths=sum(totalBirths))
+
+```
+
+# Consider births per month for all states and years
+```{r}
+ggplot(JulianDayBirths,aes(x=julianDay,y=totalBirths)) +
+  geom_point()
+```
+
+
+```{r}
+DayOfWeekBirths <-
+DailyBirths %>%
+  mutate(day = wday(date, label=TRUE)) %>%
+  group_by(day) %>%
+  summarize(totalBirths=sum(totalBirths))
+
+```
+
+# Consider births on each day of the week
+```{r}
+ggplot(DayOfWeekBirths,aes(x=day,y=totalBirths)) +
+  geom_point()
+```
+
+
+```{r}
+MyTwoYears <-
+  Birthdays %>%
+  filter(year<=1981,year>=1980) %>%
+  group_by(date) %>%
+  summarize(totalBirths=sum(births)) %>%
+  mutate(day = wday(date, label=TRUE)) 
+
+ggplot(MyTwoYears,aes(x=date,y=totalBirths)) +
+  geom_point(aes(color= day))
+```
+
+There is a repeating trend of a spike in births in the fall. There are fewer births recorded on Saturdays and Sundays than other days of the week, though the monthly pattern is consistent across days of the week.
+
+```{r}
+holidays <- read.csv("http://tiny.cc/dcf/US-Holidays.csv") %>%
+  mutate(date=as.POSIXct(lubridate::dmy(date)))
+```
+
+```{r}
+MyTwoYears <-
+  Birthdays %>%
+  filter(year<=1981,year>=1980) %>%
+  group_by(date) %>%
+  summarize(totalBirths=sum(births)) %>%
+  mutate(day = wday(date, label=TRUE)) 
+
+ggplot(MyTwoYears,aes(x=date,y=totalBirths)) +
+  geom_point(aes(color= day)) +
+  geom_vline(data=(1980-01-20))
+
+```
+
+[CONTINUE HERE with VLINE Work]
