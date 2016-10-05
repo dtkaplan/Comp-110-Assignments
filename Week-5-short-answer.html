@@ -123,10 +123,65 @@ $(document).ready(function () {
 <div id="your-name-should-appear-here" class="section level2">
 <h2>Your name should appear here!</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:27:09 2016.</p>
+<p>Compiled on Wed Oct 5 15:20:40 2016.</p>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
 </div>
+<div id="problem-10.1" class="section level2">
+<h2>Problem 10.1</h2>
+<p>The join data verbs combine two tables. As one table is mentioned before the chaining syntax, the other table needs to be mentioned inside the parentheses.</p>
+</div>
+<div id="problem-10.2" class="section level2">
+<h2>Problem 10.2</h2>
+<p>The countries are not exactly the same in the two tables. The demographic one has Akrotiri while the geographic one has Aland. If simplying putting them together, we would add Aland’s longitude and latitude to Akrotiri.</p>
+</div>
+<div id="problem-10.3" class="section level2">
+<h2>Problem 10.3</h2>
+</div>
+</div>
+<div id="section" class="section level1">
+<h1>1</h1>
+<p>Table B is the easies because we can simply add another variable.</p>
+<p>tableB %&gt;% mutate(diff = Y2001-Y2000)</p>
+</div>
+<div id="section-1" class="section level1">
+<h1>2</h1>
+<p>We should use left-join to make sure the output has all the cases from the left, even if there’s no match in the right. We should use table C, left join if with Continent Data, then group by continent and year, then sum the value.</p>
+<p>tableC %&gt;%</p>
+<p>left_join( ContinentData ) %&gt;%</p>
+<p>group_by( Continent, Year ) %&gt;%</p>
+<p>summarise( total = sum( Value ) )</p>
+</div>
+<div id="problem-11.1" class="section level1">
+<h1>Problem 11.1</h1>
+<ol style="list-style-type: lower-alpha">
+<li><p>Version one: A name of a sex in a year Version two: A name in a year Version three: A name of a sex</p></li>
+<li><p>Version two is wider and version one is narrower.</p></li>
+<li><p>sex</p></li>
+<li><p>Version two and three need to give a value for the name of a certain sex or a certain year while version one can just omit the line of there’s no baby called that name in a year of a certain sex.</p></li>
+<li><p>Version two has three NAs and version three has one. There’t no female called Roderick in 1912 or 2012. So version three just deletes the line.</p></li>
+<li><p>year</p></li>
+<li><p>-F&amp;M -sex -number of female and male babies in a year</p></li>
+</ol>
+</div>
+<div id="problem-11.3" class="section level1">
+<h1>Problem 11.3</h1>
+<ol style="list-style-type: lower-alpha">
+<li>A is wider than C</li>
+<li>B is wider than C</li>
+<li>A and B are actually the same. A is displayed horizontally while B is displayed vertially.</li>
+</ol>
+</div>
+<div id="problem-11.4" class="section level1">
+<h1>Problem 11.4</h1>
+<p>It will have two variables “when” and “sbp”.The first three rows will be subject and each of the subject name (BHO/GWB/WJC). The next three rows will be before values and the last three rows will display after values.</p>
+</div>
+<div id="problem-11.5" class="section level1">
+<h1>Problem 11.5</h1>
+<pre class="r"><code>data &lt;- &quot;http://tiny.cc/dcf/MeasTreatTables.rda&quot; %&gt;% url() %&gt;% load()
+names (data)</code></pre>
+<pre><code>## NULL</code></pre>
+<pre class="r"><code>#Measurements%&gt;% mutate(when=&quot;after&quot; if treatment_data &lt; data)
+#Measurements</code></pre>
 </div>
 
 

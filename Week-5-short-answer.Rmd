@@ -10,4 +10,71 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+## Problem 10.1
+The join data verbs combine two tables. As one table is mentioned before the chaining syntax, the other table needs to be mentioned inside the parentheses.
+
+## Problem 10.2
+The countries are not exactly the same in the two tables. The demographic one has Akrotiri while the geographic one has Aland. If simplying putting them together, we would add Aland's longitude and latitude to Akrotiri.
+
+## Problem 10.3
+
+#1
+Table B is the easies because we can simply add another variable.
+
+tableB %>% mutate(diff = Y2001-Y2000)
+  
+#2
+We should use left-join to make sure the output has all the cases from the left, even if there's no match in the right. We should use table C, left join if with Continent Data, then group by continent and year, then sum the value.
+
+tableC %>%
+  
+  left_join( ContinentData ) %>%
+  
+  group_by( Continent, Year ) %>%
+  
+  summarise( total = sum( Value ) )
+
+# Problem 11.1
+a)
+Version one: A name of a sex in a year
+Version two: A name in a year
+Version three: A name of a sex
+
+b) 
+Version two is wider and version one is narrower.
+
+c)
+sex
+
+d)
+Version two and three need to give a value for the name of a certain sex or a certain year while version one can just omit the line of there's no baby called that name in a year of a certain sex.
+
+e) 
+Version two has three NAs and version three has one. There't no female called Roderick in 1912 or 2012. So version three just deletes the line.
+
+f)
+year
+
+g)
+-F&M
+-sex
+-number of female and male babies in a year
+
+# Problem 11.3
+a. A is wider than C
+b. B is wider than C
+c. A and B are actually the same. A is displayed horizontally while B is displayed vertially.
+
+# Problem 11.4
+It will have two variables “when” and “sbp”.The first three rows will be subject and each of the subject name (BHO/GWB/WJC). The next three rows will be before values and the last three rows will display after values.
+
+# Problem 11.5
+```{r}
+data <- "http://tiny.cc/dcf/MeasTreatTables.rda" %>% url() %>% load()
+names (data)
+
+#Measurements%>% mutate(when="after" if treatment_data < data)
+#Measurements
+```
+
+
