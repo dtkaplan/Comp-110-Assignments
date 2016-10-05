@@ -11,3 +11,41 @@ library(DataComputing)
 <!-- put your content after this line -->
 
 Here is my content!
+10.1 - The book defines join operations as "a data verb that finds matching rows in each of two data tables and constructs an output that combines data from the two tables accordingly". By definition then a join operator needs to have data tables as input.
+
+10.2 - Because the two tables have different number of rows.
+
+10.3 - 
+
+11.1 - 
+a) Version one: name for each year and each gender
+   Version two: name for each year
+   Version three: name for each gender
+b) Version one: narrow
+    version two: wide
+d) Because version two and three show cases that don't have that particulr information for the field; 
+
+e) because version two has a row for every year a name was used, while version three has a row for every gender a name was used and the years are columns. 
+f)key = gender
+g)- name, year
+  - nbabies
+  -F/M
+  
+11.3
+a) wide: a narrow: c
+b) wide: b narrow: c
+c) same?
+
+11. 4
+when    | sbp
+subject | BHO 
+subject | WJC
+subject | GWB
+before  | 135
+before  | 120
+before  | 115
+after   | 145
+after   | 135
+after   | 160
+
+11.5

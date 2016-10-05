@@ -9,5 +9,7 @@ Compiled on `r date()`.
 library(DataComputing)
 ```
 <!-- put your content after this line -->
-
-Here is my content!
+```{r cache = TRUE}
+  data_site <- "http://tiny.cc/dcf/2014-04-Trips-History-Data-Small.rds"
+  Trips <- readRDS(gzcon(url(data_site)))
+```
