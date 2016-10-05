@@ -1,6 +1,6 @@
-# Week 3 Project
+44# Week 3 Project
 
-## Your name should appear here! 
+## Katrin O'Grady 
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,77 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+### Deconstructing Graphics
+The first graphic is a scatter plot, and the second graphic is a density plot. The variables in the first graphic are wage, education, and maritial status and the facet is the sector. In the second graphic, the variables are density, bmi, and sex, and the facet is pregnancy. In the first graphic, wage, the y axis, and years of experience, the x axis, define the frame. Marital statue identifies the color and sector is the facet. In the second graphic, bmi, the x axis, and density define the frame. Sex denotes the color and pregnancy is the facet. In Figure 2, there is no data variable used for the y axis because ??. 
+```{r}
+ggplot(data=CPS85, aes(x=exper, y=wage, color=married)) + geom_point() + facet_wrap(~sector)
+```
+
+```{r}
+ggplot(data=NCHS, aes(x=bmi)) + geom_density(aes(color=sex)) + facet_wrap(~pregnant)
+```
+###Diamonds
+```{r}
+diamonds %>%
+ group_by(color) %>%
+ summarise(size= mean(carat)) %>%
+ arrange(desc(size)) %>%
+ head(1)
+```
+
+```{r}
+diamond1 <- diamonds %>%
+  group_by(clarity) %>%
+  mutate(table_carat= mean(table/carat) %>%
+  arrange(desc(table_carat)) %>%
+  head(1)
+```
+###Voting
+```{r}
+Minneapolis2013
+  nrow(Minneapolis2013)
+```
+
+```{r}
+Minneapolis2013 %>%
+  group_by(Second) %>%
+  summarise(total = sum(count)) %>%
+  filter(rank(desc(total))=5)
+```
+
+```{r}
+Undervote_First <-
+  Minneapolis2013 %>%
+  filter(First== "undervote") %>%
+tally()
+
+```
+
+```{r}
+Undervote_Second <-
+  Minneapolis2013 %>%
+  filter(Second=="undervote") %>%
+  tally()
+```
+
+```{r}
+Undervote_Third <-
+  Minneapolis2013 %>%
+  filter(Third=="undervote") %>%
+  tally()
+```
+
+```{r}
+Betsy_Hodges<- Minneapolis2013 %>%
+  filter(First== "BETSY HODGES") %>%
+  group_by(Second) %>%
+  tally() %>%
+  arrange(desc(n)) %>%
+  head(3)
+```
+
+```{r}
+Precinct1 <- 
+  Minneapolis2013 %>%
+  group_by(Precinct) %>% summarise(fractionFirst = mean(First=="undervote")) %>% arrange(desc(fractionFirst)) %>% head(1)
+  
