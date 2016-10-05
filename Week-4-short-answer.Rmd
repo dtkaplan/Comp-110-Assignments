@@ -1,6 +1,6 @@
 # Week 4 Short Answer Questions
 
-## Your name should appear here!
+## Xing Gao
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -9,5 +9,45 @@ Compiled on `r date()`.
 library(DataComputing)
 ```
 <!-- put your content after this line -->
+8.1
+1.c
+2.a, g, b
+3.e, h
+4.f
+5.d
+
+
+8.2
+ggplot(data=CPS85,aes(x=age,y=wage))+geom_point()+aes(shape=married)+facet_wrap(~sector)
+
+ggplot(data=CPS85, aes(x=age, y=wage))+geom_point()+facet_wrap(sex~married)
+
+8.3
+A. ggplot(data=CPS85, aes(x=age, y=wage))+geom_point()
+B. ggplot(data=CPS85, aes(x=age, y=wage))+geom_point()+aes(shape=sex)
+C. ggplot(data=CPS85, aes(x=age, y=wage))+geom_point()+aes(shape=sex)+facet_wrap(~married, dir="v")
+D. ggplot(data=CPS85, aes(x=age, y=wage))+geom_point()+aes(shape=married)
+
+
+
+9.1
+a. quick presentation
+b. data verb
+c. comparison
+d. summary function  
+e. data verb
+f. transformation 
+g. data verb
+h. transformation 
+i. quick presentation
+
+9.3
+1. 
+diamonds %>%
+group_by(color)%>%
+summarise(carat)%>%
+arrange(desc(count))%>%
+head(1)
+
 
 Here is my content!
