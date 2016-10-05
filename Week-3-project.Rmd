@@ -7,6 +7,7 @@ Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(mosaic)
 ```
 <!-- put your content after this line -->
 
@@ -61,7 +62,7 @@ I1 clarity seem to have the largest average table per carat.
 #Voting
 
 1. There are 80,101 cases in Minneapolis2013
-2. Who were the top 5 candidates in the Second vote selections>
+2. Who were the top 5 candidates in the Second vote selections?
 
 ```{r}
 X <- Minneapolis2013 %>%
@@ -117,11 +118,13 @@ Mark Andrews, Dawn Samuels, and Jackie Cherryholmes were the top 3 Second choice
 5. Which precinct had the highest fraction of First vote selections marked as undervote?
 
 ```{r}
-UnderVotes <- Minneapolis2013 %>%
-  filter (First == "undervote") %>%
-  group_by(Precinct) %>%
-  tally () %>%
-  arrange(desc(n))
+#UnderVotes <- Minneapolis2013 %>%
+  #group_by(Precinct) %>%
+  #summarise(FirstUnderVotes = mean(First == "undervote")) %>%
+  #arrange(desc(FirstUnderVotes)) %>%
+  #head (1)
+
+#Talked to Ayoub about error variable names are limited to 10000 bytes
 ```
 
-P-02 had the most First selections marked undervote.
+
