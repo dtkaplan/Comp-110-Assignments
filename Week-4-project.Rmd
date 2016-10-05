@@ -80,7 +80,7 @@ You can see two distinct patterns among the data that closely resemble each othe
 5) 
 
 ```{r}
-Holidays <- read.csv("http://tiny.cc/dcf/US-Holidays.csv")%>% mutate(date=as.POSIXct(lubridate::dmy(date)))
+Holidays <- read.csv("http://tiny.cc/dcf/US-Holidays.csv") %>% mutate(date=as.POSIXct(lubridate::dmy(date)))
 ```
 
 6) 
@@ -95,7 +95,23 @@ Holidays <- read.csv("http://tiny.cc/dcf/US-Holidays.csv")%>% mutate(date=as.POS
 Holidays <- Holidays %>% filter(year(date)%in% (1985:1987))
 ggplot(TwoYears,aes(x=date, y= BirthsEachDate)) +
     geom_line(aes(color=wday)) + 
-  geom_vline(data= Holidays, aes( xintercept = as.numeric(date())))
+  geom_vline(data= Holidays, aes( xintercept = as.numeric(date)))
 
+```
+
+6.2) 
+
+```{r}
+  TwoYears <-
+    Birthdays %>% 
+    filter(year(date)%in% 1985:1987) %>%
+    group_by(date, wday) %>%
+    summarise(BirthsEachDate=sum(births))
+
+Holidays <- Holidays %>% filter(year(date)%in% (1985:1987))
+ggplot(TwoYears,aes(x=date, y= BirthsEachDate)) +
+    geom_line(aes(color=wday)) + 
+  geom_vline(data= Holidays, aes( xintercept = as.numeric(date))) +
+  geom_text(data= Holidays, aes( x= date, label = holiday), y = 9500, angle = 45)
 ```
 
