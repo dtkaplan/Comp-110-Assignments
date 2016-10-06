@@ -77,3 +77,31 @@ Only Table 2 provides sufficient information.
 (1) `exports` is mapped to the shape. 
 (2) `pop` is mapped to the shape of the gray symbol. 
 
+### 14.1
+
+```{r}
+CPS85 %>%
+  ggplot(aes(x=sex,y=wage)) + 
+  geom_boxplot()
+```
+
+I didn't shade the boxes to stay within the time limit. 
+
+### 14.3
+
+The most likely height for men is about 1.8 meters.  The most likely hieght for women is about 1.6 meters. 
+
+### 14.7
+
+```{r}
+CPS85 %>%
+  ggplot(aes(x=educ,y=wage)) + 
+  geom_point(aes(color=sex)) + 
+  stat_smooth(method=lm,aes(color=sex))
+```
+
+I'm running close to the time limit so I won't spent time to change to color or the range.  
+
+### 14.10
+
+
