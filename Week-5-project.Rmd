@@ -1,6 +1,6 @@
 # Week 5 Project
 
-## Your name should appear here!
+## Lang Li
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,39 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+```{r}
+download.file("http://tiny.cc/dcf/ScorecardSmall.Rda",destfile = "ScorecardSmall.Rda")
+load("ScorecardSmall.Rda")
+```
+
+1. 
+```{r}
+Scorewide <- ScorecardSmall %>% select(CONTROL, ADM_RATE,NPT41_PUB,NPT43_PUB,NPT45_PUB,NPT41_PRIV,NPT43_PRIV,NPT45_PRIV)
+```
+
+2. 
+
+```{r warning=FALSE}
+ScoreNarrow <- Scorewide %>%
+  gather( key=income,
+          value=netCost,
+          NPT41_PRIV,NPT43_PRIV,NPT45_PRIV,NPT41_PUB,NPT43_PUB,NPT45_PUB) %>%
+  mutate(Q = substr(income, 5, 5))
+
+```
+
+
+3.
+```{r warning=FALSE}
+ScoreNarrow %>%
+  filter(CONTROL != 3) %>%
+  mutate(netCost = netCost/1000) %>%
+  mutate(admissionrate = ADM_RATE *100) %>%
+  ggplot(aes(x = admissionrate, y = netCost )) +
+  geom_point(color = "blue", alpha = .2) +
+  stat_smooth(color = "black") +
+  facet_grid( CONTROL ~ Q) +
+  ylim(0, 50) + xlim(0,100)+xlab("Admission rate, %")+ylab("Net Cost per Year, $'000")
+
+```
+
