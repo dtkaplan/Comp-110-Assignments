@@ -1,6 +1,6 @@
 # Week 5 Short Answer Questions
 
-## Your name should appear here!
+## Josh Marcus
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -14,30 +14,31 @@ library(DataComputing)
 
 #10.1
 
-Most data verbs take one data table as an input then do their magic--mutating the variables around, filtering for a select group of cases, putting the table in a different order, etc.--whereas the join family--a great family, by the way--takes two data tables as its inputs and turns them into a single data table. To do this, you need a special kind of syntax. 
+An example join command would look like this:
 
-For example, a join command might look like:
-
+```{r eval=FALSE}
 MigrationFlows %>%
   left_join(InfantMortality, by = c("desetcoded" = "iso_a3"))
+```
   
-MigrationFlows is one of our data tables, the left one, so it goes at the top of this command chain. To connect the other data table, InfantMortality, to MigrationFlows, we need to tell the computer to join that data table back to our original, Migration Flows, which is how data tables end up being the inputs to join verbs.
-
+Join commands turn two data tables into one data table, so you need a datatable inside the parantheses because that specifies what you're joining to the original table. In the above command, we're saying that our original (left) data table is MigrationFlows, and that we want to join InfantMortality with it.
 
 #10.2
 
-You can't do this simply side-byside copy job because the tables are not identical. For example, the second case in Demographics is about Akrotiri, while the second case in CountryCentroids is Aland. If you copied straight from one to other, side-by-side, you'd be listing the long and lat for Aland as that of Akrotiri, which is incorrect information. Moreover, Demographics has more rows than CountryCentroids, so a side-by-side copy would would mean some cases wouldn't have an attached lat and long.
+You can't do this simply side-by-side copy job because the tables are not identical. For example, the second case in Demographics is about Akrotiri, while the second case in CountryCentroids is Aland. If you copied straight from one to other, side-by-side, you'd be listing the long and lat for Aland as that of Akrotiri, which is incorrect information. Moreover, Demographics has more rows than CountryCentroids, so a side-by-side copy would would mean some cases wouldn't have an attached lat and long.
 
 #10.3
 
-#1
+#1. 
 
 Table B would make it easiest.
 
+```{r eval=FALSE}
 tableB %>%
   mutate(diff = Y2001-Y2000)
+```
 
-#2
+#2.
 
 Table C would make it the easiest. 
 
@@ -82,13 +83,25 @@ d). Also, for good measure, A is a little bit wider than B.
 
 #11.4
 
-See paper turned in during class from 9/28.
+See paper turned in at office hours.
 
 #11.5
 
-```{r eval=FALSE}
+```{r eval = FALSE}
 "http://tiny.cc/dcf/MeasTreatTables.rda" %>%
-  url() %>% load()
+  url() %>%
+  load()
+```
+
+```{r}
+load("foo.rda")
+```
+
+```{r}
+JoinedDates <- Measurements %>%
+  left_join(Treatments) %>%
+  mutate(when = ifelse(date > treatment_date, "after", "before")) %>%
+  spread(key = what, value = value)
 ```
 
 

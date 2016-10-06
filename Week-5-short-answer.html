@@ -120,10 +120,10 @@ $(document).ready(function () {
 
 <div id="week-5-short-answer-questions" class="section level1">
 <h1>Week 5 Short Answer Questions</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="josh-marcus" class="section level2">
+<h2>Josh Marcus</h2>
 <!-- leave this material as is -->
-<p>Compiled on Wed Sep 28 18:52:59 2016.</p>
+<p>Compiled on Thu Oct 6 16:05:51 2016.</p>
 <!-- put your content after this line -->
 </div>
 <div id="chapter-10-questions" class="section level2">
@@ -132,25 +132,26 @@ $(document).ready(function () {
 </div>
 <div id="section" class="section level1">
 <h1>10.1</h1>
-<p>Most data verbs take one data table as an input then do their magic–mutating the variables around, filtering for a select group of cases, putting the table in a different order, etc.–whereas the join family–a great family, by the way–takes two data tables as its inputs and turns them into a single data table. To do this, you need a special kind of syntax.</p>
-<p>For example, a join command might look like:</p>
-<p>MigrationFlows %&gt;% left_join(InfantMortality, by = c(“desetcoded” = “iso_a3”))</p>
-<p>MigrationFlows is one of our data tables, the left one, so it goes at the top of this command chain. To connect the other data table, InfantMortality, to MigrationFlows, we need to tell the computer to join that data table back to our original, Migration Flows, which is how data tables end up being the inputs to join verbs.</p>
+<p>An example join command would look like this:</p>
+<pre class="r"><code>MigrationFlows %&gt;%
+  left_join(InfantMortality, by = c(&quot;desetcoded&quot; = &quot;iso_a3&quot;))</code></pre>
+<p>Join commands turn two data tables into one data table, so you need a datatable inside the parantheses because that specifies what you’re joining to the original table. In the above command, we’re saying that our original (left) data table is MigrationFlows, and that we want to join InfantMortality with it.</p>
 </div>
 <div id="section-1" class="section level1">
 <h1>10.2</h1>
-<p>You can’t do this simply side-byside copy job because the tables are not identical. For example, the second case in Demographics is about Akrotiri, while the second case in CountryCentroids is Aland. If you copied straight from one to other, side-by-side, you’d be listing the long and lat for Aland as that of Akrotiri, which is incorrect information. Moreover, Demographics has more rows than CountryCentroids, so a side-by-side copy would would mean some cases wouldn’t have an attached lat and long.</p>
+<p>You can’t do this simply side-by-side copy job because the tables are not identical. For example, the second case in Demographics is about Akrotiri, while the second case in CountryCentroids is Aland. If you copied straight from one to other, side-by-side, you’d be listing the long and lat for Aland as that of Akrotiri, which is incorrect information. Moreover, Demographics has more rows than CountryCentroids, so a side-by-side copy would would mean some cases wouldn’t have an attached lat and long.</p>
 </div>
 <div id="section-2" class="section level1">
 <h1>10.3</h1>
 </div>
 <div id="section-3" class="section level1">
-<h1>1</h1>
+<h1>1.</h1>
 <p>Table B would make it easiest.</p>
-<p>tableB %&gt;% mutate(diff = Y2001-Y2000)</p>
+<pre class="r"><code>tableB %&gt;%
+  mutate(diff = Y2001-Y2000)</code></pre>
 </div>
 <div id="section-4" class="section level1">
-<h1>2</h1>
+<h1>2.</h1>
 <p>Table C would make it the easiest.</p>
 <pre class="r"><code>tableC %&gt;%
   join( ContinentData ) %&gt;%
@@ -190,12 +191,19 @@ $(document).ready(function () {
 </div>
 <div id="section-7" class="section level1">
 <h1>11.4</h1>
-<p>See paper turned in during class from 9/28.</p>
+<p>See paper turned in at office hours.</p>
 </div>
 <div id="section-8" class="section level1">
 <h1>11.5</h1>
 <pre class="r"><code>&quot;http://tiny.cc/dcf/MeasTreatTables.rda&quot; %&gt;%
-  url() %&gt;% load()</code></pre>
+  url() %&gt;%
+  load()</code></pre>
+<pre class="r"><code>load(&quot;foo.rda&quot;)</code></pre>
+<pre class="r"><code>JoinedDates &lt;- Measurements %&gt;%
+  left_join(Treatments) %&gt;%
+  mutate(when = ifelse(date &gt; treatment_date, &quot;after&quot;, &quot;before&quot;)) %&gt;%
+  spread(key = what, value = value)</code></pre>
+<pre><code>## Joining, by = &quot;subject&quot;</code></pre>
 </div>
 
 
