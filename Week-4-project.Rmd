@@ -38,4 +38,11 @@ ggplot(times, aes(x=time_of_day)) + geom_density(aes(fill=client), alpha=0.4)+fa
 ```
 
 
+```{r}
+ggplot(times, aes(x=time_of_day)) + geom_density(position_stack()) +  alpha=0.4)+facet_wrap(~day_of_week)
+```
+
+```{r}
+mutate(wday = ifelse(lubridate::wday(sdate) %n% c(1,7),"weekend", "weekday"))
+```
 
