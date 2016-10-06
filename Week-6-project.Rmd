@@ -1,6 +1,6 @@
 # Week 6 Project
 
-## Your name should appear here!
+## Tristan Truttmann
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,96 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+I choose to look at materials-related companies: 
+
+Dear Professor Kaplin: Does your `read_stock_prices` function have the ability to read stocks not listed on the NYSE? For example, I would like to look at Saint Gobain, but it is listed under the Euronext Paris exchage but it can neither be retreived by `EPA:SGO` nor by `SGO`.  
+
+```{r}
+companies <- c("MMM","GLW","VAL","DD")
+Prices <- read_stock_prices(symbols = companies, what="daily",start_year=1980,end_year=2016)
+```
+
+Now I graph it: 
+
+```{r}
+Prices %>%
+  ggplot(aes(x=date,y=close)) + 
+  geom_line(aes(color=company))
+```
+
+Now I make this weirth graph: 
+
+```{r}
+Actions <- data.frame(action = c("buy","sell"),date = ymd(c("1993-02-01","2015-09-01")))
+```
+Now I will joint these two tables. To do this first I will join so that the priority table is the action table I just made.  Then I will gather the table: 
+
+```{r}
+BuySellPrices <- Prices %>%
+  right_join(Actions,by = c("date" = "date")) %>%
+  select(company, action, close) %>%
+  spread(key=action,value=close)
+```
+
+```{r}
+BuySellProfit <- 
+  BuySellPrices %>%
+  mutate(profit = sell - buy) %>% 
+  mutate(percent = profit/buy) %>% 
+  select(profit,percent)
+```
+
+Now I will do the standard price stuff: 
+
+To do this, first I create the starting date table
+
+```{r}
+RefDate <- ymd('1995-08-14')
+StandardPrices <- Prices %>%
+  filter(date == RefDate) %>% 
+  select(company, standard = close) %>% 
+  left_join(Prices, by = c("company" = "company")) %>%
+  mutate(IDP = close / standard) %>%
+  select(company, date, IDP)
+```
+
+Now I'll plot that junk: 
+
+
+```{r}
+StandardPrices %>%
+  ggplot(aes(x=date,y=IDP)) + 
+  geom_line(aes(color=company))
+```
+
+Now I will deal with dividends!
+
+```{r}
+Dividends <- read_stock_prices(companies, what = "dividends") %>% 
+  filter(date > Actions[1,"date"] & date < Actions[2,"date"]) %>% 
+  left_join(Prices %>% select(company,date,price=close), by = c("date" = "date", "company" = "company")) %>%
+  mutate(CashDiv = price * dividends)
+```
+
+I have already filtered the Dividends to only include dates of interest, so finding the total dividens paid will be easy: 
+
+```{r}
+DivProfit <- Dividends %>% 
+  group_by(company) %>% 
+  summarize(profit = sum(CashDiv))
+```
+
+Now lets compare the two: 
+```{r}
+DivProfit
+BuySellProfit
+```
+
+Perhaps because of the wierd sector I chose at a wird time (the dot com bubble), it seams that the profits from buying and selling are next to nothing, but the profits tue to dividents are a significant amount of money! 
+
+
+
+
+
+
+
