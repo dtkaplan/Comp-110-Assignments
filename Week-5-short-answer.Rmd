@@ -10,4 +10,62 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+### 10.1
+
+This is because two data tables are required as inputs to join family data verbs, while other data verbs only require one data table as input.
+
+### 10.2
+
+This cannot be done because the countries in these tables are not in the same order.
+
+### 10.3
+
+Table B would make it easiest to find difference between 2000 and 2001 for each contry. I'll just subtract Y2000 from Y2001 and put results in a new column
+
+Table C would make it easiest to find sum of values for each continents for each year. The code to do this:
+
+C %>% 
+inner_join(ContinentData, by = Country) %>%
+group_by(Year, Continent) %>%
+sum(Value)
+
+### 11.1
+
+* Note: convert wide to narrow format using spread and gather in tidyr package
+
+V.1: A name for each sex, each year ( either 2012 or 1912) and its count
+V.2: A name for each year and count for each sex
+V.3: A name for each sex and count for each year
+
+V.1 is narrow and V.2 is wide
+"key" variable is sex
+
+Because there are no Harrison as a name for a female
+
+Because V.2 separates sex into variables while V.3 separates year instead.
+
+In spread, key is year, and value is nbabies
+
+F and M were gathered. "key" variable sex appears in V. 1 
+
+### 11.3
+a. A is wide, C is narrow
+b. B is wide, C is narrow
+
+### 11.4
+
+when          sbp
+BHO-before     #
+...           ...
+
+### 11.5
+
+```{r}
+"http://tiny.cc/dcf/MeasTreatTables.rda" %>%
+  url() %>% load()
+
+```
+
+
+
+
