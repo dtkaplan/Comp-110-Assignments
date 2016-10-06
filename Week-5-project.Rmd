@@ -7,7 +7,34 @@ Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(ggplot2)
 ```
 <!-- put your content after this line -->
 
 Here is my content!
+
+
+```{r}
+download.file("http://tiny.cc/dcf/ScorecardSmall.Rda", destfile = "ScorecardSmall.Rda")
+load("ScorecardSmall.Rda")
+Collegeweb <- read.csv("http://tiny.cc/dcf/NPT4-names.csv")
+Collegeweb
+```
+
+```{r}
+graphdata <-
+  ScorecardSmall %>%
+  filter(CONTROL!=3) %>%
+  select(ADM_RATE, CONTROL, NPT41_PUB, NPT43_PUB, NPT45_PUB, NPT41_PRIV, NPT43_PRIV, NPT45_PRIV) %>%
+  gather(key=long_name,cost, - c(CONTROL, ADM_RATE)) %>%
+  left_join(Collegeweb)
+head(graphdata)
+```
+
+
+
+```{r}
+ggplot(data=graphdata, aes(x=ADM_RATE, y=cost)) + geom_point() +facet_grid(CONTROL~short_name) + geom_smooth()
+```
+
+
