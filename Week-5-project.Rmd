@@ -16,7 +16,7 @@ load("ScorecardSmall.Rda")
 translations<- read.csv("http://tiny.cc/dcf/NPT4-names.csv")
 ```
 
-
+Nikita is awesome
 
 ```{r}
 DataIneed<-
