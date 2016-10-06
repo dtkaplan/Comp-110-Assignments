@@ -1,6 +1,6 @@
 # Week 6 Short Answer Questions
 
-## Your name should appear here!
+## Tristan Truttmann
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -8,6 +8,72 @@ Compiled on `r date()`.
 ```{r include = FALSE}
 library(DataComputing)
 ```
-<!-- put your content after this line -->
 
-Here is my content!
+### 12.1 
+
+```{r}
+BabyNames %>% 
+  group_by(sex,name) %>%
+  summarise(count = sum(count)) %>%
+  group_by(sex) %>% 
+  mutate(TheRank= rank(desc(count))) %>%
+  arrange(TheRank) %>%
+  head(10)
+```
+
+I think the output table says it all.  
+
+### 12.2
+
+```{r}
+GlyphReady <- BabyNames %>%
+  spread(key = sex, value = count) %>% 
+  mutate(total = ifelse(is.na(F),0,F) + ifelse(is.na(M),0,M) ) %>% 
+  group_by(year)  %>%
+  mutate(TheRank = row_number(desc(total)) ) %>%
+  mutate(intop100 = (TheRank < 101)) %>% 
+  arrange(TheRank) %>% 
+  summarise(frac_in_top100 = sum(intop100)/n()) %>% 
+  arrange(year)
+```
+
+Now I can graph this stuff: 
+
+```{r}
+GlyphReady %>%
+  ggplot() +
+  geom_point(aes(x=year,y=frac_in_top100))
+```
+
+### 12.3
+
+(a) A transformation function. 
+(b) Transformation
+(c) summary
+(d) transformation if each case is a year.  If year is a variable and the case is a day, then it would probably be a summary function. 
+(e) tansformation
+(f) summary
+(g) transformation
+(h) summary
+(e)
+
+### 13.1 
+
+(1) There are 7 distinct verticies. 
+(2) There are 9 edges. 
+
+### 13.2
+
+(1) The verticies are A, B, C, D. 
+(2) Only Table 2 shoes the edges correctly. 
+(3) Table 1 shoes a connection between B and C which doesn't exists. Table 3 has 3 columns, which I don't know how to interpret. 
+
+### 13.3 
+
+Only Table 2 provides sufficient information. 
+
+### 13.4 
+
+(1) `exports` is mapped to the shape. 
+(2) `pop` is mapped to the shape of the gray symbol. 
+
