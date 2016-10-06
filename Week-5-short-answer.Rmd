@@ -1,6 +1,6 @@
 # Week 5 Short Answer Questions
 
-## Your name should appear here!
+## Lang Li
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -9,5 +9,57 @@ Compiled on `r date()`.
 library(DataComputing)
 ```
 <!-- put your content after this line -->
+ 
+# Question 10.1
 
-Here is my content!
+Most other data verb or transformation verb only works on one data set but join works on two dataset, so you have to take in one dataset as parameter as you can only use one dataset for chaining expressions.
+
+# Question 10.2
+
+Because some cases on the first data table does not exists in the second one. For example, Aland is not there on the second but is there on the first. So you don't have information about it and if you combine them, you would make a mismatch. 
+
+#Question 10.3
+
+(a). 
+Personally, I think B does the greatest job as they make contry as cases and the number for different year as variables so that it is very clear. A is good but not better than B because it makes year as its case instead of country. So you have to look down and make it not really convenient. I will use
+
+tableB %>% mutate(difference = Y2001 - Y2000)
+
+(b)It seems that C is the best because it contains year and country as different variable. So joining the graph will happen to be easier compared to A and B which both made one of the varibable as cases and the other remains variable. I will do :
+
+tableC %>% left_join(ContinentData) %>% group_by(Continent, year) %>% summarise(total = sum(Value))
+
+# Question 11.1
+(a). Version one means the new baby number in certain year for a name and for different sex. Version two means the new born female and male baby for a name in certain year. Version three means the number of new baby of a certain name for two sex in 1912 and 2012.
+
+(b). Version one is narrow and version two is wide.
+
+(c). Sex.
+
+(d). Because version one omits the name and sex combination if there is no new baby satifying the criteria.
+
+(e). Because there is no Roderick female in 1912 and 2012, so it was omitted.
+
+(f). The variable that spread is year.
+
+(g). Sex are gathered, sex is the nbaby, nbaby was classified further into different sex category.
+
+# Question 11.3
+
+A:C : A is wide and C is narrow;
+B:C : B is wide and C is narrow;
+A:B : They are on the same level but the difference is that in A, year is the case and country is the variable and B is the opposite.
+
+# Question 11.4
+
+![My Picture](/home/local/MAC/lli/Comp-110-Assignments/IMG_2598.JPG)
+
+# Question 11.5
+```{r}
+BP = load("/home/local/MAC/lli/Comp-110-Assignments/MeasTreatTables.rda")
+Measurements%>% spread( key=what, value=value )%>% left_join(Treatments)%>%  mutate(when = if_else(date > treatment_date,"after","before")) %>% select(subject,when,sbp,dbp,date)
+
+```
+
+
+
