@@ -10,4 +10,32 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
+```{r}
+download.file("http://tiny.cc/dcf/ScorecardSmall.Rda", destfile = "ScorecardSmall.Rda")
+load("ScorecardSmall.Rda")
+```
+
+```{r}
+PlotData <- ScorecardSmall %>% filter(CONTROL != 3)
+
+PlotData <- PlotData %>% 
+  select(CONTROL,ADM_RATE, CCSIZSET, NPT41_PUB, NPT41_PRIV, NPT43_PUB, NPT43_PRIV, NPT45_PUB, NPT45_PRIV)
+
+names(PlotData)
+
+Narrow <- 
+  PlotData %>%
+  gather(key = quintile, value = netcost, - CONTROL, - ADM_RATE, - CCSIZSET)
+Narrow %>% 
+  filter( (CONTROL == 2 & grepl("PRIV$", quintile)) |
+            (CONTROL == 1 & grepl("PUB$", quintile)) )
+Narrow <- Narrow %>% mutate(Q = substr(quintile, 5, 5))
+  
+ggplot(Narrow,aes(x=ADM_RATE, y= netcost)) + 
+  geom_point(color = "blue", alpha = 0.05) +
+  facet_grid(CONTROL~ Q)+geom_smooth(color="black")
+
+```
+
+ mutate(Q = substr(QUINTILES, 5, 5))
 Here is my content!
