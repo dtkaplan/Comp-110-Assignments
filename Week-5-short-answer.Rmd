@@ -7,6 +7,7 @@ Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(mosaic)
 ```
 <!-- put your content after this line -->
 
@@ -37,7 +38,9 @@ tableC %>%
 # Problem 11.1
 a)
 Version one: A name of a sex in a year
+
 Version two: A name in a year
+
 Version three: A name of a sex
 
 b) 
@@ -57,7 +60,9 @@ year
 
 g)
 -F&M
+
 -sex
+
 -number of female and male babies in a year
 
 # Problem 11.3
@@ -69,12 +74,15 @@ c. A and B are actually the same. A is displayed horizontally while B is display
 It will have two variables “when” and “sbp”.The first three rows will be subject and each of the subject name (BHO/GWB/WJC). The next three rows will be before values and the last three rows will display after values.
 
 # Problem 11.5
-```{r}
-data <- "http://tiny.cc/dcf/MeasTreatTables.rda" %>% url() %>% load()
-names (data)
+```{r warning=FALSE}
+data <- load("/home/local/MAC/qsun/Comp-110-Assignments/MeasTreatTables.rda")
 
-#Measurements%>% mutate(when="after" if treatment_data < data)
-#Measurements
+Measurements %>% 
+  left_join (Treatments) %>%
+  mutate (when=ifelse(date>treatment_date,"after","before")) %>%
+  spread(key=what,value=value) %>%
+  select(subject,when,sbp,dbp,date)
+  
 ```
 
 

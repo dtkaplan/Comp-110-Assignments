@@ -123,7 +123,7 @@ $(document).ready(function () {
 <div id="your-name-should-appear-here" class="section level2">
 <h2>Your name should appear here!</h2>
 <!-- leave this material as is -->
-<p>Compiled on Wed Oct 5 15:20:40 2016.</p>
+<p>Compiled on Wed Oct 5 21:08:29 2016.</p>
 <!-- put your content after this line -->
 </div>
 <div id="problem-10.1" class="section level2">
@@ -177,11 +177,24 @@ $(document).ready(function () {
 </div>
 <div id="problem-11.5" class="section level1">
 <h1>Problem 11.5</h1>
-<pre class="r"><code>data &lt;- &quot;http://tiny.cc/dcf/MeasTreatTables.rda&quot; %&gt;% url() %&gt;% load()
-names (data)</code></pre>
-<pre><code>## NULL</code></pre>
-<pre class="r"><code>#Measurements%&gt;% mutate(when=&quot;after&quot; if treatment_data &lt; data)
-#Measurements</code></pre>
+<pre class="r"><code>data &lt;- load(&quot;/home/local/MAC/qsun/Comp-110-Assignments/MeasTreatTables.rda&quot;)
+
+Measurements %&gt;% 
+  left_join (Treatments) %&gt;%
+  mutate (when=ifelse(date&gt;treatment_date,&quot;after&quot;,&quot;before&quot;)) %&gt;%
+  spread(key=what,value=value) %&gt;%
+  select(subject,when,sbp,dbp,date)</code></pre>
+<pre><code>## Joining, by = &quot;subject&quot;</code></pre>
+<pre><code>##   subject   when sbp dbp       date
+## 1     BHO before 155  65 2005-11-08
+## 2     BHO before 160  69 2007-06-19
+## 3     BHO  after 160  78 2017-06-04
+## 4     GWB before 115  54 1998-04-21
+## 5     GWB  after 135  NA 2009-05-08
+## 6     WJC before 105  60 1990-08-17
+## 7     WJC  after 145  75 2002-11-15
+## 8     WJC  after  NA  65 2010-03-26
+## 9     WJC  after 130  60 2013-09-15</code></pre>
 </div>
 
 
