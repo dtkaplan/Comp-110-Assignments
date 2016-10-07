@@ -1,13 +1,58 @@
 # Week 5 Project
 
-## Your name should appear here!
+## Sam Erickson
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+download.file("http://tiny.cc/dcf/ScorecardSmall.Rda",destfile="ScorecardSmall.Rda")
+load("ScorecardSmall.Rda")
+translations <- read.csv("http://tiny.cc/dcf/NPT4-names.csv")
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+```{r}
+Table1 <- 
+  ScorecardSmall %>%
+  select(INSTNM,CONTROL,ADM_RATE,TUITFTE,NPT41_PUB,NPT43_PUB,NPT45_PUB,NPT41_PRIV,NPT43_PRIV,NPT45_PRIV) %>%
+  gather(key=quintile, value = NETCOST, NPT41_PUB,NPT43_PUB,NPT45_PUB,NPT41_PRIV,NPT43_PRIV,NPT45_PRIV)
+```
+
+```{r}
+Table2 <- Table1 %>%
+  left_join(translations, by=c('quintile'="long_name")) %>%
+  filter(CONTROL!=3) %>%
+  mutate(ADM_PERCENT = ADM_RATE*100)
+  
+Table2_public <- Table2 %>%
+  filter(CONTROL==1)
+  
+Table2_private <- Table2 %>%
+   filter(CONTROL==2)
+
+```
+
+```{r}
+#rename(Table2,c("ADM_Percent" = "Admissions_Rate_%"))
+plot1 <- ggplot(Table2_public,aes(x=ADM_PERCENT,y=NETCOST)) +
+  geom_point() +
+  facet_wrap(~short_name) + 
+  xlab("Admissions rate, %")+
+  ylab("Net cost per year")+
+  ggtitle("PUBLIC")
+  
+
+plot2 <- ggplot(Table2_private,aes(x=ADM_PERCENT,y=NETCOST)) +
+  geom_point() +
+  facet_wrap(~short_name) + 
+  xlab("Admissions rate, %")+
+  ylab("Net cost per year")+
+  ggtitle("PRIVATE NON-PROFIT")
+
+plot1
+plot2
+
+```
+
