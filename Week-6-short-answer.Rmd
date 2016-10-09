@@ -1,6 +1,6 @@
 # Week 6 Short Answer Questions
 
-## Your name should appear here!
+## Lang Li
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,84 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+# Question 12.1
+
+```{r}
+BabyNames %>% group_by(sex,name) %>% summarise(all_names = sum(count))%>% mutate(popularity = rank(desc(all_names))) %>% filter (popularity <=5)
+```
+
+# Question 12.2
+
+```{r}
+Popular <- BabyNames %>% group_by(year,name) %>% summarise(total = sum(count))%>% mutate(ranking = ifelse(rank(desc(total)) <= 100,"top_100","notTop100")) %>% group_by(year,ranking) %>% summarise(total = sum(total))
+
+GlyphReady <- Popular %>% spread(ranking, total) %>% mutate(frac_in_top_100 = top_100 / (top_100 + notTop100))
+
+GlyphReady %>% ggplot(aes(x=year, y=frac_in_top_100)) + geom_line() + ylim(0, NA)
+```
+
+# Question 12.3
+
+a. Summary function
+
+b. Neither of them.
+
+c. Summary function
+
+d. Transformation function
+
+e. Transformation function
+
+f. Summary function
+
+g. Transformation function
+
+h. Summary function
+
+# Question 13.1
+
+1. There are China, Japan, USSR, Germany, US, France and Italy. A total of 7 distinct vertices.
+
+2. There are 9 edges since there are 9 "from-to" relationships.
+
+# Question 13.2
+
+1. The vertices are A, B, C, D.
+
+2. Table 2 is the correct one.
+
+3. For Table 1, there is not BC relationship and for Table 3, you cannot have a edges that links three things,
+
+# Question 13.3
+
+Table 2 gives the information!
+
+# Question 13.4
+
+1. exports.
+
+2. Population. (pop)
+
+
+# Question 14.1
+
+```{r}
+CPS85 %>% ggplot(aes(sex, wage)) +geom_boxplot(aes(fill = sex))
+```
+
+# Question 14.3
+
+I can see the peak for woman is about 1.61 m and for men is about 1.76m.
+
+# Question 14.7
+
+```{r}
+CPS85 %>% ggplot(aes(educ, wage, color = sex)) + geom_point(na.rm=TRUE) + stat_smooth(method = "lm", na.rm = TRUE) + ylim(0,15)
+```
+
+# Question 14.10
+
+```{r}
+Galton %>%  ggplot(aes(x = height)) + geom_density(aes(fill = sex), alpha = 0.2) + theme(legend.position="right") + scale_fill_manual( values = c("black","aquamarine1"))
+```
+
