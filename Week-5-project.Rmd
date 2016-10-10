@@ -10,15 +10,30 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
+```{r}
 download.file("http://tiny.cc/dcf/ScorecardSmall.Rda", destfile = "ScorecardSmall.Rda")
 load("ScorecardSmall.Rda")
 
 Translation <- read.csv("http://tiny.cc/dcf/NPT4-names.csv")
+```
 
+
+```{r}
 SelectData <-
 ScorecardSmall %>%
+filter(CONTROL !=3)%>%
 select(CONTROL, ADM_RATE, NPT41_PUB, NPT43_PUB, NPT45_PUB, NPT41_PRIV, NPT43_PRIV, NPT45_PRIV)
 
-  
-SelectData%>%
-gather()
+CollegeBoard<-
+SelectData %>%
+gather(key=Q135,value=Totalcost, - c(ADM_RATE, CONTROL))%>%
+left_join(Translation, by=c(Q135="long_name"))
+```
+
+```{r}
+library(ggplot2)
+```
+
+```{r}
+ggplot(data=CollegeBoard, aes(x=ADM_RATE, y=Totalcost))+ geom_point() + facet_wrap(CONTROL~short_name) + geom_smooth()
+```
