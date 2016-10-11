@@ -1,6 +1,6 @@
 # Week 6 Short Answer Questions
 
-## Your name should appear here!
+## Qiuhan Sun
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,94 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+## Problem 12.1
+```{r warning=FALSE}
+BabyNames %>%
+  group_by(sex, name) %>%
+  summarise(count = sum(count)) %>%
+  mutate(topfive = rank(desc(count))) %>%
+  filter(topfive <= 5)
+```
+
+## Problem 12.2
+```{r warning=FALSE}
+Top100 <-
+  BabyNames %>%
+  group_by(year, name) %>%
+  summarise(total = sum(count)) %>%
+  mutate(top100 = ifelse(rank(desc(total)) <= 100, "True", "False" )) %>%
+  group_by(year, top100) %>%
+  summarise(total = sum(total))
+Top100
+
+GlyphReady <-
+  Top100 %>%
+  spread(top100, total) %>%
+  mutate(frac_in_top_100 = True / (True + False))
+
+GlyphReady %>%
+  ggplot(aes(x=year, y=frac_in_top_100)) +
+  geom_line() +
+  ylim(0, NA)
+```
+
+## Problem 12.3
+a. summary
+b. neither; summary function only generates a single number
+c. summary
+d. transformation
+e. transformation
+f. summary
+g. transformation
+h. summary
+
+## Problem 13.1
+1.
+There are 7 distinct vertices, including China, USSR, Germany, France, Italy, Japan, USA.
+2.
+There are 9 edges.
+
+## Problem 13.2
+1.
+The vertices are A, B, C and D.
+2.
+Table 2 shows the edges correctly.
+3.
+Table 1 shows that there's a relationship between B and C, which does not exist.
+The edges are relationship between pairs of vertices, but Table 3 shows three objects in a row,
+
+## Problem 13.3
+Table2
+
+## Problem 13.4
+1.
+exports
+2.
+population
+
+## Problem 14.1
+```{r}
+library(mosaicData)
+CPS85 %>%
+  ggplot(aes(x = sex, y = wage)) +
+  geom_boxplot(aes(fill=sex))
+```
+
+## Problem 14.3
+The most likely height for women is about 1.6 meters while for men is about 1.75 meters.
+
+## Problem 14.7
+```{r}
+CPS85 %>%
+  ggplot(aes(x = educ, y = wage, color = sex)) +
+  geom_point() +
+  stat_smooth(method="lm") 
+```
+
+## Problem 14.10
+```{r}
+Galton %>%
+     ggplot(aes(x=height)) +
+     geom_density(aes(fill=sex,color=sex), alpha=0.5)
+```
+
