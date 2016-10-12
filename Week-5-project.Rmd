@@ -7,7 +7,30 @@ Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(ggplot2)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+Here I load my files
+```{r}
+load("ScorecardSmall.Rda")
+NPT4convert <- read.csv("http://tiny.cc/dcf/NPT4-names.csv")
+NPT4convert
+```
+
+Here I create my "narrow" data set called Economist, from the given "wider" dataset called ScorecardSmall.
+I filter out the cases where CONTROL == 3 because these are not used in the Economist's graphic. I select the various variables that I am interested in. I then gather the data accordingly and join it with my csv file.
+```{r}
+Economist <-
+  ScorecardSmall %>%
+  filter(CONTROL != 3) %>%
+  select(ADM_RATE, CONTROL, NPT41_PUB, NPT43_PUB, NPT45_PUB, NPT41_PRIV, NPT43_PRIV, NPT45_PRIV) %>%
+  gather(key = long_name,Net_cost_per_year, -c(CONTROL, ADM_RATE)) %>%
+  left_join(NPT4convert)
+```
+
+Here I use the Economist data set I just made to produce a plot. 
+```{r}
+ggplot(data=Economist, aes(x=ADM_RATE, y=Net_cost_per_year)) + geom_point() +facet_grid(CONTROL~short_name) + geom_smooth()
+```
+
