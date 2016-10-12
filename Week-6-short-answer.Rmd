@@ -1,6 +1,6 @@
 # Week 6 Short Answer Questions
 
-## Your name should appear here!
+## Sam Erickson
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -11,3 +11,94 @@ library(DataComputing)
 <!-- put your content after this line -->
 
 Here is my content!
+```{r}
+head(BabyNames)
+```
+
+```{r}
+BabyNames %>%
+  group_by(name) %>%
+  summarise(total = sum(count)) %>%
+  filter(rank(desc(total))<=5)
+```
+
+```{r}
+PopularCounts <- 
+  BabyNames %>%
+  group_by(year) %>%
+  filter(rank(desc(count))<=100) %>%
+  summarize('TRUE'=sum(count))
+
+PopularCounts <- 
+  BabyNames %>%
+  group_by(year) %>%
+  filter(rank(desc(count))>100) %>%
+  summarize('FALSE'=sum(count))
+
+PopularCounts
+```
+
+```{r}
+PopularCounts <- 
+  BabyNames %>%
+  group_by(year) %>%
+  mutate(frac_in_top_100 = rank(desc(count))<=100) %>%
+  group_by(year,frac_in_top_100) %>%
+  summarize(total = sum(count)) 
+
+PopularCounts
+
+GlyphReady <-
+  PopularCounts %>%
+  spread(frac_in_top_100,total) %>%
+  mutate(frac_in_top_100 = `TRUE`/(`TRUE`+`FALSE`))
+
+GlyphReady
+```
+
+Prob 12.3
+a. Summary
+b. summary
+c. neither
+d. transformation
+e. transformation
+f. summary
+g. transformation
+h. transformaiton
+
+
+Prob 13.1
+8 vertices
+9 edges
+
+13.2
+The letters are the vertices
+
+Table 2. Table 1 doesn't include vertex D. Table 3 has a strange extra column. 
+
+13.3
+Table 2
+
+13.4
+Exports
+
+Roads
+
+14.1,
+
+```{r}
+ggplot(mosaicData::CPS85,aes(x=sex,y=wage)) +
+  geom_boxplot(aes(fill=sex))
+```
+
+
+14.3, 
+Male: ~1.65
+Female: ~1.6
+
+14.7, 14.10
+
+
+
+
+
