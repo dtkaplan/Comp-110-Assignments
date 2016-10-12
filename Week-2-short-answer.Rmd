@@ -1,6 +1,6 @@
 # Week 2 Short Answer Questions
 
-## Your name should appear here!
+## Joshua Doyle 
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,247 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+#1.1) 
+
+a) Taffy: The value of a variable for a particular case 
+b) year: Quantitative Variable 
+c) sex: Categorical Variable 
+d) Name: Categorical Variable 
+e) Count: Quantitative Variable 
+
+#1.2)
+There are several tidy data rules broken in this example. 1) The president's name is written in 2 different formats. To be consistent, it should always be the president's first name and then last name. 2) The variable in office should be written consistently as 1861-1865, neglecting the "to". 3) "It depends" breaks the rule of each case having the same underlying attribute. It is supposed to be written quantitatively.   
+
+
+#1.4)
+Data Table A has variables: Year, Algeria, Brazil and Columbia. 
+Data Table B has variables: Country, Y2000, and Y2001
+Data Table C has variables: Country, Year and Value
+
+#2)
+The meaning of Data Table A is a year, as seen by the case.
+
+The meaning of Data Table B is a country
+
+The meaning of Data Table C is a country in a year 
+
+
+#1.5) 
+
+1) Overall, the table airports has 6 variables. These are faa, name, lat lon, alt, dz, dst. 
+
+2) Each case likely represents an airport and its geographical location. 
+
+3) 
+Faa: Airport Code is quantitative
+Name: Categorical
+Lat lon: Quantitative
+Alt: Quantitative
+Tz: Quantitative
+dst: Categorical 
+
+
+#2.2) 
+File Names should be wrapped in Quotes.  
+
+#2.3)
+
+CPS stands for the Current Population survey. These data consist of a random sample of persons from the CPS85, with information on wages and other characteristics of the workers, including sex, number of years of education, years of work experience, occupational status, region of residence and union membership. 
+
+#2.4
+You cannot give a name to an object within a function. Instead you should use the "=" operator to specify the package.  
+
+#2.6)
+
+2: You cannot have a "-" sign in an object name
+
+3: You cannot use quotes as part of the name because they are a punctuation symbol.
+
+5: You cannot have spaces when giving an object name. 
+
+9: You cannot assign a function as an object.
+
+#2.7) 
+
+1) There are 19 variables overall
+
+2) There are 336776 cases
+
+3) Each case is one flight. 
+
+4)  
+Quantitative: Arr_delay, dep_delay, air_time, distance, hour and minute
+
+Categorical: Year, month, day, dep_time, sched_dep_time, arr_time, sched_arrive_time, carrier, flight, tailnum, origin, dest,time_hour
+
+5) The unit for distance is miles and the unit for air_time is minutes. 
+
+#2.8
+
+a) Improper Syntax for function argument
+
+b) No assignment operator
+
+c) Invalid Object Name 
+
+d) Unmatched Quotes in Character String 
+
+e) No mistake
+
+#2.9) 
+
+The only two characters that can be used in an r object are "." and "_"
+
+Every character can be used in a quoted string. 
+
+#2.10) 
+
+```{r}
+dim(CountryData)
+```
+
+There are 76 variables in the CountryData Set. 
+
+Tfat is the mass of trunk fat. 
+
+```{r}
+dim(WorldCities)
+```
+
+There are 23018 cases in the dataset. 
+
+The third variable of BabyNames is count. 
+
+"DEM" represents Democratic. "LIB" stands for Libertarian. "REP"" stands for Republican. "UNA"" stands for unaffiliated.
+
+#3.1) 
+
+1) 
+A dataframe: 
+fireplace <-
+  NCHS %>%
+  filter...
+
+2) 
+A function: fireplace()
+
+3) 
+The name of a named argument: summarise(fireplace = sum(count))
+
+4)
+A variable is used inside a function: max(fireplace)
+
+#3.2)
+
+You cannot assign the object Result and chain at the same time. You would assign the object Result, filter and then pipe the remaining data frame.
+
+Result <-
+  fiter(BabyNames, name=="Prince") %>%
+  ...
+
+#3.3) 
+
+You cannot assign an object within the function help. This will yield an error message. "Nhanes" has to be defined outside of the function. Using the "=" operator in the function would be the correct way of solving this issue. 
+
+#3.4) 
+
+BabyNames = data table name 
+
+filter = function name 
+
+name = name of a named argument 
+
+== function name 
+
+group_by = function name 
+
+year = variable name 
+
+sex = variable name 
+
+count = variable name  
+
+ggplot = function name 
+
+aes = function name
+
+x = name of a name argument  
+
+y = name of a named argument 
+
+geom_point = function name 
+
+color = name of a named argument  
+
+geom_vline = function name 
+
+xintercept = name of a named argument 
+
+
+#3.5) 
+
+brainwt is brain weight in kilograms. 
+
+```{r}
+dim(msleep)
+```
+
+There are 11 variables. 
+
+A case is an animal and its sleep cycle.
+
+The vore variable is vore itself, carnivore, omnivore or herbivore. 
+ 
+#3.6)
+
+The third statement finds mean and not the sum. 
+
+
+#4.1
+
+one: *Italics*
+
+two: **bold**
+
+* Three: Makes a bullet point 
+
+Four: Makes a bolded Header
+
+five: monospaced text
+
+six: A less large Header
+
+[seven](http://tiny.cc/dcf/index.html) makes a hyperlink
+
+
+#4.2)
+
+a) Should use ``` instead of '''.
+
+b) Uses ``` instead of """, also should use {} 
+
+c) Lower markdown is missing ` in closing.
+
+d) Should be on different lines.
+
+e) There should be 3 `, not 4. 
+
+#4.3)
+
+An Introduction will be seen as the header. 
+"easy will be written in italic"
+The r markdown will show the result of 2 + 3 = 5
+
+#4.4)
+
+1) A possible URL
+2) A possible file 
+3) Neither
+4) A possible URL
+5) A possible URL
+6) Possible URL or file
+
+##Enjoy 
+
+
+
