@@ -1,6 +1,6 @@
 # Week 6 Short Answer Questions
 
-## Your name should appear here!
+##Wendy Chu
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,69 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+12.1
+```{r}
+BabyNames %>%
+  group_by(sex, name) %>%
+  summarise (allyear=sum(count)) %>%
+  mutate(popularity=rank(desc(allyear))) %>%
+  filter (popularity <= 5)
+```
+
+
+  
+12.2
+```{r}
+PopularCounts <- 
+  BabyNames %>% 
+  group_by(year,name) %>% 
+  summarise(total = sum(count))%>% 
+  mutate(fractop100 = rank(desc(total)) <= 100)  %>% 
+  group_by(year, fractop100) %>% 
+  summarise(total = sum(total))
+PopularCounts
+
+```
+
+
+Glyphr <- 
+  PopularCounts %>% 
+  spread(ranking, total) %>% 
+  mutate(fractop100 = top_100 / (top_100 + notTop100))
+
+Glyphr %>% 
+ggplot(aes(x=year, y=fractop100)) + geom_line() + ylim(0, NA)
+
+
+12.3
+a. sum  b. neither  c. sum  d. tran e. tran f. sum  g. tran h. sum
+
+13.1
+there are 7 vertices: chn, frn, ger, itl, uk, usa, ussr
+there are 9 edges
+
+13.2
+1. ABCD 2. table 2 3. there is no edge bc in t2, cannot have 3 edge in t3
+
+13.3
+table 2
+
+13.4
+1. exports 2. pop
+
+14.1
+```{r}
+mosaicData::CPS85 %>%
+  ggplot(aes(x=sex, y=wage)) + geom_boxplot(aes(fill=sex))
+```
+
+14.3
+women ~1.6m, men ~1.75m
+
+14.7
+mosaicData::CPS85 %>%
+  ggplot(aes(x=educ, y=wage, color=sex) + geom_point() + stat_smooth(method="lm") + ylim (0,5)
+
+14.10
+mosaicData::CPS85 %>%
+  ggplot(aes(x=height, y=)) + geom_density(aes(color=sex))
