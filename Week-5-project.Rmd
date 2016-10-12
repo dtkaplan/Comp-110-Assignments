@@ -23,9 +23,9 @@ npt4_names = read.csv("http://tiny.cc/dcf/NPT4-names.csv")
 ```{r }
 econForm =
   ScorecardSmall %>%
-  select(INSTNM, CONTROL, ADM_RATE ,NPT41_PUB, NPT42_PUB, NPT43_PUB, NPT44_PUB, NPT45_PUB, NPT41_PRIV, NPT41_PRIV, NPT43_PRIV, NPT44_PRIV, NPT45_PRIV) %>%
+  select(INSTNM, CONTROL, ADM_RATE ,NPT41_PUB, NPT43_PUB, NPT45_PUB, NPT41_PRIV,  NPT43_PRIV,  NPT45_PRIV) %>%
   filter(CONTROL != 3) %>%
-  gather(key = incomeLevel, value = netCost, NPT41_PUB, NPT42_PUB, NPT43_PUB, NPT44_PUB, NPT45_PUB, NPT41_PRIV, NPT41_PRIV, NPT43_PRIV, NPT44_PRIV, NPT45_PRIV) 
+  gather(key = incomeLevel, value = netCost, NPT41_PUB, NPT43_PUB,  NPT45_PUB, NPT41_PRIV, NPT41_PRIV, NPT43_PRIV, NPT45_PRIV) 
 ```
 
 ```{r }
@@ -36,7 +36,7 @@ econFormQs =
 ```
 
 ```{r }
-scatterGraphHelper(econFormQs)
+ggplot(data=econFormQs,aes(x=ADM_RATE,y=netCost))+geom_point()+facet_wrap(short_name~CONTROL) + stat_smooth(method=loess) #not as pretty, but almost the same result
 
 ```
 
