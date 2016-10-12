@@ -1,7 +1,6 @@
 # Week 2 Short Answer Questions
 
-## Your name should appear here!
-
+## Nana Adom Mills-Robertson
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
@@ -10,4 +9,236 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+
+**1.1**
+
+A (Taffy) It's the value of a variable for a particular case 
+
+B (year) It's a quantitative variable
+
+C (sex) It's a categorical variable
+
+D (name) Its a categorical variable 
+
+E (count) Its a categorical variable
+
+**1.2**
+In order for data to be tidy, it must have the same type of information under each variable. When looking at the variable "Number of states", we can see that instead of there being a quantitative value for Abraham Lincoln row, we have an "it depends". This data is also not tidy because one of the values under president is not consistent in format with all the other values. It says "Lincoln, Abraham", whereas the other two entries under this variable says "George Washington" and "Martin Van Buren". For the in office variable; theres inconsistency there as well, the first two entries are nconsistent but the last entry says 1837 to 1841. 
+
+**1.4**
+
+1.
+
+Data Table (A): Year, Algeria, Brazil and Columbia are the variables.
+
+Data Table (B): Country, Y2000, Y2001 are the variables
+
+Data Table (c): Country, Year and Value are the variables
+
+2. 
+
+Data Table (A) case: each case is a year as shown by this table
+
+Data Table (B) case: each case is a country as shown by this table 
+
+Data Table (C) case: A country in a year  
+
+**1.5**
+
+1. 6 variables
+
+2. Cases represent useful metadata about airports. made more salient by FAA airport codes and the name of the airport
+
+3. 
+* FAA airport code  (numerical)
+
+* Usual name of the aiport (numerical)
+
+* lat,lon Location of airport (numerical)
+
+* alt Altitude, in feet (quantitative)
+
+* tz Timezone offset from GMT (quantitative)
+
+* dst Daylight savings time zone (numerical)
+
+**2.2**
+file name, and the name of an argument in a named argument
+
+**2.3**
+CPS85 from the documentation is: The Current Population Survey (CPS) is used to supplement census information between census years. These data consist of a random sample of persons from the CPS85, with information on wages and other characteristics of the workers, including sex, number of years of education, years of work experience, occupational status, region of residence and union membership.
+
+**2.4**
+ The command is help(NHANES, package<- "NHANES"). This is wrong because the assignment operator is supposed to be used to name an object. This function is supposed to ask for the documentation NHANES data from the named package "NHANES", however with the assignment operator, instead of specifying the data set you are rather naming NHANES as package. 
+ 
+**2.6**
+- sqrt() is not a good name because it is the name of a function, and it will confuse R once that happens. 
+- "MyData" is not a good name because it is such that names of objects cannot have punctuation symbols
+- first-essay is not a good name because it has punctuation symbols.
+- small sample is not a good name because it has a space inbetween "small" and "space"
+
+**2.7**
+1. 19 variables
+
+2. 336776 cases
+
+3. The case refers to a unique sort of identifier for each row in the dataframe. in the flights data, the case could be comprised of the flight number and tail number. 
+
+4. Year - quantitative, month-quantitative, day- quantitative, dep_time-quantitative, arr_time- quantitative, sched_dep_time-quantitative, sched_arr_time-quantitative, dep_delay-quantitative, arr_delay-quantitative, hour-quantitative, minute-quantitative, carrier-categorical, tailnum-Categorical, flight-categorical, origin-categorical, dest-categorical, air_time-quantitative, distance-quantitative, time_hour-quantitative. 
+
+5. 
+distance-miles
+air_time-minutes
+
+**2.8**
+a. improper syntax for function argument
+
+b. no assignment name
+
+c. invalid object name
+
+d. unmatched quotes in character string
+
+e. no mistake
+
+**2.9**
+a. we have that . and _ can be used in the name of an R object
+
+b. any can be used in the quoted character string. 
+
+**2.10**
+1. 76 variables
+
+2. tfat measures the mass of the trunk fat
+
+3. 23,018 cases in WorldCities
+
+4. Count is the third variable in BabyNames
+
+5. Party affiliation: DEM=Democratic, LIB=Libertarian,REP=Republican,UNA=Unaffiliated
+
+
+**3.1**
+
+1. fireplace %>% names()
+
+2. fireplace(...)
+
+3. Water(fireplace)
+
+4.BabyNames$fireplace 
+
+**3.2**
+The following:  Result <-%>% filter(BabyNames, name == "Prince") is not right because we are both assigning and chaining the filter function to Result which does not make sense. In order to assign we need a named object which we have in "Result"", and in order to chain we need to be using a data frame which we dont have. You can't assign and chain simultaneously. 
+
+**3.3**
+The phrase help(NHANES, package <- "NHANES"),is wrong because you are using the assignment operator"<-" instead of the "=". When refering to a package we use the equal"=" sign because we want to get the codebook for that particular dataset within the NHANES dataset. However when we use the assignment operator we are saying that the package should refer to the character string "NHANES". 
+
+**3.4** 
+1. A data table name - BabyNames
+
+2. function name - filter
+
+3. variable name - name
+
+4. function name - ==
+
+5. function name - group_by 
+
+6. variable name - year
+
+7. variable name - sex
+
+8. function name - summarise
+
+9. name of a named argument - yearlyTotal
+
+10. function name - sum
+
+11. variable name - count
+
+12. function name - ggplot
+
+13. function name - aes
+
+14. name of a named argument - x
+
+15. name of a named argument - y
+
+16. function name - geom_point
+
+17. name of a named argument - color
+
+18. function name - geom_vline
+
+19. name of a named argument - xintercept
+
+**3.5**
+a. brainwt is the brain weight in kilograms
+
+b. 83 cases 
+
+c. A case is the unique identifier or experiment that refers to the row within the data table. The case is how we distinguish one seperate entity from the rest in the data frame
+
+d. carnivore, omnivore, or herbivore
+
+**3.6**
+C,
+
+**4.1**
+
+*one* 
+
+**two** 
+
+* three 
+
+`five` 
+
+## six  
+ 
+[seven](http://tiny.cc/dcf/index.html)
+
+**4.2**
+
+a, uses ''' instead of ```
+
+b, uses """ instead of ``
+
+c, uses `` as closing instead of ```
+
+d, 9+7 is in the same line as the {r} instead of under it
+
+e, uses ```` instead of ```
+
+
+**4.3**
+### An introduction
+
+Arithmetic is *easy*! for instance
+```{r}
+3+2
+```
+
+**4.4**
+1. neither
+
+2. a possible file
+
+3. neither
+
+4. A possible URL
+
+5. Both
+
+6. A possible file
+
+
+**4.5**
+Check the Bird.rmd that also attached. 
+
+
+
+
+
+
