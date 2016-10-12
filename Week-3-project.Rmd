@@ -1,13 +1,129 @@
 # Week 3 Project
 
-## Your name should appear here! 
+## Kai Heen 
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
+<br>
+<br>
 ```{r include = FALSE}
 library(DataComputing)
 ```
-<!-- put your content after this line -->
 
-Here is my content!
+
+##Deconstructing Graphics
+
+```{r}
+ggplot(data = CPS85, aes(x=exper, y = wage, color = married)) + geom_point() +facet_wrap(~ sector)
+```
+
+
+```{r}
+ggplot(data = NCHS, aes(x=bmi)) + geom_density(aes(color = sex)) + facet_wrap(~ pregnant)
+```
+
+<br>
+<br>
+
+##Diamonds
+
+###Question 1
+```{r}
+diamonds %>%
+  group_by(color) %>%
+  summarize(avgCarat = mean(carat))  %>%
+  arrange(desc(avgCarat)) %>%
+  head(1)
+```
+
+
+On average, J colored diamonds (aka the worst colored diamonds) are the biggest.
+
+###Question 2
+
+```{r}
+diamonds %>%
+  group_by(clarity) %>%
+  summarize(tablePerCarat = mean(table/carat))  %>%
+  arrange(desc(tablePerCarat)) %>%
+  head(1)
+```
+
+VVS1 diamonds seem to have the largest average "table" per carat.
+
+<br>
+<br>
+
+##Voting
+
+###Question 1
+
+```{r}
+nrow(Minneapolis2013)
+```
+
+There are 80101 cases in the Minneapolis2013 data table.
+
+###Question 2
+
+Top 5 candidates in the Second vote selections:
+
+```{r}
+Minneapolis2013 %>%
+  group_by(Second) %>%
+  tally() %>%
+  arrange(desc(n)) %>%
+  head(5)
+```
+
+
+###Question 3
+Number of ballots marked "undervote" in First choice selections:
+```{r}
+Minneapolis2013 %>%
+  filter(First == "undervote") %>%
+  tally()
+```
+
+Number of ballots marked "undervote" in Second choice selections:
+```{r}
+Minneapolis2013 %>%
+  filter(Second == "undervote") %>%
+  tally()
+```
+
+
+Number of ballots marked "undervote" in Third choice selections:
+```{r}
+Minneapolis2013 %>%
+  filter(Third == "undervote") %>%
+  tally()
+```
+
+###Question 4
+
+Most popular second votes among those who voted for Betsy Hodges as their first choice:
+
+```{r}
+Minneapolis2013 %>%
+  filter(First == "BETSY HODGES") %>%
+  group_by(secondVote = Second) %>%
+  tally() %>%
+  arrange(desc(n)) %>%
+  head(3)
+```
+
+
+
+###Question 5
+Precinct that had the highest fraction of First vote selections marked as "undervote":
+
+```{r}
+Minneapolis2013 %>% 
+  group_by(Precinct) %>%
+  summarise(percentUndervote = mean(First=="undervote")) %>%
+  arrange(desc(percentUndervote)) %>%
+  head(1)
+```
+
