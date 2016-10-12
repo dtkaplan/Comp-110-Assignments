@@ -1,6 +1,6 @@
 # Week 2 Project
 
-## Your name should appear here!
+## Danny Ochoa
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,37 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+I downloaded the data used in this program from "http://tiny.cc/dcf/Library-small.rda".
+
+SECTION: BASICS
+
+Calculating the number of cases in each file, Inv and Bks. 
+
+The Inv file contains information on volumes in the library, their subject matter, their shelving location, call number and a few other variables.
+```{r}
+load("Library-small.rda")
+tally(Inv)
+```
+
+The Bks file contains information about the subject of each book, its title, its author, its publication date, its publisher, and a few other varibales. 
+```{r}
+tally(Bks)
+```
+
+
+Looking at the number of books with each different Current.Status
+```{r}
+Inv %>%
+  group_by(Current.Status) %>%
+  tally()
+```
+
+Looking at how many times books have been checked out.
+```{r}
+Inv %>% 
+  group_by(Issued.Count) %>%
+  tally()
+```
+
+I believe this result means that there are 996 books in the data that been issued 0 times, 337 books that have been issued once, and so on.
+

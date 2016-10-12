@@ -1,13 +1,104 @@
 # Week 3 Project
 
-## Your name should appear here! 
+## Danny Ochoa
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(ggplot2)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+Diamonds
+Problem 1.
+```{r}
+diamonds %>%
+  group_by(color) %>%
+  summarise(ave = mean(carat)) %>%
+  arrange(desc(ave)) %>%
+  head(1)
+```
+
+The color denoted by 'J' seems to be the largest on average (in terms of carats). It's average size is 1.1621368 carats.
+
+Problem 2.
+```{r}
+diamonds %>%
+  group_by(clarity) %>%
+  summarise(ave = mean(table)) %>%
+  arrange(desc(ave)) %>%
+  head(1)
+
+```
+
+The clarity denoted by 'I1' seems to be the largest on average (in terms of table). It's average size is 58.30378.
+
+
+Voting
+Problem 1.
+```{r}
+x <- Minneapolis2013 %>% tally()
+```
+
+There are `r x`
+
+Problem 2.
+```{r}
+Minneapolis2013 %>%
+  group_by(Second) %>%
+  summarise(count = n()) %>%
+  arrange(desc(count)) %>%
+  head(5)
+```
+
+The top 5 second voting candidates is Betsy Hodges, Don Samuels, Mark Andrew, undervote, Jackie CherryHomes.
+
+Problem 3.
+```{r}
+Minneapolis2013 %>%
+  filter(First == "undervote") %>%
+  tally()
+```
+
+There were 834 votes marked undervote in the first ballot.
+
+```{r}
+Minneapolis2013 %>%
+  filter(Second == "undervote") %>%
+  tally()
+```
+
+There were 10598 votes marked undervote in the second ballot.
+
+```{r}
+t <- Minneapolis2013 %>%
+  filter(Third == "undervote") %>%
+  tally()
+```
+
+There were `r t` votes marked undervote in the third ballot.
+
+Problem 4.
+```{r}
+Minneapolis2013 %>%
+  filter(First == "BETSY HODGES") %>%
+  group_by(Second) %>%
+  summarise(count = n()) %>%
+  arrange(desc(count)) %>%
+  head(3)
+```
+
+The top 3 second vote selections among people who voted for Betsy Hodges as their first choice are Mark Andrew, Don Samuels, and Jackie Cherryhomes in that order.
+
+Problem 5.
+```{r}
+Minneapolis2013 %>%
+  group_by(Precinct) %>%
+  summarise(ave = mean(First == "undervote")) %>%
+  arrange(desc(ave)) %>%
+  head(1)
+```
+
+Precinct P-6C had 0.07738095% of it's First votes casted as "undervote", this was the highest fraction. 

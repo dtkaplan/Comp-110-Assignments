@@ -120,12 +120,57 @@ $(document).ready(function () {
 
 <div id="week-2-project" class="section level1">
 <h1>Week 2 Project</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="danny-ochoa" class="section level2">
+<h2>Danny Ochoa</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:30:09 2016.</p>
+<p>Compiled on Wed Oct 12 01:09:59 2016.</p>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
+<p>I downloaded the data used in this program from “<a href="http://tiny.cc/dcf/Library-small.rda" class="uri">http://tiny.cc/dcf/Library-small.rda</a>”.</p>
+<p>SECTION: BASICS</p>
+<p>Calculating the number of cases in each file, Inv and Bks.</p>
+<p>The Inv file contains information on volumes in the library, their subject matter, their shelving location, call number and a few other variables.</p>
+<pre class="r"><code>load(&quot;Library-small.rda&quot;)
+tally(Inv)</code></pre>
+<pre><code>## # A tibble: 1 × 2
+##   Item.Type     n
+##       &lt;chr&gt; &lt;int&gt;
+## 1    VOLUME  2000</code></pre>
+<p>The Bks file contains information about the subject of each book, its title, its author, its publication date, its publisher, and a few other varibales.</p>
+<pre class="r"><code>tally(Bks)</code></pre>
+<pre><code>## # A tibble: 1 × 1
+##       n
+##   &lt;int&gt;
+## 1  3765</code></pre>
+<p>Looking at the number of books with each different Current.Status</p>
+<pre class="r"><code>Inv %&gt;%
+  group_by(Current.Status) %&gt;%
+  tally()</code></pre>
+<pre><code>## # A tibble: 4 × 2
+##   Current.Status     n
+##            &lt;chr&gt; &lt;int&gt;
+## 1      AVAILABLE  1866
+## 2        MISSING     1
+## 3        ON_LOAN    18
+## 4      WITHDRAWN   115</code></pre>
+<p>Looking at how many times books have been checked out.</p>
+<pre class="r"><code>Inv %&gt;% 
+  group_by(Issued.Count) %&gt;%
+  tally()</code></pre>
+<pre><code>## # A tibble: 46 × 2
+##    Issued.Count     n
+##           &lt;int&gt; &lt;int&gt;
+## 1             0   996
+## 2             1   337
+## 3             2   203
+## 4             3   121
+## 5             4    69
+## 6             5    46
+## 7             6    38
+## 8             7    29
+## 9             8    24
+## 10            9    20
+## # ... with 36 more rows</code></pre>
+<p>I believe this result means that there are 996 books in the data that been issued 0 times, 337 books that have been issued once, and so on.</p>
 </div>
 </div>
 

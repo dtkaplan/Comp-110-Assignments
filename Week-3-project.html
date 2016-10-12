@@ -120,12 +120,93 @@ $(document).ready(function () {
 
 <div id="week-3-project" class="section level1">
 <h1>Week 3 Project</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="danny-ochoa" class="section level2">
+<h2>Danny Ochoa</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:30:30 2016.</p>
+<p>Compiled on Wed Oct 12 01:10:29 2016.</p>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
+<p>Diamonds Problem 1.</p>
+<pre class="r"><code>diamonds %&gt;%
+  group_by(color) %&gt;%
+  summarise(ave = mean(carat)) %&gt;%
+  arrange(desc(ave)) %&gt;%
+  head(1)</code></pre>
+<pre><code>## # A tibble: 1 × 2
+##   color      ave
+##   &lt;ord&gt;    &lt;dbl&gt;
+## 1     J 1.162137</code></pre>
+<p>The color denoted by ‘J’ seems to be the largest on average (in terms of carats). It’s average size is 1.1621368 carats.</p>
+<p>Problem 2.</p>
+<pre class="r"><code>diamonds %&gt;%
+  group_by(clarity) %&gt;%
+  summarise(ave = mean(table)) %&gt;%
+  arrange(desc(ave)) %&gt;%
+  head(1)</code></pre>
+<pre><code>## # A tibble: 1 × 2
+##   clarity      ave
+##     &lt;ord&gt;    &lt;dbl&gt;
+## 1      I1 58.30378</code></pre>
+<p>The clarity denoted by ‘I1’ seems to be the largest on average (in terms of table). It’s average size is 58.30378.</p>
+<p>Voting Problem 1.</p>
+<pre class="r"><code>x &lt;- Minneapolis2013 %&gt;% tally()</code></pre>
+<p>There are 80101</p>
+<p>Problem 2.</p>
+<pre class="r"><code>Minneapolis2013 %&gt;%
+  group_by(Second) %&gt;%
+  summarise(count = n()) %&gt;%
+  arrange(desc(count)) %&gt;%
+  head(5)</code></pre>
+<pre><code>## # A tibble: 5 × 2
+##               Second count
+##                &lt;chr&gt; &lt;int&gt;
+## 1       BETSY HODGES 14399
+## 2        DON SAMUELS 14170
+## 3        MARK ANDREW 12757
+## 4          undervote 10598
+## 5 JACKIE CHERRYHOMES  6470</code></pre>
+<p>The top 5 second voting candidates is Betsy Hodges, Don Samuels, Mark Andrew, undervote, Jackie CherryHomes.</p>
+<p>Problem 3.</p>
+<pre class="r"><code>Minneapolis2013 %&gt;%
+  filter(First == &quot;undervote&quot;) %&gt;%
+  tally()</code></pre>
+<pre><code>##     n
+## 1 834</code></pre>
+<p>There were 834 votes marked undervote in the first ballot.</p>
+<pre class="r"><code>Minneapolis2013 %&gt;%
+  filter(Second == &quot;undervote&quot;) %&gt;%
+  tally()</code></pre>
+<pre><code>##       n
+## 1 10598</code></pre>
+<p>There were 10598 votes marked undervote in the second ballot.</p>
+<pre class="r"><code>t &lt;- Minneapolis2013 %&gt;%
+  filter(Third == &quot;undervote&quot;) %&gt;%
+  tally()</code></pre>
+<p>There were 19210 votes marked undervote in the third ballot.</p>
+<p>Problem 4.</p>
+<pre class="r"><code>Minneapolis2013 %&gt;%
+  filter(First == &quot;BETSY HODGES&quot;) %&gt;%
+  group_by(Second) %&gt;%
+  summarise(count = n()) %&gt;%
+  arrange(desc(count)) %&gt;%
+  head(3)</code></pre>
+<pre><code>## # A tibble: 3 × 2
+##               Second count
+##                &lt;chr&gt; &lt;int&gt;
+## 1        MARK ANDREW  8787
+## 2        DON SAMUELS  8743
+## 3 JACKIE CHERRYHOMES  2563</code></pre>
+<p>The top 3 second vote selections among people who voted for Betsy Hodges as their first choice are Mark Andrew, Don Samuels, and Jackie Cherryhomes in that order.</p>
+<p>Problem 5.</p>
+<pre class="r"><code>Minneapolis2013 %&gt;%
+  group_by(Precinct) %&gt;%
+  summarise(ave = mean(First == &quot;undervote&quot;)) %&gt;%
+  arrange(desc(ave)) %&gt;%
+  head(1)</code></pre>
+<pre><code>## # A tibble: 1 × 2
+##   Precinct        ave
+##      &lt;chr&gt;      &lt;dbl&gt;
+## 1     P-6C 0.07738095</code></pre>
+<p>Precinct P-6C had 0.07738095% of it’s First votes casted as “undervote”, this was the highest fraction.</p>
 </div>
 </div>
 
