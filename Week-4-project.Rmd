@@ -1,13 +1,65 @@
 # Week 4 Project
 
-## Your name should appear here!
+## Daniel Ochoa
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(ggplot2)
 ```
 <!-- put your content after this line -->
 
+```{r cache = TRUE}
+data_site <- "http://tiny.cc/dcf/2014-Q4-Trips-History-Data-Small.rds"
+Trips <- readRDS(gzcon(url(data_site)))
+```
+
 Here is my content!
+
+1.
+```{r}
+ggplot(Trips, aes(x = sdate)) +
+  geom_density()
+```
+
+2.
+```{r}
+Trips %>%
+  mutate(time_of_day = lubridate::hour(sdate) + lubridate::minute(sdate) / 60) %>%
+  ggplot(aes(x = time_of_day)) + geom_density()
+```
+
+3.
+```{r}
+Trips %>%
+  mutate(time_of_day = lubridate::hour(sdate) + (lubridate::minute(sdate) / 60)) %>% 
+  mutate(day_of_week = lubridate::wday(sdate)) %>%
+  ggplot(aes(x = day_of_week)) + geom_density()
+```
+
+4.
+```{r}
+Trips %>%
+  mutate(time_of_day = lubridate::hour(sdate) + (lubridate::minute(sdate) / 60)) %>% 
+  mutate(day_of_week = lubridate::wday(sdate)) %>%
+  ggplot(aes(x = day_of_week)) + geom_density(aes(fill = client), alpha = .3) + facet_wrap(~ day_of_week)
+```
+
+5.
+```{r}
+Trips %>%
+  mutate(time_of_day = lubridate::hour(sdate) + (lubridate::minute(sdate) / 60)) %>% 
+  mutate(day_of_week = lubridate::wday(sdate)) %>%
+  ggplot(aes(x = day_of_week)) + geom_density(aes(fill = client), alpha = .3, position = position_stack()) + facet_wrap(~ day_of_week)
+```
+
+6.
+```{r}
+Trips %>%
+  mutate(time_of_day = lubridate::hour(sdate) + (lubridate::minute(sdate) / 60)) %>% 
+  mutate(wday = ifelse(lubridate::wday(sdate) %in% c(1,7), "weekend", "weekday")) %>%
+  ggplot(aes(x = wday)) + geom_density(aes(fill = client), alpha = .3, position = position_stack()) + facet_wrap(~ wday)
+```
+
