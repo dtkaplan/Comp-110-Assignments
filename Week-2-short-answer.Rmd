@@ -51,6 +51,9 @@ dst: categorical
 ##Question 2.2
 2
 
+### Question 2.3
+CPS85 = Current Population Survey from 1985
+
 ##Question 2.4
 There doesn't seem to by anything wrong with this command
 
@@ -168,6 +171,20 @@ Its unwise to initialize an object within a command.
 18) a
 
 19) d
+
+##Question 3.5
+
+brainwt variable = weight of brain of animal in kg
+
+There are 83 cases
+
+Each case is an animal
+
+herbi, omni, insecti, carni
+
+##Question 3.6
+
+c
 
 ##Question 4.1
 
