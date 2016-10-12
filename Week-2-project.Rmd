@@ -45,4 +45,6 @@ Inv %>% group_by(Current.Status) %>% tally ()
 Inv %>% group_by(Issued.Count) %>% tally ()
 ```
 
+The first chunk of code above groups the items in Macalester's collection by their current status. The above table tells us that 1866 of the items in this data set are available, and 115 are currently withdrawn.
 
+The second chunk of code groups the books in Macalester's collection by the number of times they have been checked out. Thus, the above table tell us that the most popular amound of times for a item to be checked out is 0, followed by 2, 3, etc.
