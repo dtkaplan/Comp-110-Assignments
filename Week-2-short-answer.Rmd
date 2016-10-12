@@ -1,6 +1,6 @@
 # Week 2 Short Answer Questions
 
-## Your name should appear here!
+## Kai Heen
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -8,6 +8,206 @@ Compiled on `r date()`.
 ```{r include = FALSE}
 library(DataComputing)
 ```
-<!-- put your content after this line -->
 
-Here is my content!
+##Question 1.1 
+
+a) 3
+
+b) 1
+
+c) 1
+
+d) 1
+
+e) 2
+
+
+##Question 1.2
+"It depends" is not a number, but it lies in a quantitative column.
+
+
+##Question 1.4
+1) Years and Countries
+
+2) Table A: year, Table B: Country, Table C: A country in a year
+
+
+##Question 1.5
+1) 5
+
+2) An airport
+
+3) name:categorical, 
+
+lat,lon: categorical, 
+
+alt: quantitative, 
+
+tz: categorical, 
+
+dst: categorical
+
+
+##Question 2.2
+2
+
+##Question 2.4
+There doesn't seem to by anything wrong with this command
+
+##Question 2.6
+1) legitimate
+
+2) not legitimate, can't use "-"
+
+3) not legitimate, can't use quotes
+
+4) legitimate
+
+5) not legitimate, can't use space
+
+6) legitimate
+
+7) legitimate
+
+8) legitimate
+
+9) not legitimate, can't use parentheses
+
+##Question 2.7
+1) 18
+
+2) 336,776
+
+3) Each case is a flight
+
+4) categorical: year, month, day, time, scheduled depart time, arr time, sched arr time, carrier, flight, tailnum, origin, dest, hour, minute, time_hour
+
+quantitative: dep delay, arr delay, airtime, distance
+
+5) distance: miles, air_time: minutes
+
+##Question 2.8
+a) missing parentheses
+
+b) theres an extra "-"
+
+c) name begins with number
+
+d) missing end quotes
+
+e) variable will change every time it is called
+
+##Question 2.9
+"."" and "-"" can be used in a name of an object. 
+
+All can be used in a quoted character string.
+
+##Question 2.10
+1) 75
+
+2) Total fat for an individual
+
+3) 23,018
+
+4) Year
+
+5) UNA = unaffiliated, DEM = democrat, REP = republican
+
+##Question 3.1
+
+1) nrow(fireplace)
+
+2) fireplace = sqrt()
+
+3) data(fireplace = "DataComputing")
+
+4) summarise(fireplace = sum(count))
+
+##Question 3.2
+3.2: The piping should not be at the beginning of a statement like that
+
+##Question 3.3
+Its unwise to initialize an object within a command.
+
+##Question 3.4
+
+1) b
+
+2) a
+
+3) d
+
+4) a
+
+5) a
+
+6) c
+
+7) c
+
+8) a
+
+9) d
+
+10) a
+
+11) c
+
+12) a
+
+13) a
+
+14) d
+
+15) d
+
+16) a
+
+17) c
+
+18) a
+
+19) d
+
+##Question 4.1
+
+1) italic
+
+2) bold
+
+3) Unordered list
+
+4) Header 1
+
+5) r chunk
+
+6) Header 2
+
+7) links
+
+##Question 4.2
+a) Wrong symbols
+
+b) Used () instead of {}
+
+c) Missing ` at the end
+
+d) All on one line
+
+e) They used four dashes
+
+
+##Question 4.4
+1) neither
+
+2) file
+
+3) neither
+
+4) URL
+
+5) both
+
+6) url
+
+
