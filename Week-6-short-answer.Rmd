@@ -1,6 +1,6 @@
 # Week 6 Short Answer Questions
 
-## Your name should appear here!
+## Josh Marcus
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,120 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+##Chapter 12 Questions
+
+#12.1
+
+```{r}
+Top5Names <- BabyNames %>%
+  group_by(sex, name) %>%
+  summarise(total=sum(count)) %>%
+  filter(rank(desc(total)) <= 5)
+```
+
+```{r}
+Top5Names
+```
+
+#12.2
+
+```{r}
+PopularCounts <- BabyNames %>%
+  group_by(year, name) %>%
+  summarise(total = sum(count))
+
+PopularCounts <- PopularCounts %>% 
+  mutate(frac_in_top_100 = rank(desc(total)))
+
+PopularCounts$frac_in_top_100 <- ifelse(PopularCounts$frac_in_top_100 <=100 ,"True","False")
+  
+```
+
+```{r}
+GlyphReady <-
+  PopularCounts %>%
+  group_by(year, frac_in_top_100) %>%
+  summarise(Total = sum(total)) %>%
+  spread(frac_in_top_100, Total) %>%
+  mutate(frac_in_top_100= `True` / (`True` + `False`))
+```
+
+```{r}
+GlyphReady %>%
+  ggplot(aes(x=year, y=frac_in_top_100)) +
+  geom_line () +
+  ylim(0,NA)
+```
+
+```{r}
+GlyphReady
+```
+
+#12.3
+
+a. summary
+b. Neither. This operation makes a pair of values, whereas summary and transformation functions produce a single value.
+c. summary
+d. transformation
+e. transformation
+f. summary
+g. transformation 
+h. summary
+
+
+##Chapter 13 Questions
+
+#13.1
+
+1. 8
+2. 9
+
+#13.2
+
+1. A, B, C, D
+2. Table 2
+3. Table 1 says there's an edge between B and C, which is not true of the network, and it doesn't show the edge from C to D that's in the network. Table 3 has a third column, which isn't possible given the kind of 2D networks we're creating.
+
+#13.3
+
+Table 2
+
+#13.4
+
+1. Exports is mapped to the size of the letter.
+2. Population is mapped to the shape of the symbol.
+
+##Chapter 14 Questions
+
+#14.1
+
+```{r}
+mosaicData::CPS85 %>%
+  ggplot(aes(y = wage, x = sex)) +
+  geom_boxplot(aes(fill=sex))
+```
+
+#14.3
+
+For women, the most likely height is about 1.6 meters, and for men it's about 1.7 or 1.8 meters.
+
+#14.7
+
+```{r}
+mosaicData::CPS85 %>%
+  ggplot(y = wage, x = educ, color = sex) +
+  geom_point() +
+  stat_smooth(method="1m") +
+  ylim(0,15)
+```
+
+#14.10
+
+```{r}
+mosaicData::Galton %>%
+  ggplot(aes(x = height, group = sex)) +
+  geom_density(aes(color = sex, fill = sex), alpha = 0.5) +
+  xlab("height") + ylab("density")
+```
+
+
