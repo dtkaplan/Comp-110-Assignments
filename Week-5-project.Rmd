@@ -1,6 +1,6 @@
 # Week 5 Project
 
-## Your name should appear here!
+## Eloa
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -9,5 +9,105 @@ Compiled on `r date()`.
 library(DataComputing)
 ```
 <!-- put your content after this line -->
+#Project
+```{r }
+download.file("http://tiny.cc/dcf/ScorecardSmall.Rda", destfile = "ScorecardSmall.rda")
+load("ScorecardSmall.rda")
+```
 
-Here is my content!
+```{r }
+npt4_names = read.csv("http://tiny.cc/dcf/NPT4-names.csv")
+
+```
+
+```{r }
+econForm =
+  ScorecardSmall %>%
+  select(INSTNM, CONTROL, ADM_RATE ,NPT41_PUB, NPT42_PUB, NPT43_PUB, NPT44_PUB, NPT45_PUB, NPT41_PRIV, NPT41_PRIV, NPT43_PRIV, NPT44_PRIV, NPT45_PRIV) %>%
+  filter(CONTROL != 3) %>%
+  gather(key = incomeLevel, value = netCost, NPT41_PUB, NPT42_PUB, NPT43_PUB, NPT44_PUB, NPT45_PUB, NPT41_PRIV, NPT41_PRIV, NPT43_PRIV, NPT44_PRIV, NPT45_PRIV) 
+```
+
+```{r }
+econFormQs = 
+  econForm %>%
+  left_join(npt4_names, by = c(incomeLevel = "long_name"))
+
+```
+
+```{r }
+scatterGraphHelper(econFormQs)
+
+```
+
+#In class
+
+```{r }
+file <- "http://tiny.cc/dcf/my_pennies_format_1.csv"
+Format_1 <- read.csv(file, stringsAsFactors = FALSE)
+```
+
+Total number of coins:
+```{r }
+Format_1 %>% 
+  summarize(totalNumberOfCoins =  sum(D, na.rm = TRUE) + sum(S, na.rm = TRUE) + sum(none, na.rm = TRUE))
+
+```
+
+Average year for all types coins
+```{r }
+
+Format_1 %>% 
+  summarize(mean_D = sum(year * D, na.rm = TRUE) + sum(year * S, na.rm = TRUE) + sum(year * none, na.rm = TRUE), count = sum(D, na.rm = TRUE) + sum(S, na.rm = TRUE) + sum(none, na.rm = TRUE)) %>%
+  mutate(mean_D/count)
+  
+
+```
+
+```{r }
+file2 <- "http://tiny.cc/dcf/my_pennies_format_2.csv"
+Format_2 <- read.csv(file2, stringsAsFactors = FALSE)
+```
+
+```{r }
+file3 <- "http://tiny.cc/dcf/my_pennies_format_3.csv"
+Format_3 <- read.csv(file3, stringsAsFactors = FALSE)
+```
+
+Turn Format_1 into Format_2:
+```{r }
+Format_1 %>%
+  gather(key = stamp, value = count, -year) #all variables except year
+```
+
+Turn Format_2 into Format_1:
+```{r }
+Format_2 %>%
+  spread(key = stamp, value = count) #all variables except year
+```
+
+
+JOINS
+```{r }
+Grades <- read.csv("http://tiny.cc/mosaic/grades.csv")
+GP <- read.csv("http://tiny.cc/mosaic/grade-to-number.csv")
+Course <- read.csv("http://tiny.cc/mosaic/courses.csv")
+```
+
+```{r}
+Result <-
+  Grades %>%
+    left_join(GP, by = c(grade = "grade"))
+```
+
+```{r}
+ResultProf <-
+  Result %>%
+    left_join(Course)
+
+ResultProf %>%
+  group_by(dept) %>%
+  summarise(dept_gpa = mean(gradepoint, na.rm = TRUE)) %>%
+  arrange(desc(dept_gpa))
+```
+
