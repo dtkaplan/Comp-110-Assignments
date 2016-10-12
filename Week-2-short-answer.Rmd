@@ -251,6 +251,3 @@ The r markdown will show the result of 2 + 3 = 5
 6) Possible URL or file
 
 ##Enjoy 
-
-
-
