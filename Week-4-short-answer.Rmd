@@ -1,6 +1,6 @@
 # Week 4 Short Answer Questions
 
-## Your name should appear here!
+## Shelby Witherby
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,106 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+## 8.1
+a) 2
+b) 2
+c) 1 
+d) 5
+e) 3
+f) 4
+g) 2
+h) 5
+
+
+## 8.2
+# 1
+```{r}
+CPS85 %>%
+  ggplot(aes(x = age, y = wage, shape = married)) + geom_point() + facet_wrap(~sector)
+
+```
+# 2
+
+```{r}
+CPS85%>%
+  ggplot(aes(x=age, y=wage)) + geom_point() + facet_grid(sex~married)
+
+
+```
+
+## 8.3
+
+# A
+
+```{r}
+CPS85 %>%
+  ggplot(aes(x=age, y=wage)) + geom_point()
+
+
+```
+
+# B
+
+```{r}
+
+CPS85%>%
+  ggplot(aes(x = age, y = wage, shape = sex)) + geom_point()
+
+```
+
+# C
+
+```{r}
+
+CPS85%>%
+  ggplot(aes(x = age, y = wage, shape = sex)) + geom_point() + facet_grid(married~.)
+
+```
+
+# D
+
+```{r}
+CPS85 %>%
+  ggplot(aes(x = age, y = wage, shape = married)) + geom_point()
+```
+
+## 9.1
+
+# a) quick presentation
+# b) data verb
+# c) rank
+# d) summary function
+# e) data verb
+# f) quick presentation
+# g) data verb
+# h) transformation
+# i) data verb
+# j) quick presentation
+
+
+## 9.3
+
+```{r}
+
+diamonds %>%
+  group_by(color)%>%
+  summarise(size = mean(carat, na.rm = TRUE)) %>%
+  arrange(desc(size)) %>%
+  head(1)
+
+```
+
+# 1: J color diamonds are largest on average
+
+```{r}
+
+diamonds%>%
+  group_by(clarity)%>%
+  summarise(ave_table = mean(table, na.rm = TRUE)) %>%
+  arrange(desc(ave_table)) %>%
+  head(1)
+```
+
+# 2: I1 clarity diamonds have the largest average table per carat
+
+
