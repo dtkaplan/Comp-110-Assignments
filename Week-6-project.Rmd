@@ -1,6 +1,6 @@
 # Week 6 Project
 
-## Your name should appear here!
+## Sam Erickson
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -11,3 +11,37 @@ library(DataComputing)
 <!-- put your content after this line -->
 
 Here is my content!
+```{r}
+companies <- c('MMM','DOW','BAYN')
+Prices <- read_stock_prices(companies,what='daily',start_year=2000,end_year=2015)
+```
+
+```{r}
+ggplot(Prices,aes(x=date,y=close)) +
+  geom_line(aes(color=company),size=0.5)
+```
+
+```{r}
+Actions <- data.frame(action=c('buy','sell'),
+  data = ymd(c("2006-01-03","2014-12-30")))
+
+Combined <-
+  Prices %>%
+  inner_join(Actions,by=c('date' = 'data')) %>%
+  select(close,company,action) %>%
+  spread(key=action,value=close) %>%
+  mutate(profit = sell-buy) %>%
+  mutate(percent= (sell-buy)/buy*100)
+
+Combined
+  
+# Combined <-
+#   Prices %>%
+#   left_join(Actions, by=c('date' = 'data')) %>%
+#   filter(action == 'buy'|action =='sell') %>%
+#   spread(key=action,value=close)
+  
+```
+
+
+

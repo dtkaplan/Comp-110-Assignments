@@ -96,7 +96,11 @@ ggplot(mosaicData::CPS85,aes(x=sex,y=wage)) +
 Male: ~1.65
 Female: ~1.6
 
-14.7, 14.10
+14.7, 
+
+
+
+14.10
 
 
 
