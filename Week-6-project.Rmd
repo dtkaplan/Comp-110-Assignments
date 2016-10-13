@@ -1,6 +1,6 @@
 # Week 6 Project
 
-## Your name should appear here!
+## Wendy Chu
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,63 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+```{r}
+companies <- c("AAPL", "MSF.DU", "LNVGY")
+Prices <-
+  read_stock_prices(companies, what="daily", start_year = 1995,end_year = 2016)
+head(Prices)
+```
+
+```{r}
+ggplot(Prices, aes(x=date, y=adj_close)) + geom_point(aes(color=company))
+```
+
+
+```{r}
+Actions <-
+  data.frame(action=c("buy", "sell"), 
+             date= ymd(c("2010-05-17","2016-02-25")))
+```
+
+```{r}
+Actions %>%
+  left_join(Prices) %>%
+  select(adj_close, action, company) %>%
+  spread(key=action, value=adj_close) %>%
+  mutate(profit=sell-buy, percent=100*profit/sell)
+```
+
+
+```{r}
+ref_date <-
+  ymd("2010-02-16")
+Reference <-
+  Prices %>%
+  filter(date==ref_date) %>%
+  select(company, standard=adj_close)
+
+Index <-
+  Prices %>%
+    left_join(Reference) %>%
+    mutate(index=100*adj_close/standard)
+head(Index)
+```
+
+```{r}
+ggplot(Index, aes(x=date, y=index)) + geom_point(aes(color=company))
+```
+
+```{r}
+Dividends <- 
+  read_stock_prices(companies,what="dividends")
+head(Dividends)
+
+
+Dividends %>%
+  mutate(buy = ymd("2010-05-17"), sell = ymd("2016-02-25")) %>%
+  filter(date >= buy, date <= sell) %>%
+  group_by(company) %>%
+  summarise(total_paid = sum(dividends))
+
+```
+
