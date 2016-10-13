@@ -1,6 +1,6 @@
 # Week 6 Project
 
-## Your name should appear here!
+## Qiuhan Sun
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,50 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+#Task
+The income (and loss) from buying and selling is higher. The dividend increases gradually, but the maximum dividend does not exceed 10. However, the stock price can increase from 60 to 80 in a very short of time. So the income from selling and buying is higher.
+
+There's no correlation between the income from dividends and from buying and selling. When the price of a stock increases, its dividend does not necessarily increase. Also, some stocks may have higher prices but low dividend.   
+
+
+# Getting Price Data
+```{r warning = FALSE}
+companies <- c("AAPL","GOOGL","MSFT")
+Prices <- read_stock_prices (companies,what="daily",start_year=2000,end_year=2015)
+Prices %>% ggplot(aes(x = date, y = close)) + geom_line(aes (color=company)) 
+```
+
+# Buy/Sell Profit
+```{r warning = FALSE}
+Actions <- data.frame(action=c("buy","sell"),
+                      date=ymd(c("2008-01-03","2014-12-30")))
+
+NewActions <- Actions %>%
+  left_join(Prices) %>%
+  select(action,company,close) %>%
+  spread(key=action,value=close)
+
+NewActions
+
+Profit <- NewActions %>%
+ mutate(profit=sell-buy) %>%
+ mutate(percent=profit/buy)
+
+Profit
+```
+
+## Indexing prices
+```{r warning = FALSE}
+ref_date <- ymd("2005-01-05")
+Reference <- Prices %>% filter (date==ref_date) %>% 
+  select(company,standard=close)
+NewReference <- Prices %>%
+  left_join(Reference) %>%
+  mutate (index=close/standard)
+```
+
+## Dividends
+```{r}
+#Dividends <- read_stock_prices(companies,what="dividends")
+```
+
