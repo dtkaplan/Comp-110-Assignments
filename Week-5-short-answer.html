@@ -120,12 +120,66 @@ $(document).ready(function () {
 
 <div id="week-5-short-answer-questions" class="section level1">
 <h1>Week 5 Short Answer Questions</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="shelby-witherby" class="section level2">
+<h2>Shelby Witherby</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:27:09 2016.</p>
-<!-- put your content after this line -->
-<p>Here is my content!</p>
+<p>Compiled on Thu Oct 13 20:28:28 2016.</p>
+</div>
+<div id="section" class="section level2">
+<h2>10.1</h2>
+</div>
+</div>
+<div id="join-data-verbs-always-have-a-data-table-as-one-of-the-arguments-inside-the-parentheses-because-they-turn-two-data-tables-into-one-data-table.-the-data-table-inside-the-parantheses-specifies-what-youre-joining-to-the-original-table." class="section level1">
+<h1>Join data verbs always have a data table as one of the arguments inside the parentheses because they turn two data tables into one data table. The data table inside the parantheses specifies what you’re joining to the original table.</h1>
+<div id="section-1" class="section level2">
+<h2>10.2</h2>
+</div>
+</div>
+<div id="the-information-in-the-two-tables-cannot-be-successfully-combined-by-laying-the-two-tables-side-by-side-into-a-single-table-because-the-two-tables-are-not-identical.-the-cases-for-each-country-are-different.-additionally-demographics-has-more-rows-than-countrycentroids." class="section level1">
+<h1>The information in the two tables cannot be successfully combined by laying the two tables side by side into a single table because the two tables are not identical. The cases for each country are different. Additionally, demographics has more rows than CountryCentroids.</h1>
+<div id="section-2" class="section level2">
+<h2>10.3</h2>
+</div>
+</div>
+<div id="table-b." class="section level1">
+<h1>1: Table B.</h1>
+<p>tableB %&gt;% mutate(difference = Y2001-Y2000)</p>
+</div>
+<div id="table-c" class="section level1">
+<h1>2: Table C</h1>
+<p>tableC %&gt;% join(ContinentData) %&gt;% group_by(Continent, Year) %&gt;% summarise(total = sum(Value))</p>
+<div id="section-3" class="section level2">
+<h2>11.1</h2>
+</div>
+</div>
+<div id="a-one-a-group-of-people-in-a-gender-who-have-a-certain-name-in-a-particular-year.-twoa-name-in-a-particular-year.-three-group-of-people-with-a-name-in-a-gender" class="section level1">
+<h1>a) One: a group of people in a gender who have a certain name in a particular year. Two:a name in a particular year. Three: group of people with a name in a gender</h1>
+</div>
+<div id="b-one-is-narrow-two-is-wide" class="section level1">
+<h1>b) One is narrow, two is wide</h1>
+</div>
+<div id="c-sex" class="section level1">
+<h1>c) sex</h1>
+</div>
+<div id="d-there-are-no-nas-in-version-one-because-it-is-narrow" class="section level1">
+<h1>d) There are no NAs in Version One because it is narrow</h1>
+<div id="section-4" class="section level2">
+<h2>11.3</h2>
+</div>
+</div>
+<div id="a-a-is-wide-c-is-narrow" class="section level1">
+<h1>a) A is wide, C is narrow</h1>
+</div>
+<div id="b-b-is-wide-c-is-narrow" class="section level1">
+<h1>b) B is wide, C is narrow</h1>
+</div>
+<div id="c-a-is-wide-c-is-narrow" class="section level1">
+<h1>c) A is wide, C is narrow</h1>
+<div id="section-5" class="section level2">
+<h2>11.5</h2>
+<p>“<a href="http://tiny.cc/dcf/MeasTreatTables.rda" class="uri">http://tiny.cc/dcf/MeasTreatTables.rda</a>” %&gt;% url() %&gt;% load()</p>
+<p>load(“foo.rda”)</p>
+<p>joinedDates &lt;- Measurements %&gt;% left_join(Treatments) %&gt;% mutate(when = ifelse(date &gt; treatment_date, “after”, “before”)) %&gt;% spread(key = what, value = value)</p>
 </div>
 </div>
 

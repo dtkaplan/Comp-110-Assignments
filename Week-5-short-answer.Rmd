@@ -5,41 +5,55 @@
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
-```{r}
-download.file("http://tiny.cc/dcf/ScorecardSmall.Rda", destfile = "ScorecardSmall.Rda")
+## 10.1
+# Join data verbs always have a data table as one of the arguments inside the parentheses because they turn two data tables into one data table. The data table inside the parantheses specifies what you're joining to the original table.
 
-load("ScorecardSmall.Rda")
+## 10.2
+# The information in the two tables cannot be successfully combined by laying the two tables side by side into a single table because the two tables are not identical. The cases for each country are different. Additionally, demographics has more rows than CountryCentroids. 
+
+## 10.3
+# 1: Table B. 
+
+tableB %>%
+  mutate(difference = Y2001-Y2000)
+
+
+
+# 2: Table C
+
+tableC %>%
+  join(ContinentData) %>%
+  group_by(Continent, Year) %>%
+  summarise(total = sum(Value))
+
+## 11.1 
+# a) One: a group of people in a gender who have a certain name in a particular year. Two:a name in a particular year. Three: group of people with a name in a gender
+# b) One is narrow, two is wide
+# c) sex
+# d) There are no NAs in Version One because it is narrow
+
+## 11.3
+# a) A is wide, C is narrow
+# b) B is wide, C is narrow
+# c) A is wide, C is narrow
+
+## 11.5
+
+
+```{r}
+
+"http://tiny.cc/dcf/MeasTreatTables.rda" %>%
+  url() %>%
+  load()
+load("foo.rda")
+JoinedDates <- Measurements %>%
+  left_join(Treatments) %>%
+  mutate(when = ifelse(date > treatment_date, "after", "before")) %>%
+  spread(key = what, value = value)
+
+
+
 ```
 
-```{r}
-MyData <-
-  ScorecardSmall%>%
-  select(CONTROL, ADM_RATE, NPT41_PUB, NPT43_PUB, NPT45_PUB, NPT41_PRIV,NPT43_PRIV, NPT45_PRIV)%>%
-  gather(key = quintile, value = Netcost,NPT41_PUB, NPT43_PUB, NPT45_PUB, NPT41_PRIV,NPT43_PRIV, NPT45_PRIV)
 
-
-
-
-
-```
-
-```{r}
-download.file("http://tiny.cc/dcf/ScorecardSmall.Rda", destfile = "ScorecardSmall.Rda")
-load("ScorecardSmall.Rda")
-translations <- read.csv("http://tiny.cc/dcf/NPT4-names.csv")
-```
-
-
-```{r}
-
-MyData <-
-  ScorecardSmall%>%
-  select(CONTROL, ADM_RATE, NPT41_PUB, NPT43_PUB, NPT45_PUB, NPT41_PRIV,NPT43_PRIV, NPT45_PRIV)%>%
-  gather(key = quintile, value = Netcost,NPT41_PUB, NPT43_PUB, NPT45_PUB, NPT41_PRIV,NPT43_PRIV, NPT45_PRIV)%>%
-  left_join(translations, by=c(quintile = "long_name"))
-  
-
-ggplot(MyData, aes(ADM_RATE, y = Netcost)) + geom_point() + geom_smooth() + facet_grid(CONTROL~short_name)
-
-```
 
