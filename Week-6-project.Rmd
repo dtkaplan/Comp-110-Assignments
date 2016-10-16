@@ -23,10 +23,12 @@ Prices <- read_stock_prices (companies,what="daily",start_year=2000,end_year=201
 Prices %>% ggplot(aes(x = date, y = close)) + geom_line(aes (color=company)) 
 ```
 
+
 # Buy/Sell Profit
 ```{r warning = FALSE}
 Actions <- data.frame(action=c("buy","sell"),
                       date=ymd(c("2008-01-03","2014-12-30")))
+Actions
 
 NewActions <- Actions %>%
   left_join(Prices) %>%
@@ -53,7 +55,23 @@ NewReference <- Prices %>%
 ```
 
 ## Dividends
-```{r}
-#Dividends <- read_stock_prices(companies,what="dividends")
+```{r warning = FALSE}
+# google does not pay dividend, so I excluded it out
+Dividends <- read_stock_prices(c("AAPL","MSFT"),what="dividends")
+Dividendtable <- Dividends %>%
+  left_join(NewActions) 
+
+Dividenddollar <- Dividendtable %>%
+   mutate(dollar_dividend=dividends*buy) 
+
+TotalDividend <- Dividenddollar %>%
+  filter(date>ymd("2008-01-03")) %>% 
+  filter(date<ymd("2014-12-30")) %>%
+  group_by(company) %>%
+  summarize (total_dividend=sum(dollar_dividend))
+TotalDividend
 ```
 
+Compare the dividend to the profit:
+
+Apple (-82.41) and google (-150) made negative profits while MSFT made 11.65 profit. For dividend, google made 0; apple made 836 and microsoft made 182. Dividend seems to be a more stable income source.

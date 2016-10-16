@@ -123,7 +123,7 @@ $(document).ready(function () {
 <div id="qiuhan-sun" class="section level2">
 <h2>Qiuhan Sun</h2>
 <!-- leave this material as is -->
-<p>Compiled on Wed Oct 12 21:32:25 2016.</p>
+<p>Compiled on Sat Oct 15 23:43:06 2016.</p>
 <!-- put your content after this line -->
 </div>
 </div>
@@ -150,8 +150,11 @@ Prices &lt;- read_stock_prices (companies,what=&quot;daily&quot;,start_year=2000
 <h1>Buy/Sell Profit</h1>
 <pre class="r"><code>Actions &lt;- data.frame(action=c(&quot;buy&quot;,&quot;sell&quot;),
                       date=ymd(c(&quot;2008-01-03&quot;,&quot;2014-12-30&quot;)))
-
-NewActions &lt;- Actions %&gt;%
+Actions</code></pre>
+<pre><code>##   action       date
+## 1    buy 2008-01-03
+## 2   sell 2014-12-30</code></pre>
+<pre class="r"><code>NewActions &lt;- Actions %&gt;%
   left_join(Prices) %&gt;%
   select(action,company,close) %&gt;%
   spread(key=action,value=close)</code></pre>
@@ -174,7 +177,35 @@ Profit</code></pre>
 <h2>Indexing prices</h2>
 <pre class="r"><code>ref_date &lt;- ymd(&quot;2005-01-05&quot;)
 Reference &lt;- Prices %&gt;% filter (date==ref_date) %&gt;% 
-  select(company,standard=close )</code></pre>
+  select(company,standard=close)
+NewReference &lt;- Prices %&gt;%
+  left_join(Reference) %&gt;%
+  mutate (index=close/standard)</code></pre>
+<pre><code>## Joining, by = &quot;company&quot;</code></pre>
+</div>
+<div id="dividends" class="section level2">
+<h2>Dividends</h2>
+<pre class="r"><code># google does not pay dividend, so I excluded it out
+Dividends &lt;- read_stock_prices(c(&quot;AAPL&quot;,&quot;MSFT&quot;),what=&quot;dividends&quot;)
+Dividendtable &lt;- Dividends %&gt;%
+  left_join(NewActions) </code></pre>
+<pre><code>## Joining, by = &quot;company&quot;</code></pre>
+<pre class="r"><code>Dividenddollar &lt;- Dividendtable %&gt;%
+   mutate(dollar_dividend=dividends*buy) 
+
+TotalDividend &lt;- Dividenddollar %&gt;%
+  filter(date&gt;ymd(&quot;2008-01-03&quot;)) %&gt;% 
+  filter(date&lt;ymd(&quot;2014-12-30&quot;)) %&gt;%
+  group_by(company) %&gt;%
+  summarize (total_dividend=sum(dollar_dividend))
+TotalDividend</code></pre>
+<pre><code>## # A tibble: 2 × 2
+##   company total_dividend
+##     &lt;chr&gt;          &lt;dbl&gt;
+## 1    AAPL       835.9671
+## 2    MSFT       182.5092</code></pre>
+<p>Compare the dividend to the profit:</p>
+<p>Apple (-82.41) and google (-150) made negative profits while MSFT made 11.65 profit. For dividend, google made 0; apple made 836 and microsoft made 182. Dividend seems to be a more stable income source.</p>
 </div>
 </div>
 
