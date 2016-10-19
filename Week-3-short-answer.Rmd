@@ -18,7 +18,7 @@ library(DataComputing)
 ggplot(data=CPS85,aes(x=sex,y=wage ,fill=married))+geom_bar(stat='identity',position='dodge', width=.9)+ facet_wrap(~race,ncol=3) 
 ```
 
-#5.2 **
+#5.2 
 ```{r}
 library(mosaicData)
 library(DataComputing)
