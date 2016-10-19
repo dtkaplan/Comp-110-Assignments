@@ -1,6 +1,6 @@
 # Week 4 Short Answer Questions
 
-## Your name should appear here!
+## MICHEALA SHAR P
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,78 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+#8.1 
+###a. geom_point - adds a layer 
+###b. geom_histogram - constructs the graphic frame 
+###c. ggplot() - constructs the graphic 
+###d. scale_y_log10()- changes the scale 
+###e. ylab() - sets an axis label 
+###f. facet_wrap constructs a new layer 
+###g. geom_segment - ? 
+###h. xlim() - sets the range for the s axis 
+###i. ? 
+
+#8.2 
+##Graph 1 
+```{r}
+q <- CPS85 %>% 
+ggplot(aes(x=age, y=wage))
+
+q + geom_point(aes(shape=married)) + facet_grid(sector~.) + ylim(0,30) + xlim(0, 70)
+```
+
+##Graph 2
+#**
+
+#8.3 
+##Graph A 
+###creates a data frame and maps x to age and y to wage with points 
+```{r}
+Frame <- CPS85 %>% 
+  ggplot(aes(x=age, y=wage)) 
+  Frame + geom_point()
+```
+##Graph B 
+###cant do B because corruption isnt apart of the CPS85 dataset 
+##Graph C 
+###wage on the y wage and x to age and two seperate frames for male and female
+```{r} 
+Frame <- CPS85 %>% 
+  ggplot(aes(x=age, y=wage))
+  Frame + geom_point(aes(shape=sex)) + 
+  facet_grid (married~.)
+```
+##Graph D 
+```{r}
+Frame <- CPS85 %>% 
+  ggplot(aes(x=age, y=wage)) 
+  Frame + geom_point(aes(shape=married)) + 
+  ylim(0,30)
+```
+
+#9.1 
+###str() presentation 
+###group_by() data verb 
+###rank() transformation 
+###mean() summary function 
+###filter()data verb 
+####merge() data verb 
+###glimspe() quick presentation 
+
+#9.3
+##Part 1 
+```{r}
+diamonds%>% 
+  group_by(color) %>% 
+  summarise(size=mean(carat, na.rm =TRUE)) %>% 
+  arrange(desc(size)) %>% 
+  head(1)
+```
+##Part 2 
+```{r}
+diamonds%>% 
+  group_by(clarity) %>% 
+  summarise(ave_table = mean(table, na.rm= TRUE)) %>% 
+  arrange(desc(ave_table)) %>% 
+  head(1)
+```
