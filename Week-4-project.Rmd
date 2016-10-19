@@ -1,6 +1,6 @@
 # Week 4 Project
 
-## Your name should appear here!
+## Josh Marcus
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,125 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+```{r}
+library(DataComputing)
+library(mosaicData)
+library(lubridate)
+```
+
+## Births Each Day
+
+#1. Create a new data table, DailyBirths, that adds up all the births for each day across all the states.
+
+```{r}
+DailyBirths <- 
+  Birthdays %>%
+  group_by (date) %>%
+  summarise(total = sum(births))
+```
+
+```{r}
+ggplot(DailyBirths, aes(x = date, y = total)) +
+  geom_point()
+```
+
+#2. To examine the seasonality in birth rates, look at the number of births aggregated over all the years by:
+
+##Each week
+
+```{r}
+WeeklyBirths <- 
+  Birthdays %>%
+  mutate(weeknumber = week(date)) %>%
+  group_by(weeknumber) %>%
+  summarise(weeklybirthtotal = sum(births))
+```
+
+```{r}
+ggplot(WeeklyBirths, aes(x = weeknumber, y = weeklybirthtotal)) +
+  geom_point()
+```
+
+##Each month
+
+```{r}
+MonthlyBirths <- 
+  Birthdays %>% 
+  mutate(monthnumber = month(date)) %>% 
+  group_by(monthnumber) %>%
+  summarise(monthlybirthtotal = sum(births))
+```
+
+```{r}
+ggplot(MonthlyBirths, aes(x = monthnumber, y = monthlybirthtotal)) +
+  geom_line()
+```
+
+##Each Julian day
+
+```{r}
+JulianDailyBirths <- 
+  Birthdays %>% 
+  mutate(jday = yday(date)) %>% 
+  group_by(jday) %>%
+  summarise(dailybirthtotal = sum(births))
+```
+
+```{r}
+ggplot(JulianDailyBirths, aes(x = jday, y = dailybirthtotal)) +
+  geom_line()
+```
+
+#3. Examine patterns within the week, examine number of births each day of the week.
+
+```{r}
+DayofWeekBirths <- 
+  Birthdays %>%
+  mutate(weekday = wday(date)) %>%
+  group_by(weekday) %>%
+  summarise(dayofbirth = sum(births))
+```
+
+```{r}
+ggplot(DayofWeekBirths, aes(x = weekday, y = dayofbirth)) +
+  geom_line()
+```
+
+#4. Pick a two year span, 1980/81. Extract out the data in this interval. Calls it MyTwoYears. Plot out the births in this span day by day. Color each date according to its day of the week. Explain the pattern you see.
+
+```{r}
+MyTwoYears <-
+  Birthdays %>%
+  filter(year %in% c(1980, 1981)) %>%
+  mutate(dayoftheweek = wday(date, label=TRUE)) %>%
+  group_by(date, dayoftheweek) %>%
+  summarise(totalthatday = sum(births))
+```
+
+```{r}
+ggplot(MyTwoYears, aes(x = date, y = totalthatday)) +
+  geom_point(aes(col = dayoftheweek))
+```
+
+```{r}
+ggplot(MyTwoYears, aes(x = date, y = totalthatday)) +
+  geom_line(aes(col = dayoftheweek))
+```
+
+Speaking in broad strokes, non-weekend days all exhibit similar characteristics. They feature similar birth totals across the year, and those totals spike in the third quarter of the year and the final, tiny slice of the year right at the end. Weekend days have similar temporal patterns —— they spike during the fall and right at the end of the year —— but in terms of totals, they fall well below non-weekend days. Looks like for whatever reason, less babies are born on the weekends, and my guess is that lines up with when hospitals are open and when doctors want to work.
+
+## Births and Holidays
+
+```{r}
+Holidays <- read.csv("http://tiny.cc/dcf/US-Holidays.csv") %>%
+  mutate(date = as.POSIXct(lubridate::dmy(date))) %>%
+  filter(year %in% c(1980, 1981)) %>%
+  group_by(year)
+```
+
+```{r}
+ggplot(MyTwoYears, aes(x = date, y = totalthatday)) +
+  geom_line(aes(col = dayoftheweek)) +
+  geom_vline(data = Holidays, aes(xintercept = as.numeric(date))) +
+  geom_text(data = Holidays, aes(x = date, label = holiday), y = 10000, angle = 45)
+```
