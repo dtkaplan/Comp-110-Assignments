@@ -1,13 +1,51 @@
 # Week 2 Project
 
-## Your name should appear here!
+##Micheala Sharp
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
+```{r}
+
+```
 
 ```{r include = FALSE}
 library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+##Basic
+###The data was grabbed from online http://tiny.cc/dcf/Library-small.rda
+```{r} 
+load("Library-small.rda")
+```
+
+###The amount of rows in Inv and Bks 
+```{r}
+InvCases<-nrow(Inv)
+InvCases
+BksCases<-nrow(Bks)
+BksCases
+```
+###The names of variables in Inv and Bks 
+``` {r}
+InvVars<-ls(Inv)
+InvVars
+BksVars<-ls(Bks)
+BksVars
+``` 
+###What does it mean? 
+*In Inv every case represents the location and identification of each book in the Macalester Library*
+*In the Bks case each case represensents a specific book*
+
+###More Fun Things 
+
+```{r}
+Inv %>% group_by(Current.Status) %>% tally()
+```
+
+*This chunk gives the variable Current.Status there are four different catagories Available, Missing, On Loan, or Withdrawn and the amount of books that corresponds to each catagory* 
+
+```{r}
+Inv %>% group_by(Issued.Count) %>% tally()
+```
+*This chunk tells you how many times a book has been issued*

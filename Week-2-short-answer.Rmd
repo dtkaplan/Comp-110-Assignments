@@ -1,6 +1,6 @@
 # Week 2 Short Answer Questions
 
-## Your name should appear here!
+## Micheala Sharp
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,77 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+#1.1: a.3 b.2 c.1 d.3 e.2 
+
+#1.2: Each year which would be a quantative variable are not given seperate coumns. Also "it depends" is not a good value to have in a data set 
+
+#1.3:Name        Years in Office   number of states   
+    *Ab          *5                *?
+    *George      *8                *16 
+    *Martin      *5                *26
+
+#1.4: 
+
+*Data Table A: 1. year, algeria, bril, columbia 2. year
+*Data Table B: 1. country, 2000,2001 2. country 
+*Data Table C: 1. country, year, value 2. country 
+
+#2.2 
+*2, 3, 4 
+
+#2.3: 
+*Current population survey 
+
+#2.4 
+*You can put help("NHANES")
+
+#2.6 
+*1.yes 2.no 3.no 4.no 5.no 6.yrs 7.yrs 8.no 9.no 
+
+#2.7 
+*1. 19 2. 336,776 3. ? 4. some of are quan some are cat 5. 
+
+#2.8 
+*1. syntax 2. syntax 3. invalid object name 4. unmatched quote 5. ? 
+
+#2.9 
+*a. none b. all 
+
+#3.1
+*1. objectname <- fireplace %>% 
+*2. fireplace() 
+*3. x <- "fireplace"
+*4. x(fireplace())
+
+#3.2  
+*Babyname shouldnt be there 
+
+#3.3 
+*no need for the package assignment 
+
+#3.4 
+*The wording of this question is confusin 
+ 
+#3.5 
+*1. brain weight 
+*2. 83 
+*3. animal 
+*4. carni, omni, herbi 
+
+#3.6 
+*d 
+
+#4.1 
+*italics 
+*bold 
+*nothing 
+*header 1 
+*in line r code 
+*header 2 
+
+#4.2 
+*cant have numbers 
+*wrong parenthesis 
+*incomplete quptation 
+
+

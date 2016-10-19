@@ -1,6 +1,6 @@
 # Week 3 Short Answer Questions
 
-## Your name should appear here!
+## Micheala Sharp!
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,44 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+
+#5.1
+```{r}
+library(mosaicData)
+library(DataComputing)
+ggplot(data=CPS85,aes(x=sex,y=wage ,fill=married))+geom_bar(stat='identity',position='dodge', width=.9)+ facet_wrap(~race,ncol=3) 
+```
+
+#5.2 **
+```{r}
+library(mosaicData)
+library(DataComputing)
+WorldMap(key="country", fill="corruption", HappinessIndex)
+```
+
+#6.5 
+###state on the y axis, organization on the x axis
+
+#6.6 
+###a. plain black font 
+###b. the logos 
+###c. the polling results 
+###d. The numbers for polling  
+
+#6.7 
+###a. verticle axis 
+###b.horiznotal axis   
+###c. color 
+###d. color and font 
+
+#6.8
+```{r}
+Small<-
+  NCHS %>%
+  sample_n(size=5000)
+ggplot(data=Small,aes(x=bbmi,y=weight,color=smoker))+geom_point()
+```
+
+
+
+
