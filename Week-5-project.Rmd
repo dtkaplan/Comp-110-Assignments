@@ -1,6 +1,6 @@
 # Week 5 Project
 
-## Your name should appear here!
+##MICHEALA SHARP 
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,44 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+#10.1 
+###Since join combines two seperate tables one of them needs to be in the argument while the other is in the chaining. 
+
+#10.2
+###That would not work because not all cases are included in the table. Both tables need to be the same size and since some cases are missing information the two tables cannot be joined in that way. 
+
+#10.3 
+###Table B is the easiest to compare years and country and you can just use the mutate function 
+
+###Table C is easiest to compare countr and continent data into one table. 
+
+#11.1 
+###a. Version 1: name of persion, sex, year, and # of babies
+###Version 2 name, year, number of F, number of M 
+###Version3 name, sex, number of people with that name born in 1912, number of people with that name born in 2012
+
+###b. Version 1 = wide Version 2 = narrow 
+###c. nbabies
+###d. Because some names dont have both male and female usages and since Version 2 and 3 are narrow it creates this problem 
+###e. because the female/ male columns create more rows that just saying sex
+###f. nbabies 
+#11.3
+###A is wide C is narrow 
+###B is wide C is narrow 
+###They are the same 
+
+#11.4 
+##When      sbp 
+###sub      bho     
+###seb      gwb
+###seb      wjc
+###bef      120 
+###bef      115 
+###bef      135 
+###aft      160 
+###aft      135 
+###aft      145 
+
+
+#11.5 
+
