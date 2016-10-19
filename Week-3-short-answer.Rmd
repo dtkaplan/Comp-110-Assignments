@@ -40,13 +40,53 @@ WorldMap(key="country", fill="corruption", HappinessIndex)
 ###c. color 
 ###d. color and font 
 
-#6.8
+#6.8 **** 
 ```{r}
 Small<-
   NCHS %>%
   sample_n(size=5000)
 ggplot(data=Small,aes(x=bbmi,y=weight,color=smoker))+geom_point()
 ```
+
+
+#7.1
+###a. summarise() -average 
+###b.mutate() adds new column that is a ratio between two variables 
+###c. arrange() creates new data table 
+###d. filter() new data table that fits the criteon 
+###e. select() table with three variable A , B, C, and quan X and product just A and X
+###f. group_by() and summerise() dcreate sepereate cases for exch catagorical variable 
+
+#7.4
+###a. there is no variable called first 
+###b. there is no need to put BabyNames and Tmp as arguments 
+###c. %?%
+
+#7.5
+###a. arrange(sex,count)
+###b. filter(sex=="F")
+###c. filter(sex == "M", count >10 )
+###d. summarise(total = sum(count))
+###e. select(name,count)
+
+
+#7.11
+###a. two columns one for male and female and the count of how many of them share the samne mean age
+###b. colums seperated by diagnosis and the count by mean age 
+###c. sex and diagnosis with count mean age
+###d. age and diagnosis with count of mean age 
+###e. age and count divided by the mean age 
+
+#7.12
+###1. count the number of cases in a data table - *nrow()* 
+###2. list the names of the variable in a data table - *names()*
+###3. for data tables show the code book -*help()*
+###4. load a package into R -*library()*
+###5. mark a data table as grouped by one or more catagorical variables -*group_by()*
+###6. add up, group by group, a wauantitative variable in a data table-*summarise()*
+
+
+
 
 
 
