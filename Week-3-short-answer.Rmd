@@ -1,13 +1,125 @@
 # Week 3 Short Answer Questions
 
-## Your name should appear here!
+## Daniel Ochoa
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(mosaicData)
+library(ggplot2)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+###Question 5.1
+```{r}
+ggplot(data=CPS85,aes(x=sex,y=wage ,fill=married))+geom_bar(stat='identity',position='dodge', width=.9)+ facet_wrap(~race,ncol=3)
+
+```
+
+###Question 5.2
+
+```{r}
+HappinessIndex %>%
+  WorldMap(key = "country", fill = "corruption")
+```
+
+###Question 6.5
+
+b
+
+###Question 6.6
+
+d
+
+###Question 6.7
+
+d
+
+###Question 6.8
+
+```{r}
+Small <-
+  NCHS %>%
+  sample_n(size=5000)
+```
+
+```{r}
+ggplot(data=Small,aes(x=bmi,y=weight))+geom_point()+aes(colour=smoker)
+```
+
+### Question 7.1
+
+
+a) summarise(mean())
+
+b) mutate()
+
+c) arrange(desc())
+
+d) filter()
+
+e) select()
+
+f) mutate()
+
+### Question 7.4
+
+a) "First" is not a variable in BabyNames
+
+b) The pipe is used wrongly.
+
+c) Have to summarise Tmp, not BabyNames
+
+
+### Question 7.5
+
+a) arrange(sex, count)
+
+b) filter(sex = M)
+
+c) filter(sex = F)
+
+d) n(row)
+
+e) select(name, count)
+
+
+
+### Question 7.7
+
+a) Shouldn't have BabyNames in the summarise function.
+
+b) Missing a pipe in the first line.
+
+c) Missing a pipe in the second line. SHould not have an assignment operator.
+
+d) Minneapolis2013 should be at the beginning, not at the end.
+
+### Question 7.11
+
+a) total count of each sex, mean age of each sex.
+
+b) total count of each diagnosis, the average age at which someone gets each diagnosis.
+
+c) number of people of each sex that get each diagnosis, mean age of each diagnosis for both sexes.
+
+d) number of people of each age that get each diagnosis, mean age of each diagnosis.
+
+e) number of people of each age, and that age.
+
+
+### Question 7.12
+
+1) nrow()
+
+2) summarise()
+
+3) help
+
+4) library()
+
+5) group_By
+
+6) tally()

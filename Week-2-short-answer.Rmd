@@ -1,6 +1,6 @@
 # Week 2 Short Answer Questions
 
-## Your name should appear here!
+## Daniel Ochoa
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,220 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+##Question 1.1
+
+a) 3
+
+b) 1
+
+c) 1
+
+d) 1
+
+e) 2
+
+
+##Question 1.2
+"It depends" is not a number, but it is in a column with quantitative values.
+
+
+##Question 1.4
+1) Years and Countries
+
+2) Table A: year, Table B: Country, Table C: A country in a year
+
+
+##Question 1.5
+1) 5
+
+2) An airport
+
+3) name:categorical,
+
+lat,lon: categorical,
+
+alt: quantitative,
+
+tz: categorical,
+
+dst: categorical
+
+
+##Question 2.2
+2. file name
+
+### Question 2.3
+CPS85 = Current Population Survey from 1985
+
+##Question 2.4
+You are passing in an argument with a name NHANES and then assigning NHANES a value in the next argument. 
+
+##Question 2.6
+1) legitimate
+
+2) not legitimate. You can't use "-".
+
+3) not legitimate. You can't use quotes.
+
+4) legitimate
+
+5) not legitimate. You can't use space.
+
+6) legitimate
+
+7) legitimate
+
+8) legitimate
+
+9) not legitimate. You can't use parentheses.
+
+##Question 2.7
+1) 18
+
+2) 336,776
+
+3) Each case is a flight
+
+4) categorical: year, month, day, time, scheduled depart time, arr time, sched arr time, carrier, flight, tailnum, origin, dest, hour, minute, time_hour
+
+quantitative: dep delay, arr delay, airtime, distance
+
+5) distance: miles, air_time: minutes
+
+##Question 2.8
+a) Missing parentheses
+
+b) Theres an extra "-"
+
+c) Name begins with number
+
+d) Missing end quotes
+
+e) No mistake
+
+##Question 2.9
+"."" and "-"" can be used in a name of an object.
+
+All can be used in a quoted character string.
+
+##Question 2.10
+1) 75
+
+2) Total fat for an individual
+
+3) 23,018
+
+4) Year
+
+5) UNA = unaffiliated, DEM = democrat, REP = republican
+
+##Question 3.1
+
+1) nrow(fireplace)
+
+2) fireplace = sqrt()
+
+3) data(fireplace = "DataComputing")
+
+4) summarise(fireplace = sum(count))
+
+##Question 3.2
+3.2: The pipe should not be at the start. 
+
+##Question 3.3
+You are initilizeing package to NHANES after it is already given an argument of NHANES, further more you are doing so inside of a help command. 
+
+##Question 3.4
+
+1) b
+
+2) a
+
+3) d
+
+4) a
+
+5) a
+
+6) c
+
+7) c
+
+8) a
+
+9) d
+
+10) a
+
+11) c
+
+12) a
+
+13) a
+
+14) d
+
+15) d
+
+16) a
+
+17) c
+
+18) a
+
+19) d
+
+##Question 3.5
+
+brainwt variable = weight of brain of animal in kg
+
+83
+
+Each case is an animal
+
+herbi, omni, insecti, carni
+
+##Question 3.6
+
+c
+
+##Question 4.1
+
+1) italic
+
+2) bold
+
+3) Unordered list
+
+4) Header 1
+
+5) r chunk
+
+6) Header 2
+
+7) links
+
+##Question 4.2
+a) Wrong symbols, apostrophe things
+
+b) Used () instead of {} and using quotations instead of apostrophes 
+
+c) Missing ` at the end
+
+d) All on one line
+
+e) Added one to many ` at the end
+
+
+##Question 4.4
+1) neither
+
+2) file
+
+3) neither
+
+4) URL
+
+5) both
+
+6) url
