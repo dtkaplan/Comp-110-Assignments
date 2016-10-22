@@ -1,6 +1,6 @@
 # Week 3 Short Answer Questions
 
-## Your name should appear here!
+## Joshua Doyle 
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,151 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+## 5.1
+
+**Below, the recreated graph:**
+
+
+**When knitting to an html barGraphHelper was generating an error message, so I decided to take it out of my chunk of code.**
+
+library(mosaicData)
+library(DataComputing)
+barGraphHelper(CPS85)
+
+
+```{r}
+ggplot(data=CPS85,aes(x=sex,y=wage ,fill=married))+geom_bar(stat='identity',position='dodge', width=.9)+ facet_wrap(~race,ncol=3)
+```
+
+##5.2 
+
+Although, the map isn't perfect, it is a way of reproducing the graphic.
+
+```{r}
+WorldMap(HappinessIndex, key=country, fill=corruption)
+```
+
+##6.5
+
+The frame is defined through State and Polling organization. 
+
+##6.6 
+
+**d)** Glyph: Rectangle. Graphical attribute: color and text 
+
+##6.7
+
+**e)** Date of the poll
+
+##6.8)
+
+```{r}
+Small <-
+  NCHS %>%
+    sample_n(size=5000)
+```
+
+**When knitting to an html scatterGraphHelper was generating an error message, so I decided to take it out of my chunk of code.** 
+
+scatterGraphHelper(Small)
+
+```{r}
+ggplot(data=Small,aes(x=bmi,y=weight))+geom_point()+aes(colour=smoker) 
+```
+
+We graph BMI on the x axis and weight on the y axis. A third variable is introduced by using smoker to distinguish with color. 
+
+##7.1 
+
+**a)** mean()
+**b)** summarise(BMI = height/weight) or mutate()
+**c)** arrange()
+**d)** filter()
+**e)** select()
+**f)** group_by 
+
+##7.4
+
+**a)**
+
+```{r}
+BabyNames %>%
+  group_by(name) %>%
+  summarise(votesReceived = n())
+```
+
+The error above is that we should group by the variable **name**, and not by string "first". It also shouldn't be in quotes. Changing the statement above corrects this error. 
+
+**b)**
+
+BabyNames is the table, we cannot use it for the group by clause. We are only supposed to use the variables year and sex. Simmilarly, TMP shouldn't be used in the summary statement because it is the final output and not a variable we can use in the table. 
+
+**c**
+
+BabyNames is an input for groupby and summarise, both of which a data table shouldn't be used for. Additionally, the chaining notation should be used after the group by clause. 
+
+##7.5
+
+**a)** arrange by sex and by count in order to get male and female values seperated and het count in ascending order. 
+
+**b)** filter by sex == f to receive only female cases. This makes sense because we have half of the rows (860,046). 
+
+**c)** Filtering by sex == m and count > 10 will yield about 416,756 cases. 
+
+**d)** summarise( total = sum(count)) will yield the total count of all names in the data table. 
+
+**e)** Using **Select** clause with variables name and count will provide the depicted table. 
+
+##7.7
+
+**a)**
+```{r}
+BabyNames %>%
+  group_by(year, sex) %>%
+  summarise(total = sum(count))
+```
+
+**b)** 
+
+```{r}
+ZipGeography %>%
+  group_by(State) %>%
+  summarise(pop = sum(Population, na.rm = TRUE))
+```
+
+**c)** 
+
+```{r}
+Minneapolis2013 %>%
+  group_by(First) %>%
+  summarise(voteReceived = n())
+```
+
+**d)** 
+
+```{r}
+Minneapolis2013 %>%
+  group_by(First) %>%
+  summarise(votesReceived = n())
+```
+
+#7.11
+
+**a)** There will be 3 columns. A column with sex (m or f), the count of people with a certain sex and the mean age of those cases. 
+
+**b)** There will be 3 columns. A column with different sicknesses (diagnoses), the count of those people and the mean age of those cases. 
+
+**c)** There will will be 4 columns. The first two columns will be sex and diagnosis, followed by the count of and age of those cases. 
+
+**d)** There will be 4 columns. The first two columns will be age and and diagnosis of patients. After grouping by these variables, there will be two additional columns with count and mean age of all cases. 
+
+**e)** 3 columns: Age, Count, Mean Age
+
+##7.12
+
+**1)** Nrow or dim()
+**2)** names()
+**3)** help()
+**4)** library()
+**5)** group_by()
+**6)** summarise()
