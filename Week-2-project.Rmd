@@ -10,4 +10,4 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+##Week 2 Project is in the Small Project books RMD.  
