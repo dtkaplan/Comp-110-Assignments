@@ -1,6 +1,6 @@
 # Week 4 Short Answer Questions
 
-## Your name should appear here!
+## Joshua Doyle!
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -11,3 +11,106 @@ library(DataComputing)
 <!-- put your content after this line -->
 
 Here is my content!
+
+##8.1
+
+**a)** Geom_point(): Add a layer of glyphs 
+**b)** Geom_Histogram(): Construct the Graphic Frame
+**c)** GGplot(): Construct the Graphic Frame 
+**d)** ScaleYLog10:Change the scale for the frame 
+**e)** ylab: Set an axis label
+**f)** facet wrap: Divide the frame into facets
+**g)** geom_segment: Add a layer of glyphs
+**h)** xlim: Change the scale for the frame
+**i)** facet_grid: Divide the frame into facets
+
+##8.2
+
+**1:**
+
+```{r}
+ggplot(data = CPS85, aes(x = age, y = wage)) + 
+  xlim(20,60) +
+  ylim(0,30) +
+  geom_point(aes(shape = married)) +
+  facet_wrap(~ sector) 
+ 
+```
+
+**2:**
+
+```{r}
+ggplot(data = CPS85, aes(x = age, y = wage)) +
+  geom_point() +
+  facet_grid(sex ~ married)  
+```
+
+
+##8.3
+
+**A)**
+
+```{r}
+ggplot(data = CPS85, aes(x = age, y = wage)) +
+  geom_point()
+```
+
+**B)**
+
+```{r}
+WorldMap(HappinessIndex, key=country, fill=corruption)
+```
+
+**C)**
+
+```{r}
+ggplot(data = CPS85, aes(x = age, y = wage)) +
+  geom_point(aes(shape = sex)) + 
+  facet_grid(married ~ .)
+```
+
+**D)**
+
+```{r}
+ggplot(data = CPS85, aes(x = age, y = wage)) +
+  geom_point(aes(shape = sex)) +
+  ylim(0,30)
+```
+
+##9.1 
+
+a) str(): Quick Presentation
+b) group_by: Data verb
+c) rank: Transformation
+d) mean(): Summary Function
+e) Filter(): Data Verb
+f) Summarise(): Data Verb
+h) Anti_join(): Transformation
+i) Glimpse(): Quick Presentation
+
+##9.3) 
+
+**1)**
+
+```{r}
+diamonds %>%
+  group_by(color) %>%
+  summarise(Size = mean(carat)) %>%
+  arrange(desc(Size)) %>%
+  head(1)
+```
+
+**The diamond with color J has the largest average carat with 1.16.**
+
+**2)**
+
+```{r}
+diamonds %>%
+  group_by(clarity) %>%
+  summarise(AvgTable = mean(table/carat)) %>%
+  arrange(desc(AvgTable)) %>%
+  head(1)
+```
+
+**VVS1 is the clarity with the higherst average table per carat. **
+
