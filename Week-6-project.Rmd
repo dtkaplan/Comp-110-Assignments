@@ -11,3 +11,94 @@ library(DataComputing)
 <!-- put your content after this line -->
 
 Here is my content!
+
+##Stocks and Dividens 
+
+```{r}
+companies <- 
+  c("TRI","AAPL","MSFT") 
+Prices <- read_stock_prices(companies, what = "daily", start_year = 2000, end_year = 2015)
+```
+
+## Below my GGPLOT for Apple, Twitter and Thomson Reuters 
+
+```{r}
+Prices %>%
+  ggplot(aes(x = date, y= close)) + geom_line(aes(color = company))
+```
+
+## Buy/Sell Profit 
+
+```{r}
+Actions <- data.frame(action = c("buy", "sell"), date = ymd(c("2008-01-03", "2012-12-28")))
+```
+
+## Below a table for the company, buy and sell 
+We use a left join to get the data in the correct format. 
+
+```{r}
+Pricesx <- 
+  Actions %>%
+  left_join(Prices) %>%
+  select(action, company, adj_close)%>%
+  spread(key = action, value = adj_close)
+Pricesx
+```
+
+Below, the second table with profits and percentage increases and decreases. 
+
+```{r}
+PricesY <-
+  Pricesx %>%
+  mutate(profit = (sell-buy)) %>%
+  mutate(percent = ((sell-buy)/buy)*100) %>%
+  select(company, profit, percent)
+PricesY
+```
+
+
+##Indexing Prices
+
+The reference date is likely 2005 as indicated by the function. 
+
+
+```{r}
+ref_date <- ymd("2007-01-03")
+Reference <- Prices %>%
+  filter(date == ref_date) %>%
+  select(company, standard = close)
+
+ReferenceY <-
+  Prices %>%
+  left_join(Reference) %>%
+  mutate(Index = (close/standard))
+```
+
+```{r}
+ReferenceY %>%
+  ggplot(aes(x = date, y = Index)) + geom_line(aes(color = company))
+```
+
+##Dividends
+
+```{r}
+Dividends <- read_stock_prices(companies, what = "dividends")
+```
+
+
+
+NewDate <- c(ymd("2005-01-01"), ymd("2014-01-01"))
+Dividends %>%
+  filter(date %in% NewDate) %>%
+  select()
+
+
+
+Prices %>%
+  left_join(Dividends) %>%
+  mutate(total_dividend =   )
+
+
+
+left join prices and this table 
+
