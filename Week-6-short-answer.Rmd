@@ -104,9 +104,12 @@ I'm running close to the time limit so I won't spent time to change to color or 
 
 ### 14.10
 
+<<<<<<< HEAD
 ```{r}
 Galton %>%
   ggplot(aes(x=height,group=sex)) + 
   geom_density(aes(fill=sex),alpha=0.5)
 ```
+=======
+>>>>>>> 040e286c6ee0a81fc935dc94b2a8d68b7a4a8f1f
 

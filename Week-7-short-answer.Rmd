@@ -1,6 +1,6 @@
 # Week 7 Short Answer Questions
 
-## Your name should appear here!
+## Tristan Truttmann
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,88 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+
+### 15.1 
+
+```{r}
+library(lubridate)
+tristan <- ymd("1995-08-14")
+gauss <- mdy("April 30, 1777")
+tristan-gauss
+turing <- mdy("06-23-1912")
+tristan-turing
+bell <- dmy("3 March 1847")
+tristan-bell
+arm <- parse_date_time("11:00 am on Nov. 11th, 1918",orders="H:M%m%d%y")
+tristan - arm
+moon <- mdy("July 20, 1969")
+```
+### 15.2
+
+```{r}
+library(tidyr)
+as.numeric("42,659.30")
+extract_numeric( "42,659.30")
+as.numeric("17%")
+extract_numeric("17%")
+as.numeric("Nineteen")
+extract_numeric("Nineteen")
+as.numeric("£100")
+extract_numeric("£100")
+as.numeric("9.8 m/seconds-square")
+tidyr::extract_numeric("9.8 m/seconds-square")
+as.numeric("9.8 m/sˆ2")
+extract_numeric("9.8 m/sˆ2")
+as.numeric("6.62606957 × 10ˆ-34 m2 kg / s")
+extract_numeric("6.62606957 × 10ˆ-34 m2 kg / s")
+as.numeric("6.62606957e-34")
+extract_numeric("6.62606957e-34")
+as.numeric("42.659,30")
+extract_numeric("42.659,30")
+```
+
+(a) Only `extract_numeric()` works. 
+(b) None of these really work becuase they fail to interpret the percent sign correctly.  But `extract_numeric()` at least got the 17 part right. 
+(c) They both fail on this one suprisingly. 
+(d) Only the `extract_numeric` worked for this. 
+(e) Wow they both fail here. 
+(f) Only the `tidyr` function worked here. 
+(g) Neither function worked here. 
+(h) Hey! The as.numeric() function worked here! `extract_numeric()` did not work. 
+(i) Only `extract_numeric()` worked here. 
+
+### 16.1
+
+(1) 
+
+```{r}
+library(DataComputing)
+MaleWithVowel <- BabyNames %>%
+  filter(sex=="M") %>% 
+  filter(grepl("[aeiou]$",name)) %>% 
+  group_by(name) %>%
+  summarize(count = sum(count)) %>% 
+  arrange(desc(count)) %>%
+  head(10)
+```
+(2) 
+
+```{r}
+library(DataComputing)
+EndWithJo <- BabyNames %>%
+  filter(grepl("jo$|joe$",name)) %>% 
+  group_by(name) %>%
+  summarize(count = sum(count)) %>% 
+  arrange(desc(count)) %>%
+  head(10)
+```
+
+### 16.2
+
+This regular expression would match any phone number that does not include parantheses in it and has 7 digits with the standars ., -, or space seperating the first 3 and the last 4 from the rest.  
+
+### 16.3
+
+(1) It will only be two characers. 
+(2) It matches 61 characters. 
+(3) This must be state abbreviations. (I'm not sure why there are 61, but I still think it is state abbreviations. )

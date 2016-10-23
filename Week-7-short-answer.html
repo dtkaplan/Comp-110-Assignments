@@ -120,12 +120,139 @@ $(document).ready(function () {
 
 <div id="week-7-short-answer-questions" class="section level1">
 <h1>Week 7 Short Answer Questions</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="tristan-truttmann" class="section level2">
+<h2>Tristan Truttmann</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:28:15 2016.</p>
+<p>Compiled on Sun Oct 23 11:01:29 2016.</p>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
+<div id="section" class="section level3">
+<h3>15.1</h3>
+<pre class="r"><code>library(lubridate)
+tristan &lt;- ymd(&quot;1995-08-14&quot;)
+gauss &lt;- mdy(&quot;April 30, 1777&quot;)
+tristan-gauss</code></pre>
+<pre><code>## Time difference of 79728 days</code></pre>
+<pre class="r"><code>turing &lt;- mdy(&quot;06-23-1912&quot;)
+tristan-turing</code></pre>
+<pre><code>## Time difference of 30367 days</code></pre>
+<pre class="r"><code>bell &lt;- dmy(&quot;3 March 1847&quot;)
+tristan-bell</code></pre>
+<pre><code>## Time difference of 54220 days</code></pre>
+<pre class="r"><code>arm &lt;- parse_date_time(&quot;11:00 am on Nov. 11th, 1918&quot;,orders=&quot;H:M%m%d%y&quot;)
+tristan - arm</code></pre>
+<pre><code>## Warning: Incompatible methods (&quot;-.Date&quot;, &quot;-.POSIXt&quot;) for &quot;-&quot;</code></pre>
+<pre><code>## [1] &quot;4420501-02-17&quot;</code></pre>
+<pre class="r"><code>moon &lt;- mdy(&quot;July 20, 1969&quot;)</code></pre>
+</div>
+<div id="section-1" class="section level3">
+<h3>15.2</h3>
+<pre class="r"><code>library(tidyr)
+as.numeric(&quot;42,659.30&quot;)</code></pre>
+<pre><code>## Warning: NAs introduced by coercion</code></pre>
+<pre><code>## [1] NA</code></pre>
+<pre class="r"><code>extract_numeric( &quot;42,659.30&quot;)</code></pre>
+<pre><code>## extract_numeric() is deprecated: please use readr::parse_numeric() instead</code></pre>
+<pre><code>## [1] 42659.3</code></pre>
+<pre class="r"><code>as.numeric(&quot;17%&quot;)</code></pre>
+<pre><code>## Warning: NAs introduced by coercion</code></pre>
+<pre><code>## [1] NA</code></pre>
+<pre class="r"><code>extract_numeric(&quot;17%&quot;)</code></pre>
+<pre><code>## extract_numeric() is deprecated: please use readr::parse_numeric() instead</code></pre>
+<pre><code>## [1] 17</code></pre>
+<pre class="r"><code>as.numeric(&quot;Nineteen&quot;)</code></pre>
+<pre><code>## Warning: NAs introduced by coercion</code></pre>
+<pre><code>## [1] NA</code></pre>
+<pre class="r"><code>extract_numeric(&quot;Nineteen&quot;)</code></pre>
+<pre><code>## extract_numeric() is deprecated: please use readr::parse_numeric() instead</code></pre>
+<pre><code>## [1] NA</code></pre>
+<pre class="r"><code>as.numeric(&quot;£100&quot;)</code></pre>
+<pre><code>## Warning: NAs introduced by coercion</code></pre>
+<pre><code>## [1] NA</code></pre>
+<pre class="r"><code>extract_numeric(&quot;£100&quot;)</code></pre>
+<pre><code>## extract_numeric() is deprecated: please use readr::parse_numeric() instead</code></pre>
+<pre><code>## [1] 100</code></pre>
+<pre class="r"><code>as.numeric(&quot;9.8 m/seconds-square&quot;)</code></pre>
+<pre><code>## Warning: NAs introduced by coercion</code></pre>
+<pre><code>## [1] NA</code></pre>
+<pre class="r"><code>tidyr::extract_numeric(&quot;9.8 m/seconds-square&quot;)</code></pre>
+<pre><code>## extract_numeric() is deprecated: please use readr::parse_numeric() instead</code></pre>
+<pre><code>## Warning in tidyr::extract_numeric(&quot;9.8 m/seconds-square&quot;): NAs introduced
+## by coercion</code></pre>
+<pre><code>## [1] NA</code></pre>
+<pre class="r"><code>as.numeric(&quot;9.8 m/sˆ2&quot;)</code></pre>
+<pre><code>## Warning: NAs introduced by coercion</code></pre>
+<pre><code>## [1] NA</code></pre>
+<pre class="r"><code>extract_numeric(&quot;9.8 m/sˆ2&quot;)</code></pre>
+<pre><code>## extract_numeric() is deprecated: please use readr::parse_numeric() instead</code></pre>
+<pre><code>## [1] 9.82</code></pre>
+<pre class="r"><code>as.numeric(&quot;6.62606957 × 10ˆ-34 m2 kg / s&quot;)</code></pre>
+<pre><code>## Warning: NAs introduced by coercion</code></pre>
+<pre><code>## [1] NA</code></pre>
+<pre class="r"><code>extract_numeric(&quot;6.62606957 × 10ˆ-34 m2 kg / s&quot;)</code></pre>
+<pre><code>## extract_numeric() is deprecated: please use readr::parse_numeric() instead</code></pre>
+<pre><code>## Warning in extract_numeric(&quot;6.62606957 × 10ˆ-34 m2 kg / s&quot;): NAs introduced
+## by coercion</code></pre>
+<pre><code>## [1] NA</code></pre>
+<pre class="r"><code>as.numeric(&quot;6.62606957e-34&quot;)</code></pre>
+<pre><code>## [1] 6.62607e-34</code></pre>
+<pre class="r"><code>extract_numeric(&quot;6.62606957e-34&quot;)</code></pre>
+<pre><code>## extract_numeric() is deprecated: please use readr::parse_numeric() instead</code></pre>
+<pre><code>## Warning in extract_numeric(&quot;6.62606957e-34&quot;): NAs introduced by coercion</code></pre>
+<pre><code>## [1] NA</code></pre>
+<pre class="r"><code>as.numeric(&quot;42.659,30&quot;)</code></pre>
+<pre><code>## Warning: NAs introduced by coercion</code></pre>
+<pre><code>## [1] NA</code></pre>
+<pre class="r"><code>extract_numeric(&quot;42.659,30&quot;)</code></pre>
+<pre><code>## extract_numeric() is deprecated: please use readr::parse_numeric() instead</code></pre>
+<pre><code>## [1] 42.6593</code></pre>
+<ol style="list-style-type: lower-alpha">
+<li>Only <code>extract_numeric()</code> works.</li>
+<li>None of these really work becuase they fail to interpret the percent sign correctly. But <code>extract_numeric()</code> at least got the 17 part right.</li>
+<li>They both fail on this one suprisingly.</li>
+<li>Only the <code>extract_numeric</code> worked for this.</li>
+<li>Wow they both fail here.</li>
+<li>Only the <code>tidyr</code> function worked here.</li>
+<li>Neither function worked here.</li>
+<li>Hey! The as.numeric() function worked here! <code>extract_numeric()</code> did not work.</li>
+<li>Only <code>extract_numeric()</code> worked here.</li>
+</ol>
+</div>
+<div id="section-2" class="section level3">
+<h3>16.1</h3>
+<ol style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre class="r"><code>library(DataComputing)
+MaleWithVowel &lt;- BabyNames %&gt;%
+  filter(sex==&quot;M&quot;) %&gt;% 
+  filter(grepl(&quot;[aeiou]$&quot;,name)) %&gt;% 
+  group_by(name) %&gt;%
+  summarize(count = sum(count)) %&gt;% 
+  arrange(desc(count)) %&gt;%
+  head(10)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre class="r"><code>library(DataComputing)
+EndWithJo &lt;- BabyNames %&gt;%
+  filter(grepl(&quot;jo$|joe$&quot;,name)) %&gt;% 
+  group_by(name) %&gt;%
+  summarize(count = sum(count)) %&gt;% 
+  arrange(desc(count)) %&gt;%
+  head(10)</code></pre>
+</div>
+<div id="section-3" class="section level3">
+<h3>16.2</h3>
+<p>This regular expression would match any phone number that does not include parantheses in it and has 7 digits with the standars ., -, or space seperating the first 3 and the last 4 from the rest.</p>
+</div>
+<div id="section-4" class="section level3">
+<h3>16.3</h3>
+<ol style="list-style-type: decimal">
+<li>It will only be two characers.</li>
+<li>It matches 61 characters.</li>
+<li>This must be state abbreviations. (I’m not sure why there are 61, but I still think it is state abbreviations. )</li>
+</ol>
+</div>
 </div>
 </div>
 
