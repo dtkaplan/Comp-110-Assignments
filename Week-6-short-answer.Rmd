@@ -12,76 +12,106 @@ library(DataComputing)
 
 Here is my content!
 
-##Stocks and Dividens 
+##12.1 
 
 ```{r}
-companies <- 
-  c("TRI","AAPL","MSFT") 
-Prices <- read_stock_prices(companies, what = "daily", start_year = 2000, end_year = 2015)
-```
+Top5 <-
+  BabyNames %>% 
+  group_by(sex,name) %>%
+  summarise(TotalCount = sum(count)) %>%
+  filter(rank(desc(TotalCount))<=5)
+Top5
 
-## Below my GGPLOT for Apple, Twitter and Thomson Reuters 
-
-```{r}
-Prices %>%
-  ggplot(aes(x = date, y= close)) + geom_line(aes(color = company))
-```
-
-## Buy/Sell Profit 
-
-```{r}
-Actions <- data.frame(action = c("buy", "sell"), date = ymd(c("2008-01-03", "2012-12-28")))
-```
-
-## Below a table for the company, buy and sell 
-We use a left join to get the data in the correct format. 
-
-```{r}
-Pricesx <- 
-  Actions %>%
-  left_join(Prices) %>%
-  select(action, company, adj_close)%>%
-  spread(key = action, value = adj_close)
-Pricesx
-```
-
-Below, the second table with profits and percentage increases and decreases. 
-
-```{r}
-PricesY <-
-  Pricesx %>%
-  mutate(profit = (sell-buy)) %>%
-  mutate(percent = ((sell-buy)/buy)*100) %>%
-  select(company, profit, percent)
-PricesY
 ```
 
 
-##Indexing Prices
-
-The reference date is likely 2005 as indicated by the function. 
-
+##12.2 
 
 ```{r}
-ref_date <- ymd("2007-01-03")
-Reference <- Prices %>%
-  filter(date == ref_date) %>%
-  select(company, standard = close)
+Fraction100 <-
+  BabyNames %>%
+  group_by(year, name) %>%
+  summarise(total = sum(count)) %>%
+  mutate(Frac10 = ifelse(rank(desc(total)) <= 100, "True", "False" )) %>%
+  group_by(year, Frac10) %>%
+  summarise(total = sum(total))
+Fraction100
 
-ReferenceY <-
-  Prices %>%
-  left_join(Reference) %>%
-  mutate(Index = (close/standard))
 ```
 
 ```{r}
-ReferenceY %>%
-  ggplot(aes(x = date, y = Index)) + geom_line(aes(color = company))
+GlyphReady <-
+  Fraction100 %>% 
+  spread(Frac10, total) %>%
+  mutate(Frac10 = True / (True + False))
 ```
 
-#Dividends
+```{r}
+ggplot(data = GlyphReady, aes(x = year, y = Frac10)) + 
+  geom_point()
+```  
 
 
+##12.3
+
+**a)** summary 
+**b)** summary function 
+**c)** summary 
+**d)** transformation 
+**e)** transformation 
+**f)** summary 
+**g)** transformation 
+**h)** summary
 
 
-left join prices and this table 
+##13.1
+
+There are 8 vertices and 9 edges. 
+
+##13.2 
+
+**1)** A,B,C,C
+**2)** Table 2
+**3)** In Table 1, B C aren't connected as an edge. In Table 3, vertice A isn't directly compared to vertice D. 
+
+##13.3
+
+Table 2 gives the accurate information. 
+
+##13.4
+
+**1)** Exports 
+**2)** Population
+
+##14.1
+
+```{r}
+library(mosaicData)
+CPS85 %>%
+  ggplot(aes(x = sex, y = wage)) +
+  geom_boxplot(aes(fill=sex))
+```
+
+##14.3
+
+For men the most likely height is about 1.75meters, while for women the most likely height is slightly less at 1.6 meters. 
+
+
+##14.7
+
+```{r}
+  ggplot(CPS85, aes(x = educ, y = wage, color = sex)) +
+  geom_point() +
+  stat_smooth(method="lm") 
+```
+
+
+##14.10 
+
+```{r}
+ggplot(Galton, aes(x = height)) +
+  geom_density(aes(fill=sex,color=sex), alpha=0.5)
+
+```
+
+
