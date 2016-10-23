@@ -1,0 +1,29 @@
+---
+title: "Week-7-Notes.Rmd"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Mini languages: 
+
+-Markdown
+-YAML
+-Mosaic
+-LaTeX
+
+
+So we need to know some of these things to pick apart web pages to get data from. 
+
+```{r}
+head(BabyNames)
+Name_count <- BabyNames %>%
+  group_by(name, sex) %>%
+  summarise(total=sum(count)) %>%
+  filter(grepl('?',name))
+Name_count
+```
+
+

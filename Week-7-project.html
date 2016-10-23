@@ -120,12 +120,74 @@ $(document).ready(function () {
 
 <div id="week-7-project" class="section level1">
 <h1>Week 7 Project</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="tristan-truttmann" class="section level2">
+<h2>Tristan Truttmann</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:32:15 2016.</p>
+<p>Compiled on Wed Oct 26 22:27:54 2016.</p>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
+<pre class="r"><code>Wake_county &lt;- read.csv(&quot;http://tiny.cc/dcf/street-addresses.csv&quot;,stringsAsFactors = FALSE)
+download.file(url=&quot;http://tiny.cc/dcf/CMS_ProvidersSimple.rds&quot;,destfile=&quot;YourNameForTheFile.rds&quot;)
+Medicare &lt;- readRDS(&quot;YourNameForTheFile.rds&quot;) </code></pre>
+<pre class="r"><code> # This defines a regular expressio nthat is used to remove labels we have already eliminated
+pattern &lt;- &quot;(ST|RD|ROAD|CIRCLE|WAY|TRAIL|AVE|LN|DR|CT|COURT|CIR|LANE|PKWY|PL|PATH|RUN|TERRACE|PARKWA|CV|CO|HWY|WYND|PT|BRISBAYNE|UNIVERSITY|SUITE|CUTHBERT|MOUNTAIN|TERA|UNION|HARBORVIEW|MAR|MANOR|TER|WHARF|DORM|PASS|MEADOW|HEIGHTS|CREEK|PARK|L)&quot;
+junk &lt;- &quot;BOX|WINERY|HALL|BAREFOOT|LIVE OAK|6516|BX|OAKS|PO|HMIA-267|HMIA-267|B0X|CHARONNE&quot;
+LeftOvers &lt;- # This createds a table for the labels that we haven't eliminated yet. 
+  Wake_county %&gt;% # We take the data we downloaded... 
+  filter( ! grepl(pattern,address) , # ... then we remove ones that have the pattern defined above
+          ! grepl(junk, address) # ... then we remove PO Boxes
+        )
+nrow(LeftOvers)</code></pre>
+<pre><code>## [1] 71</code></pre>
+<pre class="r"><code>head(LeftOvers,16)</code></pre>
+<pre><code>##            address
+## 1      SEBTS 14375
+## 2             1611
+## 3      3210 SR 546
+## 4       6737 US 64
+## 5      676 N 600 W
+## 6    22-24 W 127TH
+## 7            HC-02
+## 8         SMC 1912
+## 9          P O 451
+## 10      NCSU 15597
+## 11      NCSU 21227
+## 12      NCSU 22167
+## 13        3601 MSC
+## 14 SIGMA CHI HOUSE
+## 15      NCSU 16227
+## 16 UNC 218 EVERETT</code></pre>
+<p>I just kept iterating until I had 71 rows left, and then I read through the rows manually to see which ones were not junk. When I say junk I mean addresses that don’t contain any of these labels.</p>
+<p>Then to count how many there are of each, first I assign the varaible <code>street_word</code> to the labels, then I use group_by and summarize to count how many there are of each:</p>
+<pre class="r"><code>WithLabels &lt;- # This defines a new table with the `street_word` variable
+  Wake_county %&gt;% # It starts with the table from Wake_county
+  tidyr::extract(address, into = &quot;street_word&quot;,regex = pattern, remove=FALSE) # And then it extracts the regex from the address variable and assigns them to the street_word variable. 
+head(WithLabels)</code></pre>
+<pre><code>##               address street_word
+## 1 2117 MARINER CIRCLE         MAR
+## 2      101 EPPING WAY         WAY
+## 3        PO BOX 58592        &lt;NA&gt;
+## 4  5102 ECHO RIDGE RD          RD
+## 5        PO BOX 37218        &lt;NA&gt;
+## 6        PO BOX 37218        &lt;NA&gt;</code></pre>
+<pre class="r"><code>WithLabels %&gt;% 
+  group_by(street_word) %&gt;%
+  summarize(number = n()) %&gt;%
+  arrange(desc(number))</code></pre>
+<pre><code>## # A tibble: 43 × 2
+##    street_word number
+##          &lt;chr&gt;  &lt;int&gt;
+## 1         &lt;NA&gt;  11217
+## 2            L   1585
+## 3           ST    662
+## 4           RD    377
+## 5           DR    356
+## 6          AVE    175
+## 7           CO    144
+## 8         ROAD    109
+## 9           CT     88
+## 10          PL     87
+## # ... with 33 more rows</code></pre>
+<p>As you can see from the results, it appears that <code>L</code> is the most common with 1585, <code>ST</code> is a the second most common with 662, and <code>RD</code> is the thirs most with 377.</p>
 </div>
 </div>
 
