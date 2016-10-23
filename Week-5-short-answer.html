@@ -120,12 +120,69 @@ $(document).ready(function () {
 
 <div id="week-5-short-answer-questions" class="section level1">
 <h1>Week 5 Short Answer Questions</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="joshua-doyle" class="section level2">
+<h2>Joshua Doyle</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:27:09 2016.</p>
+<p>Compiled on Sat Oct 22 21:57:40 2016.</p>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
+</div>
+<div id="section" class="section level2">
+<h2>10.1</h2>
+<p>Inner join, left join and right join are all ways of associating data tables with each other. This is unique in the family of data verbs. Most functions on the other hand such as group by or summarize operate on a single data table or on variables within a data table.</p>
+</div>
+<div id="section-1" class="section level2">
+<h2>10.2</h2>
+<p>You can’t easily combine these tables becasue the value you would match them by, “country” and “name” aren’t’t identical. For example, Akrotiri isn’t existent in CountryCentroids list , while Aland isn’t existent in the Demographics “country” column. Additionally, Demographics has more rows than CountryCentroids. Thus, you cannot put the tables side by side easily because there woudn’t sufficient long lot values.</p>
+</div>
+<div id="section-2" class="section level2">
+<h2>10.3</h2>
+<p><strong>1)</strong></p>
+<p>Table B would be the easiest way to find the change from 2000 to 2001.</p>
+<p>Data Table B %&gt;% mutate(difference = Y2001 - Y2000)</p>
+<p><strong>2)</strong></p>
+<p>Using the data table C format with a left joing would be the easiest way of combining both tables. Then we would make sure that all the values from Table C are guaranteed in the joining of the new table.</p>
+<p>tableC %&gt;% left_join( ContinentData) %&gt;% group_by(Year, Continent) %&gt;% summarise(total = sum( Value ) )</p>
+</div>
+<div id="section-3" class="section level2">
+<h2>11.1</h2>
+<p><strong>a)</strong></p>
+<p>Version 1: A name of a sex in a year and the number of babies. Version 2: A name in a year and its female/male count Version 3: A sex of a name and its count in 2012 and 1912.</p>
+<p><strong>b)</strong></p>
+<p>Version 2 is a wide data table, while version 1 is narrow.</p>
+<p><strong>c)</strong></p>
+<p>sex</p>
+<p><strong>d)</strong></p>
+<p>Version two and three need to give a value for the name of a certain sex or a certain year while version one can just omit the line of there’s no baby called that name in a year of a certain sex.</p>
+<p><strong>e)</strong></p>
+<p>In version 2 and 3 there are values of NA because sex and year (1912/2012) are being used as keys for new columns. These variables habe particular cases where no values can be associated. In version 1 one can forget these lines because there’s no baby called that name in that year or of that sex.</p>
+<p><strong>f)</strong> year (1912/2012)</p>
+<p><strong>g)</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>F and M are gathered into sex in version 1. The values of F and M are gathered in nbabies.</p></li>
+<li><p>sex</p></li>
+<li><p>They are drawn from variables M and F in version 2.</p></li>
+</ol>
+</div>
+<div id="section-4" class="section level2">
+<h2>11.3</h2>
+<p><strong>a)</strong></p>
+<p>Table A is wide, while Table C is narrow</p>
+<p><strong>b)</strong></p>
+<p>Table B is wide, while Table C is narrow</p>
+<p><strong>c)</strong></p>
+<p>Table A is wide, while Table C is narrower</p>
+</div>
+<div id="section-5" class="section level2">
+<h2>11.4</h2>
+<p>The new Table will have two variables: When and SBP. The variable SBP will not have correct values because subject, before and after will all be gathered under it.</p>
+</div>
+<div id="section-6" class="section level2">
+<h2>11.5</h2>
+<pre class="r"><code>&quot;http://tiny.cc/dcf/MeasTreatTables.rda&quot; %&gt;%
+  url() %&gt;%
+  load()</code></pre>
+<p>The code schould look something like this:</p>
+<p>CombinedTables &lt;- Measurements %&gt;% left_join (Treatments) %&gt;% mutate (when=ifelse(date&gt;treatment_date,“after”,“before”)) %&gt;% spread(key=what,value=value) %&gt;% select(subject,when,dbp,sbp,date)</p>
 </div>
 </div>
 

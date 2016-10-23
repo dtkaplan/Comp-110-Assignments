@@ -1,13 +1,112 @@
 # Week 5 Short Answer Questions
 
-## Your name should appear here!
+## Joshua Doyle
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(mosaic)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+##10.1
+
+Inner join, left join and right join are all ways of associating data tables with each other. This is unique in the family of data verbs. Most functions on the other hand such as group by or summarize operate on a single data table or on variables within a data table. 
+
+##10.2
+
+You can't easily combine these tables becasue the value you would match them by, "country" and "name" aren't't identical. For example, Akrotiri isn't existent in CountryCentroids list , while Aland isn't existent in the Demographics "country" column. Additionally, Demographics has more rows than CountryCentroids. Thus, you cannot put the tables side by side easily because there woudn't sufficient long lot values.
+
+##10.3
+
+**1)**
+
+Table B would be the easiest way to find the change from 2000 to 2001. 
+
+Data Table B %>%
+  mutate(difference = Y2001 - Y2000)
+
+**2)**
+
+Using the data table C format with a left joing would be the easiest way of combining both tables. Then we would make sure that all the values from Table C are guaranteed in the joining of the new table. 
+
+tableC %>%
+left_join( ContinentData) %>%
+group_by(Year, Continent) %>%
+summarise(total = sum( Value ) )
+
+##11.1
+
+**a)**
+
+Version 1: A name of a sex in a year and the number of babies.
+Version 2: A name in a year and its female/male count
+Version 3: A sex of a name and its count in 2012 and 1912. 
+
+**b)**
+
+Version 2 is a wide data table, while version 1 is narrow. 
+
+**c)**
+
+sex
+
+**d)**
+
+Version two and three need to give a value for the name of a certain sex or a certain year while version one can just omit the line of there's no baby called that name in a year of a certain sex.
+
+**e)** 
+
+In version 2 and 3 there are values of NA because sex and year (1912/2012) are being used as keys for new columns. These variables habe particular cases where no values can be associated. In version 1 one can forget these lines because there's no baby called that name in that year or of that sex.
+
+**f)** 
+year (1912/2012)
+
+**g)** 
+
+1) F and M are gathered into sex in version 1. The values of F and M are gathered in nbabies.
+
+2) sex
+
+3) They are drawn from variables M and F in version 2.
+
+
+##11.3
+
+**a)** 
+
+Table A is wide, while Table C is narrow
+
+**b)**
+
+Table B is wide, while Table C is narrow
+
+**c)**
+
+Table A is wide, while Table C is narrower
+
+##11.4
+
+The new Table will have two variables: When and SBP. The variable SBP will not have correct values because subject, before and after will all be gathered under it. 
+
+##11.5
+
+```{r}
+"http://tiny.cc/dcf/MeasTreatTables.rda" %>%
+  url() %>%
+  load()
+
+```
+
+The code schould look something like this:
+
+CombinedTables <-
+Measurements %>% 
+  left_join (Treatments) %>%
+  mutate (when=ifelse(date>treatment_date,"after","before")) %>%
+  spread(key=what,value=value) %>%
+  select(subject,when,dbp,sbp,date)
+
+
