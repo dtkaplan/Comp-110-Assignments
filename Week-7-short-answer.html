@@ -120,13 +120,113 @@ $(document).ready(function () {
 
 <div id="week-7-short-answer-questions" class="section level1">
 <h1>Week 7 Short Answer Questions</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="lang-li" class="section level2">
+<h2>Lang Li</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:28:15 2016.</p>
-<!-- put your content after this line -->
-<p>Here is my content!</p>
+<p>Compiled on Mon Oct 24 23:17:30 2016.</p>
 </div>
+</div>
+<div id="problem-15.1" class="section level1">
+<h1>Problem 15.1</h1>
+<p>My birthday is March 28, 1996</p>
+<pre class="r"><code>LL_Bday &lt;- lubridate::ymd(&quot;1996-3-28&quot;)
+Gauss &lt;- lubridate::mdy(&quot;April 30, 1777&quot;)
+Turing &lt;- lubridate::mdy(&quot;06-23-1912&quot;)
+Bell &lt;- lubridate::dmy(&quot;3 March 1847&quot;)
+WWI&lt;- lubridate::mdy_hm(&quot;Nov. 11th, 1918 at 11:00 am&quot;)
+Moonlanding &lt;- lubridate::mdy(&quot;July 20, 1969&quot;)</code></pre>
+<p>Gauss:</p>
+<pre class="r"><code>Gauss</code></pre>
+<pre><code>## [1] &quot;1777-04-30&quot;</code></pre>
+<pre class="r"><code>LL_Bday-Gauss</code></pre>
+<pre><code>## Time difference of 79955 days</code></pre>
+<p>Turing:</p>
+<pre class="r"><code>Turing</code></pre>
+<pre><code>## [1] &quot;1912-06-23&quot;</code></pre>
+<pre class="r"><code>LL_Bday - Turing</code></pre>
+<pre><code>## Time difference of 30594 days</code></pre>
+<p>Bell</p>
+<pre class="r"><code>Bell</code></pre>
+<pre><code>## [1] &quot;1847-03-03&quot;</code></pre>
+<pre class="r"><code>LL_Bday - Bell</code></pre>
+<pre><code>## Time difference of 54447 days</code></pre>
+<p>World War i</p>
+<pre class="r"><code>WWI</code></pre>
+<pre><code>## [1] &quot;1918-11-11 11:00:00 UTC&quot;</code></pre>
+<pre class="r"><code>LL_Bday - WWI</code></pre>
+<pre><code>## Warning: Incompatible methods (&quot;-.Date&quot;, &quot;-.POSIXt&quot;) for &quot;-&quot;</code></pre>
+<pre><code>## [1] &quot;4420501-10-02&quot;</code></pre>
+<p>Moon landing</p>
+<pre class="r"><code>Moonlanding</code></pre>
+<pre><code>## [1] &quot;1969-07-20&quot;</code></pre>
+<pre class="r"><code>LL_Bday - lubridate::date(Moonlanding)</code></pre>
+<pre><code>## Time difference of 9748 days</code></pre>
+</div>
+<div id="problem-15.2" class="section level1">
+<h1>Problem 15.2</h1>
+<ol style="list-style-type: lower-alpha">
+<li><p>as.numeric returns NA but extract_number, which is now readr::parse_number works pretty well</p></li>
+<li><p>as.numeric returns NA but extract_number works well.</p></li>
+<li><p>Both cannot work well.</p></li>
+<li><p>as.numeric returns NA but extract_number works well.</p></li>
+<li><p>as.numeric returns NA but extract_number works well.</p></li>
+<li><p>as.numeric returns NA but extract_number works well.</p></li>
+<li><p>They both cannot work really well.</p></li>
+<li><p>as.numeric returns the correct one but the other one does not work well</p></li>
+<li><p>as.numeric returns NA but extract_number works well.</p></li>
+</ol>
+</div>
+<div id="problem-16.1" class="section level1">
+<h1>Problem 16.1</h1>
+<ol style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre class="r"><code>BabyNames %&gt;% filter(sex == &quot;M&quot;) %&gt;% group_by(name) %&gt;%
+summarise(total = sum(count)) %&gt;% filter(grepl(&quot;[aeiou]$&quot;,name)) %&gt;%
+  arrange(desc(total))%&gt;%head(10)</code></pre>
+<pre><code>## # A tibble: 10 × 2
+##        name   total
+##       &lt;chr&gt;   &lt;int&gt;
+## 1    George 1451408
+## 2    Joshua 1163815
+## 3      Jose  539924
+## 4      Kyle  469045
+## 5  Lawrence  454323
+## 6       Joe  448953
+## 7    Willie  447403
+## 8     Jesse  407183
+## 9     Bruce  379233
+## 10   Eugene  377338</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre class="r"><code>BabyNames %&gt;% group_by(name) %&gt;% summarise(total = sum(count)) %&gt;% filter(grepl(&quot;.*(jo$|joe$)&quot;, name)) %&gt;% arrange(desc(total))</code></pre>
+<pre><code>## # A tibble: 72 × 2
+##        name total
+##       &lt;chr&gt; &lt;int&gt;
+## 1    Maryjo  6973
+## 2  Billiejo  1455
+## 3    Marijo  1275
+## 4   Bobbijo  1230
+## 5  Bobbiejo  1009
+## 6   Bettyjo   764
+## 7     Alejo   751
+## 8     Amyjo   486
+## 9  Billyjoe   393
+## 10     Jojo   303
+## # ... with 62 more rows</code></pre>
+</div>
+<div id="problem-16.2" class="section level1">
+<h1>Problem 16.2</h1>
+<p>This is a telephone number for sure. The component that is being extracted is the number portion of the regex. By extracting those things, you can call someone else.</p>
+</div>
+<div id="problem-16.3" class="section level1">
+<h1>Problem 16.3</h1>
+<ol style="list-style-type: decimal">
+<li><p>The string should have a length of 2 to match.</p></li>
+<li><p>61 Strings will be matched.</p></li>
+<li><p>It is the U.S States and Territories (even includes army….) Abbreviation.</p></li>
+</ol>
 </div>
 
 

@@ -1,6 +1,6 @@
 # Week 7 Short Answer Questions
 
-## Your name should appear here!
+## Lang Li
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -8,6 +8,90 @@ Compiled on `r date()`.
 ```{r include = FALSE}
 library(DataComputing)
 ```
-<!-- put your content after this line -->
 
-Here is my content!
+# Problem 15.1
+My birthday is March 28, 1996
+```{r}
+LL_Bday <- lubridate::ymd("1996-3-28")
+Gauss <- lubridate::mdy("April 30, 1777")
+Turing <- lubridate::mdy("06-23-1912")
+Bell <- lubridate::dmy("3 March 1847")
+WWI<- lubridate::mdy_hm("Nov. 11th, 1918 at 11:00 am")
+Moonlanding <- lubridate::mdy("July 20, 1969")
+```
+
+Gauss:
+```{r}
+Gauss
+LL_Bday-Gauss
+```
+
+Turing:
+```{r}
+Turing
+LL_Bday - Turing
+```
+
+Bell
+```{r}
+Bell
+LL_Bday - Bell
+```
+
+World War i
+```{r}
+WWI
+LL_Bday - WWI
+```
+
+Moon landing
+```{r}
+Moonlanding
+LL_Bday - lubridate::date(Moonlanding)
+```
+
+# Problem 15.2
+
+a. as.numeric returns NA but extract_number, which is now readr::parse_number works pretty well
+
+b. as.numeric returns NA but extract_number works well.
+
+c. Both cannot work well.
+
+d. as.numeric returns NA but extract_number works well.
+
+e. as.numeric returns NA but extract_number works well.
+
+f. as.numeric returns NA but extract_number works well. 
+
+g. They both cannot work really well.
+
+h. as.numeric returns the correct one but the other one does not work well
+
+i.  as.numeric returns NA but extract_number works well. 
+
+# Problem 16.1
+
+1. 
+```{r}
+BabyNames %>% filter(sex == "M") %>% group_by(name) %>%
+summarise(total = sum(count)) %>% filter(grepl("[aeiou]$",name)) %>%
+  arrange(desc(total))%>%head(10)
+```
+
+2. 
+```{r}
+BabyNames %>% group_by(name) %>% summarise(total = sum(count)) %>% filter(grepl(".*(jo$|joe$)", name)) %>% arrange(desc(total))
+```
+
+# Problem 16.2
+
+This is a telephone number for sure. The component that is being extracted is the number portion of the regex. By extracting those things, you can call someone else.
+
+# Problem 16.3
+
+1. The string should have a length of 2 to match.
+
+2. 61 Strings will be matched.
+
+3. It is the U.S States and Territories (even includes army....) Abbreviation. 
