@@ -1,6 +1,6 @@
-# Week 5 Project
+# Week 5 Project: A Graph for the Economist
 
-## Your name should appear here!
+## Josh Marcus
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,32 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+```{r}
+download.file("http://tiny.cc/dcf/ScorecardSmall.Rda", destfile = "ScorecardSmall.Rda")
+load("ScorecardSmall.Rda")
+```
+
+```{r}
+ScorecardSmaller <- ScorecardSmall %>%
+  filter(CONTROL != 3) %>%
+  select(CONTROL, ADM_RATE, CCSIZSET, NPT41_PUB, NPT41_PRIV, NPT43_PUB, NPT43_PRIV, NPT45_PUB, NPT45_PRIV) %>%
+  filter(!CCSIZSET %in% c(1, 6, 7, 8))
+```
+
+```{r}
+ScorecardFamWealth <- ScorecardSmaller %>%
+  gather(key=quintile, value=netcostperyear, NPT41_PUB, NPT41_PRIV, NPT43_PUB, NPT43_PRIV, NPT45_PUB, NPT45_PRIV) %>%
+  mutate(Q = substr(quintile, 5, 5))
+```
+
+```{r}
+ScorecardFamWealth %>%
+  ggplot(aes(x=ADM_RATE, y = netcostperyear)) +
+  geom_point(alpha=.04, color = "blue") +
+  facet_grid(CONTROL ~ Q) +
+  stat_smooth(se = FALSE, color = "black") +
+  xlab("admissions rate, %") +
+  ylab("net cost per year, $,000")
+```
+
+
