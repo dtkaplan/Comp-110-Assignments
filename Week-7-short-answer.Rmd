@@ -1,6 +1,6 @@
 # Week 7 Short Answer Questions
 
-## Your name should appear here!
+## Wendy Chu
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,55 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+15.1
+wendy <- lubridate::mdy("08-27-1995")
+gauss <- lubridate::mdy("April 30, 1777")
+turing <- lubridate::mdy("06-23-1912")
+bell <- lubridate::dmy("3 March 1847")
+armistice<- lubridate::mdy_hm("Nov. 11th, 1918 at 11:00 am")
+moon <- lubridate::mdy("July 20, 1969")
+
+wendy - gauss
+wendy - turning
+wendy - bell
+wendy - armistice
+wendy - moon
+
+15.2
+a. as.num doesnt work, tidyr works
+b. as.num doesnt work, tidyr works
+c. both doesnt work
+d. as.num doesnt work, tidyr works
+e. both doesnt work
+f. as.num doesnt work, tidyr works
+g. both doesnt work
+h. as.num works, tidyr doesnt work
+i. as.num doesnt work, tidyr works
+
+16.1
+boy names vowels
+BabyNames %>%
+  filter(sex=="M") %>%
+  group_by(name) %>%
+  summarise(total= sum(count)) %>%
+  filter(grep1("[aeiou]$",name)) %>%
+  arrange(desc(total)) %>%
+  head(10)
+  
+names jo joe
+BabyNames %>%
+  group_by(name) %>%
+  summarise(total=sum(count)) %>%
+  filter(grep1(".*(jo$|joe$)",name)) %>%
+  arrange(desc(total)) %>%
+  head(10)
+
+16.2
+phone number
+
+16.3
+1. matched length of 2
+2. 61 total
+3. us states and territories
+
+

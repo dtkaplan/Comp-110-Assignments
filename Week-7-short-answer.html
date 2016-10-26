@@ -120,12 +120,18 @@ $(document).ready(function () {
 
 <div id="week-7-short-answer-questions" class="section level1">
 <h1>Week 7 Short Answer Questions</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="wendy-chu" class="section level2">
+<h2>Wendy Chu</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:28:15 2016.</p>
+<p>Compiled on Wed Oct 26 18:13:14 2016.</p>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
+<p>15.1 wendy &lt;- lubridate::mdy(“08-27-1995”) gauss &lt;- lubridate::mdy(“April 30, 1777”) turing &lt;- lubridate::mdy(“06-23-1912”) bell &lt;- lubridate::dmy(“3 March 1847”) armistice&lt;- lubridate::mdy_hm(“Nov. 11th, 1918 at 11:00 am”) moon &lt;- lubridate::mdy(“July 20, 1969”)</p>
+<p>wendy - gauss wendy - turning wendy - bell wendy - armistice wendy - moon</p>
+<p>15.2 a. as.num doesnt work, tidyr works b. as.num doesnt work, tidyr works c. both doesnt work d. as.num doesnt work, tidyr works e. both doesnt work f. as.num doesnt work, tidyr works g. both doesnt work h. as.num works, tidyr doesnt work i. as.num doesnt work, tidyr works</p>
+<p>16.1 boy names vowels BabyNames %&gt;% filter(sex==“M”) %&gt;% group_by(name) %&gt;% summarise(total= sum(count)) %&gt;% filter(grep1(“[aeiou]$”,name)) %&gt;% arrange(desc(total)) %&gt;% head(10)</p>
+<p>names jo joe BabyNames %&gt;% group_by(name) %&gt;% summarise(total=sum(count)) %&gt;% filter(grep1(“.*(jo<span class="math inline">\(|joe\)</span>)“,name)) %&gt;% arrange(desc(total)) %&gt;% head(10)</p>
+<p>16.2 phone number</p>
+<p>16.3 1. matched length of 2 2. 61 total 3. us states and territories</p>
 </div>
 </div>
 
