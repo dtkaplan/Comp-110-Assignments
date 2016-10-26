@@ -1,6 +1,6 @@
 # Week 6 Project
 
-## Your name should appear here!
+## Josh Marcus
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,67 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+```{r cache = TRUE}
+data_site <- "http://tiny.cc/dcf/2014-Q4-Trips-History-Data-Small.rds"
+Trips <- readRDS(gzcon(url(data_site)))
+```
+
+##1
+```{r}
+Trips %>%
+  ggplot(aes(x = sdate)) +
+  geom_density()
+```
+
+##2
+```{r}
+Trips %>%
+  mutate(time_of_day = lubridate::hour(sdate) 
+         + lubridate::minute(sdate) / 60) %>%
+  group_by(time_of_day) %>%
+  arrange(desc(time_of_day)) %>%
+  ggplot(aes(x = time_of_day)) +
+  geom_density()
+```
+
+##3
+```{r}
+Trips %>%
+  mutate(time_of_day = lubridate::hour(sdate) 
+         + lubridate::minute(sdate) / 60) %>%
+  mutate(day_of_week = lubridate::wday(sdate)) %>%
+  group_by(time_of_day) %>%
+  arrange(desc(time_of_day)) %>%
+  ggplot(aes(x = time_of_day)) +
+  geom_density() + 
+  facet_wrap( ~ day_of_week)
+```
+
+##4
+```{r}
+Trips %>%
+  mutate(time_of_day = lubridate::hour(sdate) 
+         + lubridate::minute(sdate) / 60) %>%
+  mutate(day_of_week = lubridate::wday(sdate, label = TRUE)) %>%
+  group_by(time_of_day) %>%
+  arrange(desc(time_of_day)) %>%
+  ggplot(aes(x = time_of_day)) +
+  geom_density(aes(color = client)) + 
+  facet_wrap( ~ day_of_week)
+```
+
+##5
+```{r}
+#Trips %>%
+  #mutate(time_of_day = lubridate::hour(sdate) 
+         #+ lubridate::minute(sdate) / 60) %>%
+  #mutate(day_of_week = lubridate::wday(sdate, label = TRUE)) %>%
+ # group_by(time_of_day) %>%
+  #arrange(desc(time_of_day)) %>%
+  #ggplot(aes(x = time_of_day)) +
+  #geom_density(position = position_stack)) + 
+  #facet_wrap( ~ day_of_week)
+```
+
+Not sure exactly how to input 5, but from what I read online, it looks like it takes out cases where there is missing data, so I would argue 5 is the most effective, informative way of presenting the data, for it gives you many different dimensions to consider all at once (client/vs. casual, date, time), and it cuts out cases with spotty data.
+
