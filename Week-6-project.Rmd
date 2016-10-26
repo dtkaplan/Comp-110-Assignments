@@ -1,6 +1,6 @@
 # Week 6 Project
 
-## Your name should appear here!
+## Daniel Ochoa
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,69 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+Getting the data, petroleum and gas companies
+```{r}
+companies <- c("F", "TM", "NSANY")
+Prices <- read_stock_prices(companies, what = "daily", start_year = 2000, end_year = 2015)
+```
+
+Plotting the closing prices of my three companies
+```{r}
+ggplot(Prices, aes(x = date, y = close)) + geom_line(aes(colour = company))
+```
+
+Creating a data table that has its buy date on July 14th 2000 and its sell date exactly 10 years later.
+```{r}
+Actions <- data.frame(action = c("buy", "sell"), date = ymd(c("2000-07-14", "2010-07-14")))
+```
+
+Formating that table to show the buy and sell prices of my companies according to my inputting buy and sell dates. 
+```{r}
+newActions <- Actions %>%
+  left_join(Prices) %>%
+  select(company, close, action) %>%
+  spread(key = action, value = close)
+```
+
+Formating a new data table with profit and loss and a percentage
+```{r}
+profitActions <- newActions %>%
+  mutate(profit = sell - buy) %>%
+  mutate(percentChange = ((sell/buy)*100)) %>%
+  select(company, profit, percentChange)
+```
+
+Question: The indexed date in figure 3 is approximately the beginning of 2005.
+
+Indexing company stock prices 
+```{r}
+ref_date <- ymd("2007-03-21")
+Reference <- Prices %>%
+  filter(date == ref_date) %>%
+  select(company, standard = close)
+```
+
+creating the indexed ratio data table
+```{r}
+day2day <- Reference %>%
+  left_join(Prices) %>%
+  mutate(ratio = close/standard) %>%
+  select(company, date, ratio)
+```
+
+Using the indexed ratio table to create a plot
+```{r}
+ggplot(day2day, aes(x = date, y = ratio)) + geom_line(aes(colour = company))
+```
+
+Reading in the dividends data, for some reason this is not working
+```{r}
+Dividends <- read_stock_prices(companies, what = "dividends")
+```
+
+```{r}
+DividendsDates <- Dividends %>%
+  left_join(newActions) %>%
+  mutate(dividendrate = dividends / sell)
+```
+
