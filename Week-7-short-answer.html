@@ -120,12 +120,126 @@ $(document).ready(function () {
 
 <div id="week-7-short-answer-questions" class="section level1">
 <h1>Week 7 Short Answer Questions</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="josh-marcus" class="section level2">
+<h2>Josh Marcus</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:28:15 2016.</p>
+<p>Compiled on Wed Oct 26 15:42:53 2016.</p>
+<pre class="r"><code>library(lubridate)</code></pre>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
+</div>
+<div id="chapter-15" class="section level2">
+<h2>Chapter 15</h2>
+<div id="section" class="section level3">
+<h3>15.1</h3>
+<p>For the record, I was born on December 2, 1994.</p>
+<ul>
+<li>April 30, 1777, a difference of 79,493 days!</li>
+</ul>
+<pre class="r"><code>lubridate::mdy(&quot;December 2, 1994&quot;) -
+  lubridate::mdy(&quot;April 30, 1777&quot;)</code></pre>
+<pre><code>## Time difference of 79473 days</code></pre>
+<ul>
+<li>06-23-1912, a difference of 30,112 days!</li>
+</ul>
+<pre class="r"><code>lubridate::mdy(&quot;12-02-1994&quot;) -
+  lubridate::mdy(&quot;06-23-1912&quot;)</code></pre>
+<pre><code>## Time difference of 30112 days</code></pre>
+<ul>
+<li>3 March 1847, a difference of 53,965 days!</li>
+</ul>
+<pre class="r"><code>lubridate::dmy(&quot;2 December 1994&quot;) -
+  lubridate::dmy(&quot;3 March 1847&quot;)</code></pre>
+<pre><code>## Time difference of 53965 days</code></pre>
+<ul>
+<li>“11 am on Nov. 11th, 1918 at 11:00 am,” a time difference of 27,780. Full disclosure, I have no idea in what hour I was born.</li>
+</ul>
+<pre class="r"><code>lubridate::mdy_hm(&quot;Dec. 2, 1994 at 11:00 am&quot;) -
+  lubridate::mdy_hm(&quot;11 am on Nov. 11th, 1918 at 11:00 am&quot;)</code></pre>
+<pre><code>## Time difference of 27780 days</code></pre>
+<ul>
+<li>“July 20, 1969,” a difference of 9266 days.</li>
+</ul>
+<pre class="r"><code>lubridate::mdy(&quot;December 2, 1994&quot;) -
+  lubridate::mdy(&quot;July 20, 1969&quot;)</code></pre>
+<pre><code>## Time difference of 9266 days</code></pre>
+</div>
+<div id="section-1" class="section level3">
+<h3>15.2</h3>
+<ul>
+<li>a, “42,659.30,” as.numeric() works.</li>
+<li>b, “17%” tidyr::extract_numeric() works.</li>
+<li>c, “Nineteen” Neither works here. We want to use as.character().</li>
+<li>d, “£100” tidyr::extract_numeric() works.</li>
+<li>e, “9.8 m/seconds-square” tidyr::extract_numeric() works.</li>
+<li>f, “9.8 m/s^2” tidyr::extract_numeric() works.</li>
+<li>g, “6.62606957 x 10^-34 m2 kg / s” tidyr::extract_numeric() works.</li>
+<li>h, “6.62606957e-34” tidyr::extract_numeric() works.</li>
+<li>i, “42.659,30,” as.numeric works.</li>
+</ul>
+</div>
+</div>
+<div id="chapter-16" class="section level2">
+<h2>Chapter 16</h2>
+<div id="section-2" class="section level3">
+<h3>16.</h3>
+<ol style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre class="r"><code>BabyNames %&gt;%
+  filter(sex == &quot;M&quot;) %&gt;%
+  group_by(name) %&gt;%
+  summarise(total = sum(count)) %&gt;%
+  filter(grepl(&quot;[aeiou]$&quot;, name)) %&gt;%
+  arrange(desc(total)) %&gt;%
+  head(10)</code></pre>
+<pre><code>## # A tibble: 10 × 2
+##        name   total
+##       &lt;chr&gt;   &lt;int&gt;
+## 1    George 1451408
+## 2    Joshua 1163815
+## 3      Jose  539924
+## 4      Kyle  469045
+## 5  Lawrence  454323
+## 6       Joe  448953
+## 7    Willie  447403
+## 8     Jesse  407183
+## 9     Bruce  379233
+## 10   Eugene  377338</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre class="r"><code>BabyNames %&gt;%
+  group_by(name) %&gt;%
+  summarise(total = sum(count)) %&gt;%
+  filter(grepl(&quot;.*(jo$|joe$)&quot;, name)) %&gt;% 
+  arrange(desc(total)) %&gt;%
+  head(10)</code></pre>
+<pre><code>## # A tibble: 10 × 2
+##        name total
+##       &lt;chr&gt; &lt;int&gt;
+## 1    Maryjo  6973
+## 2  Billiejo  1455
+## 3    Marijo  1275
+## 4   Bobbijo  1230
+## 5  Bobbiejo  1009
+## 6   Bettyjo   764
+## 7     Alejo   751
+## 8     Amyjo   486
+## 9  Billyjoe   393
+## 10     Jojo   303</code></pre>
+</div>
+<div id="section-3" class="section level3">
+<h3>16.2</h3>
+<p>This entire general expression matches U.S. phone numbers. The ([2-9] [0-9] {2}) is the area code, the [- .] is the punctuation that seperates it from the main number, and the ([0-9]{3})<a href="%5B0-9%5D%7B4%7D">- .</a> is the rest of the number.</p>
+</div>
+<div id="section-4" class="section level3">
+<h3>16.3</h3>
+<ol style="list-style-type: decimal">
+<li>They will be two letters.</li>
+<li>The number of strings that will match is equal to the number of different letters inside the brackets. So, fo C[AOT], there are three patterns that match, for D[EC] there are two, and so on.</li>
+<li>These are abbreviations for U.S. states and territories.</li>
+</ol>
+</div>
 </div>
 </div>
 

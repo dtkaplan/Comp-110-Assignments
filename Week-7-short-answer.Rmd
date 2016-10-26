@@ -1,6 +1,6 @@
 # Week 7 Short Answer Questions
 
-## Your name should appear here!
+## Josh Marcus
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -8,6 +8,85 @@ Compiled on `r date()`.
 ```{r include = FALSE}
 library(DataComputing)
 ```
+
+```{r}
+library(lubridate)
+```
+
 <!-- put your content after this line -->
 
-Here is my content!
+##Chapter 15
+###15.1
+
+For the record, I was born on December 2, 1994.
+
+* April 30, 1777, a difference of 79,493 days! 
+```{r}
+lubridate::mdy("December 2, 1994") -
+  lubridate::mdy("April 30, 1777")
+```
+
+* 06-23-1912, a difference of 30,112 days!
+```{r}
+lubridate::mdy("12-02-1994") -
+  lubridate::mdy("06-23-1912")
+```
+
+* 3 March 1847, a difference of 53,965 days!
+```{r}
+lubridate::dmy("2 December 1994") -
+  lubridate::dmy("3 March 1847")
+```
+
+* "11 am on Nov. 11th, 1918 at 11:00 am," a time difference of 27,780. Full disclosure, I have no idea in what hour I was born.
+```{r}
+lubridate::mdy_hm("Dec. 2, 1994 at 11:00 am") -
+  lubridate::mdy_hm("11 am on Nov. 11th, 1918 at 11:00 am")
+```
+
+* "July 20, 1969," a difference of 9266 days.
+```{r}
+lubridate::mdy("December 2, 1994") -
+  lubridate::mdy("July 20, 1969")
+```
+
+###15.2
+* a, "42,659.30," as.numeric() works.
+* b, "17%" tidyr::extract_numeric() works.
+* c, "Nineteen" Neither works here. We want to use as.character().
+* d, "£100" tidyr::extract_numeric() works.
+* e, "9.8 m/seconds-square" tidyr::extract_numeric() works.
+* f, "9.8 m/s^2" tidyr::extract_numeric() works. 
+* g, "6.62606957 x 10^-34 m2 kg / s" tidyr::extract_numeric() works.
+* h, "6.62606957e-34" tidyr::extract_numeric() works.
+* i, "42.659,30," as.numeric works.
+
+##Chapter 16
+###16.
+1. 
+```{r}
+BabyNames %>%
+  filter(sex == "M") %>%
+  group_by(name) %>%
+  summarise(total = sum(count)) %>%
+  filter(grepl("[aeiou]$", name)) %>%
+  arrange(desc(total)) %>%
+  head(10)
+```
+2. 
+```{r}
+BabyNames %>%
+  group_by(name) %>%
+  summarise(total = sum(count)) %>%
+  filter(grepl(".*(jo$|joe$)", name)) %>% 
+  arrange(desc(total)) %>%
+  head(10)
+```
+
+###16.2
+This entire general expression matches U.S. phone numbers. The ([2-9] [0-9] {2}) is the area code, the [- .] is the punctuation that seperates it from the main number, and the ([0-9]{3})[- .]([0-9]{4}) is the rest of the number.
+
+###16.3
+1. They will be two letters.
+2. The number of strings that will match is equal to the number of different letters inside the brackets. So, fo C[AOT], there are three patterns that match, for D[EC] there are two, and so on.
+3. These are abbreviations for U.S. states and territories.
