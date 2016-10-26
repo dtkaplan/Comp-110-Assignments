@@ -1,0 +1,97 @@
+---
+title: "tten mile lab"
+author: "Shelby Witherby"
+date: "10/10/2016"
+output: pdf_document
+---
+```{r}
+
+TenMile <- read.csv("http://www.macalester.edu/~cknudson/TenMile.csv")
+
+```
+
+```{r}
+
+mod1 <- lm(net~sex, data = TenMile)
+summary(mod1)
+
+```
+
+# 1:
+# The coefficient 6002.45 is intercept. This shows that the average time is 6002.45 seconds for females. The coefficient -754.93 shows that males on average take 754 less seconds.
+
+```{r}
+
+mod2 <- lm(net~ 0 + sex, data = TenMile)
+summary(mod2)
+
+```
+
+# 2:
+# In model 2, the coefficients change, but the predictions they make do not change.
+
+# 3:
+# I personally feel that model 2 is better for comparing men and women's times - it's really simple, you know that men's times are less than women's without having to think about equations. Model 2 is also better for quickly seeing men and women's mean race times.
+
+```{r}
+plot(net ~ sex, data = TenMile)
+```
+
+# 4: I do think that -755 is "big". 755 seconds is 12 minutes. That is big in terms of running times.
+
+```{r}
+mod3 <- lm(net~ sex + age, data = TenMile)
+summary(mod3)
+
+```
+# 5: The coefficient 5292.229 is the intercept. That is the predicted value of a runner who is female and is zero years old - that means that this value is not interpretable, as no runners were actually a baby. The coefficient -899.871 is for sexM. This means that if you are a male, you are predicted to run 899.871 seconds faster. Finally, the coefficient 21 is associated with age. That means that for each year older someone is, their predicted running time will be 21 seconds slower (they will take 21 additional seconds).
+
+# 6: The regression equation for women is y = 5292.29 + 21(age). The regression equation for men is y = 5292.229 - 899.871 + 21(age).
+
+```{r}
+plot(net ~ age, col = sex, data = TenMile)
+abline(5292.29, 21)
+abline(4392.358, 21)
+```
+
+# 7: I did this above.
+
+```{r}
+5292.229 + (21*30)
+
+```
+
+# 8: The prediction for a woman running the race who is 30 years old would be 5922.229 seconds.
+
+# 9: When sex was the only explanatory variable, men were predicted to run 755 seconds faster. When we add age as a second explanatory variable, men are predicted to run almost 900 seconds faster. This tells us the average age of males are older than women. 
+
+```{r}
+
+mod4 <- lm( net ~ age * sex, data = TenMile)
+summary(mod4)
+
+```
+
+# 10: The coefficient 5271.208 is the intercept, which is not interpretable for this case since nobody is zero years old. The coeffiient 21.621 for age means that each year older you are adds 21.621 seconds to your time. The coefficient -860.054 for sexM means that if you are male, your predicted time decreases 860.054 seconds. The coefficient -1.083 is for the interaction between age and sexMale - factoring in relationship between the differences ages of runners and sex.
+
+```{r}
+
+plot(net ~ age, col = sex, data = TenMile)
+abline(4411.154, 20.538) # men
+abline(5271.208, 21.621) # women
+
+```
+
+# 11: The two lines I drew are technically not parallel, but they are essentially parallel. This means that we probably don't need an interaction model, since it doesn't make a big difference.
+
+# 12: Our answers to problem 10 tell us that -1.083 is small since the interaction doesn't make a huge difference. Therefore, I think that the model we should use is model 3, net ~ sex + age.
+
+# 13: The model 1 r-squared value is .1497. This means that 14.97 percent of the variability in response is due to the linear relationship between sex and net time. The model 2 r-squared value is .9754. This means that 97.54 percent of the variability in response is due to the linear relationship between net time and sex. The model 3 r-squared value is .2006. This means that 20.06% of the variability of response in net times is due to its linear relationship with sex and age. The model 4 r-squared value is .2006. This means that 20.06% of the variability of response in net times is due to its linear relationship with sex and age, and the interaction of sex and age.
+
+
+
+
+
+
+
+
