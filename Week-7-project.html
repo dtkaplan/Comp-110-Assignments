@@ -120,13 +120,101 @@ $(document).ready(function () {
 
 <div id="week-7-project" class="section level1">
 <h1>Week 7 Project</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="wendy-chu" class="section level2">
+<h2>Wendy Chu</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:32:15 2016.</p>
+<p>Compiled on Wed Oct 26 21:18:01 2016.</p>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
+<pre class="r"><code>Wake_county &lt;- read.csv(&quot;http://tiny.cc/dcf/street-addresses.csv&quot;, stringsAsFactors = FALSE)</code></pre>
+<pre class="r"><code>download.file(url=&quot;http://tiny.cc/dcf/CMS_ProvidersSimple.rds&quot;, destfile = &quot;Providers.rds&quot;)</code></pre>
+<pre class="r"><code>Medicare &lt;- readRDS(&quot;Providers.rds&quot;)</code></pre>
 </div>
+</div>
+<div id="pattern---strdroad-this-is-saying-find-the-pattern-st-or-rd-or-road" class="section level1">
+<h1>pattern &lt;- “ST|RD|ROAD” this is saying find the pattern ST or RD or ROAD</h1>
+</div>
+<div id="leftovers---this-is-saying-create-a-new-command-called-leftovers" class="section level1">
+<h1>LeftOvers &lt;- this is saying create a new command called leftovers</h1>
+</div>
+<div id="wake_county-using-wake_county-dataset" class="section level1">
+<h1>Wake_county %&gt;% using Wake_county dataset</h1>
+</div>
+<div id="filter-greplpattern-address-grepl-box-address" class="section level1">
+<h1>filter( ! grepl(pattern, address, ! grepl(&quot; BOX “, address)))</h1>
+<pre class="r"><code>patterns &lt;- &quot;ST|RD|ROAD&quot;
+LeftOvers&lt;-
+  Wake_county %&gt;%
+  filter( ! grepl(patterns,address, ! grepl(&quot; BOX &quot;, address))) %&gt;%
+  head()
+LeftOvers</code></pre>
+<pre><code>##               address
+## 1 2117 MARINER CIRCLE
+## 2      101 EPPING WAY
+## 3        PO BOX 58592
+## 4        PO BOX 37218
+## 5        PO BOX 37218
+## 6         PO BOX 1953</code></pre>
+<pre class="r"><code>patterns &lt;- &quot;(ST|RD|ROAD|CIRCLE|WAY|PO BOX| BOX|TRAIL|LN|DR|CIR|AVE|HALL|CT|HOUSE|PLACE|WOODS|W|PL|BLVD|LANE|TR|PO BX|HIGHWAY|P.O.BOX|PO BO|VALLEY|COURT|TERRACE|COLLEGE|RUN|LOOP|HILL|BOX BO|ASU|LA|YALE|PATH|DORM|UNIVERSITY|RM|P O|C/O|TER|APARTMENT|HEIGHTS|POB|HOSPITAL|BOX|NCSU|COVE|CREEK|VINE|SUITE|ALLEY|BOLES|FERRY|MILL|PASS|ECU| SURFCONF|CALL|BAREFOOT|UNIT|RIDGE|CLUB|ACADEMY| OAKS| NEUSE|FAIRCLOTH| PO | APT | CO| PO |NC|US | SQUARE| PT| CV| OAK|  PO)&quot;
+LeftOvers2&lt;-
+  Wake_county %&gt;%
+  filter( ! grepl(patterns,address, ! grepl(&quot; BOX &quot;, address)))
+LeftOvers2</code></pre>
+<pre><code>##                        address
+## 1                     HMIA-267
+## 2                      UR 6516
+## 3                8421 CUTHBERT
+## 4       4505-200 FALLS OF NEUS
+## 5                  SEBTS 14375
+## 6             2204   BRISBAYNE
+## 7                         1611
+## 8                  3210 SR 546
+## 9                     PO 12984
+## 10            Care Of S A DYLE
+## 11       1621 MORNING MOUNTAIN
+## 12              22 RUE SURCONF
+## 13              22 RUE SURCONF
+## 14          24 RUE DE CHARONNE
+## 15                       HC-02
+## 16                    SMC 1912
+## 17                  112 TUTTLE
+## 18  CAROLINA NURSING AND REHAB
+## 19             834 SMITH UNION
+## 20                    3601 MSC
+## 21            112 EDGEMOOR 206
+## 22                    618 MORO
+## 23               3068 VAN DORN
+## 24             111 CEDAR CHINE
+## 25         701 FALKCRES T 208D
+## 26              32405 ARCHDALE
+## 27                    CSU 5734
+## 28                    16 FELIX
+## 29           1353 GIBSON DAIRY
+## 30              1200 MURCHISON
+## 31 10110 PURCHASE CROSSING 104
+## 32                 213 E 222 S
+## 33     1090 HUCKLEBERRY BOTTOM
+## 34             619 BELLE RIEVE
+## 35                    472 OTIS
+## 36            168-17 CROCKERON
+## 37                215 BAKEFOOT
+## 38                2915 GRETMAR
+## 39            2615 MISSISSIPPI
+## 40               CANDACE JONES
+## 41              1743 VENFLORET
+## 42               5214 TANNERON
+## 43                 191 ANTIOCH
+## 44                183 MARINERS
+## 45                 216 BLEDSOE
+## 46                    MSC 0835
+## 47                1423 E JONES</code></pre>
+<pre class="r"><code>head(dim(LeftOvers2))</code></pre>
+<pre><code>## [1] 47  1</code></pre>
+<pre class="r"><code>Streetcount &lt;-
+Wake_county %&gt;%
+  tidyr::extract(address, into = &quot;street_word&quot;, regex = patterns, remove = FALSE) %&gt;%
+  group_by(street_word) %&gt;%
+  summarise(total=n()) %&gt;%
+  arrange(desc(total))</code></pre>
 </div>
 
 

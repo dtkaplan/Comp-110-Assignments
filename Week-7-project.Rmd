@@ -1,6 +1,6 @@
 # Week 7 Project
 
-## Your name should appear here!
+## Wendy Chu
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,50 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+```{r}
+Wake_county <- read.csv("http://tiny.cc/dcf/street-addresses.csv", stringsAsFactors = FALSE)
+```
+
+```{r}
+download.file(url="http://tiny.cc/dcf/CMS_ProvidersSimple.rds", destfile = "Providers.rds")
+```
+
+```{r}
+Medicare <- readRDS("Providers.rds")
+```
+
+# pattern <- "ST|RD|ROAD"     this is saying find the pattern ST or RD or ROAD
+# LeftOvers <-                this is saying create a new command called leftovers
+#   Wake_county %>%           using Wake_county dataset
+#   filter( ! grepl(pattern, address, ! grepl(" BOX ", address)))
+
+
+```{r}
+patterns <- "ST|RD|ROAD"
+LeftOvers<-
+  Wake_county %>%
+  filter( ! grepl(patterns,address, ! grepl(" BOX ", address))) %>%
+  head()
+LeftOvers
+```
+
+```{r}
+patterns <- "(ST|RD|ROAD|CIRCLE|WAY|PO BOX| BOX|TRAIL|LN|DR|CIR|AVE|HALL|CT|HOUSE|PLACE|WOODS|W|PL|BLVD|LANE|TR|PO BX|HIGHWAY|P.O.BOX|PO BO|VALLEY|COURT|TERRACE|COLLEGE|RUN|LOOP|HILL|BOX BO|ASU|LA|YALE|PATH|DORM|UNIVERSITY|RM|P O|C/O|TER|APARTMENT|HEIGHTS|POB|HOSPITAL|BOX|NCSU|COVE|CREEK|VINE|SUITE|ALLEY|BOLES|FERRY|MILL|PASS|ECU| SURFCONF|CALL|BAREFOOT|UNIT|RIDGE|CLUB|ACADEMY| OAKS| NEUSE|FAIRCLOTH| PO | APT | CO| PO |NC|US | SQUARE| PT| CV| OAK|  PO)"
+LeftOvers2<-
+  Wake_county %>%
+  filter( ! grepl(patterns,address, ! grepl(" BOX ", address)))
+LeftOvers2
+head(dim(LeftOvers2))
+```
+
+```{r}
+Streetcount <-
+Wake_county %>%
+  tidyr::extract(address, into = "street_word", regex = patterns, remove = FALSE) %>%
+  group_by(street_word) %>%
+  summarise(total=n()) %>%
+  arrange(desc(total))
+```
+
+
+
