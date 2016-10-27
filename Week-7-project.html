@@ -120,12 +120,92 @@ $(document).ready(function () {
 
 <div id="week-7-project" class="section level1">
 <h1>Week 7 Project</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="qiuhan-sun" class="section level2">
+<h2>Qiuhan Sun</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:32:15 2016.</p>
+<p>Compiled on Wed Oct 26 21:04:25 2016.</p>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
+<pre class="r"><code>Wake_county &lt;- read.csv(&quot;http://tiny.cc/dcf/street-addresses.csv&quot;,stringsAsFactors = FALSE)
+#download.file(url=&quot;http://tiny.cc/dcf/CMS_ProvidersSimple.rds&quot;,destfile=&quot;Live.rds&quot;)
+Medicare &lt;- readRDS(&quot;Live.rds&quot;)</code></pre>
+<pre class="r"><code>#define a pattern, contains either ST or RD or ROAD
+pattern &lt;- &quot;ST|RD|ROAD&quot;
+
+LeftOvers &lt;- #define leftovers
+  Wake_county %&gt;% #call the dataset
+  filter(!grepl(pattern,address), #picks up addresses that do not contain ST or RD or ROAD 
+         !grepl(&quot;BOX&quot;,address)  #picks up addresses that do not contain BOX
+  )</code></pre>
+<pre class="r"><code>pattern &lt;- &quot;(ST|RD|ROAD)&quot;
+Wake_county %&gt;%
+  tidyr::extract(address,into=&quot;street_word&quot;,
+                 regex=pattern,
+                 remove=FALSE) %&gt;%
+  head(5)</code></pre>
+<pre><code>##               address street_word
+## 1 2117 MARINER CIRCLE        &lt;NA&gt;
+## 2      101 EPPING WAY        &lt;NA&gt;
+## 3        PO BOX 58592        &lt;NA&gt;
+## 4  5102 ECHO RIDGE RD          RD
+## 5        PO BOX 37218        &lt;NA&gt;</code></pre>
+</div>
+<div id="my-turn" class="section level2">
+<h2>My turn</h2>
+<pre class="r"><code># define the pattern
+pattern &lt;- &quot;(BLVD|TRAIL|SUITE|CIR|HALL|OAK|UNIVERSITY|AVENUE|TER|BOX|DRIVE|CT|DR|ROAD|APT|COURT|ST|RD|ROAD|PL|CIR|WAY|AVE|PARKWAY|NEUSE|LN|PLAZA)&quot;
+Matches &lt;- # define the dataset
+  Wake_county %&gt;% # refer to Wake_county
+  tidyr::extract(address,into=&quot;street_word&quot;, # match the address into a new variable called street word
+                 regex=pattern, # call back to the pattern
+                 remove=FALSE) %&gt;% # do not remove
+  group_by(street_word) %&gt;% # group the data by street word
+  summarize(number = n()) # count how many street words of each kind</code></pre>
+<pre class="r"><code>## I'm trying to combine RD and ROAD, CIR and CIRCLE here because they are the same thing.
+Translate &lt;- data_frame(street_word = c(&quot;RD&quot;, &quot;CIR&quot;), official = c(&quot;ROAD&quot;, &quot;CIRCLE&quot;))
+Matches %&gt;% left_join(Translate) %&gt;% 
+  mutate(final = ifelse(is.na(official), street_word, official))</code></pre>
+<pre><code>## Joining, by = &quot;street_word&quot;</code></pre>
+<pre><code>## # A tibble: 25 × 4
+##    street_word number official  final
+##          &lt;chr&gt;  &lt;int&gt;    &lt;chr&gt;  &lt;chr&gt;
+## 1          APT     15     &lt;NA&gt;    APT
+## 2          AVE    210     &lt;NA&gt;    AVE
+## 3       AVENUE     46     &lt;NA&gt; AVENUE
+## 4         BLVD     37     &lt;NA&gt;   BLVD
+## 5          BOX  11161     &lt;NA&gt;    BOX
+## 6          CIR    103   CIRCLE CIRCLE
+## 7        COURT     68     &lt;NA&gt;  COURT
+## 8           CT    204     &lt;NA&gt;     CT
+## 9           DR    529     &lt;NA&gt;     DR
+## 10       DRIVE    199     &lt;NA&gt;  DRIVE
+## # ... with 15 more rows</code></pre>
+<pre class="r"><code>print.data.frame(Matches %&gt;% arrange(desc(number)))</code></pre>
+<pre><code>##    street_word number
+## 1          BOX  11161
+## 2           ST    882
+## 3           RD    695
+## 4           DR    529
+## 5         &lt;NA&gt;    407
+## 6          AVE    210
+## 7           CT    204
+## 8        DRIVE    199
+## 9         ROAD    183
+## 10          PL    149
+## 11          LN    147
+## 12         WAY    129
+## 13         CIR    103
+## 14         TER     95
+## 15        HALL     70
+## 16       COURT     68
+## 17         OAK     54
+## 18       NEUSE     48
+## 19      AVENUE     46
+## 20        BLVD     37
+## 21       TRAIL     22
+## 22  UNIVERSITY     18
+## 23         APT     15
+## 24       SUITE      7
+## 25     PARKWAY      5</code></pre>
 </div>
 </div>
 

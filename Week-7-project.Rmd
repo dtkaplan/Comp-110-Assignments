@@ -1,6 +1,6 @@
 # Week 7 Project
 
-## Your name should appear here!
+## Qiuhan Sun
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,52 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+
+```{r}
+Wake_county <- read.csv("http://tiny.cc/dcf/street-addresses.csv",stringsAsFactors = FALSE)
+#download.file(url="http://tiny.cc/dcf/CMS_ProvidersSimple.rds",destfile="Live.rds")
+Medicare <- readRDS("Live.rds")
+```
+
+```{r warning = FALSE}
+#define a pattern, contains either ST or RD or ROAD
+pattern <- "ST|RD|ROAD"
+
+LeftOvers <- #define leftovers
+  Wake_county %>% #call the dataset
+  filter(!grepl(pattern,address), #picks up addresses that do not contain ST or RD or ROAD 
+         !grepl("BOX",address)  #picks up addresses that do not contain BOX
+  )
+```
+
+```{r}
+pattern <- "(ST|RD|ROAD)"
+Wake_county %>%
+  tidyr::extract(address,into="street_word",
+                 regex=pattern,
+                 remove=FALSE) %>%
+  head(5)
+```
+
+## My turn
+```{r}
+# define the pattern
+pattern <- "(BLVD|TRAIL|SUITE|CIR|HALL|OAK|UNIVERSITY|AVENUE|TER|BOX|DRIVE|CT|DR|ROAD|APT|COURT|ST|RD|ROAD|PL|CIR|WAY|AVE|PARKWAY|NEUSE|LN|PLAZA)"
+Matches <- # define the dataset
+  Wake_county %>% # refer to Wake_county
+  tidyr::extract(address,into="street_word", # match the address into a new variable called street word
+                 regex=pattern, # call back to the pattern
+                 remove=FALSE) %>% # do not remove
+  group_by(street_word) %>% # group the data by street word
+  summarize(number = n()) # count how many street words of each kind
+```
+
+
+```{r}
+## I'm trying to combine RD and ROAD, CIR and CIRCLE here because they are the same thing.
+Translate <- data_frame(street_word = c("RD", "CIR"), official = c("ROAD", "CIRCLE"))
+Matches %>% left_join(Translate) %>% 
+  mutate(final = ifelse(is.na(official), street_word, official))
+print.data.frame(Matches %>% arrange(desc(number)))
+```
+
