@@ -120,12 +120,96 @@ $(document).ready(function () {
 
 <div id="week-7-project" class="section level1">
 <h1>Week 7 Project</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="katie-jolly" class="section level2">
+<h2>Katie Jolly</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:32:15 2016.</p>
+<p>Compiled on Wed Oct 26 21:27:06 2016.</p>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
+<pre class="r"><code>Wake_county &lt;- read.csv(&quot;http://tiny.cc/dcf/street-addresses.csv&quot;, stringsAsFactors=FALSE)
+download.file(url=&quot;http://tiny.cc/dcf/CMS_ProvidersSimple.rds&quot;, destfile= &quot;CMS_ProvidersSimple.rds&quot;)
+Medicare &lt;- readRDS(&quot;CMS_ProvidersSimple.rds&quot;)</code></pre>
+<pre class="r"><code>pattern &lt;- &quot;(ST| RD| ROAD| CIRCLE| CIR| AVE| AVENUE| LANE| LN| DRIVE| DR| PLACE| PL| BOULEVARD| BLVD| WAY| BOX| TRL| HWY| VALLEY| SEBTS| LA| CT| TRAIL| HALL| UNIVERSITY| COURT| CO| PATH| LOOP| PO BX|BOX | PKWY| TR| BLUFFS| FARM| BLV| TERRACE| PEAKWAY|  HIGHWAY | TER| GLEN| HOSPITAL| ECU| ASU| CENTER| XING| PARKWAY| RIDGE| PASS| SUITE| DAIRY| BX| MEADOW| RUN| HILLS| APT| DORM| PARK| CREEK| TOWN| HILL| SAVE| EVANS| SOUTH |  NEUSE| WALKWAY| UNIT | CALLE| ALLEY)&quot;
+LeftOvers &lt;- Wake_county %&gt;% filter(! grepl(pattern, address,!grepl(&quot; BOX &quot;, address)))
+dim(LeftOvers)</code></pre>
+<pre><code>## [1] 170   1</code></pre>
+<pre class="r"><code>Street_names &lt;- 
+  Wake_county %&gt;% 
+  tidyr::extract(address, into=&quot;street_word&quot;, regex=pattern, remove=FALSE) %&gt;% 
+  group_by(street_word) %&gt;% 
+  summarise(total=n()) %&gt;% 
+  arrange(desc(total))
+Street_names %&gt;% print.data.frame()</code></pre>
+<pre><code>##    street_word total
+## 1          BOX 11040
+## 2           ST   867
+## 3           RD   539
+## 4           DR   456
+## 5          AVE   205
+## 6        DRIVE   187
+## 7           CT   176
+## 8         &lt;NA&gt;   170
+## 9         ROAD   142
+## 10          CO   125
+## 11          LA   118
+## 12        BOX    113
+## 13          LN   112
+## 14        LANE   102
+## 15         WAY    85
+## 16          PL    77
+## 17       RIDGE    69
+## 18       COURT    65
+## 19        HALL    62
+## 20       CREEK    58
+## 21        GLEN    55
+## 22      CIRCLE    53
+## 23       PLACE    50
+## 24        FARM    46
+## 25         CIR    42
+## 26         HWY    37
+## 27        PARK    37
+## 28          TR    37
+## 29        HILL    29
+## 30        BLVD    28
+## 31         RUN    25
+## 32      MEADOW    24
+## 33      SOUTH     24
+## 34        TOWN    22
+## 35       HILLS    21
+## 36       TRAIL    21
+## 37    HOSPITAL    18
+## 38  UNIVERSITY    17
+## 39      CENTER    14
+## 40         TRL    14
+## 41      VALLEY    14
+## 42        PKWY    12
+## 43        LOOP    10
+## 44          BX     9
+## 45         APT     8
+## 46     TERRACE     6
+## 47     PARKWAY     5
+## 48     PEAKWAY     5
+## 49         TER     5
+## 50        PATH     4
+## 51        DORM     3
+## 52       SUITE     3
+## 53      BLUFFS     2
+## 54   BOULEVARD     2
+## 55       DAIRY     2
+## 56       EVANS     2
+## 57        PASS     2
+## 58        XING     2
+## 59       ALLEY     1
+## 60        SAVE     1
+## 61       SEBTS     1
+## 62       UNIT      1
+## 63     WALKWAY     1</code></pre>
+<p>Street names is the name of the new table</p>
+<p>Wake county is the source data</p>
+<p>the tidr line is setting up the new table</p>
+<p>group by is grouping it by address type</p>
+<p>summarise is counting how many incidences of each street type</p>
+<p>arrange is putting them in order of least to most popular</p>
+<p>Street names is printing the final table</p>
 </div>
 </div>
 
