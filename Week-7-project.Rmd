@@ -1,6 +1,6 @@
 # Week 7 Project
 
-## Your name should appear here!
+## Nana Adom Mills-Robertson
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,43 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+```{r}
+Wake_county <-read.csv( "http://tiny.cc/dcf/street-addresses.csv", stringsAsFactors = FALSE)
+```
+
+```{r}
+download.file(url="http://tiny.cc/dcf/CMS_ProvidersSimple.rds", destfile = "Adom.rds")
+Medicare <- readRDS("Adom.rds")
+
+```
+
+```{r}
+pattern <-"ST|RD|ROAD"  #We have set the pattern to Street, RD, and Road
+LeftOvers <-            
+    Wake_county %>%
+  filter(! grepl(pattern, address), !grepl(" BOX ", address))  #We are looking for the opposite the pattern, given the address, we are looking for the opposite of Box, given the address
+
+View(LeftOvers)
+```
+
+```{r}
+pattern <-"(ST|RD|ROAD|CIRCLE|Way|Trail|CT|DR|Drive|AVE|Terrace|WAY|APT|LN|TRAIL|CIR|LANE|COURT|UNIVERSITY|LANE|RUN|BLVD|SEBTS|CO|PL|NCSU|HALL|NEUSE|HOSPITAL|WOODS|BOX|RD)"  #We have set the pattern to Street, RD, and Road and others, we are trying to set the pattern to capture all possible signs for the road. 
+LeftOvers <-            
+    Wake_county %>%
+  filter(! grepl(pattern, address), !grepl(" BOX ", address)) #This line means that we do not want the street words in the pattern given the addresses, we want LeftOvers without the more common road signs identified in the pattern. The truly unique ones.  
+View(LeftOvers)
+```
+
+```{r}
+DataX <- Wake_county %>%
+  tidyr::extract(address, into = "street_word",  # We want to use the tidyr:: extract to get the street word for every address. 
+                 regex = pattern, 
+                 remove = FALSE) %>%      
+                 group_by(street_word) %>%  #We the data by street words
+                 summarise(count = n()) %>% #We summarise the data for the count of street words. how many cases per street word. 
+                 arrange(desc(count))  # We arranged in descending order, from highest to lowest. 
+
+View(DataX)
+```
+
+
