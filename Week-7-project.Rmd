@@ -8,6 +8,49 @@ Compiled on `r date()`.
 ```{r include = FALSE}
 library(DataComputing)
 ```
-<!-- put your content after this line -->
 
-Here is my content!
+1. 
+```{r}
+Wake_County <- read.csv("http://tiny.cc/dcf/street-addresses.csv",stringsAsFactors = FALSE)
+```
+
+2. I kind of don't get why we need this... 
+```{r}
+#download.file(url = "http://tiny.cc/dcf/CMS_ProvidersSimple.rds",destfile = #"medicare.rds")
+#Medicare <- readRDS("medicare.rds")
+```
+
+3. See comment
+```{r}
+pattern <- "ST|RD|ROAD"
+#This is identifying those addresses that end with St, Rd or Road.
+LeftOvers <-
+  # Name the rest "LeftOvers"
+  Wake_County %>%
+  # Extract data from Wake_County data fram
+  filter(!grepl(pattern, address),
+         # Filter out those address with the pattern in them
+         !grepl("BOX", address))
+         # Filter out those address with the word "BOX" in them
+```
+
+My turn:
+```{r}
+pattern <- "(ST|BOX|RD|LN|PL|CIR|BLVD|PL|APT|CT|DR|WAY|PKWY|AVE|STREET|ROAD|BO|BX|LANE|CIRCLE|BOULEVARD|PLAZA|APARTMENT|COURT|DRIVE|AVENUE|TRAIL|TR|TERRACE|TER|HWY|HIGHWAY|UNIVERSITY|COLLEGE|HALL|POINT|PT|BLV|HOSPITAL|LOOP|RUN|HOUSE|PATH|PARKWA|SQUARE|DORM|SUITE)"
+street<- Wake_County %>% tidyr::extract(address, into = "street_word",regex = pattern,remove = FALSE) 
+```
+For this one, I recognize every possible road suffixes, weird one or normal one by looking up the NA list again and again and summarized into this pattern variable. Then I extract the road word from the address and put into another variable called "street_word."
+
+
+```{r}
+Translate <- data_frame(street_word = c("ST","RD","LN","BO","DR","PL","CIR", "AVE","BLVD","PKWY","CT","APT","BX","TR","TER","HWY","PT","BLV","PARKWA","SQUARE","COLLEGE","DORM"), official = c("STREET","ROAD","LANE","BOX","DRIVE","PLAZA","CIRCLE","AVENUE","BOULEVARD","WAY","COURT","APARTMENT","BOX","TRAIL","TERRACE","HIGHWAY","POINT","BOULEVARD","WAY","PLAZA","UNIVERSITY","UNIVERSITY"))
+new_Street <- street %>% left_join(Translate) %>%
+  mutate(final = ifelse(is.na(official), street_word, official))
+```
+I then add a translation data table. Basically I based on those weird names or abbreviation and give them a official translation. I group some similar ones like college, university, dorm, and parkway and way. I recognize some weird abbreviation of PO Box. Then I had my new_street data table by left joining the two tables so that I made a total summarization that we have a final that return the official street name of the address.
+
+```{r}
+new_Street %>% group_by(final) %>% summarise(count = n()) %>% arrange(desc(count)) %>% head(25)
+```
+Finally I count the number of the appearance and here you go!
+

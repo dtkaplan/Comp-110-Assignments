@@ -123,9 +123,54 @@ $(document).ready(function () {
 <div id="your-name-should-appear-here" class="section level2">
 <h2>Your name should appear here!</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:32:15 2016.</p>
-<!-- put your content after this line -->
-<p>Here is my content!</p>
+<p>Compiled on Wed Oct 26 22:13:43 2016.</p>
+<ol style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre class="r"><code>Wake_County &lt;- read.csv(&quot;http://tiny.cc/dcf/street-addresses.csv&quot;,stringsAsFactors = FALSE)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>I kind of don’t get why we need this…</li>
+</ol>
+<pre class="r"><code>#download.file(url = &quot;http://tiny.cc/dcf/CMS_ProvidersSimple.rds&quot;,destfile = #&quot;medicare.rds&quot;)
+#Medicare &lt;- readRDS(&quot;medicare.rds&quot;)</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>See comment</li>
+</ol>
+<pre class="r"><code>pattern &lt;- &quot;ST|RD|ROAD&quot;
+#This is identifying those addresses that end with St, Rd or Road.
+LeftOvers &lt;-
+  # Name the rest &quot;LeftOvers&quot;
+  Wake_County %&gt;%
+  # Extract data from Wake_County data fram
+  filter(!grepl(pattern, address),
+         # Filter out those address with the pattern in them
+         !grepl(&quot;BOX&quot;, address))
+         # Filter out those address with the word &quot;BOX&quot; in them</code></pre>
+<p>My turn:</p>
+<pre class="r"><code>pattern &lt;- &quot;(ST|BOX|RD|LN|PL|CIR|BLVD|PL|APT|CT|DR|WAY|PKWY|AVE|STREET|ROAD|BO|BX|LANE|CIRCLE|BOULEVARD|PLAZA|APARTMENT|COURT|DRIVE|AVENUE|TRAIL|TR|TERRACE|TER|HWY|HIGHWAY|UNIVERSITY|COLLEGE|HALL|POINT|PT|BLV|HOSPITAL|LOOP|RUN|HOUSE|PATH|PARKWA|SQUARE|DORM|SUITE)&quot;
+street&lt;- Wake_County %&gt;% tidyr::extract(address, into = &quot;street_word&quot;,regex = pattern,remove = FALSE) </code></pre>
+<p>For this one, I recognize every possible road suffixes, weird one or normal one by looking up the NA list again and again and summarized into this pattern variable. Then I extract the road word from the address and put into another variable called “street_word.”</p>
+<pre class="r"><code>Translate &lt;- data_frame(street_word = c(&quot;ST&quot;,&quot;RD&quot;,&quot;LN&quot;,&quot;BO&quot;,&quot;DR&quot;,&quot;PL&quot;,&quot;CIR&quot;, &quot;AVE&quot;,&quot;BLVD&quot;,&quot;PKWY&quot;,&quot;CT&quot;,&quot;APT&quot;,&quot;BX&quot;,&quot;TR&quot;,&quot;TER&quot;,&quot;HWY&quot;,&quot;PT&quot;,&quot;BLV&quot;,&quot;PARKWA&quot;,&quot;SQUARE&quot;,&quot;COLLEGE&quot;,&quot;DORM&quot;), official = c(&quot;STREET&quot;,&quot;ROAD&quot;,&quot;LANE&quot;,&quot;BOX&quot;,&quot;DRIVE&quot;,&quot;PLAZA&quot;,&quot;CIRCLE&quot;,&quot;AVENUE&quot;,&quot;BOULEVARD&quot;,&quot;WAY&quot;,&quot;COURT&quot;,&quot;APARTMENT&quot;,&quot;BOX&quot;,&quot;TRAIL&quot;,&quot;TERRACE&quot;,&quot;HIGHWAY&quot;,&quot;POINT&quot;,&quot;BOULEVARD&quot;,&quot;WAY&quot;,&quot;PLAZA&quot;,&quot;UNIVERSITY&quot;,&quot;UNIVERSITY&quot;))
+new_Street &lt;- street %&gt;% left_join(Translate) %&gt;%
+  mutate(final = ifelse(is.na(official), street_word, official))</code></pre>
+<pre><code>## Joining, by = &quot;street_word&quot;</code></pre>
+<p>I then add a translation data table. Basically I based on those weird names or abbreviation and give them a official translation. I group some similar ones like college, university, dorm, and parkway and way. I recognize some weird abbreviation of PO Box. Then I had my new_street data table by left joining the two tables so that I made a total summarization that we have a final that return the official street name of the address.</p>
+<pre class="r"><code>new_Street %&gt;% group_by(final) %&gt;% summarise(count = n()) %&gt;% arrange(desc(count)) %&gt;% head(25)</code></pre>
+<pre><code>## # A tibble: 25 × 2
+##     final count
+##     &lt;chr&gt; &lt;int&gt;
+## 1     BOX 11244
+## 2    ROAD   862
+## 3  STREET   844
+## 4   DRIVE   700
+## 5  AVENUE   261
+## 6   COURT   256
+## 7    LANE   249
+## 8    &lt;NA&gt;   171
+## 9   PLAZA   143
+## 10    WAY   140
+## # ... with 15 more rows</code></pre>
+<p>Finally I count the number of the appearance and here you go!</p>
 </div>
 </div>
 
