@@ -1,6 +1,6 @@
 # Week 8 Short Answer Questions
 
-## Your name should appear here!
+## Tristan Truttmann 
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,15 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+### 17.2 
+
+1. These variables are in the model: 
+* `weight`
+* `chol`
+
+I'm sorry.  It looks like you inserted a tree for health data rather than house prices.  I don't know how to answer the question.  :(
+
+```{r, include=FALSE}
+var <- read.file("http://tiny.cc/dcf/houses-for-sale.csv")
+```
+

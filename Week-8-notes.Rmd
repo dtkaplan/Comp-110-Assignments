@@ -1,0 +1,15 @@
+---
+title: "Week-8-notes"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Start
+
+```{r}
+Utilities <- read.csv("http://tiny.cc/dcf/utilities-up-to-date.csv",stringsAsFactors = FALSE)
+```
+

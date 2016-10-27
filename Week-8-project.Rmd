@@ -1,13 +1,63 @@
 # Week 8 Project
 
-## Your name should appear here!
+## Tristan Truttmann
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
-```{r include = FALSE}
-library(DataComputing)
-```
 <!-- put your content after this line -->
 
-Here is my content!
+```{r, include=FALSE}
+library(DataComputing)
+library(dplyr)
+library(ggdendro)
+```
+
+First I will put the data in narrow form: 
+
+```{r}
+NCProbes <- NCI60 %>% 
+  gather(key=cellLine, value=expression, BR.MCF7:RE.UO_31)
+```
+
+Now to determine the what probes are important, I will group by probes, then summarize by taking the standard deviation of each probe.: 
+
+```{r}
+probeTag <- NCProbes %>%
+  group_by(Probe) %>%
+  summarise(STDEV = sd(expression)) %>%
+  arrange(desc(STDEV)) %>% 
+  mutate(keep = STDEV > 5)
+```
+
+As you can see form the code above, I chose my threashold to be a standard deviation above 5.  Now I will use the `probeTag` table defined above and join it to my NCProbes table to keep the information of whether I will keep if for clustering: 
+
+```{r}
+taggedProbes <- NCProbes %>%
+  left_join(probeTag %>% select(-STDEV), by=c('Probe','Probe')) %>%
+  arrange(desc(keep))
+```
+
+Great! Now I will filter off the probes below the threshhold! Notice below that when there are two expressions that come from the same `cellLine` and the same `Probe`, that I average the two values:
+
+```{r}
+clusterReadyProbes <- 
+  taggedProbes %>%
+  filter(keep) %>%
+  select(-keep) %>% 
+  group_by(Probe,cellLine) %>%
+  summarize(expression = mean(expression)) %>%
+  spread(key=Probe,value=expression)
+```
+
+Wow I have learned so much this semester.  I never could have done that in August.  I'm going to be so much more prepared to make the world a better place.  The professor who taught me this should feel so proud.  I'm going to cluster my 49 `cellLines` now. 
+
+```{r}
+Dists <- dist(clusterReadyProbes %>% select(-cellLine))
+Dendrogram <- hclust(Dists)
+ddata <- dendro_data(Dendrogram)
+ggdendrogram(Dendrogram, rotate=TRUE) + 
+  geom_text(data=ddata$labels, aes(x=x, y=x, label=label), vjust=0)
+```
+
+And that is it!  Unfortunately, I seam to have lost the name data from the variable names in `clusterReadyProbes`.  I am no familiar enough with the methodology to track down where I lost these.  
