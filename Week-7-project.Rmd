@@ -1,6 +1,6 @@
 # Week 7 Project
 
-## Your name should appear here!
+## Joshua Doyle
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,40 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+```{r}
+Wake_county <- read.csv("http://tiny.cc/dcf/street-addresses.csv", stringsAsFactors = FALSE)
+```
+
+```{r}
+download.file(url = "http://tiny.cc/dcf/CMS_ProvidersSimple.rds", destfile = "JoshuaDoyle.rds")
+Medicare <- readRDS("JoshuaDoyle.rds")
+```
+
+```{r}
+pattern <- "(ST|RD|Road|ROAD|RD|BLVD|Drive|DR|Court|BOX|CT|COURT|LN|AVE|VALLEY|UNIVERSITY|TRAIL|LANE|CIRCLE|PL|Place|Way|N|S|W|E)"  
+LeftOvers <-
+  Wake_county %>%
+  filter(! grepl(pattern, address), ! grepl("Box", address))
+```
+**The first line is the pattern of values we are taking out of our dataset. LeftOvers then creates a new table that filters for each of the pattern mentioned above. By doing this we can filter out the most common endings of street adresses. We continously do this to filter the most popular counts**
+
+```{r}
+pattern <- "(ST|RD|Road|ROAD|RD|BLVD|Drive|DR|Court|BOX|CT|COURT|LN|AVE|VALLEY|UNIVERSITY|TRAIL|LANE|CIRCLE|PL|Place|Way|N|S|W|E)"
+
+WakeCounty2 <-
+Wake_county %>%
+  tidyr::extract(address, into = "street_word", regex = pattern, remove = FALSE)
+
+```
+
+```{r}
+WakeCounty2 %>%
+  group_by(street_word)%>%
+  summarise(total = length(address)) %>%
+  arrange(desc(total))
+```
+
+**In the table above we can see the count of the most common street ending names. Grouping by street_word allows us to gather all the street ending names. We then take the lengths of these to count them. Lastly, we arrange them in descending order to see the largest count of these.**
+
+
+

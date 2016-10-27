@@ -120,12 +120,43 @@ $(document).ready(function () {
 
 <div id="week-7-project" class="section level1">
 <h1>Week 7 Project</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="joshua-doyle" class="section level2">
+<h2>Joshua Doyle</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:32:15 2016.</p>
+<p>Compiled on Wed Oct 26 21:16:05 2016.</p>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
+<pre class="r"><code>Wake_county &lt;- read.csv(&quot;http://tiny.cc/dcf/street-addresses.csv&quot;, stringsAsFactors = FALSE)</code></pre>
+<pre class="r"><code>download.file(url = &quot;http://tiny.cc/dcf/CMS_ProvidersSimple.rds&quot;, destfile = &quot;JoshuaDoyle.rds&quot;)
+Medicare &lt;- readRDS(&quot;JoshuaDoyle.rds&quot;)</code></pre>
+<pre class="r"><code>pattern &lt;- &quot;(ST|RD|Road|ROAD|RD|BLVD|Drive|DR|Court|BOX|CT|COURT|LN|AVE|VALLEY|UNIVERSITY|TRAIL|LANE|CIRCLE|PL|Place|Way|N|S|W|E)&quot;  
+LeftOvers &lt;-
+  Wake_county %&gt;%
+  filter(! grepl(pattern, address), ! grepl(&quot;Box&quot;, address))</code></pre>
+<p><strong>The first line is the pattern of values we are taking out of our dataset. LeftOvers then creates a new table that filters for each of the pattern mentioned above. By doing this we can filter out the most common endings of street adresses. We continously do this to filter the most popular counts</strong></p>
+<pre class="r"><code>pattern &lt;- &quot;(ST|RD|Road|ROAD|RD|BLVD|Drive|DR|Court|BOX|CT|COURT|LN|AVE|VALLEY|UNIVERSITY|TRAIL|LANE|CIRCLE|PL|Place|Way|N|S|W|E)&quot;
+
+WakeCounty2 &lt;-
+Wake_county %&gt;%
+  tidyr::extract(address, into = &quot;street_word&quot;, regex = pattern, remove = FALSE)</code></pre>
+<pre class="r"><code>WakeCounty2 %&gt;%
+  group_by(street_word)%&gt;%
+  summarise(total = length(address)) %&gt;%
+  arrange(desc(total))</code></pre>
+<pre><code>## # A tibble: 21 × 2
+##    street_word total
+##          &lt;chr&gt; &lt;int&gt;
+## 1          BOX  8695
+## 2            N  3321
+## 3            E  1524
+## 4            S   883
+## 5            W   478
+## 6           ST   203
+## 7           RD    86
+## 8           DR    57
+## 9          AVE    51
+## 10          PL    35
+## # ... with 11 more rows</code></pre>
+<p><strong>In the table above we can see the count of the most common street ending names. Grouping by street_word allows us to gather all the street ending names. We then take the lengths of these to count them. Lastly, we arrange them in descending order to see the largest count of these.</strong></p>
 </div>
 </div>
 
