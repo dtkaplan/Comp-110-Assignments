@@ -10,9 +10,61 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
+## 5.1 
+
 ```{r}
 library(mosaicData)
 library(DataComputing)
-barGraphHelper(CPS85)
+library(ggplot2)
+ggplot(data=CPS85,aes(x=sex,y=wage ,fill=married))+geom_bar(stat='identity',position='dodge', width=.9)+ facet_wrap(~race,ncol=3)
 ```
 
+## 5.2
+
+```{r}
+HappinessIndex %>% WorldMap(key= country, fill= corruption)
+```
+
+## 6.5
+
+b. State and Polling Organization
+
+## 6.6
+
+d. Glyph: Rectangle. Graphical attribute: color and text
+
+## 6.7 
+
+a. State
+
+## 6.8
+
+```{r}
+Small = NCHS %>% sample_n(size=5000)
+ggplot(data=Small,aes(x=bmi,y=weight))+geom_point()+aes(colour=smoker) 
+```
+
+Weight is mapped to the y axis, bmi to the x axis, and smoker status to the color 
+
+## 7.1
+
+a. mean
+
+b. gain
+
+c. 
+
+## 7.4
+
+
+
+## 7.5
+
+
+
+## 7.7
+
+
+
+## 7.11
+                   

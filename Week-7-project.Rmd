@@ -1,6 +1,6 @@
 # Week 7 Project
 
-## Your name should appear here!
+## Katie Jolly
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,40 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+```{r}
+Wake_county <- read.csv("http://tiny.cc/dcf/street-addresses.csv", stringsAsFactors=FALSE)
+download.file(url="http://tiny.cc/dcf/CMS_ProvidersSimple.rds", destfile= "CMS_ProvidersSimple.rds")
+Medicare <- readRDS("CMS_ProvidersSimple.rds")
+```
+
+```{r}
+pattern <- "(ST| RD| ROAD| CIRCLE| CIR| AVE| AVENUE| LANE| LN| DRIVE| DR| PLACE| PL| BOULEVARD| BLVD| WAY| BOX| TRL| HWY| VALLEY| SEBTS| LA| CT| TRAIL| HALL| UNIVERSITY| COURT| CO| PATH| LOOP| PO BX|BOX | PKWY| TR| BLUFFS| FARM| BLV| TERRACE| PEAKWAY|  HIGHWAY | TER| GLEN| HOSPITAL| ECU| ASU| CENTER| XING| PARKWAY| RIDGE| PASS| SUITE| DAIRY| BX| MEADOW| RUN| HILLS| APT| DORM| PARK| CREEK| TOWN| HILL| SAVE| EVANS| SOUTH |  NEUSE| WALKWAY| UNIT | CALLE| ALLEY)"
+LeftOvers <- Wake_county %>% filter(! grepl(pattern, address,!grepl(" BOX ", address)))
+dim(LeftOvers)
+```
+
+```{r}
+Street_names <- 
+  Wake_county %>% 
+  tidyr::extract(address, into="street_word", regex=pattern, remove=FALSE) %>% 
+  group_by(street_word) %>% 
+  summarise(total=n()) %>% 
+  arrange(desc(total))
+Street_names %>% print.data.frame()
+```
+
+Street names is the name of the new table
+
+Wake county is the source data
+
+the tidr line is setting up the new table
+
+group by is grouping it by address type
+
+summarise is counting how many incidences of each street type
+
+arrange is putting them in order of least to most popular
+
+Street names is printing the final table
+
+

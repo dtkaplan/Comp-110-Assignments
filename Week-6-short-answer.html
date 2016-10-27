@@ -123,9 +123,69 @@ $(document).ready(function () {
 <div id="your-name-should-appear-here" class="section level2">
 <h2>Your name should appear here!</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:27:42 2016.</p>
+<p>Compiled on Wed Oct 12 16:18:34 2016.</p>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
+<div id="section" class="section level3">
+<h3>12.1</h3>
+<pre class="r"><code>BabyNames %&gt;% filter(sex == &quot;M&quot;) %&gt;% group_by(name) %&gt;% summarise(total = sum(count)) %&gt;% filter(rank(desc(total)) &lt;= 5)</code></pre>
+<pre><code>## # A tibble: 5 × 2
+##      name   total
+##     &lt;chr&gt;   &lt;int&gt;
+## 1   James 5091189
+## 2    John 5073958
+## 3 Michael 4293460
+## 4  Robert 4789776
+## 5 William 4038447</code></pre>
+<pre class="r"><code>BabyNames %&gt;% filter(sex == &quot;F&quot;) %&gt;% group_by(name) %&gt;% summarise(total = sum(count)) %&gt;% filter(rank(desc(total)) &lt;= 5)</code></pre>
+<pre><code>## # A tibble: 5 × 2
+##        name   total
+##       &lt;chr&gt;   &lt;int&gt;
+## 1 Elizabeth 1591439
+## 2  Jennifer 1461186
+## 3     Linda 1450328
+## 4      Mary 4112464
+## 5  Patricia 1570135</code></pre>
+</div>
+<div id="section-1" class="section level3">
+<h3>12.2</h3>
+</div>
+<div id="section-2" class="section level3">
+<h3>12.3</h3>
+<ol style="list-style-type: lower-alpha">
+<li><p>summary</p></li>
+<li><p>transformation</p></li>
+<li><p>summary</p></li>
+<li><p>transformation</p></li>
+<li><p>neither</p></li>
+<li><p>both</p></li>
+<li><p>transformation</p></li>
+<li><p>summary</p></li>
+</ol>
+</div>
+<div id="section-3" class="section level3">
+<h3>13.1</h3>
+<p>8 vertices</p>
+<p>9 edges</p>
+</div>
+<div id="section-4" class="section level3">
+<h3>13.2</h3>
+<ol style="list-style-type: decimal">
+<li><p>A B C D</p></li>
+<li><p>Table 2</p></li>
+<li><p>They don’t show the relationships correctly</p></li>
+</ol>
+</div>
+<div id="section-5" class="section level3">
+<h3>13.3</h3>
+<p>Table 2</p>
+</div>
+<div id="section-6" class="section level3">
+<h3>13.4</h3>
+<ol style="list-style-type: decimal">
+<li><p>exports</p></li>
+<li><p>not sure</p></li>
+</ol>
+</div>
 </div>
 </div>
 

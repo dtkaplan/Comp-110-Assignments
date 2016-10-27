@@ -1,13 +1,100 @@
 # Week 4 Short Answer Questions
 
-## Your name should appear here!
+## Katie Jolly
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(ggplot2)
+library(mosaicData)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+## 8.1
+
+1. ggplot()
+
+2. geom_point(), geom_segment(), geom_histogram()
+
+3. ylab()
+
+4. facet_wrap()
+
+5. xlim(), scale_y_log()
+
+## 8.2
+
+
+### 1
+
+```{r}
+ggplot(CPS85, aes(x= age, y= wage, shape= married)) + geom_point() + facet_wrap(~sector) + ylim(0, 30)
+```
+
+### 2
+
+```{r}
+ggplot(CPS85, aes(x= age, y= wage)) + geom_point() + facet_grid(sex ~ married)
+```
+
+
+## 8.3
+
+### A
+
+```{r}
+ggplot(CPS85, aes(x= age, y= wage)) + geom_point()
+```
+
+### B
+
+```{r}
+ggplot(CPS85, aes(x= age, y= wage, shape= sex)) + geom_point()
+```
+
+### C
+
+```{r}
+ggplot(CPS85, aes(x= age, y= wage, shape= sex)) + geom_point() + facet_grid( married ~ .)
+```
+
+### D
+
+```{r}
+ggplot(CPS85, aes(x= age, y= wage, shape= married)) + geom_point() + ylim(0,30)
+```
+
+## 9.1
+
+a. str() is a summary verb
+
+b. group_by is a data verb
+
+c. rank() is quick presentation 
+
+d. mean() is a summary function
+
+e. filter() is a data verb
+
+f. summary() is a summary function
+
+g. summarise() is a data verb
+
+h. anti_join() is a data verb
+
+i. glimpse() is a data verb
+
+## 9.3 
+
+```{r}
+diamonds %>% group_by(color) %>% arrange(desc(carat)) %>% head(1)
+```
+
+```{r}
+diamonds$TableperCarat <- diamonds$table/diamonds$carat
+diamonds %>% group_by(clarity) %>% arrange(desc(TableperCarat)) %>% head(1)
+                                              
+```
+

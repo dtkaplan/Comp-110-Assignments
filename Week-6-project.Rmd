@@ -1,6 +1,6 @@
 # Week 6 Project
 
-## Your name should appear here!
+## Katie Jolly
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,10 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+```{r}
+companies <- c("BAC", "WFC", "DB", "JPM")
+Prices <- read_stock_prices(companies, what="daily", start_year = 2010, end_year = 2016)
+```
+
+```{r}
+ggplot(Prices, aes(x= date,y= close, color=company)) + geom_point(size=0.2)

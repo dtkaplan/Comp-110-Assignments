@@ -1,13 +1,21 @@
 # Week 5 Project
 
-## Your name should appear here!
+## Katie Jolly
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(ggplot2)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+```{r}
+download.file("http://tiny.cc/dcf/ScorecardSmall.Rda", destfile="ScorecardSmall.Rda")
+load("ScorecardSmall.Rda")
+```
+
+```{r}
+
+

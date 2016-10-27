@@ -1,6 +1,6 @@
 # Week 5 Short Answer Questions
 
-## Your name should appear here!
+## Katie Jolly
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,78 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+```{r}
+library(DataComputing)
+```
+
+### 10.1
+
+The join data verbs always have tables as the argument because they act on tables, rather than variables. They take one table and combine it with another, thus the tables are the arguments, or at least one of the arguments.
+
+### 10.2
+
+They cannot just be put together because there are different numbers of cases in each. So you have to use a system like the join function to be sure that the correct coordinates are matching up with the correct country names.
+
+### 10.3
+
+Data table B would be easiest I think. I would create a new variable that is the difference between Y2001 and Y2000. 
+
+I think it would be best to group by continent and sum the values 
+
+### 11.1
+
+#### a. 
+1- particular name of one sex in a year
+2- name in a year
+3- name
+
+#### b. 
+
+verison 1 is narrow, 2 is wide
+
+#### c. 
+
+sex
+
+#### d. 
+
+Some names are not gender neutral
+
+#### e. 
+
+Roderick appears twice in version 2 and not in version 3. 
+
+#### f. 
+
+year
+
+#### g. 
+
+sex and nbabies were gathered
+
+nbabies
+
+values for F and M
+
+### 11.3
+
+#### a.
+
+A is wide
+
+#### b. 
+
+B is narrow
+
+#### c. 
+
+A is wide 
+
+### 11.4
+
+on paper
+
+### 11.5
+
+
+

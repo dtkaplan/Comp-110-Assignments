@@ -120,12 +120,57 @@ $(document).ready(function () {
 
 <div id="week-7-short-answer-questions" class="section level1">
 <h1>Week 7 Short Answer Questions</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="katie-jolly" class="section level2">
+<h2>Katie Jolly</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:28:15 2016.</p>
+<p>Compiled on Wed Oct 26 16:32:57 2016.</p>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
+</div>
+<div id="section" class="section level2">
+<h2>15.1</h2>
+<pre class="r"><code>lubridate::ymd(&quot;1996-11-06&quot;)- lubridate::mdy(&quot;April 30, 1777&quot;)</code></pre>
+<pre><code>## Time difference of 80178 days</code></pre>
+<pre class="r"><code>lubridate::ymd(&quot;1996-11-06&quot;)- lubridate::mdy(&quot;06-23-1912&quot;)</code></pre>
+<pre><code>## Time difference of 30817 days</code></pre>
+<pre class="r"><code>lubridate::ymd(&quot;1996-11-06&quot;)- lubridate::dmy(&quot;3 March 1847&quot;)</code></pre>
+<pre><code>## Time difference of 54670 days</code></pre>
+<pre class="r"><code>lubridate::ymd(&quot;1996-11-06&quot;)- lubridate::mdy_hms(&quot;Nov. 11, 1918, 11:00 am&quot;)</code></pre>
+<pre><code>## Time difference of -8405.758 days</code></pre>
+</div>
+<div id="section-1" class="section level2">
+<h2>15.2</h2>
+<p>as.numeric() works for a, c, i tidyr::extract_numeric() works for b, d, e, f, g, h</p>
+</div>
+<div id="section-2" class="section level2">
+<h2>16.1</h2>
+<pre class="r"><code>BabyNames %&gt;% filter(sex== &quot;M&quot;) %&gt;% group_by(name) %&gt;% summarise(total=sum(count)) %&gt;% filter(grepl(&quot;[aeiou]$&quot;, name)) %&gt;% arrange(desc(total)) %&gt;% head(10)</code></pre>
+<pre><code>## # A tibble: 10 × 2
+##        name   total
+##       &lt;chr&gt;   &lt;int&gt;
+## 1    George 1451408
+## 2    Joshua 1163815
+## 3      Jose  539924
+## 4      Kyle  469045
+## 5  Lawrence  454323
+## 6       Joe  448953
+## 7    Willie  447403
+## 8     Jesse  407183
+## 9     Bruce  379233
+## 10   Eugene  377338</code></pre>
+<pre class="r"><code>BabyNames %&gt;% group_by(name) %&gt;% summarise(total= sum(count)) %&gt;% filter(grepl(&quot;.*(jo$|joe$)&quot;, name)) %&gt;% arrange(desc(total)) %&gt;% head(10)</code></pre>
+<pre><code>## # A tibble: 10 × 2
+##        name total
+##       &lt;chr&gt; &lt;int&gt;
+## 1    Maryjo  6973
+## 2  Billiejo  1455
+## 3    Marijo  1275
+## 4   Bobbijo  1230
+## 5  Bobbiejo  1009
+## 6   Bettyjo   764
+## 7     Alejo   751
+## 8     Amyjo   486
+## 9  Billyjoe   393
+## 10     Jojo   303</code></pre>
 </div>
 </div>
 

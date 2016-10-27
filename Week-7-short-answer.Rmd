@@ -1,6 +1,6 @@
 # Week 7 Short Answer Questions
 
-## Your name should appear here!
+## Katie Jolly
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,23 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+## 15.1
+
+```{r}
+
+lubridate::ymd("1996-11-06")- lubridate::mdy("April 30, 1777")
+lubridate::ymd("1996-11-06")- lubridate::mdy("06-23-1912")
+lubridate::ymd("1996-11-06")- lubridate::dmy("3 March 1847")
+lubridate::ymd("1996-11-06")- lubridate::mdy_hms("Nov. 11, 1918, 11:00 am")
+```
+
+## 15.2
+
+as.numeric() works for a, c, i
+tidyr::extract_numeric() works for b, d, e, f, g, h 
+
+## 16.1
+```{r}
+BabyNames %>% filter(sex== "M") %>% group_by(name) %>% summarise(total=sum(count)) %>% filter(grepl("[aeiou]$", name)) %>% arrange(desc(total)) %>% head(10)
+BabyNames %>% group_by(name) %>% summarise(total= sum(count)) %>% filter(grepl(".*(jo$|joe$)", name)) %>% arrange(desc(total)) %>% head(10)
+```

@@ -10,4 +10,58 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+### 12.1
+
+```{r}
+BabyNames %>% filter(sex == "M") %>% group_by(name) %>% summarise(total = sum(count)) %>% filter(rank(desc(total)) <= 5)
+BabyNames %>% filter(sex == "F") %>% group_by(name) %>% summarise(total = sum(count)) %>% filter(rank(desc(total)) <= 5)
+```
+
+### 12.2
+
+```{r}
+```
+
+### 12.3
+
+a. summary
+
+b. transformation
+
+c. summary
+
+d. transformation
+
+e. neither
+
+f. both
+
+g. transformation
+
+h. summary
+
+### 13.1 
+
+8 vertices
+
+9 edges
+
+### 13.2
+
+1. A B C D 
+
+2. Table 2
+
+3. They don't show the relationships correctly
+
+### 13.3
+
+Table 2
+
+### 13.4 
+
+1. exports
+
+2. not sure
+
+

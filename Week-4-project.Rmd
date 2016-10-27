@@ -1,6 +1,6 @@
 # Week 4 Project
 
-## Your name should appear here!
+## Katie Jolly
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,40 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+
+```{r cache=TRUE}
+data_site <- "http://tiny.cc/dcf/2014-Q4-Trips-History-Data-Small.rds"
+Trips <- readRDS(gzcon(url(data_site)))
+```
+
+```{r}
+library(ggplot2)
+ggplot(Trips, aes(x= sdate)) + geom_density()
+```
+
+```{r}
+Trips <- Trips %>% mutate(time_of_day = lubridate::hour(sdate) + lubridate::minute(sdate)/60) 
+ggplot(Trips, aes(x= time_of_day)) + geom_density()
+```
+
+```{r}
+Trips <- Trips %>% mutate(day_of_week = lubridate::wday(sdate))
+ggplot(Trips, aes(x= day_of_week)) + geom_density() + facet_wrap(~day_of_week)
+```
+
+```{r}
+ggplot(Trips, aes(x= day_of_week, fill=client)) + geom_density(color="NA", alpha=0.4) + facet_wrap(~day_of_week)
+```
+
+```{r}
+ggplot(Trips, aes(x= , fill=client)) + geom_density(position= position_stack(), color="NA", alpha=0.4) + facet_wrap(~day_of_week)
+```
+
+I think that for this particular graphic, it is more helpful to have the plots overlayed to be able to compare heights. Having them stacked makes them easier to distinguish but harder to compare. 
+
+```{r}
+Trips <- Trips %>% mutate(wday=ifelse(lubridate::wday(sdate) %in% c(1,7), "weekend", "weekday"))
+```
+
+```{r}
+ggplot(Trips, aes(x= time_of_day, fill= client)) +geom_density() 

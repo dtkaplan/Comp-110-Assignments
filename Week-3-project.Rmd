@@ -1,6 +1,6 @@
 # Week 3 Project
 
-## Your name should appear here! 
+## Katie Jolly
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,27 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+Figure 1:
+
+Scatter plot; sector, wage, experience, marital status; wage and experience are the frame, sector is the facet, and marital status is the glyph
+
+Figure 2: 
+
+Density plot; bmi, sex, pregnancy; bmi is the frame, pregnancy is the facet, and sex is mapped to the glyph
+
+In figure 2 there is no y variable because density takes the place of a y variable in the frame. 
+
+```{r}
+library(ggplot2)
+View(CPS85)
+View(NCHS)
+```
+
+```{r}
+ggplot(CPS85, aes(x=exper, y=wage, color=married)) + geom_point() + facet_wrap(~sector)
+```
+
+```{r}
+ggplot(NCHS, aes(x=bmi)) + geom_density(aes(color= sex)) + facet_wrap(~pregnant)
+```
+
