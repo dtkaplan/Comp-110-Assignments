@@ -123,9 +123,31 @@ $(document).ready(function () {
 <div id="your-name-should-appear-here" class="section level2">
 <h2>Your name should appear here!</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:32:15 2016.</p>
+<p>Compiled on Wed Oct 26 20:51:40 2016.</p>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
+<div id="read-the-data" class="section level3">
+<h3>Read the data</h3>
+<p>Address of registered voter in Wake County</p>
+<pre class="r"><code>Wake_county &lt;- read.csv(&quot;http://tiny.cc/dcf/street-addresses.csv&quot;, stringsAsFactors = FALSE)</code></pre>
+<p>Addresses of medicare service provider.</p>
+<pre class="r"><code>download.file(url = &quot;http://tiny.cc/dcf/CMS_ProvidersSimple.rds&quot;, destfile = &quot;MedicareProvider.rds&quot;)
+Medicare &lt;- readRDS(&quot;MedicareProvider.rds&quot;)</code></pre>
+<p>Filter out the addresses using common street words</p>
+<pre class="r"><code>pattern &lt;- &quot;ST|RD|ROAD|AVE|LN|DR|CIR|TRAIL|CT|LANE|COURT|PL|TR|WAY|BLVD|PKWY|BLV|PT|HWY|TRL|TERRACE|RIDGE|PARKWA|ALY|ALLEY|LOOP|PATH&quot;
+Left_over &lt;-
+  Wake_county %&gt;%
+  filter(!grepl(pattern, address), #filter out addresses that have ST, RD, or ROAD
+         !grepl(&quot;BOX&quot;, address)) #filter out addresses with BOX</code></pre>
+<p>New column of street word</p>
+<pre class="r"><code>pattern &lt;- &quot;(ST|RD|ROAD|AVE|LN|DR|CIR|TRAIL|CT|LANE|COURT|PL|TR|WAY|BLVD|PKWY|BLV|PT|HWY|TRL|TERRACE|RIDGE|PARKWA|ALY|ALLEY|LOOP|PATH)&quot;
+Street_word &lt;- Wake_county %&gt;%
+  tidyr::extract(address, into = &quot;street_word&quot;, regex = pattern, remove = FALSE)</code></pre>
+<p>Count street word</p>
+<pre class="r"><code>Tally &lt;- 
+  Street_word %&gt;%
+  group_by(street_word) %&gt;%
+  tally()</code></pre>
+</div>
 </div>
 </div>
 

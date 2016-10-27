@@ -9,5 +9,23 @@ Compiled on `r date()`.
 library(DataComputing)
 ```
 <!-- put your content after this line -->
+# Stocks and Dividends
+Goal: Compare the income that comes from buying/selling stocks to those from dividents
 
-Here is my content!
+Getting the Data
+```{r}
+companies <- c("MSFT","GOOGL","FB","BABA")
+Prices <- read_stock_prices(companies, what = "daily", start_year = 2000, end_year = 2015)
+Prices %>% 
+  ggplot(aes(x = date, y=close, color=company)) + geom_line()
+```
+
+Buy/Sell Profit
+```{r}
+Actions <- data.frame(action = c("buy","sell"), date = ymd(c("2013-01-01","2014-12-30")))
+
+Prices %>% 
+  left_join()
+```
+
+

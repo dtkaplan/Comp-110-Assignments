@@ -10,4 +10,10 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+# Graph for the Economist
+
+## The data
+```{r}
+download.file("http://tiny.cc/dcf/ScorecardSmall.Rda")
+```
+

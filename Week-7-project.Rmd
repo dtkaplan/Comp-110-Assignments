@@ -10,4 +10,39 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+### Read the data
+Address of registered voter in Wake County
+```{r}
+Wake_county <- read.csv("http://tiny.cc/dcf/street-addresses.csv", stringsAsFactors = FALSE)
+```
+
+Addresses of medicare service provider.
+```{r}
+download.file(url = "http://tiny.cc/dcf/CMS_ProvidersSimple.rds", destfile = "MedicareProvider.rds")
+Medicare <- readRDS("MedicareProvider.rds")
+```
+
+Filter out the addresses using common street words
+```{r}
+pattern <- "ST|RD|ROAD|AVE|LN|DR|CIR|TRAIL|CT|LANE|COURT|PL|TR|WAY|BLVD|PKWY|BLV|PT|HWY|TRL|TERRACE|RIDGE|PARKWA|ALY|ALLEY|LOOP|PATH"
+Left_over <-
+  Wake_county %>%
+  filter(!grepl(pattern, address), #filter out addresses that have ST, RD, or ROAD
+         !grepl("BOX", address)) #filter out addresses with BOX
+```
+
+New column of street word
+```{r}
+pattern <- "(ST|RD|ROAD|AVE|LN|DR|CIR|TRAIL|CT|LANE|COURT|PL|TR|WAY|BLVD|PKWY|BLV|PT|HWY|TRL|TERRACE|RIDGE|PARKWA|ALY|ALLEY|LOOP|PATH)"
+Street_word <- Wake_county %>%
+  tidyr::extract(address, into = "street_word", regex = pattern, remove = FALSE)
+```
+
+Count street word
+```{r}
+Tally <- 
+  Street_word %>%
+  group_by(street_word) %>%
+  tally()
+```
+
