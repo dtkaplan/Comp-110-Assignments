@@ -120,12 +120,910 @@ $(document).ready(function () {
 
 <div id="week-7-project" class="section level1">
 <h1>Week 7 Project</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="shelby-witherby" class="section level2">
+<h2>Shelby Witherby</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:32:15 2016.</p>
-<!-- put your content after this line -->
-<p>Here is my content!</p>
+<p>Compiled on Wed Oct 26 20:53:02 2016.</p>
+<pre class="r"><code>Wake_county &lt;- read.csv(&quot;http://tiny.cc/dcf/street-addresses.csv&quot;)
+
+download.file(url = &quot;http://tiny.cc/dcf/CMS_ProvidersSimple.rds&quot;, destfile = &quot;YourNameForTheFile.rds&quot;)
+Medicare &lt;- readRDS(&quot;YourNameForTheFile.rds&quot;)</code></pre>
+<pre class="r"><code>pattern &lt;- &quot;(ST|RD|ROAD|CIRCLE|WAY|TRAIL|LN|AVE|DR|CIR|DRIVE|CT|PO BOX)&quot; # this sets our pattern to be streets, rd, or road
+LeftOvers &lt;- # This names our function
+  Wake_county %&gt;% # This is the data we are using
+  filter( ! grepl(pattern, address), ! grepl(&quot; BOX&quot;, address)) # this filters out addresses that have street names fitting our pattern
+
+LeftOvers</code></pre>
+<pre><code>##                                      address
+## 1                             NCSU B0X 15637
+## 2                             130 THE WINERY
+## 3                                   HMIA-267
+## 4                           1104 PULLEN HALL
+## 5                               311 BAREFOOT
+## 6                              512  LIVE OAK
+## 7                    1706 WINGATE UNIVERSITY
+## 8                5801 COBBLE OAK COURT APT E
+## 9                              53 PARK PL 6D
+## 10                            100 WYBEL LANE
+## 11                            AT BN BRAVO CO
+## 12              901 ENGLEWOOD PKWY APT L 107
+## 13                                   UR 6516
+## 14                    4100 GRAND MANOR COURT
+## 15                        30 GRAY BASS COURT
+## 16                   102 PICKERING PL APT 1D
+## 17                       321 BEAR CREEK PATH
+## 18                      104 SILVERWOOD POINT
+## 19                        659 CARY TOWN BLVD
+## 20                          3332 HERITAGE PL
+## 21                             2605 ADCOX PL
+## 22                           5732 WOOF PLACE
+## 23            PMB 387  6325-9 FALLS OF NEUSE
+## 24                      132 BRITTINGHAM LOOP
+## 25                   2440 SW CARY PARKWA 160
+## 26                         114 EDGEHILL PKWY
+## 27            8104 BROOKGATE TERRACE APT 205
+## 28                          20 CHAPEL SQUARE
+## 29                       2708 TOWNEDGE COURT
+## 30                           104 ABBOTT LANE
+## 31                                 PO BX 371
+## 32                       2170 GABORONE PLACE
+## 33                            103 LANIGAN PL
+## 34                            103 SUNRISE CV
+## 35                             5536 NUR LANE
+## 36                                  BOX 1346
+## 37                   659 CARY TOWNE BLVD 200
+## 38           9099 MAIL SERVICE CENTER ACP 39
+## 39                    1381-220 KILDAIRE FARM
+## 40                     24 SUNNY VIEW TERRACE
+## 41                                 BOX 30302
+## 42                             8421 CUTHBERT
+## 43                             110 IOWA LANE
+## 44                             105 OCEANA PL
+## 45                            6100 HOPE LANE
+## 46                   302 NORTHLAKE BLVD #201
+## 47                    4505-200 FALLS OF NEUS
+## 48                    659-104 CARY TOWNE BLV
+## 49                            BOX 22846 NCSU
+## 50                                   BOX 331
+## 51                                  BOX 6021
+## 52                   7909-125 FALLS OF NEUSE
+## 53                     8311 BRIER CREEK PKWY
+## 54                                 BOX 30756
+## 55                                   BOX 373
+## 56                            BOX 21458 NCSU
+## 57                       3601 KNIGHTCROFT PL
+## 58                      430 DOGWOOD CREEK PL
+## 59                         BOX 702 SHAW UNIV
+## 60                                 BOX 46166
+## 61                         107 KENNEIL COURT
+## 62                                  BOX 2123
+## 63                             BOX 4655 NCSU
+## 64                       403 WOLF CREEK LANE
+## 65                             BOX 4465 NCSU
+## 66                4505-220  FAIR MEADOW LANE
+## 67                               SEBTS 14375
+## 68                          2204   BRISBAYNE
+## 69                  9099 MAIL SERVICE CENTER
+## 70                      216 NEUSE RIVER PKWY
+## 71                                 BOX 46618
+## 72                            BOX 21129 NCSU
+## 73                    5301 THICKET HILL LANE
+## 74                            103 RHUM PLACE
+## 75                    30 SCOTCH BONNET RIDGE
+## 76                          3605 SUNRIVER PT
+## 77                        6900 WHITTLESEA PL
+## 78                    4558B CAPITAL BLVD 294
+## 79                           BOX 14544 SEBTS
+## 80                           BOX 12053 SEBTS
+## 81           PMB 255 6325 - 9 FALLS OF NEUSE
+## 82                                   BOX 427
+## 83                                  BOX 4434
+## 84                             111 WOODS RUN
+## 85                                      1611
+## 86                          HANOR LANE 136 C
+## 87                                   BOX 846
+## 88                            7796 N 77TH PL
+## 89                        8632 LANGTREE LANE
+## 90                   6508 FALLS OF NEUSE 100
+## 91                   6508 FALLS OF NEUSE 100
+## 92                     6325 FALLS OF NEUSE 2
+## 93                   11806 N MOUNTAIN LAUREL
+## 94                                  BOX 1068
+## 95                             5109 HEREZ PL
+## 96                        6619 CLARKSBURG PL
+## 97                     6325-9 FALLS OF NEUSE
+## 98                        4617 KRESSON PLACE
+## 99                    1381-356 KILDAIRE FARM
+## 100                                BOX 30011
+## 101                          5748 THREE OAKS
+## 102                    1404 WOODSIDE TERRACE
+## 103                        3500 REGENCY PKWY
+## 104                   PMB 255 952 US HWY 64W
+## 105                  4705 SHADOW RIDGE COURT
+## 106                                  BOX 392
+## 107           5200 SUMMIT MANOR LANE APT 426
+## 108                      4558 B CAPITAL BLVD
+## 109                             BOX 01344518
+## 110                      1266 SHADOWFAX WYND
+## 111                          BOX 12812 SEBTS
+## 112                          BOX 12812 SEBTS
+## 113                              3210 SR 546
+## 114                           952 US HWY 64W
+## 115                          BOX 12149 SEBTS
+## 116                          BOX 13166 SEBTS
+## 117                          BOX 14032 SEBTS
+## 118                          BOX 12670 SEBTS
+## 119                          BOX 13873 SEBTS
+## 120                          BOX 12144 SEBTS
+## 121                          BOX 12156 SEBTS
+## 122                          BOX 13365 SEBTS
+## 123                          BOX 12449 SEBTS
+## 124                                  BOX 516
+## 125                                 BOX 1962
+## 126                    2917 RUE SANS FAMILLE
+## 127                          BOX 12421 SEBTS
+## 128                3005 PINEY GROVE WILBON R
+## 129             659  CARY TOWNE BLVD PMB 181
+## 130                                BOX 97612
+## 131                                  BOX 394
+## 132                               6737 US 64
+## 133                        4534 CAPITAL BLVD
+## 134      8311 BRIER CREEK PKWY SUITE 105-192
+## 135                    8311 BRIER CREEK PKWY
+## 136               659 CARY TOWNE BLVD  PMB 2
+## 137                                  BOX 634
+## 138                  3904 KNICKERBOCKER PKWY
+## 139                      1288 KAPIOLANI BLVD
+## 140                      907 BRYAN PL APT P3
+## 141                      923 BRYAN PL APT B1
+## 142          9099 MAIL SERVICE CENTER ACP 79
+## 143                         5509 QUAILS CALL
+## 144          9660-138 FALLS OF NEUSE PMB 383
+## 145                      9600 FALLS OF NEUSE
+## 146                      420 SPRING LAKE TER
+## 147                     4301 SOMERSET VALLEY
+## 148                                BOX 61001
+## 149                                 PO 12984
+## 150         3113 CHARLES B ROOT WYND APT 135
+## 151                     44 CHESWOLD BLVD 2-C
+## 152                1621 NORTH MAIN SUITE 104
+## 153                        4603 MILL VILLAGE
+## 154                       2971 LOOKOUT PL NE
+## 155                  659 CARY TOWNE BLVD 263
+## 156                         Care Of S A DYLE
+## 157                                  BOX 103
+## 158                           BOX 16148 NCSU
+## 159                          11715 NC HWY 39
+## 160                                BOX 383-X
+## 161                                 BOX 1245
+## 162                                 BOX 1695
+## 163                              676 N 600 W
+## 164                    1522 OLD BRAMBLE LANE
+## 165                         7817 MAYAPPLE PL
+## 166                    1621 MORNING MOUNTAIN
+## 167                         2805 CAMFIELD PL
+## 168                            22-24 W 127TH
+## 169                                  BOX 268
+## 170                   PMB 255-952 US HWY 64W
+## 171                         2062 BAXTER HALL
+## 172                            118 SLAY HALL
+## 173                  7929 SHAY OAK TR APT 19
+## 174             6900 CRESCENT MOON COURT 201
+## 175                           BOX 21158 NCSU
+## 176                           BOX 21121 NCSU
+## 177                           BOX 21196 NCSU
+## 178                            726 LANHAM PL
+## 179             223 HEILMAN MEREDITH COLLEGE
+## 180                  PMB 184  952 US HWY 64W
+## 181                       4905 KINROSS COURT
+## 182                           22 RUE SURCONF
+## 183                           22 RUE SURCONF
+## 184                       1305 CAMILLE COURT
+## 185                             3810 APT 105
+## 186                         THE OLIVER HOUSE
+## 187                              1420 HWY 42
+## 188                               BOX  25712
+## 189                      6110 FRIARS WALK PL
+## 190                       4100 HIGHBROOK TRL
+## 191                    2200 SUMMIT PARK LANE
+## 192                            545 ROSE LANE
+## 193         9099 MAIL SERVICE CENTER ACP 159
+## 194                   2910 MADELYN WATSON LA
+## 195                            2704 ADCOX PL
+## 196                            BOX 4013 NCSU
+## 197                           BOX 03776 NCSU
+## 198                           BOX 22751 NCSU
+## 199                           BOX 15313 NCSU
+## 200                           BOX 22110 NCSU
+## 201                    10300 TANNERS MILL PL
+## 202                           BOX 22166 NCSU
+## 203                           BOX 22327 NCSU
+## 204                             BOX 66812104
+## 205                            BOX 3599 NCSU
+## 206                                 BOX 4756
+## 207                            BOX 4723 NCSU
+## 208                            BOX 4730 NCSU
+## 209                           BOX 04763 NCSU
+## 210                            BOX 4792 NCSU
+## 211                            BOX 4721 NCSU
+## 212                            BOX 4661 NCSU
+## 213                           BOX 04723 NCSU
+## 214                            BOX 4763 NCSU
+## 215                           BOX 21685 NCSU
+## 216                           BOX 21687 NCSU
+## 217                                BOX 21632
+## 218                           BOX 21660 NCSU
+## 219                   4036 RIDGEBROOK BLUFFS
+## 220                           BOX 21468 NCSU
+## 221                           BOX 21440 NCSU
+## 222                           BOX 21415 NCSU
+## 223                                BOX 26042
+## 224                         BOX 82 SHAW UNIV
+## 225                        BOX 510 SHAW UNIV
+## 226                        BOX 250 SHAW UNIV
+## 227                     3806 PLEASANT VALLEY
+## 228                                BOX 27216
+## 229                    DOROTHEA DIX HOSPITAL
+## 230                           7716 NC HWY 96
+## 231                          BOX 13248 SEBTS
+## 232                   5403 PICKET FENCE LANE
+## 233                       24 RUE DE CHARONNE
+## 234                        4009 VOLKSWALK PL
+## 235                   1381-294 KILDAIRE FARM
+## 236                       3824 CARNEGIE LANE
+## 237                   659-231 CARY TOWNE BLV
+## 238                111 SOUTH FERN ABBEY LANE
+## 239                    11925 FIELD TOWN LANE
+## 240                        331 MALAMUTE LANE
+## 241                         267 WINESAP LANE
+## 242                  WELLINGTON NURSING HOME
+## 243                         3718 YORKTOWN PL
+## 244                          1508 NC HWY 665
+## 245                                    HC-02
+## 246                                  BOX 564
+## 247              4558 B CAPITAL BLVD PMB 206
+## 248                         1404  PORCHLIGHT
+## 249                           BOX 21438 NCSU
+## 250                        1001 CLINGMANS PL
+## 251                        108 GORECKI PLACE
+## 252                                 BOX  132
+## 253                   4558 - B  CAPITAL BLVD
+## 254                         1112 PULLEN HALL
+## 255                         LEYTON HOUSE 702
+## 256                         LEYTON HOUSE 702
+## 257                     6111 LYNN RIDGE LANE
+## 258                       441 SIEGFRIED HALL
+## 259                        44 REYNOLDS PLACE
+## 260                                 SMC 1912
+## 261                        4248 NW CARY PKWY
+## 262                                  P O 451
+## 263                        204 FRIENDLY LANE
+## 264                           8963 LOGO LANE
+## 265                               NCSU 15597
+## 266                        1 TRINITY PL 1333
+## 267                               NCSU 21227
+## 268                  2-2 LANE 588 JINFENG LU
+## 269            8311 BRIER CREEK PKWY 105-147
+## 270                       103 HONEYCOMB LANE
+## 271                          3117 HARBORVIEW
+## 272                  2-2 LANE 588 JINFENG LU
+## 273                  2037 SUMMERHILL TERRACE
+## 274                         1112 PULLEN HALL
+## 275                        3108 BELLENDEN PL
+## 276                                  BOX 470
+## 277                        12439 NC HWY 50 E
+## 278                     53 CLIFTON PL APT 3B
+## 279                          5301 BARTRAM PL
+## 280                      2201 CANDYFLOWER PL
+## 281                                  BOX 627
+## 282                        121 CAMERON COURT
+## 283                          1108 TIGER BLVD
+## 284                    2541 PARK HEIGHTS TER
+## 285                        8004 OLE NEUSE TR
+## 286                       113 LONGCHAMP LANE
+## 287                   BOX 5688  UNC PEMBROKE
+## 288                               112 TUTTLE
+## 289                    116 SADDLE CREEK LANE
+## 290                    138 SHADY MEADOW LANE
+## 291                           119 JOEL COURT
+## 292                                 BOX 4727
+## 293                                 BOX  378
+## 294                   2307 WINTERGREEN PLACE
+## 295                     930 OLD MARSHALL HWY
+## 296                       HQ BTRY 5-10 2 MAR
+## 297               CAROLINA NURSING AND REHAB
+## 298                     8311 BRIARCREEK PKWY
+## 299                8311-105 BRIER CREEK PKWY
+## 300                       3509 CROFTON COURT
+## 301                         1940 SHADOW GLEN
+## 302                        2500 HUNTDALE TRL
+## 303                           4994 HWY 301 N
+## 304                               NCSU 22167
+## 305                    DOROTHEA DIX HOSPITAL
+## 306                    DOROTHEA DIX HOSPITAL
+## 307                    DOROTHEA DIX HOSPITAL
+## 308                    DOROTHEA DIX HOSPITAL
+## 309                    DOROTHEA DIX HOSPITAL
+## 310                    DOROTHEA DIX HOSPITAL
+## 311                    DOROTHEA DIX HOSPITAL
+## 312                    DOROTHEA DIX HOSPITAL
+## 313                    DOROTHEA DIX HOSPITAL
+## 314                    DOROTHEA DIX HOSPITAL
+## 315                    DOROTHEA DIX HOSPITAL
+## 316                    DOROTHEA DIX HOSPITAL
+## 317                    DOROTHEA DIX HOSPITAL
+## 318                          218 SCOTTS LANE
+## 319                          834 SMITH UNION
+## 320                                 3601 MSC
+## 321                     COTTEN HALL 0313 ECU
+## 322                  EMORY AND HENRY COLLEGE
+## 323                     2366 FOX RIDGE MANOR
+## 324                            3822 BAY CLUB
+## 325                         1112 PULLEN HALL
+## 326                          SIGMA CHI HOUSE
+## 327                  2728 LIBERTY HALL COURT
+## 328                                 BOX 603C
+## 329                    DOROTHEA DIX HOSPITAL
+## 330                    DOROTHEA DIX HOSPITAL
+## 331                    DOROTHEA DIX HOSPITAL
+## 332                    DOROTHEA DIX HOSPITAL
+## 333                  5120 BROOKE LAUREN LANE
+## 334                           25 CRANE WHARF
+## 335                               NCSU 16227
+## 336                          110 LASKY COURT
+## 337               1880 FLORIDA ATLANTIC BLVD
+## 338                            N COLONY BLVD
+## 339                          UNC 218 EVERETT
+## 340                       913 COACH HOUSE PL
+## 341                          226 JOYNER DORM
+## 342                     6715 WANNAMAKER LANE
+## 343                         1013 MINGO PLACE
+## 344                           BARTON COLLEGE
+## 345                        7704 WINNERS EDGE
+## 346                         112 EDGEMOOR 206
+## 347                     42 LAKE SHORE  APT 4
+## 348                      1385 C OF C COMPLES
+## 349               US MERCHANT MARINE ACADEMY
+## 350                           3805 WINDY TRL
+## 351                    6325-9 FALLS OF NEUSE
+## 352                                  P O 307
+## 353                                      ECU
+## 354                          8409 SOCIETY PL
+## 355               1504 MARY FRANCES PL APT B
+## 356             9099 MAIL SERVICE CENTER ACP
+## 357                  2904 LANDING FALLS LANE
+## 358                     952 US HWY 64 W  192
+## 359                                      ASU
+## 360                                 618 MORO
+## 361                            139 KERR HALL
+## 362                               NCSU 16331
+## 363                          155 LAKE ROYALE
+## 364                      1008 CLOVELLY COURT
+## 365                    6912 RIVER RUN APT 13
+## 366                            3068 VAN DORN
+## 367                     3049 BETHWICKE COURT
+## 368             2021 UNIVERSITY HEIGHTS LANE
+## 369                    106 MIDDLEBROOK COURT
+## 370                 9099 MAIL SERVICE CENTER
+## 371                         300 HUNTERS XING
+## 372                                  BOX 251
+## 373                      14531 HAMPTON PLACE
+## 374                      14531 HAMPTON PLACE
+## 375                       ANNE SCOTT COLLEGE
+## 376                  8020 NEUSE LANDING LANE
+## 377                   CIO-VIRGINIA-CLEVELAND
+## 378                      60 FENWICK HALL ALY
+## 379                       1702 ASHBARK COURT
+## 380                           900 INDIAN TRL
+## 381                        110 CHARIOT COURT
+## 382                     2604 CHARENSON PLACE
+## 383                          111 CEDAR CHINE
+## 384                                NCSU 4680
+## 385                        2402 MIMOSA PLACE
+## 386                         554 N US HWY 220
+## 387                          100 CHERYL LANE
+## 388                     2024 TROPICAL KEY PL
+## 389                    2742 RUE SANS FAMILLE
+## 390                 26151 LAKESHORE BLVD 824
+## 391                            4709 PATCH PL
+## 392                         1101 ESHER COURT
+## 393                                  BOX 416
+## 394                   316 HOLLOW BRANCH LANE
+## 395                   11212 HYDE POINT COURT
+## 396                                  BOX 349
+## 397                          908 COHEN COURT
+## 398                                NCSU 4271
+## 399                     1601 WEDGEWOOD COURT
+## 400                            14A IRVING PL
+## 401                     MAYVIEW CONVALESCENT
+## 402                          9282 BAKER HALL
+## 403                              201 N BOLES
+## 404                      102 SWEET BAY COURT
+## 405                        3509 BAKERS ALLEY
+## 406                9201 UNIVERSITY CITY BLVD
+## 407                       110 HEADLANDS LANE
+## 408                           117 ATLEY LANE
+## 409                               NCSU 21570
+## 410                 14460 NEW FALLS OF NUESE
+## 411                         3204 BRAGG COURT
+## 412                      701 FALKCRES T 208D
+## 413                            670 SUMNER PL
+## 414         9099 MAIL SERVICE CENTER ACP 273
+## 415                    8509 BAYSENBERRY LANE
+## 416                         310 BALSAM PLACE
+## 417                        900 CHESAPEAKE PL
+## 418                    8311 BRIER CREEK PKWY
+## 419                         1112 PULLEN HALL
+## 420                        11 COVINGTON LANE
+## 421                         1112 PULLEN HALL
+## 422                 9099 MAIL SERVICE CENTER
+## 423                         6730 PUEBLO LANE
+## 424              8802 ELIZABETH BENNET PLACE
+## 425                       3926 LENTENA PLACE
+## 426                21 OVERLOOK RIDGE TERRACE
+## 427                        180 MARIGOLD LANE
+## 428 1900 BELMONT BLVD PEMBROKE HALL ROOM 319
+## 429                         152 ASHLYN RIDGE
+## 430                           32405 ARCHDALE
+## 431                         1104 PULLEN HALL
+## 432                     620 SEAWRIGHT PL 102
+## 433                  6933 TAMOGAN LOOP APT D
+## 434                BOX 5076 DAVIDSON COLLEGE
+## 435                       107 CHALKLEY COURT
+## 436       9201 UNIVERSITY CITY BLVD; APT 310
+## 437                9201 UNIVERSITY CITY BLVD
+## 438                          244 NEWMAN HALL
+## 439                  RAM VILLAGE BUILDING  5
+## 440                       3600 HEWBERRY LANE
+## 441                       2715 NW 15TH COURT
+## 442                                NCSU 4669
+## 443                     BOX 4748 TUCKER HALL
+## 444                                BOX 04813
+## 445                          166 GOSSOM PASS
+## 446                                 CSU 5734
+## 447                      4940-B CAPITAL BLVD
+## 448                    550 ABBEY FIELDS LOOP
+## 449                        1712 PICNIC PLACE
+## 450                          2761 TEAK PLACE
+## 451                          108 INGRAM LOOP
+## 452                       601 CULPEPPER LANE
+## 453                 2000 VILLAGE BLUFF PLACE
+## 454                                 16 FELIX
+## 455                   104 JUNIPER CREEK BLVD
+## 456                      1301 A HUGINE SUITE
+## 457                                   BRAGAW
+## 458                         1104 PULLEN HALL
+## 459                         28 SCOTTISH LANE
+## 460                         1202 KIRKWALL PL
+## 461                  5413 PORTREE PL UNIT 10
+## 462                    3325 GARRETT HALL ECU
+## 463                               TYLER HALL
+## 464                         1104 PULLEN HALL
+## 465                              55 RED LANE
+## 466                        6 WATEROAKS COURT
+## 467                        1353 GIBSON DAIRY
+## 468                            NCSU BX 22478
+## 469                      9930 SMALL OAK LANE
+## 470                       2209 LAUREL VALLEY
+## 471                  3300 POINSETT HWY 29578
+## 472                           1200 MURCHISON
+## 473                 9099 MAIL SERVICE CENTER
+## 474                         2047 MOONLIT TRL
+## 475                            LYNCH HALL E2
+## 476                         504 HAMPTON LANE
+## 477                      1508 S CHARLES BLVD
+## 478                      1814 COYEMOOR PLACE
+## 479                                 BOX 6401
+## 480                         1112 PULLEN HALL
+## 481                      4105 GLENCOVE COURT
+## 482                        150 CHARISMA LANE
+## 483            537 A COLLEGE HILL SUITES ECU
+## 484                   3683 LANTERN WALK LANE
+## 485                          5004 JESMOND PL
+## 486                   107 EASY RAINTREE LANE
+## 487                         1104 PULLEN HALL
+## 488                         1450 YADKIN LANE
+## 489                        1023 GREEN MEADOW
+## 490                               NCSU 16271
+## 491                           118 LOOP COURT
+## 492                      6907 VALHALLA COURT
+## 493                         104 CENTER COURT
+## 494                        1101 HOLLY MEADOW
+## 495                  314 SOUTHERN CROSS LANE
+## 496                         124 HEATHER LANE
+## 497                    101 RUBIN COURT PT A1
+## 498                               NCSU 22157
+## 499                             7817 NC 157W
+## 500                        3600 GLENWOOD 150
+## 501                  CB 5460 ELON UNIVERSITY
+## 502                 14460 NEW FALLS OF NEUSE
+## 503                        2908 KNIGHTBRIDGE
+## 504                      1428 APPALACHIAN PL
+## 505                   432 BACK CREEK TERRACE
+## 506                          5408 MESA COURT
+## 507                          107 RUBIN COURT
+## 508                         1817 MLK JR BLVD
+## 509                      4819 WHITE OAK LOOP
+## 510                           106 CANDY LANE
+## 511                          6469 CORAL VINE
+## 512                           2731 NC HWY 55
+## 513                               NCSU 22854
+## 514                               PO BX 6578
+## 515                       3567 HOLMEAD PL NW
+## 516                               NCSU 21463
+## 517         ACP 237 9099 MAIL SERVICE CENTER
+## 518                         385 FOREMAN LANE
+## 519              10412 FAIRBROOK TERRACE 101
+## 520                         4608 PINELAND PL
+## 521                         2408 BOOKWOOD TR
+## 522                        9 GOVERNORS PLACE
+## 523                  406 QUEEN GUENEVERE TRL
+## 524                             113 FOYS TRL
+## 525                     2015 BROOKVIEW COURT
+## 526                      ATKINSON HALL (219)
+## 527                               NCSU 19225
+## 528              10110 PURCHASE CROSSING 104
+## 529                         6 SHORELINE COVE
+## 530                               UNIT I5549
+## 531                      909 BRYAN PL APT A2
+## 532                   115 CARRIAGE HOUSE TRL
+## 533                            1611 HWY 27 E
+## 534                              213 E 222 S
+## 535                            600 DAVY LANE
+## 536                    2815 PARK SUMMIT BLVD
+## 537                     DEPT OF ZOOLOGY NCSU
+## 538                          408 MELODY LANE
+## 539                         4321 FURMAN HALL
+## 540                     GALLAUDET UNIVERSITY
+## 541                        1478 LITTLE CREEK
+## 542                  625 CENTENNIAL PKWY 206
+## 543                     304 D CHESWICK PLACE
+## 544                      405 BASINGDON COURT
+## 545                                UNIT 6411
+## 546                    110 HAWTHORNE LANE 4D
+## 547                          2817 ERIC COURT
+## 548                  1090 HUCKLEBERRY BOTTOM
+## 549                       1030 N ROGERS LANE
+## 550                     15 HIDDEN COVE COURT
+## 551                   2637 SUMMIT RIDGE LOOP
+## 552                     3113 RUTHLEDGE COURT
+## 553                            139 BAIN LANE
+## 554                      8144 BRIGHT OAK TRL
+## 555                       5304 WISBECH COURT
+## 556                             4 ERIN COURT
+## 557                          619 BELLE RIEVE
+## 558                                 BOX 7315
+## 559                         6043 NC HWY 710S
+## 560                             186 BULL RUN
+## 561                          BOX GO-211-02-B
+## 562                          9301 HARPS MILL
+## 563                         736 HIGHWATER PL
+## 564                           14205 HWY 481W
+## 565                  4020 AERIAL CENTER PKWY
+## 566                        1496 BRENTWOOD PL
+## 567                      1263 C OF C COMPLEX
+## 568                                BOX 21132
+## 569                                 472 OTIS
+## 570              705 CENTENNIAL PKWY APT 203
+## 571                 124 HUNT CLUB LANE APT C
+## 572                    122-B COTTEN HALL ECU
+## 573                  10089 N OLDE TOWNE WYND
+## 574                       4209 FORWALT PLACE
+## 575                      45 GROUND PINE LANE
+## 576                         4112 O'BRIANT PL
+## 577                         317 MONTELGNA PL
+## 578           211 FAIRCLOTH MEREDITH COLLEGE
+## 579                     1800 LAKE TROUT LANE
+## 580                  2510 TONY TANK LANE 206
+## 581                      2900 MARANVILLE TRL
+## 582                         3009 SIPES PLACE
+## 583                 9506 SHELLY KRASNOW LANE
+## 584                           8 TIMBER PLACE
+## 585                     1923 HIGH HOLLY LANE
+## 586                            8981 US 401 S
+## 587                          100 HUNT CLUB A
+## 588                           116 ELDON LANE
+## 589               2400 WHITE MEMORIAL CHURCH
+## 590                      1234 TEAKWOOD PLACE
+## 591                       612 CEDAR RUN LANE
+## 592                     204 LAMPLIGTHER LANE
+## 593                               NCSU 21341
+## 594                        4639 GENERAL HOWE
+## 595                             114 BAREFOOT
+## 596                      1074 SHAMROCK COURT
+## 597                  2214 BLUE HAMPTON  LANE
+## 598                         21214 NORTH HALL
+## 599                     1724 SIGNATURE PLACE
+## 600               BOX 573646 GEORGETOWN UNIV
+## 601                            LYNCH HALL E4
+## 602                           1801 THE PLAZA
+## 603                     8001 KNIGHTDALE BLVD
+## 604                         720 HABERSHAM PL
+## 605                       1473 BIG LEAF LOOP
+## 606                         168-17 CROCKERON
+## 607                        11 COVINGTON LANE
+## 608                     129 MASSEY APARTMENT
+## 609                    1233 HERITAGE HEIGHTS
+## 610                       2301 VANDERBILT PL
+## 611                            BAKER HALL M3
+## 612                               NCSU 22171
+## 613                             216 BAREFOOT
+## 614                         7144 S HERMITAGE
+## 615                     669 E 800 N APT N105
+## 616                           732 EAGLES TER
+## 617                    6815 MILLIHADEN COURT
+## 618                            NCSU BX 15871
+## 619                            NCSU BX 04655
+## 620                200 NC HWY 54 BYP APTG101
+## 621                     2403 LONG HILL COURT
+## 622                               NCSU 21160
+## 623                      5954 FOX RIDGE LANE
+## 624                        7259 GUMWOOD LANE
+## 625             8311 BRIER CREEK PKWY 105354
+## 626                            1236 US HWY 1
+## 627                    8311 BRIER CREEK PKWY
+## 628                          5105 AMBER LANE
+## 629                     3307 BROOKLINE COURT
+## 630                        5308 OPORTO COURT
+## 631                     201 CANTERFIELD LANE
+## 632                      659 CARY TOWNE BLVD
+## 633                             215 BAKEFOOT
+## 634                       0311 B BRUMBY HALL
+## 635                E 3396 LIBERTY UNIVERSITY
+## 636                             2915 GRETMAR
+## 637                             26368 NC 903
+## 638                      7585 BENWICKE COURT
+## 639                          5704 QUITMAN TR
+## 640                         2615 MISSISSIPPI
+## 641                                  FLAT 10
+## 642                     1310 EARLY OAKS LANE
+## 643                         5117 PALES FERRY
+## 644                       5300 BLAKELEY LANE
+## 645                        3601 BAYWOOD LANE
+## 646                         2901 HUNTERS RUN
+## 647                                  P O 150
+## 648                      9941 NORBRIDGE LANE
+## 649            8311 BRIER CREEK PKWY 105-297
+## 650                      4024 RAMBLING HILLS
+## 651                              901 HWY 348
+## 652                         507 AIRPORT BLVD
+## 653                          CALLE MIGUEL DE
+## 654                  208 PRESIDENT WALK LANE
+## 655                          107 KALMIA LANE
+## 656                               LATHAM 308
+## 657                       102 PINE MILL LANE
+## 658                        6106 CHILCOT LANE
+## 659                         310 SAWMILL LANE
+## 660                        4819 EMPEROR BLVD
+## 661                    8827 THORNTON TOWN PL
+## 662                         2413 PATES CREEK
+## 663                          5514 BURNLEE PL
+## 664                1105 ISLAND PARK BLVD 720
+## 665                9201 UNIVERSITY CITY BLVD
+## 666                  8705 CARRIAGE TOUR LANE
+## 667                     930 OLD MARSHALL HWY
+## 668                            1311 HWY 56 E
+## 669                     504 ARROW HAWK APT D
+## 670                    6750 BROOKFIELD PLACE
+## 671                     106 COKLESHELL COURT
+## 672                        8461 TOMAHAWK HWY
+## 673                            5104 HEREZ PL
+## 674                            CANDACE JONES
+## 675                     9800 LORELEI LANE NE
+## 676                     6023 WHITE OAK COURT
+## 677                         3223 POLITE LANE
+## 678                   12426 SWAN WINGS PLACE
+## 679               1305 LEGACY WALK LANE 302B
+## 680                    100 GREENWOOD APT 100
+## 681                               NCSU 21348
+## 682                1508 PIRATES PLACE APT 46
+## 683                                  BOX 554
+## 684                                   BOX 70
+## 685                           226 ARBOR LANE
+## 686                    1112 HIGH KIT E PLACE
+## 687                     ONE UNIVERSITY PLACE
+## 688                    13609 MIDDLEVALE LANE
+## 689                         21174 NORTH HALL
+## 690                           1743 VENFLORET
+## 691                        HINTON JAMES DORM
+## 692                               201 LATNAM
+## 693                   108 NORTH MCLEAN COURT
+## 694                18822 PENINSULA COVE LANE
+## 695                  12104 WARWICKSHIRE PARK
+## 696                             402 BAREFOOT
+## 697                            5214 TANNERON
+## 698                  4909- F COOLRIDGE COURT
+## 699                         BOX 04516 RM 265
+## 700                         8525 BRIGHT LOOP
+## 701                   5816 SHINING MOON LANE
+## 702                       1112 LOWER GLENCOE
+## 703                           4133 DOE COURT
+## 704                      659 CARY TOWNE BLVD
+## 705                       175 BOGER COURT SW
+## 706                              191 ANTIOCH
+## 707                        3515 US HWY 264 E
+## 708                                 BOX 1043
+## 709                             P.O.BOX 1360
+## 710                     RM 314 FLETCHER HALL
+## 711                        114 BAREFOOT DORM
+## 712                    8311 BRIER CREEK PKWY
+## 713                             6675 HWY 15N
+## 714                  4653 HIDDEN HOLLOW LANE
+## 715                         1104 PULLEN HALL
+## 716                      301 SOUTHWOOD COURT
+## 717                        41 RICHLAND COURT
+## 718                  725 CANDLER LANE APT 11
+## 719                    6643 CLARKSBURG PLACE
+## 720                                POB 12374
+## 721      8311 BRIAR CREEK PKWY SUITE 105-217
+## 722                           BARTON COLLEGE
+## 723          1824 MARTIN LUTHER KING JR BLVD
+## 724                   5501 POPLAR HILL COURT
+## 725                          04464 OWEN HALL
+## 726                      16081 SULLIVAN HALL
+## 727                     95 OCEAN GREENS LANE
+## 728                          7540 CHASE HALL
+## 729                          4799 EAGLE PATH
+## 730                       LIBERTY UNIVERSITY
+## 731                         2487 TANTELON PL
+## 732                           388 TERRY LANE
+## 733                          65 JUDITH COURT
+## 734                      6309 SPYGLASS COURT
+## 735                         7909 MAYAPPLE PL
+## 736               1221 CAPABILITY CR APT 103
+## 737                           720 WHITE HALL
+## 738                         1703 BAUER COURT
+## 739                      105 BREEZEWOOD LANE
+## 740                         10459 NC HWY 62N
+## 741                  1010 SPRING VALLEY LANE
+## 742                           15541 LEE HALL
+## 743                             183 MARINERS
+## 744                        1104 LOXLEY PLACE
+## 745                     3017 IVORY BLUFF TRL
+## 746             119 HEILMAN MEREDITH COLLEGE
+## 747                  116 SCARLET GREEN COURT
+## 748                      14521 GREENBRIER PL
+## 749                      14521 GREENBRIER PL
+## 750                              216 BLEDSOE
+## 751                               PO BX 1302
+## 752                      103 GRASSY RIO LANE
+## 753                        8707 HOLLOW CREEK
+## 754                       1328 CLAXTON RIDGE
+## 755                      340-110 AILMAN LANE
+## 756                      9660 FALLS OF NEUSE
+## 757                          502 GARNER TOWN
+## 758                         8222 MAUDIE LANE
+## 759                               BOX BO-23A
+## 760                               BOX BO-23A
+## 761                 4716 COURTNEY LANE APT F
+## 762                         7942 ORATORIO PL
+## 763                       6817 TORRANCE LANE
+## 764                   1500 REGENCY PKWY  117
+## 765               SPENCER RESIDENCE HALL 110
+## 766                 5620 ROAN MOUNTAIN PLACE
+## 767                            905 DALTON PL
+## 768                     6041 SILKWATER COURT
+## 769                         11 RED WOLF LANE
+## 770                   2434 SUMMIT RIDGE LOOP
+## 771                        1762 HUNTERS LANE
+## 772                         4370 BRIDLE PATH
+## 773                       105 DEER FARM LANE
+## 774                      4405 OLD WELL PLACE
+## 775                         1112 PULLEN HALL
+## 776                    2809 GLENED ROY COURT
+## 777                249 CRAIGE RESIDENCE HALL
+## 778                        1110 FIDDLER LANE
+## 779                        304 KENTWOOD LANE
+## 780                           736 N WENDOVER
+## 781                      135 GREEN BROOK TRL
+## 782                            372 WEBB LOOP
+## 783                     1212 BROOK ACRES TRL
+## 784                            5124 WERRIBEE
+## 785                         466 WATSON COURT
+## 786                            9779 HWY 99 N
+## 787                            512 PARK HILL
+## 788                          344 FARLEY HALL
+## 789                         411 LADSON COURT
+## 790                      828 BLACKBURN COURT
+## 791                         4 EXPLORER COURT
+## 792                        214 WILD OAK LANE
+## 793                      10 BROOKFIELD COURT
+## 794                    8311 BRIER CREEK PKWY
+## 795                              315 BAY RUN
+## 796                           2634 HILL LANE
+## 797                     2908 DUNSIMANE COURT
+## 798                     2403 NEW RALEIGH HWY
+## 799                            806 COTTON PL
+## 800                       1515 BROCKTON LANE
+## 801                                 MSC 0835
+## 802                         712 PARKHAM LANE
+## 803                  3512 PALM COURT APT 301
+## 804                       4805 PENNANT PLACE
+## 805                        1348 BOZEMAN LOOP
+## 806            1251 UNIVERSITY COURT APT 302
+## 807                            319 FAIRCLOTH
+## 808                 14625 REESE BLVD APT 201
+## 809                    6701 VALLEYWOODS LANE
+## 810            14460 NEW FALLS NEUSE 149-177
+## 811                        79 ROSEWOOD PLACE
+## 812                      MB 581 OLIN COLLEGE
+## 813                       108 BROWNING PLACE
+## 814                       3706 BENTLEY PLACE
+## 815                     202 WNC 54 SUITE 101
+## 816                            C/O RAY EVANS
+## 817                        2940 N US 220 HWY
+## 818                    1017 SAGE GREEN COURT
+## 819         MEREDITH COLLEGE BREWER HALL 212
+## 820                    2352 SILAS CREEK PKWY
+## 821              2631 GRANVILLE TOWERS SOUTH
+## 822                        271 MICHAEL PLACE
+## 823                   10121 BROKERS TIP LANE
+## 824                      3210 RIDGE MILL RUN
+## 825                     1505 MARY FRANCES PL
+## 826                                      ASU
+## 827                      EHRINGHAUS HALL 450
+## 828                     1771 HIGHLAND PL 307
+## 829                              7551 S YALE
+## 830                            734 FAIRCLOTH
+## 831                          ECU TAYLOR HALL
+## 832                   3006 MORGAN MILLS LANE
+## 833                         145 UPDIKE PLACE
+## 834                       125 HUNTSMOOR LANE
+## 835                16307 NEW PROVIDENCE LANE
+## 836                            3825 DEER RUN
+## 837                       3 NGIG BITTERSWEET
+## 838                         616 COUNTRY LANE
+## 839                           109 DOLPHIN LA
+## 840                    7813 WILSON POND LANE
+## 841                    4700 CALDERA LANE 100
+## 842               3821  KNICKERBOCKER PKWY A
+## 843                   3703 TORREY PINES PKWY
+## 844                       1048 SPYGLASS LANE
+## 845                   1512 SUNBOW FALLS LANE
+## 846                          504 MOSELY LANE
+## 847                           4503 WENTWORTH
+## 848                     2077 HAITH FULLER TR
+## 849                         502 CLEMENT HALL
+## 850                        612 JUBILEE COURT
+## 851                    UNIVERSITY OF GEORGIA
+## 852                   201 HIDDEN VALLEY LANE
+## 853                    1994 JACK RABBIT LANE
+## 854                        62 HEDDEN TERRACE
+## 855                 113 FOUNTAIN RIDGE PLACE
+## 856             659 CARY TOWNE BLVD UNIT 125
+## 857                               PO BX 4473
+## 858                         8385 HOBBTON HWY
+## 859                               PO BX 6863
+## 860                              PO BX  1233
+## 861                      659 CARY TOWNE BLVD
+## 862                         4101 WOODLAKE PL
+## 863                9201 UNIVERSITY CITY BLVD
+## 864                        1502 CHARLES BLVD
+## 865                             1423 E JONES
+## 866                 14460 NEW FALLS OF NEUSE
+## 867                          2505 VILLAGE PL
+## 868                     3231 QUAIL HIGH BLVD
+## 869                   1219 VALLEY VIEW WOODS
+## 870            16025 SULLIVAN HALL UNIT 205A
+## 871                      16097 SULLIVAN HALL
+## 872                     04071 ALEXANDER HALL
+## 873            16296 SULLIVAN HALL UNIT 909D
+## 874                              P.O.BOX 823
+## 875                      952 188 US HWY 64 W
+## 876                               PO BO 1984
+## 877                  2700 COTTAGE PL APT 282
+## 878                2401 OLD WORLD PL APT 204
+## 879                      4120 WINDSOR  PLACE
+## 880                  PMB 192-1939 HIGH HOUSE</code></pre>
+<pre class="r"><code>Wake_county%&gt;%
+  tidyr::extract(address, into = &quot;street_word&quot;, regex = pattern, remove = FALSE)%&gt;%
+  head(5)</code></pre>
+<pre><code>##               address street_word
+## 1 2117 MARINER CIRCLE      CIRCLE
+## 2      101 EPPING WAY         WAY
+## 3        PO BOX 58592      PO BOX
+## 4  5102 ECHO RIDGE RD          RD
+## 5        PO BOX 37218      PO BOX</code></pre>
 </div>
 </div>
 

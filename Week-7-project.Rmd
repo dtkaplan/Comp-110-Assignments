@@ -1,6 +1,6 @@
 # Week 7 Project
 
-## Your name should appear here!
+## Shelby Witherby
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -8,6 +8,37 @@ Compiled on `r date()`.
 ```{r include = FALSE}
 library(DataComputing)
 ```
-<!-- put your content after this line -->
 
-Here is my content!
+```{r}
+Wake_county <- read.csv("http://tiny.cc/dcf/street-addresses.csv")
+
+download.file(url = "http://tiny.cc/dcf/CMS_ProvidersSimple.rds", destfile = "YourNameForTheFile.rds")
+Medicare <- readRDS("YourNameForTheFile.rds")
+```
+```{r}
+
+pattern <- "(ST|RD|ROAD|CIRCLE|WAY|TRAIL|LN|AVE|DR|CIR|DRIVE|CT|PO BOX)" # this sets our pattern for which types of street words we are looking for
+LeftOvers <- # This names our function
+  Wake_county %>% # This is the data we are using
+  filter( ! grepl(pattern, address), ! grepl(" BOX", address)) # this filters out addresses that have street names fitting our pattern
+
+LeftOvers
+```
+
+
+```{r}
+
+
+```
+
+
+```{r}
+DataX <- Wake_county%>%
+  tidyr::extract(address, into = "street_word", regex = pattern, remove = FALSE)%>%
+  group_by(street_word)%>%
+  tally()
+  
+
+
+```
+
