@@ -10,4 +10,28 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+```{r}
+Wake_county <- read.csv("http://tiny.cc/dcf/street-addresses.csv", stringsAsFactors = FALSE)
+```
+
+```{r}
+download.file(url="http://tiny.cc/dcf/CMS_ProvidersSimple.rds", destfile = "CMS_ProvidersSimple.rds")
+Medicare <- readRDS("CMS_ProvidersSimple.rds")
+```
+
+```{r}
+pattern<- "(ST| RD| ROAD| CIRCLE| WAY| PLACE| TRAIL| BLVD| ST| DR| CIR| HALL| LN| CT| AVE| PL| LANE| CO| UNIVERSITY| TER| PATH| POINT| PKWY| LOOP| APT| SQUARE| FARM| NEUS| NEUSE| RIDGE| RUN| PARKWA| HIGHWAY| VILLAGE| HOUSE| HOSPITAL| CREEK| CENTER| VALLEY| TRL| UNION| WHARF| DORM| ACADEMY| ALLEY| PASS| SUITE| MEADOW| PEAKWAY| WYND| CHURCH| WEST| HEIGHTS| HERMITAGE| FERRY| HWY| PARK| TOWN| UNIT| WINERY| LA| YALE| SAVE| FOREST| CREST| BOULEVARD| GLENCOE| HILLS| TR| APARTMENT| CROSSING| TURN| PT|BOX|PO)"
+Leftovers <-
+  Wake_county %>%
+  filter(! grepl(pattern, address), ! grepl("BOX", address))
+```
+
+```{r}
+Street_Names <-
+Wake_county %>%
+  tidyr::extract(address, into = "street_word", regex = pattern, remove = FALSE) %>%
+  group_by(street_word) %>%
+  summarise(total= n()) %>%
+  arrange(desc(total))
+```
+
