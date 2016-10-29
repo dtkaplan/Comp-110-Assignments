@@ -1,13 +1,101 @@
 # Week 4 Project
 
-## Your name should appear here!
+## Nana Adom Mills-Robertson
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+help("Birthdays")
 ```
 <!-- put your content after this line -->
+**1**
+```{r}
 
-Here is my content!
+DailyBirths<-Birthdays%>%
+  group_by(date)%>%
+  summarise(births=sum(births))
+
+DailyBirths%>%
+  ggplot(aes(x=date, y=births))+geom_point()
+```
+**2**
+**a**
+```{r}
+library(lubridate)
+Weeklybirths <- Birthdays%>%
+  mutate(Weeks=week(date))%>%
+  group_by(Weeks)%>%
+  summarise(sum_of_births=sum(births))
+```
+**b**
+```{r}
+library(lubridate)
+Monthlybirths <- Birthdays%>%
+  mutate(months=month(date))%>%
+  group_by(months)%>%
+  summarise(sum_of_births=sum(births))
+```
+**c**
+```{r}
+library(lubridate)
+Eachjulianday <- Birthdays%>%
+  mutate(julianday=yday(date))%>%
+  group_by(julianday)%>%
+  summarise(sum_of_births=sum(births))
+```
+
+**3**
+```{r}
+library(lubridate)
+num_of_births_by_day_of_week <- Birthdays%>%
+  mutate(weekday=wday(date))%>%
+  group_by(weekday)%>%
+  summarise(birthdaysperweekdays=sum(births))
+```
+**4**
+```{r}
+MyTwoYears <- Birthdays%>%
+  filter(year(date)%in% 1985:1986) %>%
+  group_by(date)%>%
+  summarise(births=sum(births))
+
+MyTwoYears%>%
+  ggplot(aes(x=date, y=births))+geom_point()
+  
+```
+It can be seen that there are two seperate trends for the graph obtained. We can see that both waves mirror each other. However some dates have lower births, and other dates have higher births. Both the dates with relatively low births and the dates with relatively high births follow the same pattern. 
+
+**5**
+```{r}
+Holidays <- read.csv("http://tiny.cc/dcf/US-Holidays.csv")%>%
+  mutate(date=as.POSIXct(lubridate::dmy(date)))
+
+```
+**6.1**
+```{r}
+MyTwoYears <- Birthdays %>%
+  filter(year(date)%in% 1985:1986) %>%
+  group_by(date, wday)%>%
+  summarise(births=sum(births))
+
+Holidays <- Holidays %>%
+  filter(year(date)%in% c(1985:1986))
+
+ggplot(MyTwoYears,aes(x = date, y = births))+geom_line(aes(color = wday))+geom_vline(data = Holidays,aes(xintercept = as.numeric(date)))
+```
+
+
+
+**6.2**
+```{r}
+ggplot(MyTwoYears,aes(x = date, y = births))+geom_line(aes(color = wday))+geom_vline(data = Holidays,aes(xintercept = as.numeric(date)))+  geom_text(data= Holidays, aes( x= date, label = holiday), y = 10000, angle = 40)
+ 
+```
+
+
+
+
+```
+
