@@ -1,6 +1,6 @@
 # Week 5 Project
 
-## Your name should appear here!
+## Nana Adom Mills-Robertson
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,43 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+```{r}
+companies <- c("JNJ", "PG", "UL")
+prices <- read_stock_prices(companies, what = "daily", start_year = 2000, end_year = 2015)
+
+```
+```{r}
+ggplot(prices,aes(x = date, y = close)) + geom_line(aes(colour=company))
+
+```
+```{r}
+Actions <- data.frame (action = c("buy", "sell"),
+        date = ymd(c("2006-01-03", "2014-12-30")))
+                       
+Actions_x <- Actions %>% left_join(prices) %>% select(company,close,action) %>% spread(key=action,value=close)
+
+Actions_y <- Actions_x %>% mutate(profit =  sell - buy)%>% mutate(percent = (sell - buy)/buy *100)%>% select(company, profit, percent)  
+
+
+```
+
+
+Question: In the graph the year 2005 is the base year
+
+
+```{r}
+ref_date <- ymd("2005-01-03")
+reference <- prices %>% filter(date == ref_date) %>% select(company, standard = close)
+
+reference_y <- prices %>% left_join(reference) %>% mutate(index = close/standard)
+```
+
+```{r}
+dividends <- read_stock_prices(companies, what = "dividends")
+
+dividends_y <- dividends %>% left_join(prices)
+
+
+```
+
+
