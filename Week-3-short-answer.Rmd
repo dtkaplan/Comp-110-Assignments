@@ -1,6 +1,6 @@
 # Week 3 Short Answer Questions
 
-## Your name should appear here!
+## Nana Adom Mills-Robertson
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,119 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+**5.1**
+
+```{r}
+library(mosaicData)
+library(DataComputing)
+ggplot(data=CPS85,aes(x=sex,y=wage ,fill=married))+geom_bar(stat='identity',position='dodge', width=.9)+ facet_wrap(~race,ncol=3)
+```
+
+**5.2**
+```{r}
+HappinessIndex%>%
+WorldMap(key = "country", fill = "corruption")
+
+```
+
+**6.5**
+b.
+
+**6.6**
+d.
+
+**6.7**
+a.
+
+**6.8**
+```{r}
+Small <-NCHS %>%
+  sample_n(size=5000)
+```
+
+scatterGraphHelper(Small)
+
+ggplot(data=Small,aes(x=bmi,y=weight))+geom_point()+aes(colour=smoker) 
+
+
+**7.1**
+a. summarise
+
+b. mutate
+
+c. arrange
+
+d. filter
+
+e. select
+
+f.group_by
+
+
+**7.4**
+a. group_by("First") is the error it should not be in quotation marks
+
+b. tmp <- group_by.... is the error, no dataset was defined. BabyNames dataset was       within group_by which is flawed.
+c. tmp <- group_by... is the error, no dataset defined, 
+
+**7.5**
+a. group_by(sex)
+   arrange(count)
+
+b. filter( sex != "M"")
+   
+c. filter ( sex != "F")
+
+d. summarise (count = n())
+
+e. group_by( name )
+   summarise( total = sum(count))
+   
+   
+**7.7**
+a. BabyNames %>%
+      group_by( year, sex) %>%
+      summarise( count = n(),
+                 total = sum(count))
+
+b. ZipGeography %>%
+      group_by(State) %>%
+      summarise( pop = sum(Population))
+      
+c. Minneapolis2013 %>% 
+    group_by(First) %>%
+    summarise (voteReceived = n())
+    
+d. Minneapolis2013 %>%
+    group_by(First) %>%
+    summarise(votesReceived = n())
+    
+**7.11**
+
+Patients %>% 
+  group_by(**some variables) %>%
+  summarise(count = n(), meanAge = mean(age))
+  
+a. sex, count, meanAge
+
+b. diagnosis, count, meanAge
+
+c. sex, diagnosis, count, meanAge
+
+d. age, diagnosis, count, meanAge
+
+e. age, count, meanAge
+
+**7.12**
+
+1. nrow()
+
+2. ncol()
+
+3. help()
+
+4. library()
+
+5. group_by
+
+6. summarise()
