@@ -1,13 +1,108 @@
 # Week 4 Short Answer Questions
 
-## Your name should appear here!
+## Nana Adom Mills-Robertson
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+**8.1**
+1.c
+
+2.a,g,b,
+
+3.e
+
+4.f,i
+
+5.d,h 
+
+**8.2**
+```{r}
+ggplot(CPS85, aes( x = age, y = wage))+geom_point(aes(shape = married))+facet_wrap(~sector)
+
+```
+
+
+```{r}
+ggplot(CPS85, aes( x = age, y = wage))+geom_point()+facet_wrap(sex~married)
+```
+
+**8.3**
+**a**
+```{r}
+ggplot(CPS85,aes(x = age, y = wage))+geom_point()
+
+```
+
+**b**
+```{r}
+HappinessIndex%>%
+  WorldMap(key = country, fill = corruption)
+
+```
+
+**c**
+```{r}
+ggplot(CPS85, aes(x = age, y = wage)) + geom_point(aes(shape = sex))+facet_wrap(~married)
+
+```
+
+**d**
+
+```{r}
+ggplot(CPS85, aes(x = age, y = wage)) + geom_point(aes(shape = married))
+```
+
+
+**9.1**
+a. quick summary
+
+b. data verb
+
+c. transformation
+
+d. summary funcction
+
+e. data verb
+
+f. data verb
+
+g. transformation
+
+h. transformation
+
+i. quick presentation
+
+
+
+**9.3**
+1.
+
+```{r}
+diamonds%>% 
+  group_by(color)%>%
+  summarise(Max = mean(carat))%>%
+  arrange(desc(Max))%>%
+  head(1)
+```
+
+
+2.
+```{r}
+diamonds%>%
+  group_by(clarity)%>%
+  summarise(averagesize = mean(table/carat))%>%
+  arrange(desc(averagesize))%>%
+  head(1)
+```
+
+
+
+
+
