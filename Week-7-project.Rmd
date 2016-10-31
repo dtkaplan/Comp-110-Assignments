@@ -40,7 +40,7 @@ Wake_county %>%
 ## My turn
 ```{r}
 # define the pattern
-pattern <- "(BLVD|TRAIL|SUITE|CIR|HALL|OAK|UNIVERSITY|AVENUE|TER|BOX|DRIVE|CT|DR|ROAD|APT|COURT|ST|RD|ROAD|PL|CIR|WAY|AVE|PARKWAY|NEUSE|LN|PLAZA)"
+pattern <- "(BLVD|TRAIL|SUITE|CIR|HALL|OAK|UNIVERSITY|AVENUE|TER|BOX|DRIVE|CT|DR|ROAD|APT|COURT|ST|RD|ROAD|PL|CIRCAL|WAY|AVE|PARKWAY|NEUSE|LN|PLAZA|UR|PATH|STE|POINT|PL|PLACE|LOOP|PKWY|AVENUE|LANE|CV|FARM|TERRACE|CUTHBERT|STATION|NEUS|SQUARE|BLV|NCSU|UNIT|PKWYUNIV|CENTER|RIDGE)"
 Matches <- # define the dataset
   Wake_county %>% # refer to Wake_county
   tidyr::extract(address,into="street_word", # match the address into a new variable called street word

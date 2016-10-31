@@ -123,7 +123,7 @@ $(document).ready(function () {
 <div id="qiuhan-sun" class="section level2">
 <h2>Qiuhan Sun</h2>
 <!-- leave this material as is -->
-<p>Compiled on Wed Oct 26 21:04:25 2016.</p>
+<p>Compiled on Sun Oct 30 20:13:57 2016.</p>
 <!-- put your content after this line -->
 <pre class="r"><code>Wake_county &lt;- read.csv(&quot;http://tiny.cc/dcf/street-addresses.csv&quot;,stringsAsFactors = FALSE)
 #download.file(url=&quot;http://tiny.cc/dcf/CMS_ProvidersSimple.rds&quot;,destfile=&quot;Live.rds&quot;)
@@ -152,7 +152,7 @@ Wake_county %&gt;%
 <div id="my-turn" class="section level2">
 <h2>My turn</h2>
 <pre class="r"><code># define the pattern
-pattern &lt;- &quot;(BLVD|TRAIL|SUITE|CIR|HALL|OAK|UNIVERSITY|AVENUE|TER|BOX|DRIVE|CT|DR|ROAD|APT|COURT|ST|RD|ROAD|PL|CIR|WAY|AVE|PARKWAY|NEUSE|LN|PLAZA)&quot;
+pattern &lt;- &quot;(BLVD|TRAIL|SUITE|CIR|HALL|OAK|UNIVERSITY|AVENUE|TER|BOX|DRIVE|CT|DR|ROAD|APT|COURT|ST|RD|ROAD|PL|CIRCAL|WAY|AVE|PARKWAY|NEUSE|LN|PLAZA|UR|PATH|STE|POINT|PL|PLACE|LOOP|PKWY|AVENUE|LANE|CV|FARM|TERRACE|CUTHBERT|STATION|NEUS|SQUARE|BLV|NCSU|UNIT|PKWYUNIV|CENTER|RIDGE)&quot;
 Matches &lt;- # define the dataset
   Wake_county %&gt;% # refer to Wake_county
   tidyr::extract(address,into=&quot;street_word&quot;, # match the address into a new variable called street word
@@ -165,47 +165,63 @@ Translate &lt;- data_frame(street_word = c(&quot;RD&quot;, &quot;CIR&quot;), off
 Matches %&gt;% left_join(Translate) %&gt;% 
   mutate(final = ifelse(is.na(official), street_word, official))</code></pre>
 <pre><code>## Joining, by = &quot;street_word&quot;</code></pre>
-<pre><code>## # A tibble: 25 × 4
+<pre><code>## # A tibble: 41 × 4
 ##    street_word number official  final
 ##          &lt;chr&gt;  &lt;int&gt;    &lt;chr&gt;  &lt;chr&gt;
-## 1          APT     15     &lt;NA&gt;    APT
-## 2          AVE    210     &lt;NA&gt;    AVE
-## 3       AVENUE     46     &lt;NA&gt; AVENUE
-## 4         BLVD     37     &lt;NA&gt;   BLVD
-## 5          BOX  11161     &lt;NA&gt;    BOX
-## 6          CIR    103   CIRCLE CIRCLE
-## 7        COURT     68     &lt;NA&gt;  COURT
-## 8           CT    204     &lt;NA&gt;     CT
-## 9           DR    529     &lt;NA&gt;     DR
-## 10       DRIVE    199     &lt;NA&gt;  DRIVE
-## # ... with 15 more rows</code></pre>
+## 1          APT      9     &lt;NA&gt;    APT
+## 2          AVE    205     &lt;NA&gt;    AVE
+## 3       AVENUE     45     &lt;NA&gt; AVENUE
+## 4          BLV      2     &lt;NA&gt;    BLV
+## 5         BLVD     37     &lt;NA&gt;   BLVD
+## 6          BOX   8837     &lt;NA&gt;    BOX
+## 7       CENTER     14     &lt;NA&gt; CENTER
+## 8          CIR     92   CIRCLE CIRCLE
+## 9        COURT     63     &lt;NA&gt;  COURT
+## 10          CT    192     &lt;NA&gt;     CT
+## # ... with 31 more rows</code></pre>
 <pre class="r"><code>print.data.frame(Matches %&gt;% arrange(desc(number)))</code></pre>
 <pre><code>##    street_word number
-## 1          BOX  11161
-## 2           ST    882
-## 3           RD    695
-## 4           DR    529
-## 5         &lt;NA&gt;    407
-## 6          AVE    210
-## 7           CT    204
-## 8        DRIVE    199
-## 9         ROAD    183
-## 10          PL    149
-## 11          LN    147
-## 12         WAY    129
-## 13         CIR    103
-## 14         TER     95
-## 15        HALL     70
-## 16       COURT     68
-## 17         OAK     54
-## 18       NEUSE     48
-## 19      AVENUE     46
-## 20        BLVD     37
-## 21       TRAIL     22
-## 22  UNIVERSITY     18
-## 23         APT     15
-## 24       SUITE      7
-## 25     PARKWAY      5</code></pre>
+## 1          BOX   8837
+## 2         NCSU   2347
+## 3           ST    852
+## 4           RD    620
+## 5           DR    480
+## 6         &lt;NA&gt;    210
+## 7          AVE    205
+## 8           CT    192
+## 9        DRIVE    174
+## 10        ROAD    161
+## 11          PL    144
+## 12          LN    132
+## 13          UR    132
+## 14         WAY    117
+## 15        LANE    113
+## 16       RIDGE    104
+## 17         CIR     92
+## 18         TER     80
+## 19        HALL     69
+## 20       COURT     63
+## 21         OAK     50
+## 22       NEUSE     48
+## 23      AVENUE     45
+## 24        FARM     45
+## 25        BLVD     37
+## 26        PKWY     26
+## 27       TRAIL     20
+## 28  UNIVERSITY     18
+## 29      CENTER     14
+## 30       POINT     14
+## 31         APT      9
+## 32        LOOP      9
+## 33     PARKWAY      5
+## 34        PATH      4
+## 35       SUITE      4
+## 36        UNIT      4
+## 37         BLV      2
+## 38      SQUARE      2
+## 39    CUTHBERT      1
+## 40          CV      1
+## 41        NEUS      1</code></pre>
 </div>
 </div>
 
