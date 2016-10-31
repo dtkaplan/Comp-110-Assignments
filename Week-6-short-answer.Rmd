@@ -9,38 +9,102 @@ Compiled on `r date()`.
 library(DataComputing)
 ```
 <!-- put your content after this line -->
+**12.1**
+```{r}
+Five_top_names <- BabyNames %>%
+  group_by(sex, name) %>%
+  summarise(total=sum(count)) %>%
+  filter(rank(desc(total)) <= 5)
+Five_top_names
+```
+**12.2**
+```{r}
+Portion<-
+  BabyNames %>%
+  group_by(year, name) %>%
+  summarise(total = sum(count)) %>%
+  mutate(Frac10 = ifelse(rank(desc(total)) <= 100, "True", "False" )) %>%
+  group_by(year, Frac10) %>%
+  summarise(total = sum(total))
+Portion
+
+```
 
 ```{r}
-download.file("http://tiny.cc/dcf/ScorecardSmall.Rda", destfile = "ScorecardSmall.Rda")
-load("ScorecardSmall.Rda")
+
+GlyphReady <-
+  Portion%>% 
+  spread(Frac10, total) %>%
+  mutate(Frac10 = True / (True + False))
+
+```
+
+```{r}
+ggplot(data = GlyphReady, aes(x = year, y = Frac10)) + geom_point()
+
+```
+
+**12.3**
+a) summary 
+
+b) summary  
+
+c) summary 
+
+d) transformation 
+
+e) transformation 
+
+f) summary 
+
+g) transformation 
+
+h) summary
+
+**13.1**
+9 edges and 8 vertices
+
+**13.2**
+
+1) A,B,C,D 
+
+2) Table 2 
+
+3) In Table 1, B and C are not connected as an edge. 
+
+**13.3**
+
+Table 2
+
+**13.4**
+1) Exports
+
+2) Population
+
+**14.1**
+```{r}
+library(mosaicData)
+CPS85 %>%
+  ggplot(aes(x = sex, y = wage)) +
+  geom_boxplot(aes(fill=sex))
+
+```
+
+**14.3**
+For females the most likely height is around 1.6m, and for men its around 1.8m
+
+**14.7**
+```{r}
+  ggplot(CPS85, aes(x = educ, y = wage, color = sex)) +
+  geom_point() +
+  stat_smooth(method="lm") 
+
+```
+**14.10**
+```{r}
+ggplot(Galton, aes(x = height)) +
+  geom_density(aes(fill=sex,color=sex), alpha=0.7)
 
 ```
 
 
-```{r}
-PlotData <- ScorecardSmall %>% filter(CONTROL != 3)
-```
-```{r}
-PlotData <- PlotData %>% 
-  select(CONTROL,ADM_RATE, CCSIZSET, NPT41_PUB, NPT41_PRIV, NPT43_PUB, NPT43_PRIV, NPT45_PUB, NPT45_PRIV)
-
-names(PlotData)
-```
-
-```{r}
-AdomNarrow <- 
-  PlotData %>%
-  gather(key = quintile, value = netcost, - CONTROL, - ADM_RATE, - CCSIZSET)
-```
-```{r}
-AdomNarrow <- 
-  PlotData %>%
-  gather(key = quintile, value = netcost, - CONTROL, - ADM_RATE, - CCSIZSET)
-AdomNarrow %>% 
-  filter( (CONTROL == 2 & grepl("PRIV$", quintile)) |
-            (CONTROL == 1 & grepl("PUB$", quintile)) )
-AdomNarrow <- AdomNarrow %>% mutate(G = substr(quintile, 5, 5))
-```
-```{r}
-ggplot(AdomNarrow,aes(x=ADM_RATE, y= netcost)) + geom_point(color = "blue", alpha = 0.05) +facet_grid(CONTROL~ G)+geom_smooth(color="black")
-```
