@@ -1,6 +1,6 @@
 # Week 6 Short Answer Questions
 
-## Your name should appear here!
+## Nana Adom Mills-Robertson
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,37 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+```{r}
+download.file("http://tiny.cc/dcf/ScorecardSmall.Rda", destfile = "ScorecardSmall.Rda")
+load("ScorecardSmall.Rda")
+
+```
+
+
+```{r}
+PlotData <- ScorecardSmall %>% filter(CONTROL != 3)
+```
+```{r}
+PlotData <- PlotData %>% 
+  select(CONTROL,ADM_RATE, CCSIZSET, NPT41_PUB, NPT41_PRIV, NPT43_PUB, NPT43_PRIV, NPT45_PUB, NPT45_PRIV)
+
+names(PlotData)
+```
+
+```{r}
+AdomNarrow <- 
+  PlotData %>%
+  gather(key = quintile, value = netcost, - CONTROL, - ADM_RATE, - CCSIZSET)
+```
+```{r}
+AdomNarrow <- 
+  PlotData %>%
+  gather(key = quintile, value = netcost, - CONTROL, - ADM_RATE, - CCSIZSET)
+AdomNarrow %>% 
+  filter( (CONTROL == 2 & grepl("PRIV$", quintile)) |
+            (CONTROL == 1 & grepl("PUB$", quintile)) )
+AdomNarrow <- AdomNarrow %>% mutate(G = substr(quintile, 5, 5))
+```
+```{r}
+ggplot(AdomNarrow,aes(x=ADM_RATE, y= netcost)) + geom_point(color = "blue", alpha = 0.05) +facet_grid(CONTROL~ G)+geom_smooth(color="black")
+```
