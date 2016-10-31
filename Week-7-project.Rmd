@@ -1,6 +1,6 @@
 # Week 7 Project
 
-## Your name should appear here!
+## Lang Li
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
