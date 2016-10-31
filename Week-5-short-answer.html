@@ -120,12 +120,65 @@ $(document).ready(function () {
 
 <div id="week-5-short-answer-questions" class="section level1">
 <h1>Week 5 Short Answer Questions</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="nana-adom-mills-robertson" class="section level2">
+<h2>Nana Adom Mills-Robertson</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:27:09 2016.</p>
+<p>Compiled on Sun Oct 30 20:50:22 2016.</p>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
+<p><strong>10.1</strong> The family of data verbs inner_join(), left_join(),etc, always have a datable in the parentheses for the following reasons. These data verbs have a datable as an input because they are picking information from that datatable, such as the variables within it, and seeing if it matches the cases of another datatable in some way shape or form</p>
+<p><strong>10.2</strong> Demographics and Countrycentroids have different numbers of rows, 256 and 241 respectively, so a copy and paste would probably not work. Additionally, the second row in Demographics is a different case entirely from the Countrycentroids</p>
+<p><strong>10.3</strong> 1. Data table B, Data Table B %&gt;% mutate(difference = Y2001 - Y2000)</p>
+<ol start="2" style="list-style-type: decimal">
+<li>We would use a left join on Data table C.Therefore TableC %&gt;% left_join( ContinentData) %&gt;% group_by(Year, Continent) %&gt;% summarise(total = sum( Value ) )</li>
+</ol>
+<p><strong>11.1</strong> (A)</p>
+<p>Version 1: Number of babies and name (sex).</p>
+<p>Version 2:name in a year and the female and male count</p>
+<p>Version 3: sex(name) and 1912 and 2012.</p>
+<ol start="2" style="list-style-type: upper-alpha">
+<li></li>
+</ol>
+<p>Version 1: narrow Version 2: Wide</p>
+<ol start="3" style="list-style-type: upper-alpha">
+<li></li>
+</ol>
+<p>sex</p>
+<ol start="4" style="list-style-type: upper-alpha">
+<li></li>
+</ol>
+<p>Versions 2 and 3, gives a value for the name of a particular sex or year. However, version one can leave out the line stipulating that there’s no baby called that name in a year of a certain sex.</p>
+<ol start="5" style="list-style-type: upper-alpha">
+<li></li>
+</ol>
+<p>Versions 2 and 3, have values that are NA due to the sex and year (1912/2012) being used as the keys for new columns. The variables have certain cases that have no values associated with them.</p>
+<ol start="6" style="list-style-type: lower-alpha">
+<li><p>year (1912/2012)</p></li>
+<li></li>
+</ol>
+<ol style="list-style-type: decimal">
+<li><p>M and F are gathered into sex in Version 1. The values are gathered into nbabies</p></li>
+<li><p>sex</p></li>
+<li><p>They are taken from the variables M and F in version 2.</p></li>
+</ol>
+<p><strong>11.3</strong></p>
+<ol style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<p>Table A: wide Table C: narrow</p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<p>Table B:wide Table C:narrow</p>
+<ol start="3" style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<p>Table A: wide Table C:narrow</p>
+<p><strong>11.4</strong> The new table that we obtain will have two variables, SBP and When. SBP will have incorrect values because subject, as well as before and after will all be gathered from it.</p>
+<p><strong>11.5</strong></p>
+<pre class="r"><code>&quot;http://tiny.cc/dcf/MeasTreatTables.rda&quot;%&gt;% 
+  url()%&gt;%
+  load()</code></pre>
+<p>Tablestogether &lt;- Measurements %&gt;% left_join (Treatments) %&gt;% mutate (when=ifelse(date&gt;treatment_date,“after”,“before”)) %&gt;% spread(key=what,value=value) %&gt;% select(subject,when,dbp,sbp,date)</p>
 </div>
 </div>
 
