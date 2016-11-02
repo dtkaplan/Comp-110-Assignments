@@ -120,12 +120,25 @@ $(document).ready(function () {
 
 <div id="week-7-project" class="section level1">
 <h1>Week 7 Project</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="josh-marcus" class="section level2">
+<h2>Josh Marcus</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:32:15 2016.</p>
+<p>Compiled on Mon Oct 31 00:11:43 2016.</p>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
+<pre class="r"><code>Wake_county &lt;- read.csv(&quot;http://tiny.cc/dcf/street-addresses.csv&quot;, stringsAsFactors = FALSE)</code></pre>
+<pre class="r"><code>download.file(url=&quot;http://tiny.cc/dcf/CMS_ProvidersSimple.rds&quot;,
+              destfile = &quot;ProviderAddresses.rds&quot;)
+Medicare &lt;- readRDS(&quot;ProviderAddresses.rds&quot;)</code></pre>
+<p>Now that I’ve loaded these, here are some common address words/abbreviations I’ve noticed:</p>
+<p>AVE BLVD CT CIRLE DR HWY LN PKWY RD ST</p>
+<p>I put these into a command. Hey, look, the command is right down below!</p>
+<pre class="r"><code>pattern &lt;- &quot;AVE|BLVD|CT|CIRCLE|DR|HWY|LN|PKWY|RD|ST&quot;
+LeftOvers &lt;-
+  Wake_county %&gt;%
+  filter(! grepl(pattern, address),
+          ! grepl(&quot;BOX&quot;, address))</code></pre>
+<p>Great command, am I right? It says, in plain English, that we will be looking for character strings that contain the following stretches of text—AVE, BLVD, CT, and so on. Below that, we’re making a table called LeftOvers, where we put all the addresses that don’t match the stretches of text we identified as part of our pattern in the first part of the command phrase.</p>
+<p>Let’s take a look at what that command returns.</p>
 </div>
 </div>
 

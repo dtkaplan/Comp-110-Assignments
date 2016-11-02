@@ -1,6 +1,6 @@
 # Week 7 Project
 
-## Your name should appear here!
+## Josh Marcus
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,74 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+Let's look at a big old hunk of addresses.
+
+```{r}
+Wake_county <- read.csv("http://tiny.cc/dcf/street-addresses.csv", stringsAsFactors = FALSE)
+```
+
+Now that I've loaded these, here are some common address words/abbreviations I've noticed:
+
+AVE
+BLVD
+CT
+CIRLE
+DR
+HWY
+LN
+PKWY
+RD
+ST
+
+I put these into a command. Hey, look, the command is right down below!
+
+```{r}
+pattern <- "AVE|BLVD|CT|CIRCLE|DR|HWY|LN|PKWY|RD|ST"
+LeftOvers <-
+  Wake_county %>%
+  filter(! grepl(pattern, address),
+          ! grepl("BOX", address))
+```
+
+Great command, am I right? It says, in plain English, that we will be looking for character strings that contain the following stretches of text—AVE, BLVD, CT, and so on. Below that, we're making a table called LeftOvers, where we put all the addresses that don't match the stretches of text we identified as part of our pattern in the first part of the command phrase.
+
+In LeftOvers, we can see we're missing some types of street words like WAY, ROAD, RIDGE, TRAIL, and HALL. So, we'll add those to our pattern.
+
+```{r}
+pattern <- "AVE|BLVD|CT|CIRCLE|DR|HALL|HWY|LN|PKWY|RD|ROAD|RIDGE|ST|TRAIL"
+LeftOvers <-
+  Wake_county %>%
+  filter(! grepl(pattern, address),
+          ! grepl("BOX", address))
+```
+
+To refine my pattern, I continued this process: update pattern, see what's left, update pattern, on and on until infinity. The command below is the result of doing this process many times until I think I found almost all of the relevant street words in the Wake_county data set.
+
+```{r}
+pattern <- "APT|APARTMENT|AVE|BLVD|CENTER|CIR|CT|COURT|CO|CIRCLE|DR|EDGE|FARM|FALLS|HOUSE|HOME|HILL|HALL|HOSPITAL|HWY|LOOP|LANE|LN|MEADOW|MOUNTAIN|NCSU|PATH|PO|POINT|PKWY|PL|PLACE|RD|ROAD|RIDGE|RUE|ST|SQUARE|SUITE|TERRACE|TRAIL|TRL|UNIVERSITY|UNION|VILLAGE|WAY"
+LeftOvers <-
+  Wake_county %>%
+  filter(! grepl(pattern, address),
+          ! grepl("BOX", address))
+```
+
+I could go on, but this command, with its revised pattern, gets our original data, which started out with over 15,000 entries, down to just 129 entries. This suggests to me that my pattern picked out basically all of the street words that were in Wake_county. A cursory look at the remaining entries confirms this. It's mostly words that just appear once or a few times, not street words that are especially common, so that means I did a decent job refining my command. Dynomite!
+
+Now that I know I have a pattern that vacuums up most of the street words in Wake_county, I want to write a command that counts how many of each kind of street word there is.
+
+```{r}
+pattern <- "(APT|APARTMENT|AVE|BLVD|BOX|CENTER|CIR|CT|COURT|CO|CIRCLE|DR|EDGE|FARM|FALLS|HOUSE|HOME|HILL|HALL|HOSPITAL|HWY|LOOP|LANE|LN|MEADOW|MOUNTAIN|NCSU|PATH|PO|POINT|PKWY|PL|PLACE|RD|ROAD|RIDGE|RUE|ST|SQUARE|SUITE|TERRACE|TRAIL|TRL|UNIVERSITY|UNION|VILLAGE|WAY)"
+StreetWordTallies <- Wake_county %>%
+  tidyr::extract(address, into = "street_word",
+  regex = pattern,
+  remove = FALSE) %>%
+  group_by(street_word) %>%
+  summarise(total = n()) %>%
+  arrange(desc(total)) 
+```
+```{r}
+StreetWordTallies %>%
+  ggplot(data=StreetWordTallies, aes(x=street_word, y=total))+geom_bar(stat='identity',position='stack', width=.9)
+```
+
+Peep the bar graph for answers on what's most common. I'll give you a hint: It's PO, DR, BOX, and few key others.
