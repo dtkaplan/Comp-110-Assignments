@@ -123,9 +123,28 @@ $(document).ready(function () {
 <div id="your-name-should-appear-here" class="section level2">
 <h2>Your name should appear here!</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:32:15 2016.</p>
+<p>Compiled on Wed Nov 2 14:59:33 2016.</p>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
+</div>
+<div id="project" class="section level2">
+<h2>Project</h2>
+<pre class="r"><code>Wake_county &lt;-read.csv(&quot;http://tiny.cc/dcf/street-addresses.csv&quot;, stringsAsFactors = FALSE)
+download.file(url=&quot;http://tiny.cc/dcf/CMS_ProvidersSimple.rds&quot;, destfile = &quot;medicareProv.rds&quot;)
+Medicare &lt;- readRDS(&quot;medicareProv.rds&quot;)</code></pre>
+<pre class="r"><code>road_related &lt;- &quot;( ST| RD| ROAD| WAY| BLVD| TRAIL| AVE| ST| DR| DRIVE| CIR| LN| CT| LANE| COURT| PKWY| PATH| POINT| PLACE| PL| SQUARE| HALL| BLV| CIRCLE| TERRACE| HWY| TRL)&quot; #This line is the regex to which I will compare the input string
+LeftOvers &lt;-
+    Wake_county %&gt;%
+        filter(!grepl(road_related, address), !grepl(&quot; BOX &quot;, address)) #Here the filter removes all rows that contain in their address one of the element in the regex road_related and &quot; BOX &quot;</code></pre>
+<pre class="r"><code>regexMatch &lt;-
+Wake_county %&gt;%
+   filter(!grepl(&quot;BOX &quot;, address)) %&gt;% #filtering out addresses of PO boxes
+  tidyr::extract(address, into = &quot;street_word&quot;, regex = road_related, remove = FALSE) %&gt;% select(street_word) %&gt;% #I just want the street_word column
+  group_by(street_word) %&gt;% #I want to group by the possible road related words in street_word
+  tally() #to count the occurance of each word.</code></pre>
+</div>
+<div id="in-class" class="section level2">
+<h2>In class</h2>
+<p>grepl(regexPattern, String) to match regex Here is my content!</p>
 </div>
 </div>
 

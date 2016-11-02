@@ -10,4 +10,40 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
+##Project
+```{r }
+Wake_county <-read.csv("http://tiny.cc/dcf/street-addresses.csv", stringsAsFactors = FALSE)
+download.file(url="http://tiny.cc/dcf/CMS_ProvidersSimple.rds", destfile = "medicareProv.rds")
+Medicare <- readRDS("medicareProv.rds")
+```
+
+```{r }
+road_related <- "( ST| RD| ROAD| WAY| BLVD| TRAIL| AVE| ST| DR| DRIVE| CIR| LN| CT| LANE| COURT| PKWY| PATH| POINT| PLACE| PL| SQUARE| HALL| BLV| CIRCLE| TERRACE| HWY| TRL)" #This line is the regex to which I will compare the input string
+LeftOvers <-
+    Wake_county %>%
+        filter(!grepl(road_related, address), !grepl(" BOX ", address)) #Here the filter removes all rows that contain in their address one of the element in the regex road_related and " BOX "
+```
+
+```{r }
+regexMatch <-
+Wake_county %>%
+   filter(!grepl("BOX ", address)) %>% #filtering out addresses of PO boxes
+  tidyr::extract(address, into = "street_word", regex = road_related, remove = FALSE) %>% select(street_word) %>% #I just want the street_word column
+  group_by(street_word) %>% #I want to group by the possible road related words in street_word
+  tally() #to count the occurance of each word.
+```
+
+
+## In class
+grepl(regexPattern, String) to match regex
 Here is my content!
+
+```{r include = FALSE}
+pattern <-"(z|q).*z" #"z.{3}z" "z.+z" #.* = anything you got
+Name_count <-
+  BabyNames %>%
+  filter(grepl(pattern, name)) %>%
+  head()
+pattern2 <- "[aeiou]*[aeiou].*[aeiou]" #names with at least 3 vowels
+pattern3 <- "[^aeiou]*[aeiou][^aeiou]+[aeiou][^aeiou]+[aeiou]" #names with exactly 3 vowels
+```
