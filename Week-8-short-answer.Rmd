@@ -1,13 +1,87 @@
 # Week 8 Short Answer Questions
 
-## Your name should appear here!
+## Qiuhan Sun
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(party)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+## 17.2
+I don't think I have the right graph on the textbook, so I drew the tree here. 
+```{r}
+Houses <-
+  read.file("http://tiny.cc/dcf/houses-for-sale.csv")
+
+Tree <-
+  ctree(price ~ living_area + bathrooms + bedrooms + fireplaces, data=Houses)
+
+plot(Tree, type="simple")
+```
+
+#1
+The response variable is the price of the houses. The explanatory variables are living area, bathroom, bedroom and fire place. 
+
+#2
+No, we do not consider bathroom for living area smaller than 1080. 
+
+#3
+With 1.5 bathrooms, the price is $151424. With 2 or more bathrooms, the number of bedrooms matters. The average price is $180000 
+
+##4
+For houses larger than 2816, having more than one fireplace results in a higher price of $501876 compared to having less than or equal to one fireplace. However, it may just because larger living area results in higher price; not simply because of the more fireplaces.
+
+##17.1
+```{r}
+NCHS %>%
+  na.omit() %>%
+  nrow()
+
+CompleteCases <-
+  NCHS %>%
+  select(diabetic, weight, age,
+         bmi, chol, smoker) %>%
+  na.omit()
+CompleteCases %>% nrow()
+```
+
+```{r}
+mod1 <- party::ctree(
+  diabetic ~ weight + chol,
+  data=CompleteCases)
+plot(mod1, type="simple")
+```
+
+```{r}
+CompleteCases %>%
+  mutate(probability = as.numeric(predict(mod1)),
+         likelihood =
+           ifelse(diabetic,
+                  probability,
+                  1-probability)) %>%
+  summarise(log_likelihood = sum(log(likelihood)))
+```
+
+
+```{r}
+mod2 <- party::ctree(
+  diabetic ~ age + bmi,
+  data=CompleteCases)
+plot(mod1, type="simple")
+```
+
+```{r}
+CompleteCases %>%
+  mutate(probability = as.numeric(predict(mod2)),
+         likelihood =
+           ifelse(diabetic,
+                  probability,
+                  1-probability)) %>%
+  summarise(log_likelihood = sum(log(likelihood)))
+```
+
+Using bmi and age generates a higher log likelihood, meaning this model is better.
