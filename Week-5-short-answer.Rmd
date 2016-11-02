@@ -1,6 +1,6 @@
 # Week 5 Short Answer Questions
 
-## Your name should appear here!
+## Xing Gao
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -9,5 +9,53 @@ Compiled on `r date()`.
 library(DataComputing)
 ```
 <!-- put your content after this line -->
+10.1 the reason why join family of data verbs always have a data table inside the parenthesis because it is chaining the new data table to the original one. 
+
+10.2 this cannot be done because the rows won't match up. 
+
+10.3 
+a. I think Table B is the easiest. I can just substract the 2000 column from 2001. the command would be TableB %>% mutate(change = (Y2001-Y2000))
+
+b. Table C would be best because we can join the table with continent info to table C, and then calculate the sum of the values for each country, during each year. 
+for year 2001:
+TableC %>%
+left_join(ContinentData)%>%
+group_by(country)%>%
+filter(Y2001)%>%
+summarise(total=sum(value))
+
+for year 2000:
+TableC %>%
+left_join(ContinentData)%>%
+group_by(country)%>%
+filter(Y2000)%>%
+summarise(total=sum(value))
+
+11.1
+a. 
+version one: a case shows how many babies, of a certain sex, are born in a particular year and have a particular name
+version two: a case shows given a baby and the year, how many babies with that name are amle.female
+version three: how many babies with a certain sex and name are born in each year. 
+b. Version 1 is narrow, 2 is wide. 
+c. sex is the key variable
+d. because table two and three are wide tables, and in some cases, the column does not apply to that case. 
+e. they contain the same information because in table two, each case is assigned to a particualr year while in table three, each case is assigned to a particular sex
+f. year was used to spread one to three
+
+
+11.3
+A. C is narrow, A is wide
+B. C is narrow, B is wide
+C. C is narrow, A is wide
+
+
+11.4
+the new table will have a column when, with before and after, and the sbp column, plus a subject column. However, the before and after won't be in the right column because the subject column is there. 
+
+11.5
+```{r}
+download.file("http://tiny.cc/dcf/MeasTreatTables.rda", destfile = "MeasTreatTables.rda")
+```
+
 
 Here is my content!
