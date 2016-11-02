@@ -1,6 +1,6 @@
 # Week 6 Short Answer Questions
 
-## Your name should appear here!
+## Xing Gao
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,74 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+
+12.1
+```{r}
+BabyNames %>%
+  group_by(name)%>%
+  summarise(total=sum(count))%>%
+  filter(rank(desc(total))<=5)
+```
+The top most popular names are James, John, Mary, Michael, and Robert, in this order
+
+12.2
+
+PopularCounts <- 
+  BabyNames %>% 
+  group_by(year,name) %>% 
+  summarise(total = sum(count))%>% 
+  mutate(frac_in_top_100 = rank(desc(total)) <= 100)  %>% 
+  group_by(year, frac_in_top_100) %>% 
+  summarise(total = sum(total))
+
+GlyphReady <- 
+  PopularCounts %>%
+  spread(frac_in_top_100, total) %>%
+  mutate(frac_in_top_100 = 'TRUE'/('TRUE'+'FALSE')) %>%
+  ggplot(aes(x=year, y=frac_in_top_in100))
+
+ 
+12.3
+a. summary function
+b. summary function
+c. summary function 
+d. transformation
+e. transformation
+f. summary
+g. transformation
+h. summary
+
+
+13.1 
+1. there are seven distinct vertices
+2. there are 9 edges
+
+13.2 
+1. the vertices are A, B, C, D
+2. Table 2 shows the edges correctly 
+
+13.3
+Table two gives the information to draw the graph correctly 
+
+13.4
+exports is mapped to the size of the letter
+population is mapped to the shape of the gray symbol 
+
+14.1
+```{r}
+CPS85 %>% 
+  ggplot(aes(x=sex, y=wage))+geom_boxplot(aes(fill=sex))
+```
+14.3
+the most likely height is about 1.7 for men, and 1.6 for women
+
+14.7
+```{r}
+CPS85 %>%
+  ggplot(aes(x=educ, y=wage, color= sex))+geom_point()+ylim(0,15)+stat_smooth(method= "lm")
+```
+14.10
+```{r}
+Galton %>%
+  ggplot(aes(x=height, color=sex))+geom_density()
+```
