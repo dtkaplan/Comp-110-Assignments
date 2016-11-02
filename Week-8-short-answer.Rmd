@@ -1,6 +1,6 @@
 # Week 8 Short Answer Questions
 
-## Your name should appear here!
+## Josh "8 Ball" Marcus
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,18 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+```{r}
+Houses <-
+  read.file("http://tiny.cc/dcf/houses-for-sale.csv")
+```
+
+##Question 7.2
+
+1. The variables fireplaces, bedrooms, living_area, and bathrooms, and (indirectly at least) price are in the model.
+
+2. For houses with a living area less than 1080 square feet, the number of bathrooms doesn't make a difference in price. 
+
+3. For houses with a livin area between 1080 and 1483 square feet, the typical difference in price between houses with 1.5 bathrooms and houses with two bathrooms is 28372.15 (179796.647 - 151424.497).
+
+4. Having a fireplace is typically associated with a higher house price, but that's due in part to the fact that houses with fireplaces also tend to have larger living areas.
+
