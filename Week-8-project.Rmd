@@ -7,7 +7,57 @@ Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(ggdendro)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+```{r}
+Dists <- dist(mtcars)
+Dendrogram <- hclust(Dists)
+ddata <- dendro_data(Dendrogram)
+ggdendrogram(Dendrogram, rotate=TRUE) + geom_text(data= ddata$labels, aes(x=x, y=y, label=label),vjust=0)
+```
+
+```{r}
+NCI602 <- NCI60 %>%
+  gather(key=cellline, value= expression, -Probe)
+
+NCI60_narro1 <- NCI602 %>%
+  group_by(Probe, cellline) %>%
+  summarise(expression=mean(expression)) %>%
+  ungroup()
+```
+
+```{r}
+NCI60_narrow2 <- NCI602 %>%
+  group_by(Probe) %>%
+  summarise(spread= sd(expression))
+```
+
+```{r}
+newtable <- NCI60_narro1 %>%
+  group_by(Probe) %>%
+  filter(sd(expression) >= 4) 
+
+```
+
+```{r}
+newtable2 <- newtable %>%
+  spread(key=Probe, value= expression)
+```
+
+```{r}
+row.names(newtable2) <- newtable2$cellline
+```
+
+```{r}
+distances <- dist(newtable2 %>% select(-cellline))
+distances
+```
+
+```{r}
+Dendrogram2 <- hclust(distances)
+ddata <- dendro_data(Dendrogram2)
+ggdendrogram(Dendrogram2, rotate=TRUE)
+```
+
