@@ -1,6 +1,6 @@
 # Week 7 Short Answer Questions
 
-## Your name should appear here!
+## Sam Erickson
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,57 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+15.1
+
+```{r}
+library(lubridate)
+myBirthday = "December 16, 1994"
+myBirthday = mdy(myBirthday)
+str1 = "April 30, 1777"
+str2 = "06-23-1912"
+str3 = "3 March 1847"
+str4 = "Nov. 11th, 1918 at 11:00 AM" # HOW THIS??
+str5 = "July 20, 1969"
+date1 = mdy(str1)
+date2 = mdy(str2)
+
+gauss = as.Date(myBirthday) - date1
+turing = myBirthday - date2
+bell = myBirthday - dmy(str3)
+wwi = as.POSIXct(myBirthday) - mdy_hm(str4)
+moonLanding = myBirthday - mdy(str5)
+```
+
+
+15.2
+
+```{r}
+a = "42,659.30"
+b = "17%"
+c = "Nineteen"
+d = "$100"
+e = "9.8 m/seconds-square"
+f = "9.8 m/s^2"
+g = "6.62606957 x 10^-34 m2 kg / s"
+h = "6.62606957e-34"
+i = "42.659,30"
+
+list = c(a,b,c,d,e,f,g,h,i)
+numbers = as.numeric(list)
+numbers
+numbers2 = tidyr::extract_numeric(list)
+numbers2
+```
+The as.numeric() function only worked for "6.62606957e-34".
+
+tidyr::extract_numeric() worked for everything except "Nineteen", "9.8 m/seconds-square", "6.62606957 x 10^-34 m2 kg / s","6.62606957e-34", and it added an extra 0.02 to  "9.8 m/s^2" for some reason'
+
+
+
+16.1, 
+```{r}
+head(BabyNames)
+```
+
+
+16.2, 16.3
