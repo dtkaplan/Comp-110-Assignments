@@ -60,4 +60,4 @@ ggdendrogram(Dendrogram, rotate=TRUE) +
   geom_text(data=ddata$labels, aes(x=x, y=x, label=label), vjust=0)
 ```
 
-And that is it!  Unfortunately, I seam to have lost the name data from the variable names in `clusterReadyProbes`.  I am no familiar enough with the methodology to track down where I lost these.  
+And that is it!  Unfortunately, I seam to have lost the name information from the variable names in `clusterReadyProbes`.  I am not familiar enough with the methodology to track down where I lost these names.  
