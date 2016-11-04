@@ -10,4 +10,24 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+### 17.2 
+
+**1**
+
+The variables are:
+
+Response: House price
+
+Explanatory: Bathrooms, living area, bedrooms, fireeplaces
+
+**2**
+
+No, bathrooms don't matter for those homes. 
+
+**3**
+
+The price difference is about $28372.
+
+**4**
+
+Only for very large homes do fireplaces tend to matter and increase price. 
