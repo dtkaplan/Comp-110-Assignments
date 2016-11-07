@@ -120,13 +120,106 @@ $(document).ready(function () {
 
 <div id="week-5-short-answer-questions" class="section level1">
 <h1>Week 5 Short Answer Questions</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="kai-heen" class="section level2">
+<h2>Kai Heen</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:27:09 2016.</p>
+<p>Compiled on Mon Nov 7 13:07:56 2016.</p>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
 </div>
+<div id="section" class="section level2">
+<h2>10.1</h2>
+<p>Join always has a data table as one of its arguments, as it always turns two data tables into one data table.</p>
+</div>
+<div id="section-1" class="section level2">
+<h2>10.2</h2>
+<p>The two tables cannot be successfully joined becasue the two tables have different numbers of rows. Cases for individual countries are also different.</p>
+</div>
+<div id="section-2" class="section level2">
+<h2>10.3</h2>
+<p>Data table B.</p>
+<p>Data Table B %&gt;%</p>
+<pre><code>mutate(difference = Y2001 - Y2000)</code></pre>
+<p>tableC %&gt;%</p>
+<p>join(ContinentData) %&gt;%</p>
+<p>group_by(Continent, Year) %&gt;%</p>
+<p>summarise(total = sum(Value))</p>
+</div>
+<div id="section-3" class="section level2">
+<h2>11.1</h2>
+<ol style="list-style-type: upper-alpha">
+<li></li>
+</ol>
+<ol style="list-style-type: decimal">
+<li><p>Shows number of babies that all have the same sex and name, and were born in the same year.</p></li>
+<li><p>Given a name in a specific year</p></li>
+<li><p>Shows number of babies with a given name of a given sex</p></li>
+</ol>
+<ol start="2" style="list-style-type: upper-alpha">
+<li></li>
+</ol>
+<p>Version 1: narrow</p>
+<p>Version 2: Wide</p>
+<ol start="3" style="list-style-type: upper-alpha">
+<li></li>
+</ol>
+<p>Sex is key variable</p>
+<ol start="4" style="list-style-type: upper-alpha">
+<li></li>
+</ol>
+<p>Versions 2 and 3 are wide tables. They have to provide information that version 1 can simply not include.</p>
+<ol start="6" style="list-style-type: upper-alpha">
+<li><p>year</p></li>
+<li></li>
+</ol>
+<ol style="list-style-type: decimal">
+<li><p>M and F are gathered into sex in Version 1.</p></li>
+<li><p>sex</p></li>
+<li><p>Number of female and male babies/ year.</p></li>
+</ol>
+</div>
+</div>
+<div id="section-4" class="section level1">
+<h1>11.3</h1>
+<ol style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<p>Table A: wide</p>
+<p>Table C: narrow</p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<p>Table B: wide</p>
+<p>Table C: narrow</p>
+<ol start="3" style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<p>Table A: wide</p>
+<p>Table C:narrow</p>
+</div>
+<div id="section-5" class="section level1">
+<h1>11.4</h1>
+<p>The new table will have two variables, SBP and When.</p>
+</div>
+<div id="section-6" class="section level1">
+<h1>11.5</h1>
+<pre class="r"><code>data &lt;- load(&quot;/home/local/MAC/qsun/Comp-110-Assignments/MeasTreatTables.rda&quot;)
+
+Measurements %&gt;% 
+  left_join (Treatments) %&gt;%
+  mutate (when=ifelse(date&gt;treatment_date,&quot;after&quot;,&quot;before&quot;)) %&gt;%
+  spread(key=what,value=value) %&gt;%
+  select(subject,when,sbp,dbp,date)</code></pre>
+<pre><code>## Joining, by = &quot;subject&quot;</code></pre>
+<pre><code>##   subject   when sbp dbp       date
+## 1     BHO before 155  65 2005-11-08
+## 2     BHO before 160  69 2007-06-19
+## 3     BHO  after 160  78 2017-06-04
+## 4     GWB before 115  54 1998-04-21
+## 5     GWB  after 135  NA 2009-05-08
+## 6     WJC before 105  60 1990-08-17
+## 7     WJC  after 145  75 2002-11-15
+## 8     WJC  after  NA  65 2010-03-26
+## 9     WJC  after 130  60 2013-09-15</code></pre>
 </div>
 
 

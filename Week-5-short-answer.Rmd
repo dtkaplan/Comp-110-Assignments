@@ -1,6 +1,6 @@
 # Week 5 Short Answer Questions
 
-## Your name should appear here!
+## Kai Heen
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -9,5 +9,99 @@ Compiled on `r date()`.
 library(DataComputing)
 ```
 <!-- put your content after this line -->
+## 10.1
 
-Here is my content!
+Join always has a data table as one of its arguments, as it always turns two data tables into one data table.
+
+## 10.2
+
+The two tables cannot be successfully joined becasue the two tables have different numbers of rows. Cases for individual countries are also different. 
+
+##10.3
+
+Data table B.
+
+Data Table B %>% 
+
+    mutate(difference = Y2001 - Y2000)
+
+
+tableC %>%
+
+  join(ContinentData) %>%
+  
+  group_by(Continent, Year) %>%
+  
+  summarise(total = sum(Value))
+
+##11.1 
+
+(A)
+
+1.  Shows number of babies that all have the same sex and name, and were born in the same year.
+
+2. Given a name in a specific year
+
+3. Shows number of babies with a given name of a given sex
+
+
+(B)
+
+Version 1: narrow 
+
+Version 2: Wide
+
+(C)
+
+Sex is key variable
+
+(D)
+
+Versions 2 and 3 are wide tables. They have to provide information that version 1 can simply not include.
+
+
+(F) year
+
+(G)
+
+1. M and F are gathered into sex in Version 1. 
+
+2. sex
+
+3. Number of female and male babies/ year.
+
+#11.3
+
+a)
+
+Table A: wide 
+
+Table C: narrow
+
+b)
+
+Table B: wide 
+
+Table C: narrow
+
+c)
+
+Table A: wide 
+
+Table C:narrow
+
+#11.4 
+
+The new table will have two variables, SBP and When.
+
+#11.5
+```{r}
+data <- load("/home/local/MAC/qsun/Comp-110-Assignments/MeasTreatTables.rda")
+
+Measurements %>% 
+  left_join (Treatments) %>%
+  mutate (when=ifelse(date>treatment_date,"after","before")) %>%
+  spread(key=what,value=value) %>%
+  select(subject,when,sbp,dbp,date)
+```
+
