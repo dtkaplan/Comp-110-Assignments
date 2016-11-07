@@ -1,13 +1,50 @@
 # Week 8 Project
 
-## Your name should appear here!
+## Qiuhan Sun
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(ggdendro)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+## Clustering the cancer types
+```{r warning=FALSE}
+Dists <- dist(mtcars)
+Dendrogram <- hclust(Dists)
+ddata <- dendro_data(Dendrogram)
+ggdendrogram(Dendrogram,rotate=TRUE) + geom_text(data=ddata$labels,aes(x=x,y=y,label=label),vjust=0)
+```
+
+## Wrangling the genetics data
+```{r warning=FALSE}
+Narrow<- NCI60 %>%
+  gather(key=cellLine,value=expression,-Probe)
+  
+NCI <- Narrow %>%
+  group_by(Probe,cellLine) %>%
+  summarise(expression=mean(expression)) %>%
+  ungroup()
+```
+
+```{r}
+NewNCI <- NCI %>%
+  group_by(Probe) %>%
+  mutate(spread=sd(expression)) %>%
+  filter(spread>4) %>%
+  select(-spread) %>%
+  spread(Probe,expression) %>%
+  select(-cellLine)
+```
+
+```{r warning=FALSE}
+Dists <- dist(NewNCI)
+Dendrogram <- hclust(Dists)
+ddata <- dendro_data(Dendrogram)
+ggdendrogram(Dendrogram,rotate=TRUE) + geom_text(data=ddata$labels,aes(x=x,y=y,label=label),vjust=0)
+```
+
+
