@@ -1,13 +1,34 @@
 # Week 8 Short Answer Questions
 
-## Your name should appear here!
+## Lang Li
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(party)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+# Question 17.2
+
+```{r}
+Houses <-
+read.file("http://tiny.cc/dcf/houses-for-sale.csv")
+house_model <-party::ctree(price ~  living_area + bathrooms + bedrooms + fireplaces, data = Houses)
+plot(house_model, type = "simple")
+```
+
+Note: The graph is not readable, I don't know why, so I read Qiuhan's graph to do the question but the code above just demonstrate I know how to do that...
+ 
+1. 1. Price is the response variable. The explanatory variables are living area, bathrooms, bedrooms and fireplaces.
+
+2. No. Because the bathroom number does not enter the model at that step.
+
+3. The typical differences are:
+```{r}
+180000 - 151000
+```
+
+4. I found out that the fireplace added into those houses researched (which are houses have 2816 sq ft of area) have very different prices.

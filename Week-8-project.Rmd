@@ -1,13 +1,48 @@
 # Week 8 Project
 
-## Your name should appear here!
+## Lang Li
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(ggdendro)
 ```
-<!-- put your content after this line -->
 
-Here is my content!
+Cleaning the data....
+```{r}
+NCI_narrow <- NCI60 %>% gather(key = cellLine, value = expression, -Probe)
+NCI <- NCI_narrow %>%  
+  group_by(Probe, cellLine) %>% 
+  summarise(expression = mean(expression)) %>% 
+  ungroup(expression) 
+```
+
+Pull out the Probe and calculate the spread
+```{r}
+NCI2 <- NCI %>%
+  group_by(Probe) %>% 
+  summarise(spread = sd(expression))
+```
+
+Spread it by filtering the spread>4:
+```{r}
+NCI4_Wide <- NCI %>% left_join(NCI2) %>% 
+filter(spread >4) %>% 
+  select(-spread)%>%
+  spread(Probe, expression)
+```
+
+Finally, we do the clustering job!!
+```{r}
+ClusterTable <- NCI4_Wide %>% select(-cellLine)
+Dists <- dist(ClusterTable)
+Dendrogram <- hclust(Dists)
+ddata <- dendro_data(Dendrogram)
+ggdendrogram(Dendrogram, rotate = TRUE) + geom_text(data = ddata$labels,aes(x=x,y=y,label=label),vjust = 0)
+```
+
+
+```
+
