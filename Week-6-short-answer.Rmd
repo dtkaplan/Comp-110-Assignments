@@ -1,6 +1,6 @@
 # Week 6 Short Answer Questions
 
-## Your name should appear here!
+## Daniel Ochoa
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,100 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+## 12.1
+```{r}
+Top5Names <- BabyNames %>%
+  group_by(sex, name) %>%
+  summarise(total=sum(count)) %>%
+  filter(rank(desc(total)) <= 5)
+
+
+print(Top5Names)
+```
+
+
+## 12.2
+```{r}
+PopularCounts <- BabyNames %>%
+  group_by(year, name) %>%
+  summarise(total = sum(count))
+
+PopularCounts <- PopularCounts %>% 
+  mutate(frac_in_top_100 = rank(desc(total)))
+
+PopularCounts$frac_in_top_100 <- ifelse(PopularCounts$frac_in_top_100 <=100,"True","False")
+GlyphReady <-
+  PopularCounts %>%
+  group_by(year, frac_in_top_100) %>%
+  summarise(Total = sum(total)) %>%
+  spread(frac_in_top_100, Total) %>%
+  mutate(frac_in_top_100= `True` / (`True` + `False`))
+GlyphReady %>%
+  ggplot(aes(x=year, y=frac_in_top_100)) +
+  geom_line () +
+  ylim(0,NA)
+
+print(GlyphReady)
+
+```
+
+
+## 12.3
+a) summary
+b) neither because this involves a pair of values.
+c) summary
+d) transformation
+e) transformation
+f) summary
+g) transformation
+h) summary
+
+
+## 13.1
+1) 7
+2) 9
+
+
+## 13.2
+1) ABCD
+2) 2
+3) Table 1 doesn't show the edge between c and d, and shows there's an edge between b and c which is false. Table 3 has 3 objects in one row.
+
+
+## 13.3
+Table 2
+
+## 13.4
+1. Exports
+2. Population
+
+## 14.1
+```{r}
+mosaicData::CPS85 %>%
+  ggplot(aes(y = wage, x = sex)) +
+  geom_boxplot(aes(fill=sex))
+```
+
+
+## 14.3
+women = 1.6 meters, men = 1.75 meters
+
+## 14.7
+```{r}
+mosaicData::CPS85 %>%
+  ggplot( x = educ, y = wage, color = sex) + geom_point() +
+  stat_smooth(method="1m") +
+  ylim(0,15)
+
+```
+
+
+## 14.10
+```{r}
+
+mosaicData::Galton %>%
+  ggplot(aes(x = height, group = sex)) +
+  geom_density(aes(color = sex, fill = sex), alpha = 0.5) +
+  xlab("height") + ylab("density")
+
+```

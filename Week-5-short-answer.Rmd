@@ -1,6 +1,6 @@
 # Week 5 Short Answer Questions
 
-## Your name should appear here!
+## Daniel Ochoa
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,53 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+##10.1
+Join data verbs always have a data table as one of the arguments inside the parentheses because they turn two data tables into one data table. The data table inside the parantheses specifies what you're joining to, in a specific way given the type of join (i.e left, right, etc)
+
+##10.2
+The information in the two tables cannot be successfully combined by laying the two tables side by side into a single table because the demographics data table has more rows than CountryCentroids. 
+
+##10.3
+  1: Table B.
+  
+  tableB %>%
+  mutate(difference = Y2001-Y2000)
+  
+  2. Table C
+
+  tableC %>%
+  join(ContinentData) %>%
+  group_by(Continent, Year) %>%
+  summarise(total = sum(Value))
+  
+##11.1 
+a) One: A name in a sex in a given year and the number of these people. Two:A name in a particular year and it's count split across genders. 
+Three: A name in a sex with the number of babies falling under these descriptions split by year.
+b) One is narrow, two is wide
+c) sex
+d) There are no NAs in Version One because it is narrow wheareas Versions Two and Three are wider.
+e) Because there were no females names Roderick in the data.
+f) the year: 1912 and 2012
+g) 1: The Female and Male columns were gathered into the sex variables, their respective values were combined into nbabies. 
+   2: Sex
+   3. They are taken from the variables F and M.
+
+##11.3
+a) A is wide, C is narrow
+b) B is wide, C is narrow
+c) A is wide, C is narrow
+
+##11.4
+The new Table will have two variables: When and SBP. The variable SBP will not have correct values because subject, before and after will all collected under it. 
+
+##11.5
+```{r}
+"http://tiny.cc/dcf/MeasTreatTables.rda" %>%
+  url() %>%
+  load()
+load("foo.rda")
+JoinedDates <- Measurements %>%
+  left_join(Treatments) %>%
+  mutate(when = ifelse(date > treatment_date, "after", "before")) %>%
+  spread(key = what, value = value)
+```
