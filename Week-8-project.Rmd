@@ -1,13 +1,78 @@
 # Week 8 Project
 
-## Your name should appear here!
+## Joshua Doyle 
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(ggdendro)
 ```
 <!-- put your content after this line -->
 
 Here is my content!
+
+##1
+```{r}
+Dists <-
+dist(mtcars)
+```
+
+##2
+```{r}
+Dendrogram <- hclust(Dists)
+ddata <- dendro_data(Dendrogram)
+```
+
+##3
+
+```{r}
+ggdendrogram(Dendrogram, rotate = TRUE) +geom_text(data = ddata$labels,aes(x = x, y = y, label = label), vjust = 0)
+```
+
+##Wrangling the genetics data
+
+#1
+
+```{r}
+NewTable <-
+  NCI60 %>%
+  gather(key = cellLine, value = Expression, -Probe)
+```
+
+```{r}
+TheData <-
+  NewTable %>%
+  group_by(Probe, cellLine) %>%
+  summarise(Expression = mean(Expression)) %>%
+  ungroup()
+```
+
+```{r}
+CoolioTable <- 
+  NewTable %>%
+  group_by(Probe) %>% 
+  summarise(Spread = sd(Expression))
+```
+
+```{r}
+CoolioTable2 <- 
+  TheData %>%
+  group_by(Probe) %>%
+  filter(sd(Expression) > 4)
+```
+
+```{r}
+WideFormat <-
+  CoolioTable2 %>%
+  spread(key = Probe, value = Expression)
+row.names(WideFormat) <- WideFormat$cellLine
+
+Distances <- dist(WideFormat %>% select(-cellLine))
+
+Dendrogram2 <- hclust(Distances)
+ddata2 <- dendro_data(Dendrogram2)
+ggdendrogram(Dendrogram2, rotate = TRUE) +geom_text(data = ddata$labels,aes(x = x, y = y, label = label), vjust = 0)
+```
+
