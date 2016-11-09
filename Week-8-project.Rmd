@@ -1,13 +1,87 @@
 # Week 8 Project
 
-## Your name should appear here!
+  ## Nana Adom Mills-Robertson
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(ggdendro)
 ```
 <!-- put your content after this line -->
+**1**
+```{r}
+Dists <- dist(mtcars)
 
-Here is my content!
+```
+
+**2**
+```{r}
+dendrogram <- hclust(Dists)
+ddata <- dendro_data(dendrogram)
+
+```
+**3**
+```{r}
+ggdendrogram(dendrogram, rotate = TRUE) + geom_text(data = ddata$labels, aes(x = x, y = y, label = label), vjust = 0)
+
+```
+
+```{r}
+CleanData <- NCI60 %>%
+  gather(key = cellLine, value = expression, -Probe)
+
+          
+```
+```{r}
+OtherData <- CleanData %>%
+group_by(Probe, cellLine)%>%
+summarise(expression = mean(expression))%>%
+  ungroup(expression)
+
+
+```
+
+```{r}
+NewData <- CleanData %>%
+  group_by(Probe) %>%
+  summarise(spread = sd(expression))
+
+
+```
+
+```{r}
+Cooldata <- OtherData %>%
+  group_by(Probe) %>%
+  filter(sd(expression)>4)
+  
+```
+
+
+```{r}
+Cooldata2 <- Cooldata %>%
+  spread(key = Probe, value = expression)
+row.names(Cooldata2) <- Cooldata2$cellLine  
+```
+
+
+
+```{r}
+Visualisation <- Cooldata2 %>%
+  select(-cellLine)
+
+Dists2 <- dist(Visualisation)
+
+```
+
+```{r}
+dendrogram2 <- hclust(Dists2)
+ddata <- dendro_data(dendrogram2)
+```
+
+```{r}
+ggdendrogram(dendrogram2, rotate = TRUE) + geom_text(data = ddata$labels, aes(x = x, y = y, label = label), vjust = 0)
+
+```
+
