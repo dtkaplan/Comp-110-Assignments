@@ -1,6 +1,6 @@
 # Week 7 Short Answer Questions
 
-## Your name should appear here!
+## Daniel Ochoa
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,82 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+## 15.1
+My birthday is on March 21st 1996
+a) 
+```{r}
+lubridate::mdy("March 21, 1996") - lubridate::mdy("April 30, 1777") 
+```
+A time difference of 79948 days
+
+b)
+```{r}
+lubridate::mdy("March 21, 1996") - lubridate::mdy("06-23-1912") 
+```
+A time difference of 30587 days
+
+c)
+```{r}
+lubridate::mdy("March 21, 1996") - lubridate::dmy("3 March 1847") 
+```
+A time difference of 54440 days
+
+d)
+```{r}
+lubridate::mdy_hm("Mar. 21, 1996 at 11:00 am") - lubridate::mdy_hm("Nov. 11th, 1918 at 11:00 am") 
+```
+A time difference of 28255 days
+
+e)
+```{r}
+lubridate::mdy("March 21, 1996") - lubridate::mdy("July 20, 1969")
+```
+A time difference of 9741 days
+
+
+## 15.2
+a) as.numeric()
+b) tidyr::extract_numeric()
+c) Neither
+d) tidyr::extract_numeric()
+e) tidyr::extract_numeric()
+f) tidyr::extract_numeric()
+g) tidyr::extract_numeric()
+h) as.numeric()
+i) as.numeric()
+
+
+## 16.1
+Here I find the top 10 boy baby names ending in a vowel.
+```{r}
+ BabyNames %>%
+ filter(sex == "M") %>%
+ group_by(name) %>%
+ summarise(total = sum(count)) %>%
+ filter(grepl("[aeiou]$", name)) %>%
+ arrange(desc(total)) %>%
+ head(10)
+```
+
+Here I find the top 10 names ending with either 'joe' or 'jo'.
+```{r}
+ BabyNames %>%
+ group_by(name) %>%
+ summarise(total = sum(count)) %>%
+ filter(grepl(".*(joe$|jo$)", name)) %>% 
+ arrange(desc(total)) %>%
+ head(10)
+```
+
+
+## 16.2
+This entire expression will match U.S. phone numbers. U.S. numbers do not begin with 0 or 1 and they have 10 total numbers, a triplet followed by a triplet followed by a quadruplet. The regex expression will only extract the numbers themselves and not the spaces, dashes, or periods in between. 
+
+
+## 16.3 
+
+1) All the strings that match the pattern will be two letters long.
+
+2) At most only one string will match.
+
+3) Many of these seem to be abbreviations for U.S. states but there are some outher, FM for instance is not an abbreviation for any U.S. state. 
