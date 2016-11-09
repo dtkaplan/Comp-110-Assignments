@@ -10,4 +10,30 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+```{r}
+Houses <-
+  read.file("http://tiny.cc/dcf/houses-for-sale.csv")
+```
+
+##17.1 
+
+There are several variables in the model.The explanatory ones are fireplace, bedrooms, bathroom and living area.
+
+##17.2 
+
+For living areas below 1080 square feet, the number of bathrooms does not not influence prices.
+
+##17.3
+
+For a house with living area between 1080 and 1483, the difference in prices depending on size can be calculated as:
+
+```{r}
+179796.647 - 151424.497
+```
+The answer is thus $28372.15.
+
+
+##17.4 
+Having a fireplace for house larger than 2816 square feet, more than one fire place does result in a higher price compared to having just one or no fireplace. This however, might primarily be due to the fact because these houses have very large living areas. 
+
+

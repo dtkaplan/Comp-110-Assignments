@@ -123,9 +123,30 @@ $(document).ready(function () {
 <div id="your-name-should-appear-here" class="section level2">
 <h2>Your name should appear here!</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:28:47 2016.</p>
+<p>Compiled on Tue Nov 8 22:48:33 2016.</p>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
+<pre class="r"><code>Houses &lt;-
+  read.file(&quot;http://tiny.cc/dcf/houses-for-sale.csv&quot;)</code></pre>
+<pre><code>## Reading data with read.csv()</code></pre>
+</div>
+<div id="section" class="section level2">
+<h2>17.1</h2>
+<p>There are several variables in the model.The explanatory ones are fireplace, bedrooms, bathroom and living area.</p>
+</div>
+<div id="section-1" class="section level2">
+<h2>17.2</h2>
+<p>For living areas below 1080 square feet, the number of bathrooms does not not influence prices.</p>
+</div>
+<div id="section-2" class="section level2">
+<h2>17.3</h2>
+<p>For a house with living area between 1080 and 1483, the difference in prices depending on size can be calculated as:</p>
+<pre class="r"><code>179796.647 - 151424.497</code></pre>
+<pre><code>## [1] 28372.15</code></pre>
+<p>The answer is thus $28372.15.</p>
+</div>
+<div id="section-3" class="section level2">
+<h2>17.4</h2>
+<p>Having a fireplace for house larger than 2816 square feet, more than one fire place does result in a higher price compared to having just one or no fireplace. This however, might primarily be due to the fact because these houses have very large living areas.</p>
 </div>
 </div>
 
