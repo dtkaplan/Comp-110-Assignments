@@ -1,13 +1,123 @@
 # Week 7 Short Answer Questions
 
-## Your name should appear here!
+## Joshua Doyle
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(lubridate)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+##15.1
+
+```{r}
+lubridate::mdy("November 7, 1995") - lubridate::mdy("April 30, 1977")
+```
+A Time difference of 6765 days
+
+##b)
+
+```{r}
+lubridate::mdy("11-07-1995") -
+  lubridate::mdy("06-23-1912")
+```
+A Time difference of 30452 days
+
+##c) 
+
+```{r}
+lubridate::dmy("7 November 1995") -
+  lubridate::dmy("3 March 1847")
+```
+A Time difference of 54305 days
+
+##d) 
+
+```{r}
+lubridate::mdy_hm("Nov. 7, 1995 at 11:00 am") -
+  lubridate::mdy_hm("11 am on Nov. 11th, 1918 at 11:00 am")
+```
+Time difference of 28120 days
+
+##e)
+
+```{r}
+lubridate::mdy("November 7, 1995") -
+  lubridate::mdy("July 20, 1969")
+```
+Time difference of 9606 days
+
+##15.2 
+
+```{r}
+as.numeric(42,659.30)
+```
+##a) 
+as numeric works
+
+##b) 
+tidyr::extractnumeric works
+
+##c) 
+For nineteen neither works
+
+##d) 
+tidyr::extractnumeric works
+
+##e)
+tidyr::extractnumeric works
+
+##f)
+tidyr::extractnumeric works
+
+##g) 
+tidyr::extractnumeric works
+
+##h) 
+as numeric works
+
+##i)
+as numeric works
+
+##16.1 
+
+```{r}
+BabyNames %>%
+  filter(sex == "M") %>%
+  group_by(name) %>%
+  summarise(total = sum(count)) %>%
+  filter(grepl("[aeiou]$", name)) %>%
+  arrange(desc(total)) %>%
+  head(10)
+```
+
+##16.1.2
+
+```{r}
+BabyNames %>%
+  group_by(name) %>%
+  summarise(total = sum(count)) %>%
+  filter(grepl(".*(jo$|joe$)", name)) %>% 
+  arrange(desc(total)) %>%
+  head(10)
+```
+
+##16.2
+The expression seems to be matching a US phone numer. This makes sense looking at the number of digits we have. 
+
+##16.3.1
+
+The strings are two letters long. For example "MN", "WI", "NY"..
+
+##16.3.2 
+
+There seem to be about 61 potential combinations. This is because states and some counties are included. 
+
+##16.3.3
+
+As mentioned above, these are all abbreviations for US states. 
+
+

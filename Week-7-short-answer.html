@@ -120,12 +120,147 @@ $(document).ready(function () {
 
 <div id="week-7-short-answer-questions" class="section level1">
 <h1>Week 7 Short Answer Questions</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="joshua-doyle" class="section level2">
+<h2>Joshua Doyle</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:28:15 2016.</p>
+<p>Compiled on Tue Nov 8 20:15:50 2016.</p>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
+</div>
+<div id="section" class="section level2">
+<h2>15.1</h2>
+<pre class="r"><code>lubridate::mdy(&quot;November 7, 1995&quot;) - lubridate::mdy(&quot;April 30, 1977&quot;)</code></pre>
+<pre><code>## Time difference of 6765 days</code></pre>
+<p>A Time difference of 6765 days</p>
+</div>
+<div id="b" class="section level2">
+<h2>b)</h2>
+<pre class="r"><code>lubridate::mdy(&quot;11-07-1995&quot;) -
+  lubridate::mdy(&quot;06-23-1912&quot;)</code></pre>
+<pre><code>## Time difference of 30452 days</code></pre>
+<p>A Time difference of 30452 days</p>
+</div>
+<div id="c" class="section level2">
+<h2>c)</h2>
+<pre class="r"><code>lubridate::dmy(&quot;7 November 1995&quot;) -
+  lubridate::dmy(&quot;3 March 1847&quot;)</code></pre>
+<pre><code>## Time difference of 54305 days</code></pre>
+<p>A Time difference of 54305 days</p>
+</div>
+<div id="d" class="section level2">
+<h2>d)</h2>
+<pre class="r"><code>lubridate::mdy_hm(&quot;Nov. 7, 1995 at 11:00 am&quot;) -
+  lubridate::mdy_hm(&quot;11 am on Nov. 11th, 1918 at 11:00 am&quot;)</code></pre>
+<pre><code>## Time difference of 28120 days</code></pre>
+<p>Time difference of 28120 days</p>
+</div>
+<div id="e" class="section level2">
+<h2>e)</h2>
+<pre class="r"><code>lubridate::mdy(&quot;November 7, 1995&quot;) -
+  lubridate::mdy(&quot;July 20, 1969&quot;)</code></pre>
+<pre><code>## Time difference of 9606 days</code></pre>
+<p>Time difference of 9606 days</p>
+</div>
+<div id="section-1" class="section level2">
+<h2>15.2</h2>
+<pre class="r"><code>as.numeric(42,659.30)</code></pre>
+<pre><code>## [1] 42</code></pre>
+</div>
+<div id="a" class="section level2">
+<h2>a)</h2>
+<p>as numeric works</p>
+</div>
+<div id="b-1" class="section level2">
+<h2>b)</h2>
+<p>tidyr::extractnumeric works</p>
+</div>
+<div id="c-1" class="section level2">
+<h2>c)</h2>
+<p>For nineteen neither works</p>
+</div>
+<div id="d-1" class="section level2">
+<h2>d)</h2>
+<p>tidyr::extractnumeric works</p>
+</div>
+<div id="e-1" class="section level2">
+<h2>e)</h2>
+<p>tidyr::extractnumeric works</p>
+</div>
+<div id="f" class="section level2">
+<h2>f)</h2>
+<p>tidyr::extractnumeric works</p>
+</div>
+<div id="g" class="section level2">
+<h2>g)</h2>
+<p>tidyr::extractnumeric works</p>
+</div>
+<div id="h" class="section level2">
+<h2>h)</h2>
+<p>as numeric works</p>
+</div>
+<div id="i" class="section level2">
+<h2>i)</h2>
+<p>as numeric works</p>
+</div>
+<div id="section-2" class="section level2">
+<h2>16.1</h2>
+<pre class="r"><code>BabyNames %&gt;%
+  filter(sex == &quot;M&quot;) %&gt;%
+  group_by(name) %&gt;%
+  summarise(total = sum(count)) %&gt;%
+  filter(grepl(&quot;[aeiou]$&quot;, name)) %&gt;%
+  arrange(desc(total)) %&gt;%
+  head(10)</code></pre>
+<pre><code>## # A tibble: 10 × 2
+##        name   total
+##       &lt;chr&gt;   &lt;int&gt;
+## 1    George 1451408
+## 2    Joshua 1163815
+## 3      Jose  539924
+## 4      Kyle  469045
+## 5  Lawrence  454323
+## 6       Joe  448953
+## 7    Willie  447403
+## 8     Jesse  407183
+## 9     Bruce  379233
+## 10   Eugene  377338</code></pre>
+</div>
+<div id="section-3" class="section level2">
+<h2>16.1.2</h2>
+<pre class="r"><code>BabyNames %&gt;%
+  group_by(name) %&gt;%
+  summarise(total = sum(count)) %&gt;%
+  filter(grepl(&quot;.*(jo$|joe$)&quot;, name)) %&gt;% 
+  arrange(desc(total)) %&gt;%
+  head(10)</code></pre>
+<pre><code>## # A tibble: 10 × 2
+##        name total
+##       &lt;chr&gt; &lt;int&gt;
+## 1    Maryjo  6973
+## 2  Billiejo  1455
+## 3    Marijo  1275
+## 4   Bobbijo  1230
+## 5  Bobbiejo  1009
+## 6   Bettyjo   764
+## 7     Alejo   751
+## 8     Amyjo   486
+## 9  Billyjoe   393
+## 10     Jojo   303</code></pre>
+</div>
+<div id="section-4" class="section level2">
+<h2>16.2</h2>
+<p>The expression seems to be matching a US phone numer. This makes sense looking at the number of digits we have.</p>
+</div>
+<div id="section-5" class="section level2">
+<h2>16.3.1</h2>
+<p>The strings are two letters long. For example “MN”, “WI”, “NY”..</p>
+</div>
+<div id="section-6" class="section level2">
+<h2>16.3.2</h2>
+<p>There seem to be about 61 potential combinations. This is because states and some counties are included.</p>
+</div>
+<div id="section-7" class="section level2">
+<h2>16.3.3</h2>
+<p>As mentioned above, these are all abbreviations for US states.</p>
 </div>
 </div>
 
