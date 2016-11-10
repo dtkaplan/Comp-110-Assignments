@@ -120,12 +120,40 @@ $(document).ready(function () {
 
 <div id="week-7-project" class="section level1">
 <h1>Week 7 Project</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="kai-heen" class="section level2">
+<h2>Kai Heen</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:32:15 2016.</p>
-<!-- put your content after this line -->
-<p>Here is my content!</p>
+<p>Compiled on Thu Nov 10 17:07:11 2016.</p>
+<pre class="r"><code>pattern &lt;- &quot;ST|STREET|RD|ROAD|CIRCLE|WAY|TRAIL|WINERY|AVE|DR|LN|CIR|CT|LANE|POINT|PL|PLACE|COURT|PKWY|BLVD|PATH|LOOP|TERRACE|SQUARE|BLV&quot;
+LeftOvers &lt;-
+  Wake_county %&gt;%
+  filter( ! grepl(pattern, address),
+          ! grepl(&quot; BOX &quot;, address)
+  )</code></pre>
+<pre class="r"><code>pattern &lt;- &quot;(ST|STREET|RD|ROAD|CIRCLE|WAY|TRAIL|WINERY|AVE|DR|LN|CIR|CT|LANE|POINT|PL|PLACE|COURT|PKWY|BLVD|PATH|LOOP|TERRACE|SQUARE|BLV)&quot;
+  Wake_county %&gt;%
+    filter(!grepl(&quot;BOX &quot;, address))%&gt;%
+    tidyr::extract(address, into = &quot;street_word&quot;, 
+          regex = pattern,
+          remove = FALSE) %&gt;%
+    group_by(street_word) %&gt;%
+    summarise(total = n()) %&gt;%
+    arrange(desc(total))</code></pre>
+<pre><code>## # A tibble: 24 × 2
+##    street_word total
+##          &lt;chr&gt; &lt;int&gt;
+## 1           ST   886
+## 2           DR   751
+## 3           RD   744
+## 4         &lt;NA&gt;   373
+## 5          AVE   269
+## 6           CT   214
+## 7         ROAD   188
+## 8           PL   152
+## 9           LN   150
+## 10         WAY   137
+## # ... with 14 more rows</code></pre>
+<p>The code above first filters out BOX addresses. It then uses tidyr::extract to create the new “street_word” variable. Finally, it groups by street word, and sums the total amount of occurances of each street word. By printing these in descending order, we can see the most popular street words. According to this data set, the most popular street keywords are Street, Drive, and Road.</p>
 </div>
 </div>
 
