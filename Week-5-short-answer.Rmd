@@ -62,7 +62,7 @@ Version One is narrow and Version Two is wide.
 c.
 The key variable being used in the narrow table is sex.
 d.
-Version One doesn't have any NAs because it is in a narrow arrangement, and an individual case is the group of people who have a certain name WITHIN A CERTAIN GENDER WITHIN A CERTAIN YEAR. Names that would be listed with an NA in the other two versions simply wouldn't appear in Version One. If there was no group of people in a given year and gender with a certain name, there's no point in listing it all. 
+Version One doesn't have any NAs because it is in a narrow arrangement, and an individual case is the group of people who have a certain name within a certain gender within a certain year. Names that would be listed with an NA in the other two versions simply wouldn't appear in Version One. If there was no group of people in a given year and gender with a certain name, there's no point in listing it all. 
 
 e.
 This is possible because Version Three is in a slightly narrower arrangement than Version 2. In Version 2, there are columns for Female and Male, whereas Version 3 condenses that variable into one, sex, reducing the number of cases.

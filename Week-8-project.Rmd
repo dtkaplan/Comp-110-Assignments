@@ -1,6 +1,6 @@
 # Week 8 Project
 
-## Your name should appear here!
+## Josh Marcus
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,62 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+Hi Danny and Ayoub, just a heads up, I ran out of time to fully complete this one, but I think I get the core concepts at play here.
+
+```{r}
+Dists <- dist(mtcars)
+```
+```{r}
+Dendrogram <- hclust(Dists)
+```
+```{r}
+library(ggdendro)
+ddata <- dendro_data(Dendrogram)
+```
+```{r}
+ggdendrogram(Dendrogram, rotate = TRUE) +
+  geom_text(data = ddata$labels, aes(x = x, y = y, label = label), vjust = 0)
+```
+
+##Wrangling the Genetics Data
+
+```{r}
+NCI60narrow <- NCI60  %>%
+  gather(key=cellLine, value=expression, -Probe)
+```
+```{r}
+NCI60byprobe <- NCI60narrow %>%
+  group_by(Probe, cellLine) %>%
+  summarise(expression = mean(expression)) %>%
+  ungroup() %>%
+  group_by(Probe) %>%
+  summarise(spread = sd(expression)) %>%
+  arrange(desc(spread)) %>%
+  head(500) %>%
+  mutate(i = row_number())
+```
+
+Here, I wasn't sure exactly how to put the null hypothesis into a line graph, so I just established a threshold based on the graph on the handout. I chose a spread of 4.33 as that threshold, as the data with a spread lower than that is indistinguishable from the null hypothesis.
+
+```{r}
+NCBI60respread <- NCI60byprobe %>%
+  filter(spread > 4.33) %>%
+  spread(key = Probe, value = spread) 
+```
+
+```{r}
+CellDists <- dist(NCBI60respread)
+```
+
+```{r}
+Dendrogram <- hclust(CellDists)
+```
+```{r}
+library(ggdendro)
+ddata <- dendro_data(Dendrogram)
+```
+```{r}
+ggdendrogram(Dendrogram, rotate = TRUE) +
+  geom_text(data = ddata$labels, aes(x = x, y = y, label = label), vjust = 0)
+```
+
