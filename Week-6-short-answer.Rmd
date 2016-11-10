@@ -1,6 +1,6 @@
 # Week 6 Short Answer Questions
 
-## Your name should appear here!
+## Kai Heen
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,111 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+##12.1
+```{r}
+BabyNames %>%
+  group_by(sex, name) %>%
+  summarise(total=sum(count)) %>%
+  filter(rank(desc(total)) <= 5)
+```
+
+
+
+## 12.2
+```{r}
+GlyphReady <- BabyNames %>%
+  spread(key = sex, value = count) %>% 
+  mutate(total = ifelse(is.na(F),0,F) + ifelse(is.na(M),0,M) ) %>% 
+  group_by(year)  %>%
+  mutate(TheRank = row_number(desc(total)) ) %>%
+  mutate(intop100 = (TheRank < 101)) %>% 
+  arrange(TheRank) %>% 
+  summarise(frac_in_top100 = sum(intop100)/n()) %>% 
+  arrange(year)
+```
+
+```{r}
+GlyphReady %>%
+  ggplot() +
+  geom_point(aes(x=year,y=frac_in_top100))
+```
+
+
+
+## 12.3
+
+(a) summary. 
+
+(b) Transformation 
+
+(c) summary 
+
+(d) transformation
+
+(e) tansformation 
+
+(f) summary 
+
+(g) transformation 
+
+(h) summary 
+
+## 13.1
+
+(1) There are 7 distinct verticies. 
+
+(2) There are 9 edges.
+
+## 13.2
+
+(1) A, B, C, D. 
+
+(2) Table 2.
+
+(3) Table 1 mistakenly shows connection between B and C. Table 3 has an unnecessary column.
+
+## 13.3
+
+Table 2.
+
+## 13.4
+
+(1) Exports
+
+(2) Population
+
+## 14.1
+
+```{r}
+CPS85 %>%
+  ggplot(aes(x=sex,y=wage)) + 
+  geom_boxplot()
+```
+
+
+
+## 14.3
+
+Men: 1.75 meters. 
+
+Women: 1.6 meters.
+
+## 14.7
+
+```{r}
+CPS85 %>%
+  ggplot(aes(x=educ,y=wage, color = sex)) + 
+  geom_point() + 
+  stat_smooth(method=lm,aes(color=sex))
+```
+
+
+
+
+## 14.10
+
+```{r}
+Galton %>%
+  ggplot(aes(x=height,group=sex)) + 
+  geom_density(aes(fill=sex),alpha=0.5)
+```
