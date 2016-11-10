@@ -120,13 +120,51 @@ $(document).ready(function () {
 
 <div id="week-8-project" class="section level1">
 <h1>Week 8 Project</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="xing-gao" class="section level2">
+<h2>Xing Gao!</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:32:35 2016.</p>
+<p>Compiled on Wed Nov 9 20:42:55 2016.</p>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
+<p>Dists &lt;- dist(mtcars) Dendrogram &lt;- hclust(Dists) ddata &lt;- dendro_data(Dendogram) ggdendrogram(Dendrogram, rotate=TRUE)+geom_text(data=ddata$labels, aes(x=x, y=y, label=label), vjust=8) #had to comment this section out or html won’t knit</p>
+<p>putting data into narrow form:</p>
+<pre class="r"><code>newNCI60 &lt;- NCI60 %&gt;%
+  gather(key=cellLine, value=expression, -Probe)</code></pre>
+<pre class="r"><code>newNCI60 %&gt;%
+  group_by(Probe, cellLine) %&gt;%
+  summarise(expression=mean(expression))%&gt;%
+  ungroup()</code></pre>
+<pre><code>## # A tibble: 1,940,640 × 3
+##     Probe      cellLine expression
+##    &lt;fctr&gt;         &lt;chr&gt;      &lt;dbl&gt;
+## 1   3.8-1     BR.BT_549      -7.37
+## 2   3.8-1     BR.HS578T      -7.30
+## 3   3.8-1       BR.MCF7      -7.45
+## 4   3.8-1 BR.MDA_MB_231      -7.51
+## 5   3.8-1       BR.T47D      -7.74
+## 6   3.8-1    CNS.SF_268      -7.25
+## 7   3.8-1    CNS.SF_295      -7.63
+## 8   3.8-1    CNS.SF_539      -2.67
+## 9   3.8-1    CNS.SNB_19      -7.43
+## 10  3.8-1    CNS.SNB_75      -4.39
+## # ... with 1,940,630 more rows</code></pre>
+<p>calculating SD</p>
+<pre class="r"><code>standevNCI60 &lt;-newNCI60%&gt;%
+  group_by(Probe)%&gt;%
+  summarise(spread=sd(expression))</code></pre>
+<pre class="r"><code>selectedspread&lt;-standevNCI60%&gt;%
+  filter(spread&gt;4.25)</code></pre>
+<p>wrangling into wide form</p>
+<pre class="r"><code>wideNCI60 &lt;- selectedspread%&gt;%
+  spread(key=Probe, spread)</code></pre>
+<div id="this-section-doesnt-knit" class="section level3">
+<h3>this section doesn’t knit</h3>
+<p>standevNCI60 &lt;-newNCI60%&gt;% group_by(Probe)%&gt;% summarise(spread=sd(expression))%&gt;% filter(spread&gt;4.25)%&gt;% spread(key=Probe, expression) ###didn’t work here</p>
 </div>
+</div>
+</div>
+<div id="doesnt-knit" class="section level1">
+<h1>doesn’t knit</h1>
+<p>Dists &lt;- dist(standevNCI60) Dendrogram &lt;- hclust(Dists) ddata &lt;- dendro_data(Dendogram) ggdendrogram(Dendrogram, rotate=TRUE)+geom_text(data=ddata$labels, aes(x=x, y=y, label=label), vjust=8) ```</p>
 </div>
 
 
