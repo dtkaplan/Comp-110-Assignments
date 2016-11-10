@@ -1,13 +1,82 @@
 # Week 6 Project
 
-## Your name should appear here!
+## Kai Heen
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(ggplot2)
 ```
 <!-- put your content after this line -->
+<br>
+<br>
 
-Here is my content!
+## Get Data
+
+```{r}
+companies <- c("AAPL", "MSFT", "GOOG")
+Prices <- read_stock_prices(companies, what = "daily", start_year = 2000, end_year = 2015)
+```
+
+
+```{r}
+ggplot(data=Prices,aes(x=date, y=close, color = company)) + geom_line()
+```
+
+<br>
+<br>
+
+## Find Profit
+
+```{r}
+Actions <- data.frame(action = c("buy", "sell"), date = ymd(c("2008-08-08", "2009-09-09")))
+```
+
+
+
+```{r}
+Price1 <- Actions %>% 
+  left_join(Prices) %>%
+  select(company, action, close) %>%
+  spread(key = action, value = close)
+Price1
+```
+
+```{r}
+Profit <- Price1 %>% 
+  mutate (profit = sell - buy, percent = ((sell-buy)/buy)*100) %>%
+  select(company, profit, percent)
+Profit
+```
+
+<br>
+<br>
+
+## Indexing
+```{r}
+ref_date <- ymd("2008-08-08")
+Reference <- Prices %>%
+  filter(date == ref_date)%>%
+  select(company, standard = close)
+
+Ref1 <- Reference %>%
+  left_join(Prices) %>%
+  mutate(ratio = close/standard) %>%
+  select(company, date, ratio)
+
+ggplot(Ref1, aes(x = date, y = ratio)) + geom_line(aes(colour = company))
+```
+
+<br>
+<br>
+
+## Dividends
+
+
+Will not let me read in dividends
+```{r}
+#Dividends <- read_stock_prices(companies, what = "dividends")
+```
+
