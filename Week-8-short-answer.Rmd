@@ -1,6 +1,6 @@
 # Week 8 Short Answer Questions
 
-## Your name should appear here!
+## Daniel Ochoa
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,12 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+## 17.2
+
+1) Living area size, number of bathrooms, number of fireplaces, number of bedrooms, and price.
+
+2) No the number of bathrooms did not make a difference in price.
+
+3) Around 28,372$ 
+
+4) Yes but only if the house have a living area of above 2816 square feet.

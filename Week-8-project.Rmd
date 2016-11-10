@@ -1,13 +1,88 @@
 # Week 8 Project
 
-## Your name should appear here!
+## Daniel Ochoa 
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(ggdendro)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+Finding the distances from each car to each other car
+```{r}
+Dists <- dist(mtcars)
+```
+
+Making the dendogram using a clustering algorithm
+```{r}
+Dendrogram <- hclust(Dists)
+ddata <- dendro_data(Dendrogram)
+```
+
+Visualizing the data
+```{r}
+ggdendrogram(Dendrogram, rotate = TRUE) + geom_text(data = ddata$labels, aes(x = x, y = y, label = label), vjust = 0)
+```
+
+
+## Genetics Data
+
+I create a table similar to the Table 2 that is figured in the worksheet
+```{r}
+Genetics <- 
+  NCI60 %>%
+  gather(key = cellLine, value = expression, -Probe)
+```
+
+
+I combine it when the same probe appears multiple times on the gene chip.
+```{r}
+Genetics2 <- 
+  Genetics %>%
+  group_by(Probe, cellLine) %>%
+  summarise(expression = mean(expression)) %>%
+  ungroup()
+```
+
+
+Here I alter the genetics table by having a column to include the spread of the data.
+```{r}
+Genetics3 <- 
+  Genetics2 %>%
+  group_by(Probe) %>%
+  summarise(spread = sd(expression))
+```
+
+
+Here I only consider the probes that has expressions whose standard deviation were above 4.20.
+```{r}
+Genetics4 <-
+  Genetics2 %>%
+  group_by(Probe) %>%
+  filter(sd(expression) >= 4.20)
+```
+
+
+Here I move the data to a wider format, the data is still filtered so as to only keep expressions whose standard deviation is above 4.20 but now each case is a cellLine.
+```{r}
+GeneticsWide <-
+  Genetics4 %>%
+  spread(key = Probe, value = expression) 
+row.names(GeneticsWide) <- GeneticsWide$cellLine
+```
+
+Here I create all the data step by step that will be necessary for me to create the genetics dendrogram.
+```{r}
+GeneticDists = dist(GeneticsWide %>% select(-cellLine))
+GeneticsDendrogram <- hclust(GeneticDists)
+gdata <- dendro_data(GeneticsDendrogram)
+```
+
+Finally visalizing the genetics data
+```{r}
+ggdendrogram(GeneticsDendrogram, rotate = TRUE) + geom_text(data = ddata$labels, aes(x = x, y = y, label = label), vjust = 0)
+```
+
