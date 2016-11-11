@@ -123,9 +123,137 @@ $(document).ready(function () {
 <div id="your-name-should-appear-here" class="section level2">
 <h2>Your name should appear here!</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:28:15 2016.</p>
+<p>Compiled on Thu Nov 10 21:19:11 2016.</p>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
+</div>
+<div id="section" class="section level2">
+<h2>15.1</h2>
+<pre class="r"><code>lubridate::mdy(&quot;November 17, 1995&quot;) - lubridate::mdy(&quot;April 30, 1977&quot;)</code></pre>
+<pre><code>## Time difference of 6775 days</code></pre>
+<ol start="2" style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<pre class="r"><code>lubridate::mdy(&quot;11-17-1995&quot;) -
+  lubridate::mdy(&quot;06-23-1912&quot;)</code></pre>
+<pre><code>## Time difference of 30462 days</code></pre>
+<ol start="3" style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<pre class="r"><code>lubridate::dmy(&quot;17 November 1995&quot;) -
+  lubridate::dmy(&quot;3 March 1847&quot;)</code></pre>
+<pre><code>## Time difference of 54315 days</code></pre>
+<ol start="4" style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<pre class="r"><code>lubridate::mdy_hm('Nov. 17, 1995 at 11:00 am') -
+  lubridate::mdy_hm(&quot;Nov. 11th, 1918 at 11:00 am&quot;)</code></pre>
+<pre><code>## Time difference of 28130 days</code></pre>
+<ol start="5" style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<pre class="r"><code>lubridate::mdy(&quot;November 17, 1995&quot;) -
+  lubridate::mdy(&quot;July 20, 1969&quot;)</code></pre>
+<pre><code>## Time difference of 9616 days</code></pre>
+</div>
+<div id="section-1" class="section level2">
+<h2>15.2</h2>
+<ol style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<p>as numeric</p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<p>tidyr::extract_numeric</p>
+<ol start="3" style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<p>Neither</p>
+<ol start="4" style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<p>tidyr::extract_numeric</p>
+<ol start="5" style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<p>tidyr::extract_numeric</p>
+<ol start="6" style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<p>tidyr::extract_numeric</p>
+<ol start="7" style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<p>tidyr::extract_numeric</p>
+<ol start="8" style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<p>as numeric</p>
+<ol style="list-style-type: lower-roman">
+<li></li>
+</ol>
+<p>as numeric</p>
+</div>
+<div id="section-2" class="section level2">
+<h2>16.1</h2>
+<pre class="r"><code>BabyNames %&gt;%
+  filter(sex == &quot;M&quot;) %&gt;%
+  group_by(name) %&gt;%
+  summarise(total = sum(count)) %&gt;%
+  filter(grepl(&quot;[aeiou]$&quot;, name)) %&gt;%
+  arrange(desc(total)) %&gt;%
+  head(10)</code></pre>
+<pre><code>## # A tibble: 10 × 2
+##        name   total
+##       &lt;chr&gt;   &lt;int&gt;
+## 1    George 1451408
+## 2    Joshua 1163815
+## 3      Jose  539924
+## 4      Kyle  469045
+## 5  Lawrence  454323
+## 6       Joe  448953
+## 7    Willie  447403
+## 8     Jesse  407183
+## 9     Bruce  379233
+## 10   Eugene  377338</code></pre>
+<pre class="r"><code>BabyNames %&gt;%
+  group_by(name) %&gt;%
+  summarise(total = sum(count)) %&gt;%
+  filter(grepl(&quot;.*(jo$|joe$)&quot;, name)) %&gt;% 
+  arrange(desc(total)) %&gt;%
+  head(10)</code></pre>
+<pre><code>## # A tibble: 10 × 2
+##        name total
+##       &lt;chr&gt; &lt;int&gt;
+## 1    Maryjo  6973
+## 2  Billiejo  1455
+## 3    Marijo  1275
+## 4   Bobbijo  1230
+## 5  Bobbiejo  1009
+## 6   Bettyjo   764
+## 7     Alejo   751
+## 8     Amyjo   486
+## 9  Billyjoe   393
+## 10     Jojo   303</code></pre>
+</div>
+<div id="section-3" class="section level2">
+<h2>16.2</h2>
+<p>This expression will match a US phone number. US numbers have 10 digits, and cannot start with 0 or 1.</p>
+</div>
+<div id="section-4" class="section level2">
+<h2>16.3</h2>
+<ol style="list-style-type: decimal">
+<li></li>
+</ol>
+<p>All matching strings are 2 letters long.</p>
+<ol start="2" style="list-style-type: decimal">
+<li></li>
+</ol>
+<p>There seem to be 61 total matches</p>
+<ol start="3" style="list-style-type: decimal">
+<li></li>
+</ol>
+<p>These seem to represent US states and territories.</p>
 </div>
 </div>
 

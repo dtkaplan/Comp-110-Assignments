@@ -1,13 +1,130 @@
 # Week 7 Short Answer Questions
 
-## Your name should appear here!
+## Kai Heen
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(lubridate)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+## 15.1
+```{r}
+lubridate::mdy("November 17, 1995") - lubridate::mdy("April 30, 1977")
+```
+
+
+
+b)
+
+```{r}
+lubridate::mdy("11-17-1995") -
+  lubridate::mdy("06-23-1912")
+```
+
+
+c)
+
+```{r}
+lubridate::dmy("17 November 1995") -
+  lubridate::dmy("3 March 1847")
+```
+
+
+
+d)
+
+```{r}
+lubridate::mdy_hm('Nov. 17, 1995 at 11:00 am') -
+  lubridate::mdy_hm("Nov. 11th, 1918 at 11:00 am")
+```
+
+
+e)
+
+```{r}
+lubridate::mdy("November 17, 1995") -
+  lubridate::mdy("July 20, 1969")
+```
+
+## 15.2
+
+a)
+
+as numeric
+
+b)
+
+tidyr::extract_numeric 
+
+c)
+
+Neither
+
+d)
+
+tidyr::extract_numeric
+
+e)
+
+tidyr::extract_numeric
+
+f)
+
+tidyr::extract_numeric
+
+g)
+
+tidyr::extract_numeric
+
+h)
+
+as numeric
+
+i)
+
+as numeric
+
+## 16.1
+
+
+```{r}
+BabyNames %>%
+  filter(sex == "M") %>%
+  group_by(name) %>%
+  summarise(total = sum(count)) %>%
+  filter(grepl("[aeiou]$", name)) %>%
+  arrange(desc(total)) %>%
+  head(10)
+```
+
+```{r}
+BabyNames %>%
+  group_by(name) %>%
+  summarise(total = sum(count)) %>%
+  filter(grepl(".*(jo$|joe$)", name)) %>% 
+  arrange(desc(total)) %>%
+  head(10)
+```
+
+
+## 16.2
+
+This expression will match a US phone number. US numbers have 10 digits, and cannot start with 0 or 1.
+
+## 16.3
+
+1)
+
+All matching strings are 2 letters long.
+
+2)
+
+There seem to be 61 total matches
+
+3)
+
+These seem to represent US states and territories.
