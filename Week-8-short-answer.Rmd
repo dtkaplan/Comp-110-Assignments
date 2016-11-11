@@ -1,6 +1,6 @@
 # Week 8 Short Answer Questions
 
-## Your name should appear here!
+## Kai Heen
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,16 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+## 17.2
+
+1) Number of fireplaces, bathrooms, bedrooms. Also, size of living area.
+
+2) Number of bathrooms makes no significant difference.
+
+3) 
+
+```{r}
+179796.647 - 151424.497
+```
+
+4) If the house has a living area greater than 2816 square feet, the number of fireplaces does seem to influence its price.
