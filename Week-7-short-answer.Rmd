@@ -58,9 +58,32 @@ tidyr::extract_numeric() worked for everything except "Nineteen", "9.8 m/seconds
 
 
 16.1, 
+
 ```{r}
-head(BabyNames)
+BabyNames %>%
+  filter(sex=="M") %>%
+  group_by(name) %>%
+  filter(grepl("[aeiou]$",name)) %>%
+  summarise(Total = sum(count)) %>%
+  arrange(desc(Total)) %>%
+  filter(rank(desc(Total))<=10)
+```
+```{r}
+BabyNames %>%
+  group_by(name) %>%
+  filter(grepl("joe$|jo$",name)) %>%
+  summarise(Total = sum(count)) %>%
+  arrange(desc(Total)) %>%
+  filter(rank(desc(Total))<=10)
 ```
 
 
-16.2, 16.3
+16.2,
+This expression would match an American phone number. 
+
+
+16.3
+
+1. Strings will be two characters long
+2. About 52- 56 strings will match. I didn't count, but that's about the amount of states + territories
+3. I think that these are all possible US state codes, including PR for puerto rico. 
