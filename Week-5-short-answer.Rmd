@@ -11,3 +11,45 @@ library(DataComputing)
 <!-- put your content after this line -->
 
 Here is my content!
+
+10.1, 
+Note that join data verbs take TWO tables as input, so you can't just use chaining syntax apply it to a single table, that doesn't make sense.
+
+10.2,
+The two tables have different numbers of cases, and the cases do not "line up."
+
+10.3
+1. I think format B is the best. You can simply take the difference of the 2nd and 3rd column using the mutate data verb and store the results in a new variable. 
+2. I think table C is the best form. You can use group_by() to sort cases by continent and summarize to sum over the values.
+
+
+11.1, 
+Version One: A name, sex, and year
+Version Two: A name and year
+Version Three: A name and sex
+
+11.3, 
+a. A is wide, C is narrow
+b. B is wide, C is narrow
+c. A is wide, C is narrow
+
+11.4,
+
+
+11.5
+```{r}
+"http://tiny.cc/dcf/MeasTreatTables.rda"%>%
+  url() %>% load()
+```
+
+```{r}
+head(Measurements)
+head(Treatments)
+```
+```{r}
+Combined <- Measurements %>%
+  left_join(Treatments,by=c("subject"))
+
+```
+
+
