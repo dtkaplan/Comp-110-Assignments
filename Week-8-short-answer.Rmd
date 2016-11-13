@@ -1,6 +1,6 @@
 # Week 8 Short Answer Questions
 
-## Your name should appear here!
+## Sam Erickson
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -11,3 +11,18 @@ library(DataComputing)
 <!-- put your content after this line -->
 
 Here is my content!
+
+17.2
+
+1. Variables include living_area, bathrooms, bedrooms, fireplaces
+
+2. No, in this model, the number of bathrooms doesn't affect living areas of less than 1080 square ft.
+
+3. 
+$28372.15
+
+```{r}
+179796.647-151424.497
+```
+
+4.  The fireplaces variable is only considered for houses of living area greater than 2816 square feet, with an average price of 384766.854 for houses without and 501875.667 for houses with.
