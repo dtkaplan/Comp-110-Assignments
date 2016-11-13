@@ -10,4 +10,34 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+
+```{r include=FALSE}
+library(DataComputing)
+library(ggplot2)
+```
+8.1,
+
+1) C
+2) a,b
+3) e
+4) f
+5) d,h
+
+
+8.2,
+
+```{r}
+table1 <- ggplot(data=CPS85,aes(x=age,y=wage,shape=married)) +
+  geom_point() +
+  facet_wrap(~ sector)
+  
+```
+```{r}
+table1 <- ggplot(data=CPS85,aes(x=age,y=wage, shape=married)) +
+  geom_point() +
+  facet_wrap(~ sector)
+```
+
+
+8.3
+9.1, 9.3
