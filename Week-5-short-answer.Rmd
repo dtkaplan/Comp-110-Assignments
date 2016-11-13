@@ -35,6 +35,7 @@ c. A is wide, C is narrow
 
 11.4,
 
+Do this one!
 
 11.5
 ```{r}
@@ -48,7 +49,10 @@ head(Treatments)
 ```
 ```{r}
 Combined <- Measurements %>%
-  left_join(Treatments,by=c("subject"))
+  left_join(Treatments,by=c("subject")) %>%
+  spread(key = what,value= value) %>%
+  mutate(when = treatment_date>date)
+
 
 ```
 
