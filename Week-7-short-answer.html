@@ -120,12 +120,80 @@ $(document).ready(function () {
 
 <div id="week-7-short-answer-questions" class="section level1">
 <h1>Week 7 Short Answer Questions</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="nana-adom-mills-robertson" class="section level2">
+<h2>Nana Adom Mills-Robertson</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:28:15 2016.</p>
+<p>Compiled on Mon Nov 14 00:02:06 2016.</p>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
+<p><strong>15.1</strong></p>
+<pre class="r"><code>lubridate::mdy(&quot;November 21, 1995&quot;) - lubridate::mdy(&quot;April 30, 1777&quot;)</code></pre>
+<pre><code>## Time difference of 79827 days</code></pre>
+<pre class="r"><code>lubridate::mdy(&quot;November 21, 1995&quot;) - lubridate::mdy(&quot;06-23-1912&quot;)</code></pre>
+<pre><code>## Time difference of 30466 days</code></pre>
+<pre class="r"><code>lubridate::dmy(&quot;21 November 1995&quot;) - lubridate::dmy(&quot;3 March 1847&quot;)</code></pre>
+<pre><code>## Time difference of 54319 days</code></pre>
+<pre class="r"><code>lubridate::mdy_hm(&quot;Nov. 21, 1995 at 11:00 am&quot;) - lubridate::mdy_hm(&quot;11 am on Nov. 11th, 1918 at 11:00 am&quot;)</code></pre>
+<pre><code>## Time difference of 28134 days</code></pre>
+<pre class="r"><code>lubridate::mdy(&quot;November 21, 1995&quot;) - lubridate::mdy(&quot;July 20, 1969&quot;)</code></pre>
+<pre><code>## Time difference of 9620 days</code></pre>
+<p><strong>15.2</strong></p>
+<p>tidyr:extract_numeric(“42,659.30”)</p>
+<p>tidyr::extract_numeric(“17%”)</p>
+<p>neither works here</p>
+<p>tidyr::extract_numeric(“£100”)</p>
+<p>tidyr::extract_numeric(“9.8 m/seconds-square”)</p>
+<p>tidyr::extract_numeric(“9.8 m/sˆ2”)</p>
+<p>N/A neither works for this one</p>
+<p>as.numeric(“6.62606957e-34”)</p>
+<p>tidyr::extract_numeric(“42.659,30 (A European style)”)</p>
+<p><strong>16.1</strong></p>
+<pre class="r"><code>BabyNames %&gt;%
+  filter(sex == &quot;M&quot;) %&gt;%
+  group_by(name) %&gt;%
+  summarise(total = sum(count)) %&gt;%
+  filter(grepl(&quot;[aeiou]$&quot;, name)) %&gt;%
+  arrange(desc(total)) %&gt;%
+  head(10)</code></pre>
+<pre><code>## # A tibble: 10 × 2
+##        name   total
+##       &lt;chr&gt;   &lt;int&gt;
+## 1    George 1451408
+## 2    Joshua 1163815
+## 3      Jose  539924
+## 4      Kyle  469045
+## 5  Lawrence  454323
+## 6       Joe  448953
+## 7    Willie  447403
+## 8     Jesse  407183
+## 9     Bruce  379233
+## 10   Eugene  377338</code></pre>
+<pre class="r"><code>BabyNames %&gt;%
+  group_by(name) %&gt;%
+  summarise(total = sum(count)) %&gt;%
+  filter(grepl(&quot;.*(jo$|joe$)&quot;, name)) %&gt;% 
+  arrange(desc(total)) %&gt;%
+  head(10)</code></pre>
+<pre><code>## # A tibble: 10 × 2
+##        name total
+##       &lt;chr&gt; &lt;int&gt;
+## 1    Maryjo  6973
+## 2  Billiejo  1455
+## 3    Marijo  1275
+## 4   Bobbijo  1230
+## 5  Bobbiejo  1009
+## 6   Bettyjo   764
+## 7     Alejo   751
+## 8     Amyjo   486
+## 9  Billyjoe   393
+## 10     Jojo   303</code></pre>
+<p><strong>16.2</strong></p>
+<p>An American phone number</p>
+<p><strong>16.3</strong></p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Two letters</p></li>
+<li><p>They seem to be US states, comprised of two letters. However there are many combinations that don’t represent US states and could mean something else; other areas of America that are not state level.</p></li>
+<li><p>I believe that the pattern is trying to express the short-hand for US states.</p></li>
+</ol>
 </div>
 </div>
 

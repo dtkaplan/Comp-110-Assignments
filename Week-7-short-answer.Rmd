@@ -1,6 +1,6 @@
 # Week 7 Short Answer Questions
 
-## Your name should appear here!
+## Nana Adom Mills-Robertson
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -9,5 +9,73 @@ Compiled on `r date()`.
 library(DataComputing)
 ```
 <!-- put your content after this line -->
+**15.1**
+```{r}
+lubridate::mdy("November 21, 1995") - lubridate::mdy("April 30, 1777")
 
-Here is my content!
+lubridate::mdy("November 21, 1995") - lubridate::mdy("06-23-1912")
+
+lubridate::dmy("21 November 1995") - lubridate::dmy("3 March 1847")
+
+lubridate::mdy_hm("Nov. 21, 1995 at 11:00 am") - lubridate::mdy_hm("11 am on Nov. 11th, 1918 at 11:00 am")
+
+lubridate::mdy("November 21, 1995") - lubridate::mdy("July 20, 1969")
+```
+
+**15.2**
+
+tidyr:extract_numeric("42,659.30")
+
+tidyr::extract_numeric("17%")
+
+neither works here
+
+tidyr::extract_numeric("£100")
+
+tidyr::extract_numeric("9.8 m/seconds-square")
+
+tidyr::extract_numeric("9.8 m/sˆ2")
+
+N/A neither works for this one
+
+as.numeric("6.62606957e-34")
+
+tidyr::extract_numeric("42.659,30 (A European style)")
+
+**16.1**
+
+```{r}
+BabyNames %>%
+  filter(sex == "M") %>%
+  group_by(name) %>%
+  summarise(total = sum(count)) %>%
+  filter(grepl("[aeiou]$", name)) %>%
+  arrange(desc(total)) %>%
+  head(10)
+```
+
+```{r}
+BabyNames %>%
+  group_by(name) %>%
+  summarise(total = sum(count)) %>%
+  filter(grepl(".*(jo$|joe$)", name)) %>% 
+  arrange(desc(total)) %>%
+  head(10)
+```
+
+
+**16.2**
+
+An American phone number
+
+**16.3**
+
+a. Two letters
+
+b. They seem to be US states, comprised of two letters. However there are many combinations that don't represent US states and could mean something else; other areas of America that are not state level. 
+
+c. I believe that the pattern is trying to express the short-hand for US states. 
+
+
+
+ 
