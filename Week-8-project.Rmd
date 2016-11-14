@@ -7,7 +7,57 @@ Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(ggdendro)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+In-class Practice:
+
+```{r}
+library(DataComputing)
+library(ggdendro)
+Utilities <- read.csv("http://tiny.cc/dcf/utilities-up-to-dates.csv")
+ggplot(Utilities, aes(x=thermsPerDay, y=kwh, color=temp)) + geom_point()
+```
+
+Week 8 project:
+
+Example using mtcars dataset
+
+```{r}
+Dists <- dist(mtcars)
+Dendrogram <- hclust(Dists)
+ddata <- dendro_data(Dendrogram)
+ggdendrogram(Dendrogram, rotate=T) + geom_text(data=ddata$labels, aes(x=x,y=y,label=label), vjust=0)
+```
+
+Now apply to the Microarray Data
+
+Change into narrow form
+```{r}
+Cell_lines <- 
+  NCI60 %>%
+  gather(cellLine, expression,-Probe) %>%
+  group_by(Probe,cellLine) %>%
+  summarise(expression=mean(expression))%>%
+  ungroup()
+```
+
+Find relevant probe using standard deviation.
+```{r}
+Sign_cellLines <-
+  Cell_lines %>%
+  group_by(Probe)%>%
+  summarise(spread=sd(expression)) %>%
+  filter(spread >= 3.6) %>%
+  ungroup() %>%
+  inner_join(Cell_lines,by="Probe") %>%
+  spread(Probe, expression) %>%
+  select(-cellLine,-spread)
+
+dendrogram <- dist(Sign_cellLines)
+ddata <- dendro_data(dendrogram)
+
+ggdendrogram(dendrogram, rotate=T) + geom_text(data=ddata$labels, aes(x=x,y=y,label=label), vjust=0)  
+  
+```
