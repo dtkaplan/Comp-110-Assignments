@@ -30,5 +30,5 @@ Graph_data <- ScorecardSmall %>%
   
 Graph_data %>%
   filter(CONTROL ==1) %>%
-  ggplot(aes(ADM_RATE, cost)) + geom_point(alpha=1/6, colour="light blue") + geom_smooth(se=F) + facet_grid(CONTROL~short_name)
+  ggplot(aes(ADM_RATE, cost)) + geom_point(alpha=1/6, colour="light blue") + geom_smooth(se=F) + facet_grid(CONTROL~short_name) #Having problem with facet_grid
 ```
