@@ -1,6 +1,6 @@
 # Week 8 Project
 
-## Your name should appear here!
+## Phuc Nguyen
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -8,14 +8,13 @@ Compiled on `r date()`.
 ```{r include = FALSE}
 library(DataComputing)
 library(ggdendro)
+
 ```
 <!-- put your content after this line -->
 
 In-class Practice:
 
 ```{r}
-library(DataComputing)
-library(ggdendro)
 Utilities <- read.csv("http://tiny.cc/dcf/utilities-up-to-dates.csv")
 ggplot(Utilities, aes(x=thermsPerDay, y=kwh, color=temp)) + geom_point()
 ```
@@ -40,7 +39,8 @@ Cell_lines <-
   gather(cellLine, expression,-Probe) %>%
   group_by(Probe,cellLine) %>%
   summarise(expression=mean(expression))%>%
-  ungroup()
+  ungroup() %>%
+  mutate(Probe = as.character(Probe))
 ```
 
 Find relevant probe using standard deviation.
@@ -52,10 +52,12 @@ Sign_cellLines <-
   filter(spread >= 3.6) %>%
   ungroup() %>%
   inner_join(Cell_lines,by="Probe") %>%
-  spread(Probe, expression) %>%
-  select(-cellLine,-spread)
+  spread(cellLine, expression) %>% #Why doesn't Probe instead of cellLine work??!
+  select(-spread) %>%
+  t() %>%
+  data.frame()
 
-dendrogram <- dist(Sign_cellLines)
+dendrogram <- dist(Sign_cellLines[-1,])
 ddata <- dendro_data(dendrogram)
 
 ggdendrogram(dendrogram, rotate=T) + geom_text(data=ddata$labels, aes(x=x,y=y,label=label), vjust=0)  
