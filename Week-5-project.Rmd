@@ -1,6 +1,6 @@
 # Week 5 Project
 
-## Your name should appear here!
+## Phuc Nguyen
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -14,6 +14,21 @@ library(DataComputing)
 
 ## The data
 ```{r}
-download.file("http://tiny.cc/dcf/ScorecardSmall.Rda")
+download.file("http://tiny.cc/dcf/ScorecardSmall.Rda", destfile = "ScorecardSmall.Rda")
+load("ScorecardSmall.Rda")
 ```
 
+Make a level of family income at an institution a case
+```{r}
+Names <- read.csv("http://tiny.cc/dcf/NPT4-names.csv")
+
+Graph_data <- ScorecardSmall %>% 
+  select(-CCSIZSET, -AVGFACSAL, -TUITFTE, -NPT4_PUB, -NPT4_PRIV) %>%
+  gather(long_name, cost, -CONTROL, -INSTNM, -ADM_RATE) %>%
+  inner_join(Names) %>%
+  filter(CONTROL !=3)
+  
+Graph_data %>%
+  filter(CONTROL ==1) %>%
+  ggplot(aes(ADM_RATE, cost)) + geom_point(alpha=1/6, colour="light blue") + geom_smooth(se=F) + facet_grid(CONTROL~short_name)
+```
