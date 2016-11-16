@@ -70,7 +70,7 @@ MyTwoYears_N
 
 ggplot(data=MyTwoYears_N,aes(x=date,y=count))+geom_point()+aes(colour=week_day)
 
-
+ggplot(data=MyTwoYears_N,aes(x=date,y=count))+geom_line(aes(colour=week_day))
 ```
 It looks as if there were many less births on the weekend in comparison to the week days. 
 
@@ -79,7 +79,7 @@ It looks as if there were many less births on the weekend in comparison to the w
 ```{r}
 holidays <- read.csv("http://tiny.cc/dcf/US-Holidays.csv") %>%
   mutate(date = as.POSIXct(lubridate::dmy(date))) %>%
-  mutate(date = as.numeric(date)) %>%
+  #mutate(date = as.numeric(date)) %>%
   filter(year == 1980 | year == 1981)
 
 holidays
@@ -87,7 +87,9 @@ holidays
 
 ##Question 6
 ```{r}
-ggplot(data=MyTwoYears_N,aes(x=date,y=count))+geom_line()+aes(colour=week_day) + geom_vline(data = holidays,xintercept = date)
+#MY R IS CRAZY
+
+#ggplot(data=MyTwoYears_N,aes(x=date,y=count))+geom_line(aes(colour=week_day)) + geom_vline(data = holidays, aes(xintercept = as.numeric(date))) + geom_text(data = holidays,aes(x = date,label = holiday), y = 9000, angle = 45)
 ```
 
 ##Question 7
