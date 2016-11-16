@@ -1,13 +1,51 @@
 # Week 8 Project
 
-## Your name should appear here!
+## Eloa Franca Verona
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(ggdendro)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+```{r}
+Dists <- dist(mtcars)
+```
+
+```{r}
+Dendrogram <- hclust(Dists)
+ddata <- dendro_data(Dendrogram)
+
+ggdendrogram(Dendrogram, rotate = TRUE) + geom_text(data = ddata$labels, aes(x = x, y = y, label = label), vjust = 0)
+```
+
+##Part 2
+
+
+```{r}
+narrow_NCI60 <-
+  NCI60 %>%
+  gather(key = cellLine, value = expression, -Probe) %>%
+  group_by(Probe, cellLine) %>%
+  summarise(expression = mean(expression))%>%
+  ungroup()
+```
+
+```{r}
+sd_narrow_NCI60 <-
+  narrow_NCI60 %>%
+  group_by(Probe) %>%
+  summarise(spread = sd(expression)) %>%
+  filter(spread > 4.5)
+  
+```
+
+```{r}
+test <-
+  narrow_NCI60 %>%
+  inner_join(sd_narrow_NCI60, by = c(Probe = "Probe")) %>%
+  spread(key = Probe, value = expression) 
+```

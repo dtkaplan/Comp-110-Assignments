@@ -44,6 +44,6 @@ Name_count <-
   BabyNames %>%
   filter(grepl(pattern, name)) %>%
   head()
-pattern2 <- "[aeiou]*[aeiou].*[aeiou]" #names with at least 3 vowels
+pattern2 <- "[aeiou]*[aeiou].*[aeiou]" #names with \ least 3 vowels
 pattern3 <- "[^aeiou]*[aeiou][^aeiou]+[aeiou][^aeiou]+[aeiou]" #names with exactly 3 vowels
 ```
