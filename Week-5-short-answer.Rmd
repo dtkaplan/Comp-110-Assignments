@@ -1,6 +1,6 @@
 # Week 5 Short Answer Questions
 
-## Your name should appear here!
+## Katrin O'Grady
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,28 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+###Problem 10.1
+The join family of verbs always have a data table as one of the arguments inside parentheses because they take data tables as input and give a single data table as output. Therefore, the data table must be in parentheses to specify which tables are being joined. 
+###Problem 10.2
+The information in the two talbes cannot be combined by laying side by side into a single long table because the two tables have their cases in different orders. Therefore, if the lat and long variables are placed in the other table, they will present information for the wrong cases. 
+###Problem 10.3
+1. Data table B seems to be the easiest to find the change between 2000 and 2001. To find this change, I mutate to create a new variable called for example, Algeria_year, and make this variable the number in Y2000. Then I could mutate(Algeria_growth = Algeria_year - Y2000).
+2. Data Table B seems the easiest to accomplish this. To do this, I would group by continent. First I would do 2000 and filter(year== "2000"). Then I would summarise(total=sum(Y2000)). 
+###Problem 11.1
+Each case in version one shows a name in 2012 and 1912, weather the name was for a male or female, and the number of children with that name and gender in that year. In version two, the number of males and females with each name in 1912 and 2012 are shown. In version 3, the sex of each cases in specified as well as the number of kids in each year with that gender. 
+###Problem 11.3
+a. C is narrow and A is wide
+b. C is narrow and B is wide.
+c. C is narrow and A is wide.
+###Problem 11.4
+This command is trying to convert a wide table to a narrow one using gather. In the resulting table, before and after will be gathered into when, and sbp will have its own column. However, because subject is also listed in the value, there will be an extra column with the subjects in the table.
+###Problem 11.5
+```{r}
+MeasTreatTables<- read.file ("http://tiny.cc/dcf/MeasTreatTables.rda") %>%
+  url() %>%
+  load(MeasTreatTables)
+  View(MeasTreatTables)
+```
+
+
+
