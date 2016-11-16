@@ -19,7 +19,7 @@ Houses <- read.file("http://tiny.cc/dcf/houses-for-sale.csv")
 179796.647 - 151424.497
 ```
 
-## 7.2
+## 17.2
 # 1) fireplaces, bedrooms, living_area, bathroom
 # 2) For houses with living area less than 1080 sq ft, number of bathrooms doesn't affect price
 # 3) For houses with living are 1080-1483 sq ft, the typical price difference between houses with 1.5 bathrooms and 2 bathrooms is $28372.15
