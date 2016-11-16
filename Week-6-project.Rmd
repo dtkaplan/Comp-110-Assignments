@@ -1,6 +1,6 @@
 # Week 6 Project
 
-## Your name should appear here!
+## Becky Honnold
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -11,3 +11,110 @@ library(DataComputing)
 <!-- put your content after this line -->
 
 Here is my content!
+
+```{r}
+companies <- c("TWR.SG","FB","AAPL")
+
+prices <- read_stock_prices(companies,what = "daily",start_year = 2000, end_year = 2015)
+```
+```{r}
+ggplot(data=prices,aes(x=date,y=close))+geom_point()
+```
+
+```{r}
+Actions <- data.frame(action = c("buy","sell"),date = ymd(c("2006-01-03","2014-12-30")))
+Actions
+
+prices_TWR <-
+  prices %>%
+  filter(company == "TWR.SG") %>%
+  filter(date == "2008-01-03" | date == "2014-12-30") %>%
+  select(date,open,close,company)
+
+prices_FB <-
+  prices %>%
+  filter(company == "FB") %>%
+  filter(date == "2006-01-03" | date == "2014-12-30") %>%
+  select(date,open,close,company)
+
+prices_AAPL <-
+  prices %>%
+  filter(company == "AAPL") %>%
+  filter(date == "2006-01-03" | date == "2014-12-30") %>%
+  select(date,open,close,company)
+
+combine_1 <-
+  prices_TWR %>%
+  full_join(prices_FB)
+
+combine_2 <-
+  combine_1 %>%
+  full_join(prices_AAPL)
+
+new_combine <-
+  combine_2 %>%
+  left_join(Actions)
+
+wide_format <-
+  new_combine %>%
+  spread(key = action,value = close) %>%
+  select(company,buy,sell)
+
+wide_format
+
+
+
+```
+
+```{r}
+ref_date <- ymd("2013-11-07")
+Reference <- 
+  prices %>%
+  filter(date == ref_date) %>%
+  select(company, standard = close)
+
+joined_price <-
+  prices %>%
+  left_join(Reference)
+
+joined_price_N <-
+  joined_price %>%
+  mutate(standardized = close / standard)
+
+ggplot(data = joined_price_N,aes(x = date,y = standardized)) + geom_point() + aes(colour = company)
+```
+
+##Dividends
+
+```{r}
+new_companies = c("F","TM","HMC")
+
+new_prices <- read_stock_prices(new_companies,what = "daily",start_year = 2000, end_year = 2015)
+
+Dividends <- read_stock_prices(new_companies, what = "dividends")
+
+Dividends_dates <-
+  Dividends %>%
+  filter(date >= ymd("2006-01-03") | date <= ymd("2014-12-30"))
+
+merged_D_P <- 
+  Dividends_dates %>%
+  left_join(new_prices)
+
+stock_price <-
+  merged_D_P %>%
+  mutate(share = dividends * close)
+
+final_F <-
+  stock_price %>%
+  filter(company == "F") %>%
+  summarise(tot = sum(share,na.rm = T),count = n()) %>%
+  mutate(final = count / tot)
+
+final_HMC <-
+  stock_price %>%
+  filter(company == "HMC") %>%
+  summarise(tot = sum(share,na.rm = T),count = n()) %>%
+  mutate(final = count / tot)
+```
+

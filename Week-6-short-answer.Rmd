@@ -1,13 +1,147 @@
 # Week 6 Short Answer Questions
 
-## Your name should appear here!
+## Becky Honnold
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(mosaicData)
 ```
 <!-- put your content after this line -->
 
 Here is my content!
+
+##Chapter 12
+
+###Problem 12.1
+
+```{r}
+
+
+BabyNames_F <-
+  BabyNames %>%
+  filter(sex == "F") %>%
+  group_by(name) %>%
+  summarise(count = sum(count)) %>%
+  filter(rank(desc(count)) <= 5)
+
+BabyNames_F
+
+BabyNames_M <-
+  BabyNames %>%
+  filter(sex == "M") %>%
+  group_by(name) %>%
+  summarise(count = sum(count)) %>%
+  filter(rank(desc(count)) <= 5)
+
+BabyNames_M
+  
+
+```
+
+###Problem 12.2
+
+```{r}
+Top_100 <-
+  BabyNames %>%
+  group_by(year) %>%
+  filter(rank(desc(count)) <= 100) %>%
+  summarise(total = sum(count)) %>%
+  mutate(frac_in_top_100 = "TRUE")
+
+Not_100 <-
+  BabyNames %>%
+  group_by(year) %>%
+  filter(rank(desc(count)) > 100) %>%
+  summarise(total = sum(count)) %>%
+  mutate(frac_in_top_100 = "FALSE")  
+
+merged_table <-
+  Top_100 %>%
+  full_join(Not_100) %>%
+  arrange(year)
+
+merged_table
+
+GlyphReady <-
+  merged_table %>%
+  spread(frac_in_top_100,total) %>%
+  mutate(frac_in_top_100 = `TRUE` / (`TRUE` + `FALSE`))
+
+GlyphReady
+
+ggplot(data=GlyphReady,aes(x=year,y=frac_in_top_100))+geom_point() 
+
+```
+
+###Problem 12.3
+
+A. Transformation
+B. Transformation
+C. Summarize
+D. Neither 
+E. Neither
+F. Summarize
+G. Neither
+H. Transformation
+
+##Chapter 13
+
+###Problem 13.1
+
+1. 8
+2. 9
+
+###Problem 13.2
+
+1. A, B, C, D
+2. Table 2
+3. They don't show the correct connections between the vertices.
+
+###Problem 13.3
+
+Table 2
+
+###Problem 13.4
+
+1. The number of exports is mapped to the size of the letter.
+2. The population is mapped to the shape of the variable.
+
+##Chapter 14
+
+###Problem 14.1
+
+```{r}
+CPS85 %>%
+  ggplot(aes(y = wage,x = sex)) + geom_boxplot(aes(color = sex,fill = sex))
+```
+###Problem 14.3
+
+Based on the image, I would say that the most likely height for women is around 1.5 meters.  In contrast, I would estimate the most likely height for men is around 1.6m.
+
+```{r}
+NCHS %>%
+  filter(sex == "female") %>%
+  summarise(mean_height = mean(height,na.rm = T))
+
+NCHS %>%
+  filter(sex == "male") %>%
+  summarise(mean_height = mean(height, na.rm = T))
+```
+###Problem 14.7
+
+```{r}
+ggplot(data=CPS85,aes(x=educ,y=wage))+geom_point()+aes(colour=sex) + stat_smooth(method=lm)
+```
+
+###Problem 14.10
+
+```{r}
+ggplot(data = Galton,aes(x = height, group = sex)) + geom_density(aes(color = sex))
+```
+
+
+
+

@@ -1,6 +1,6 @@
 # Week 8 Short Answer Questions
 
-## Your name should appear here!
+## Becky Honnold
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -11,3 +11,20 @@ library(DataComputing)
 <!-- put your content after this line -->
 
 Here is my content!
+
+##Chapter 17
+
+###Problem 17.2
+
+```{r}
+Houses <-
+  read.file("http://tiny.cc/dcf/houses-for-sale.csv")
+```
+
+1. The variables that make up this model are price, living area, bathrooms, fireplaces, and bedrooms.
+
+2. No, bathrooms does not make a difference in price.
+
+3. For houses that have more than 1.5 bathrooms, there are 119 houses.  For houses with less, and between the living area of 1080 and 1483 there are 336 houses.
+
+4. Yes, having a fireplace is associated with having a higher house price.  This also depends on how much living area there is (greater than 2816 squarefeet).

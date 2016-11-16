@@ -7,7 +7,108 @@ Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(lubridate)
 ```
 <!-- put your content after this line -->
 
 Here is my content!
+
+##Problem 15.1
+
+A. "April 30, 1777"
+
+```{r}
+mdy("August 30, 1995") - mdy("April 30, 1777") 
+```
+
+B. "06-23-1912"
+
+```{r}
+mdy("August 30, 1995") - mdy( "06-23-1912")
+```
+
+C. "3 March 1847"
+
+```{r}
+mdy("August 30, 1995") - dmy("3 March 1847") 
+```
+
+D. "11:00 am on Nov. 11th, 1918 at 11:00 am"
+
+```{r}
+ mdy("August 30, 1995") - 
+```
+
+E. "July 20, 1969"
+
+```{r}
+mdy("August 30, 1995") - mdy( "July 20, 1969")
+```
+
+##Problem 15.2
+
+A. Here, as.numeric would not work because of the comma.  However, you can use extract_numeric() to change it into a numeric value.
+
+B. In order to play around with this number, you should also use extract_numeric.
+
+C. Cannot use either.
+
+D. extract_numeric()
+
+E. extract_numeric()
+
+F. Here you can use etract_numeric(); however, this will include the squared part of the units.  You could use extract_numeric() and then write a loop that would run through the observations and delete the last number from each row.
+
+G. This would not work for either unless you maybe used extract_numeric() and something else.
+
+H. as.numeric()
+
+I. as.numeric() {I think? Hard to tell because I don't know what it's actually supposed to be.}
+
+#Chapter 16
+
+##Problem 16.1
+
+A.
+
+```{r}
+BabyNames_2 <-
+  BabyNames %>%
+  filter(sex == "M") %>%
+  group_by(name) %>%
+  summarise(total = sum(count)) 
+
+BabyNames_3 <-
+  BabyNames_2 %>%
+  filter(grepl("[aeiou]$",name)) %>%
+  mutate(rank = rank(desc(total)))
+
+BabyNames_3 %>%
+  filter(rank <= 10) %>%
+  arrange(desc(rank))
+
+
+```
+
+B.
+
+```{r}
+BabyNames %>%
+  group_by(name) %>%
+  summarise(total = sum(count))%>%
+  filter(grepl("joe|jo",name,ignore.case = T))
+```
+##Problem 16.2
+
+These will match American phone numbers with area code. Only the numbers are being extracted.
+
+##Problem 16.3
+
+A. 2 characters
+
+B. 62
+
+C. The state you live in?
+
+
+

@@ -1,6 +1,6 @@
 # Week 7 Project
 
-## Your name should appear here!
+## Becky Honnold
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -11,3 +11,47 @@ library(DataComputing)
 <!-- put your content after this line -->
 
 Here is my content!
+
+```{r}
+Wake_County <- read.csv("http://tiny.cc/dcf/street-addresses.csv",stringsAsFactors = FALSE)
+
+download.file(url = "http://tiny.cc/dcf/CMS_ProvidersSimple.rds", destfile = "Medicare.rds")
+
+##Could not open Medicare data therefore will continue with only WakeCounty data
+Medicare <- readRDS("Medicare.rds")
+
+```
+
+```{r}
+Wake_County %>%
+  filter(grepl("ST|RD|ROAD",address)) %>%
+  head()
+
+pattern <- "ST| RD|ROAD"
+LeftOvers <-
+  Wake_County %>%
+  filter(!grepl(pattern,address),  #This takes out all addresses that included ST, RD, and ROAD
+         !grepl(" BOX ",address),   #This takes out everything that has "Box"
+         !grepl(" CIRCLE| TRAIL| AVE",address),
+         !grepl(" WAY| LN| DR",address),
+         !grepl(" CT| CIR",address),
+         !grepl(" LANE| COURT| PL| BLVD| POINT| PATH| PKWY| HALL| HWY| NCSU| LOOP| TERRACE| BOULEVARD",address))  
+
+LeftOvers
+```
+
+##My Turn
+
+```{r}
+pattern_1 <- " (ST| RD|ROAD|BOX|CIRCLE| TRAIL| AVE|WAY| LN| DR|CT| CIR| LANE| COURT| PL| BLVD| POINT| PATH| PKWY| HALL| HWY| NCSU| LOOP| TERRACE| BOULEVARD) "
+
+Wake_County %>%
+  tidyr::extract(address,into = "street_word",
+                 regex = pattern_1,
+                 remove = FALSE) %>%
+  head(5)
+
+
+```
+
+

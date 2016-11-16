@@ -1,6 +1,6 @@
 # Week 5 Short Answer Questions
 
-## Your name should appear here!
+## Becky Honnold
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,63 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+##Chapter 10
+
+###Problem 10.1
+
+In the join arguments, two datasets are input and one is output.  Therefore,the join data verbs will always include a dataset inside the argument because the argument needs to know what dataset the join will be with.  
+
+###Problem 10.2
+
+You cannot simply combine these two tables by copying and pasting the two tables side-by-side because some of the countries in the CountryCentroids data are not included in the Demographics dataset.  Therefore, if you simply copied and pasted the two datasets side-by-side some of the longitude and latitude data would not correspond with the correct countries.
+
+###Problem 10.3
+
+A.  I think that the best table that would make it the easiest to observe the change between 2000 and 2001 would be Data Table B.  In order to show this, I would create a histogram faceted by country with the density of the object as the y-axis.
+
+B. I think that Data Table C would be the best table to find the sum of values for each continent for each of the years.  To do this I would group by Continent and then Year and then sum the values in each.
+
+
+##Chapter 11
+
+###Problem 11.1
+
+A. Version 1: This tells us the year, the sex, and the number of babies who were named the name under the "name" variable.
+   Version 2: This tells us how many of each sex were named the name in the "name" variable in corresponding year.
+   Version 3: This tells us the number of individuals named a certain name under the "name" variable for a certain year (1912     or 2012) for each sex.
+   
+B. Version One is narrow and Version Two is wide.
+
+C. The key variable is sex for the wide version two.  The key variable is year for the wide version three.
+
+D. There are no NAs in the first table because this is the narrow version including all of the observations.  However, when we make the data tables wide, there is a chance that the sanction we used to create the columns is not included in the data (so therefore we get NAs).
+
+E. This happens because they were spread by different key variables (sex vs. year).  This could mean that Version 3 has less cases because there were more years associated with a name than sex.
+
+F. year
+
+G. (i) The key is sex and the variables gathered were nbabies.
+   (ii) sex
+   (iii) F, M
+   
+###Problem 11.3
+
+A. Data Table A is wide and Data Table C is Narrow
+B. Data Table C is narrow and Data Table B is wide
+C. It seems as if they're both wide, one is just the transpose of the other.  Perhaps Table B is narrow and Table A is wide.
+
+###Problem 11.4
+
+Drew out in notebook.
+
+###Problem 11.5
+
+```{r}
+"http://tiny.cc/dcf/MeansTreatTables.rda" %>% 
+  url() %>% load()
+```
+
+
+
+
+
