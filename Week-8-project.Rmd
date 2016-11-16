@@ -12,6 +12,8 @@ library(DataComputing)
 
 Here is my content!
 
+##Question 1, 2, 3
+
 ```{r}
 Dists <- dist(mtcars)
 
@@ -25,7 +27,10 @@ NCI60
 
 N_NCI60 <-
   NCI60 %>%
-  gather(key = cellLine,value = expression, BR.MCF7:RE.UO_31)
+  gather(key = cellLine,value = expression, BR.MCF7:RE.UO_31) %>%
+  arrange(Probe)
+
+N_NCI60
 
 N2_NCI60 <-
   N_NCI60 %>%
@@ -33,21 +38,35 @@ N2_NCI60 <-
   summarise(expression = mean(expression)) %>%
   ungroup()
 
+N2_NCI60
+
 relevant_probes <-
   N2_NCI60 %>%
   group_by(Probe) %>%
   summarise(spread = sd(expression))
 
+relevant_probes
+
+nrow(relevant_probes)
+
 scary_probes <-
   relevant_probes %>%
   filter(spread > 1.5)
 
-scary_probes <-
+nrow(scary_probes)
+
+scary_probes
+
+
+
+scary_probes_N <-
   scary_probes %>%
   left_join(N2_NCI60)
 
-scary_probes <-
-  scary_probes %>%
-  spread(key = Probe,value = expression)
+nrow(scary_probes_N)
+
+#scary_probes_N2 <-
+  #scary_probes_N %>%
+  #spread(key = Probe,value = expression)
 ```
 
