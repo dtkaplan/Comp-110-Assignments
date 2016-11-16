@@ -16,11 +16,11 @@ Here is my content!
 
 ```{r}
 companies <- 
-  c("TRI","AAPL","MSFT") 
+  c("JNJ","PG","MSFT") 
 Prices <- read_stock_prices(companies, what = "daily", start_year = 2000, end_year = 2015)
 ```
 
-## Below my GGPLOT for Apple, Twitter and Thomson Reuters 
+## Below my GGPLOT for JNJ, Procter and Gamble and Microsoft 
 
 ```{r}
 Prices %>%
@@ -82,23 +82,33 @@ ReferenceY %>%
 ##Dividends
 
 ```{r}
-Dividends <- read_stock_prices(companies, what = "dividends")
+Dividends <- read_stock_prices(companies, what = "dividends") 
+DivAndActions <- 
+  Dividends %>%
+  left_join(Pricesx)
 ```
 
+##Step2 
 
+```{r}
+Amt <-
+  DivAndActions %>%
+  mutate(DivByStock = dividends * buy)
+```
 
-NewDate <- c(ymd("2005-01-01"), ymd("2014-01-01"))
-Dividends %>%
-  filter(date %in% NewDate) %>%
-  select()
+##Step 3 
 
+```{r}
+Total <- 
+  Amt %>%
+  filter(date>ymd("2005-01-03")) %>% 
+  filter(date<ymd("2014-12-30")) %>%
+  group_by(company) %>%
+  summarize(tot_dividend = sum(dividends))
+```
 
+## Final Dividends
 
-Prices %>%
-  left_join(Dividends) %>%
-  mutate(total_dividend =   )
-
-
-
-left join prices and this table 
-
+The total dividend for JNJ is $20.185.
+The total dividend for MSFT is $6.260.
+The total dividend for PG is $17.986. 
