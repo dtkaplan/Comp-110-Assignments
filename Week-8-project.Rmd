@@ -1,13 +1,74 @@
 # Week 8 Project
 
-## Your name should appear here!
+## Shelby Witherby
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+library(ggdendro)
 ```
-<!-- put your content after this line -->
 
-Here is my content!
+#1. 
+```{r}
+Dists <- dist(mtcars)
+
+```
+#2.
+```{r}
+Dendrogram <- hclust(Dists)
+ddata <- dendro_data(Dendrogram)
+```
+#3.
+```{r}
+ggdendrogram(Dendrogram, rotate = FALSE) + geom_text(data = ddata$labels, aes(x = x, y = y, label = label), vjust = 0)
+```
+
+```{r}
+
+NarrowTable <- 
+  NCI60 %>%
+  gather(key = cellLine, value = Expression, -Probe)
+
+```
+
+```{r}
+
+CombineRepeats <-
+  NarrowTable %>%
+  group_by(Probe, cellLine) %>%
+  summarise(Expression = mean(Expression)) %>%
+  ungroup()
+
+```
+
+```{r}
+Variance <-
+  NarrowTable %>%
+  group_by(Probe) %>%
+  summarise(Spread = sd(Expression))
+```
+
+```{r}
+Threshold <- 
+  CombineRepeats %>%
+  group_by(Probe) %>%
+  filter(sd(Expression) > 4)
+  
+```
+
+```{r}
+WideFormat <-
+  Threshold %>%
+  spread(key = Probe, value = Expression)
+row.names (WideFormat) <- WideFormat$cellLine
+
+Distances <- dist(WideFormat %>% select(-cellLine))
+
+DendrogramFinal <- hclust(Distances)
+ddataFinal <- dendro_data(DendrogramFinal)
+ggdendrogram(DendrogramFinal, rotate = TRUE) + geom_text(data = ddata$labels, aes(x = x, y = y, label = label), vjust = 0)
+
+```
+
