@@ -23,14 +23,14 @@ ddata <- ggdendro::dendro_data(Dendrogram)
 ggdendro::ggdendrogram(Dendrogram,rotate = TRUE) + geom_text(data = ddata$labels, aes(x = x,y = y, label = label, vjust = 0))
 ```
 ```{r}
-NCI60
+head(NCI60)
 
 N_NCI60 <-
   NCI60 %>%
   gather(key = cellLine,value = expression, BR.MCF7:RE.UO_31) %>%
   arrange(Probe)
 
-N_NCI60
+head(N_NCI60)
 
 N2_NCI60 <-
   N_NCI60 %>%
@@ -38,14 +38,14 @@ N2_NCI60 <-
   summarise(expression = mean(expression)) %>%
   ungroup()
 
-N2_NCI60
+head(N2_NCI60)
 
 relevant_probes <-
   N2_NCI60 %>%
   group_by(Probe) %>%
   summarise(spread = sd(expression))
 
-relevant_probes
+head(relevant_probes)
 
 nrow(relevant_probes)
 
@@ -55,7 +55,7 @@ scary_probes <-
 
 nrow(scary_probes)
 
-scary_probes
+head(scary_probes)
 
 
 
@@ -64,6 +64,8 @@ scary_probes_N <-
   left_join(N2_NCI60)
 
 nrow(scary_probes_N)
+
+head(scary_probes_N)
 
 #scary_probes_N2 <-
   #scary_probes_N %>%
