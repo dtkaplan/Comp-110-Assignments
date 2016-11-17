@@ -46,6 +46,23 @@ sd_narrow_NCI60 <-
 ```{r}
 test <-
   narrow_NCI60 %>%
+  
   inner_join(sd_narrow_NCI60, by = c(Probe = "Probe")) %>%
+  select(-spread) %>%
+  
   spread(key = Probe, value = expression) 
+  
+```
+
+
+```{r}
+Dist_cell <- 
+  test %>%
+  select(-cellLine) %>%
+  dist()
+  
+DendCells <- hclust(Dist_cell)
+ddataCells <- dendro_data(DendCells)
+ggdendrogram(DendCells, rotate = TRUE) 
+
 ```
