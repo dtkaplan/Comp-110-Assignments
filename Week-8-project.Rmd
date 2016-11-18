@@ -52,12 +52,11 @@ Sign_cellLines <-
   filter(spread >= 3.6) %>%
   ungroup() %>%
   inner_join(Cell_lines,by="Probe") %>%
-  spread(cellLine, expression) %>% #Why doesn't Probe instead of cellLine work??!
   select(-spread) %>%
-  t() %>%
-  data.frame()
+  spread(Probe, expression)
 
-dendrogram <- dist(Sign_cellLines[-1,])
+dist <- dist(Sign_cellLines[,-1])
+dendrogram <- hclust(dist)
 ddata <- dendro_data(dendrogram)
 
 ggdendrogram(dendrogram, rotate=T) + geom_text(data=ddata$labels, aes(x=x,y=y,label=label), vjust=0)  

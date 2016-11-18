@@ -23,12 +23,15 @@ Make a level of family income at an institution a case
 Names <- read.csv("http://tiny.cc/dcf/NPT4-names.csv")
 
 Graph_data <- ScorecardSmall %>% 
+  filter( ! CCSIZSET %in% c(1,6,7,8)) %>%
   select(-CCSIZSET, -AVGFACSAL, -TUITFTE, -NPT4_PUB, -NPT4_PRIV) %>%
   gather(long_name, cost, -CONTROL, -INSTNM, -ADM_RATE) %>%
   inner_join(Names) %>%
-  filter(CONTROL !=3)
-  
-Graph_data %>%
-  filter(CONTROL ==1) %>%
-  ggplot(aes(ADM_RATE, cost)) + geom_point(alpha=1/6, colour="light blue") + geom_smooth(se=F) + facet_grid(CONTROL~short_name) #Having problem with facet_grid
+  mutate(short_name = as.character(short_name)) %>%
+  mutate(cost = as.numeric(cost)) %>%
+  filter(CONTROL !=3 & !short_name %in% c("Q2","Q4") & !is.na(cost) & !is.na(ADM_RATE))
+```
+
+```{r}
+ggplot(Graph_data, aes(ADM_RATE,cost)) + geom_point(alpha=1/5) + geom_smooth(se=F) + facet_grid(CONTROL~short_name)
 ```

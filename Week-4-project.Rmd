@@ -1,6 +1,6 @@
 # Week 4 Project
 
-## Your name should appear here!
+## Phuc Nguyen
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -74,11 +74,20 @@ Holidays <- read.csv("http://tiny.cc/dcf/US-Holidays.csv") %>% mutate(date = as.
 ```
 
 ```{r}
-ggplot(MyTwoYears, aes(date, total, colour=wday)) + geom_line() + geom_vline(xintercept = as.numeric(Holidays$date), colour="blue") + geom_text(data=Holidays,aes(label=holiday, x=as.numeric(date), y=10000))
+Small_Holidays <- Holidays %>% filter(year == 1986 | year == 1987)
+
+ggplot(MyTwoYears, aes(date, total)) + geom_line(aes(colour=wday)) + geom_vline(xintercept = as.numeric(Holidays$date)) + geom_text(data=Small_Holidays,aes(label=holiday, x=date), y=10000, angle=45)
 ```
 
-Error!!!: Error in (function (..., row.names = NULL, check.rows = FALSE, check.names = TRUE,  : 
-  arguments imply differing number of rows: 421, 1, 0
-  
-  
+Make a less busy plot
+Create variable is_holiday
+```{r}
+MyTwoYears <- MyTwoYears %>%
+  mutate(is_holiday = date %in% Holidays$date)
+```
+
+Make plots
+```{r}
+ggplot(MyTwoYears, aes(date, total)) + geom_smooth(aes(colour=is_holiday), se=F) + geom_point(aes(colour=is_holiday, alpha=1/10, size=is_holiday)) 
+```
 
