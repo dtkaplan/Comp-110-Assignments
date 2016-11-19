@@ -1,6 +1,6 @@
 # Week 2 Short Answer Questions
 
-## Your name should appear here!
+## Phuc Nguyen
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,166 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+##1.1
+a) Taffy : it's a value of a variable for a particular case
+b) year: it's a quantitative variable
+c) sex: it's a categorical variable
+d) count: it's a quantitative variable.
+
+##1.2
+values of variables are not in a consistant format. For stance, in president, Abraham Lincoln is writen as Lincoln, Abraham and number of states has a mix of character and numeric values.
+
+##1.4
+a) Variables in table
+A: Year, Algeria, Brazil and Columbia (names of three countries)
+B: Country, Y2000, and Y2001
+C: Country, Year, and Value
+
+b) Meaning of a case in table
+A: A year
+B: A country
+C: A country in a year
+
+##1.5
+1. Eight variables in the dataset are faa, name, lat, lon, alt, tz, dst
+2. An airport
+3. 
+faa: numerical
+name: qualitative
+lat: numerical
+lon: numerical
+alt: numerical
+tz: numerical
+dst: qualitative
+
+##2.2
+file name
+
+##2.3
+CPS is means the Current Population Survey
+
+##2.4
+Use '=' instead of assignment symbol '<-'
+
+##2.6
+first-essay: cannot use '-'
+"MyData" : remove ""
+small sample: cannot use space ' '
+sqrt(): cannot use name of a function
+
+##2.7
+1. There are 19 variables
+2. There are 336776 cases
+3. A case is a flight
+4.
+"year" : quantitative          
+"month": quantitative     
+"day"  : quantitative          
+"dep_time"  : quantitative  
+"sched_dep_time": quantitative
+"dep_delay"   : quantitative
+"arr_time"    : quantitative   "sched_arr_time" : quantitative
+"arr_delay" : quantitative     
+"carrier"   : categorical  
+"flight"    : quantitative     
+"tailnum"   : categorical     
+"origin"    : categorical    
+"dest"      : categorical
+"air_time"  : quantitative     
+"distance"  : quantitative  
+"hour"      : quantitative     
+"minute"    : quantitative  
+"time_hour" : quantitative
+
+5. 
+air_time: minutes
+distance: miles
+
+##2.8
+a. inproper syntax for function argument
+b. no assignment operator
+c. invalid object name
+d. unmatched quotes in character string
+e. no mistake
+
+##2.9
+_ and . can be used in name of an object
+all of them can be used in quoted character string
+
+##2.10
+*76 variables
+*tfat measures mass of trunk fat
+*23018 cases in WorldCities dataset
+*count
+*DEM=Democratic,LIB=Libertarian,REP=Republican,UNA=Unaffiliated
+
+##3.1
+1. FirePlace[1,]
+2. fireplace()
+3. summarise(fireplace = sum(count))
+4. fireplace <- "ND_32"
+
+##3.2
+There's no dataframe name in front of the first '%>%'
+
+##3.3
+Cannot use assignment sign '<-' here.
+
+##3.4
+1) b
+2) a
+3) c
+4) ?
+5) a
+6) c
+7) c
+8) a
+9) d
+10) a
+11) c
+12) a
+13) a
+14) d
+15) d
+16) a
+17) d
+18) a
+19) d
+
+##3.5
+brainwt is brain weight in kilograms
+83 cases
+An animal/species is a case
+carnivore, omnivore or herbivore
+
+##3.6
+d) don't match others because it doesn't have '%>%'
+
+##4.1
+*one* : italicized
+**two**: bolded
+* three: bullet point
+# Four: Largest font size
+`five`: in code-like format
+## Six: Second largest font size
+[seven](http://tiny.cc/dcf/index.html): a hyperlink in the word seven
+
+##4.2
+a) use '`' instead of '''
+b) use '`' instead of '"'
+c) one '`' is missing at the end
+d) separate into different lines
+e) redundant '`' at the end
+
+##4.4
+1. neither
+2. file 
+3. neither
+4. URL
+5. neither
+6. both
+
+##4.5
+Birds.Rmd
+
+
