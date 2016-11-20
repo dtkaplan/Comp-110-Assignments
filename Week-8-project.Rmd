@@ -51,7 +51,7 @@ nrow(relevant_probes)
 
 scary_probes <-
   relevant_probes %>%
-  filter(spread > 1.5)
+  filter(spread > 4.5)
 
 nrow(scary_probes)
 
@@ -67,8 +67,10 @@ nrow(scary_probes_N)
 
 head(scary_probes_N)
 
-#scary_probes_N2 <-
-  #scary_probes_N %>%
-  #spread(key = Probe,value = expression)
+scary_probes_N2 <-
+  scary_probes_N %>%
+  spread(key = Probe,value = expression)
+
+head(scary_probes_N2)
 ```
 

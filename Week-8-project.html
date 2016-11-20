@@ -124,7 +124,7 @@ $(document).ready(function () {
 <div id="becky-honnold" class="section level2">
 <h2>Becky Honnold</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Nov 15 19:37:24 2016.</p>
+<p>Compiled on Sun Nov 20 13:48:51 2016.</p>
 <!-- put your content after this line -->
 <p>Here is my content!</p>
 </div>
@@ -256,39 +256,54 @@ head(relevant_probes)</code></pre>
 <pre><code>## [1] 32344</code></pre>
 <pre class="r"><code>scary_probes &lt;-
   relevant_probes %&gt;%
-  filter(spread &gt; 1.5)
+  filter(spread &gt; 4.5)
 
 nrow(scary_probes)</code></pre>
-<pre><code>## [1] 5159</code></pre>
+<pre><code>## [1] 24</code></pre>
 <pre class="r"><code>head(scary_probes)</code></pre>
 <pre><code>## # A tibble: 6 × 2
 ##          Probe   spread
 ##         &lt;fctr&gt;    &lt;dbl&gt;
-## 1          7A5 2.350812
-## 2 A_23_P100001 2.391090
-## 3 A_23_P100730 2.672271
-## 4  A_23_P10091 2.157486
-## 5 A_23_P100963 1.655698
-## 6 A_23_P101121 1.639829</code></pre>
+## 1 A_24_P271696 4.759134
+## 2      ALDH1A1 4.688379
+## 3        BASP1 4.623065
+## 4        CXCL1 4.560820
+## 5          DSP 4.564872
+## 6       EFEMP1 4.614702</code></pre>
 <pre class="r"><code>scary_probes_N &lt;-
   scary_probes %&gt;%
   left_join(N2_NCI60)</code></pre>
 <pre><code>## Joining, by = &quot;Probe&quot;</code></pre>
 <pre class="r"><code>nrow(scary_probes_N)</code></pre>
-<pre><code>## [1] 309540</code></pre>
+<pre><code>## [1] 1440</code></pre>
 <pre class="r"><code>head(scary_probes_N)</code></pre>
 <pre><code>## # A tibble: 6 × 4
-##    Probe   spread      cellLine expression
-##   &lt;fctr&gt;    &lt;dbl&gt;         &lt;chr&gt;      &lt;dbl&gt;
-## 1    7A5 2.350812     BR.BT_549      -6.06
-## 2    7A5 2.350812     BR.HS578T      -7.30
-## 3    7A5 2.350812       BR.MCF7      -4.63
-## 4    7A5 2.350812 BR.MDA_MB_231      -7.51
-## 5    7A5 2.350812       BR.T47D      -2.12
-## 6    7A5 2.350812    CNS.SF_268      -6.97</code></pre>
-<pre class="r"><code>#scary_probes_N2 &lt;-
-  #scary_probes_N %&gt;%
-  #spread(key = Probe,value = expression)</code></pre>
+##          Probe   spread      cellLine expression
+##         &lt;fctr&gt;    &lt;dbl&gt;         &lt;chr&gt;      &lt;dbl&gt;
+## 1 A_24_P271696 4.759134     BR.BT_549      -4.19
+## 2 A_24_P271696 4.759134     BR.HS578T       2.76
+## 3 A_24_P271696 4.759134       BR.MCF7      -4.99
+## 4 A_24_P271696 4.759134 BR.MDA_MB_231       6.59
+## 5 A_24_P271696 4.759134       BR.T47D       3.81
+## 6 A_24_P271696 4.759134    CNS.SF_268      -4.69</code></pre>
+<pre class="r"><code>scary_probes_N2 &lt;-
+  scary_probes_N %&gt;%
+  spread(key = Probe,value = expression)
+
+head(scary_probes_N2)</code></pre>
+<pre><code>## # A tibble: 6 × 26
+##     spread      cellLine A_24_P271696 ALDH1A1 BASP1 CXCL1   DSP EFEMP1
+##      &lt;dbl&gt;         &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+## 1 4.516601     BR.BT_549           NA      NA    NA    NA    NA     NA
+## 2 4.516601     BR.HS578T           NA      NA    NA    NA    NA     NA
+## 3 4.516601       BR.MCF7           NA      NA    NA    NA    NA     NA
+## 4 4.516601 BR.MDA_MB_231           NA      NA    NA    NA    NA     NA
+## 5 4.516601       BR.T47D           NA      NA    NA    NA    NA     NA
+## 6 4.516601    CNS.SF_268           NA      NA    NA    NA    NA     NA
+## # ... with 18 more variables: G0S2 &lt;dbl&gt;, GALNT14 &lt;dbl&gt;, GNG11 &lt;dbl&gt;,
+## #   IGFBP7 &lt;dbl&gt;, KRT19 &lt;dbl&gt;, MAGEA2B &lt;dbl&gt;, MAL2 &lt;dbl&gt;, MT1M &lt;dbl&gt;,
+## #   NNMT &lt;dbl&gt;, RPS4Y1 &lt;dbl&gt;, RPS4Y2 &lt;dbl&gt;, SPARC &lt;dbl&gt;, SPINT2 &lt;dbl&gt;,
+## #   SPP1 &lt;dbl&gt;, TACSTD1 &lt;dbl&gt;, TFPI2 &lt;dbl&gt;, TGFBI &lt;dbl&gt;, UCHL1 &lt;dbl&gt;</code></pre>
 </div>
 </div>
 

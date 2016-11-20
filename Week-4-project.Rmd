@@ -87,9 +87,12 @@ holidays
 
 ##Question 6
 ```{r}
-#MY R IS CRAZY
 
-#ggplot(data=MyTwoYears_N,aes(x=date,y=count))+geom_line(aes(colour=week_day)) + geom_vline(data = holidays, aes(xintercept = as.numeric(date))) + geom_text(data = holidays,aes(x = date,label = holiday), y = 9000, angle = 45)
+
+ggplot(data=MyTwoYears_N,aes(x=date,y=count))+
+  geom_line(aes(colour=week_day)) + 
+  geom_vline(data = holidays, aes(xintercept = as.numeric(date)))+ 
+  geom_text(data = holidays,aes(x = date,label = holiday), y = 9000, angle = 45)
 ```
 
 ##Question 7
