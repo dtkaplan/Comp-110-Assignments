@@ -1,6 +1,6 @@
 # Week 6 Short Answer Questions
 
-## Your name should appear here!
+## Katrin O'Grady
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,90 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+###Problem 12.1
+```{r}
+top5 <-
+BabyNames %>%
+  group_by(name) %>%
+  filter(sex=="female") %>%
+  summarise(total = sum(count)) %>%
+  filter(rank(desc(total))<= 5)
+```
+
+###Problem 12.2
+```{r}
+
+```
+
+```{r}
+count_table <-
+  BabyNames %>%
+  group_by(year, name) %>%
+  summarise(total_count= sum(count)) %>%
+  mutate(frac_in_top_100 = rank(desc(total_count)))
+
+```
+
+```{r}
+count_table$frac_in_top_100 <- ifelse(count_table$frac_in_top_100 <= 100,"TRUE","FALSE")
+count_table <-
+  count_table %>%
+  group_by(year, frac_in_top_100) %>%
+  summarise(total= sum(total_count))
+```
+
+```{r}
+GlyphReady <-
+  count_table %>%
+  spread(frac_in_top_100, total) %>%
+  mutate(frac_in_top_100 = `TRUE` / (`TRUE` + `FALSE`))
+ggplot(GlyphReady, aes(x=year, y=frac_in_top_100)) + geom_line()
+```
+
+###Problem 12.3
+a. summary
+b. summary
+c. summary
+d. transformation
+e. neither
+f. transformation
+g. neither
+h. transformation
+
+###Problem 13.1
+1. There are 8 distinct vertices.
+2. There are nine edges.
+
+###Problem 13.2
+1. The vertices are the shapes denoted with each letter- A, D, C, and B. 
+2. Table 2 shows the edges correctly.
+3. Table 1 lists as edge from B to C which is not shown in the diagram. Table 3 list an edge between three vertices, but an edge shows a connection between a pair of vertices. 
+
+###Problem 13.3
+Table 2 gives the information needed to draw the edges in the graph
+
+###Problem 13.4
+1. Exports is mapped to the size of the letter.
+2. Population is mapped to the shape of the grey symbol. 
+
+###Problem 14.1
+```{r}
+CPS85 %>%
+ggplot(aes(y=wage, x=sex)) + geom_boxplot(aes(color= sex, fill=sex))
+```
+
+###Problem 14.3
+Based on the graph, the most likely height for women is 1.6 and the most likely height fo men is 1.8.
+
+###Proble 14.7
+```{r}
+CPS85 %>%
+  ggplot(aes(y=wage, x=educ, color=sex)) + stat_smooth(method=lm) + geom_point(alpha=0.2)
+```
+
+###Problem 14.10
+```{r}
+Galton %>%
+  ggplot(aes(x=height)) + geom_density(aes(fill=sex), alpha=0.5) + ylab("Density")
+```
+
