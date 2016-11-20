@@ -23,25 +23,45 @@ ggplot(Prices,aes(x=date,y=close)) +
 
 ```{r}
 Actions <- data.frame(action=c('buy','sell'),
-  data = ymd(c("2006-01-03","2014-12-30")))
+  date = ymd(c("2006-01-03","2014-12-30")))
 
 Combined <-
   Prices %>%
-  inner_join(Actions,by=c('date' = 'data')) %>%
+  inner_join(Actions,by='date') %>%
   select(close,company,action) %>%
-  spread(key=action,value=close) %>%
-  mutate(profit = sell-buy) %>%
-  mutate(percent= (sell-buy)/buy*100)
+  spread(key=action,value=close) 
 
-Combined
-  
-# Combined <-
-#   Prices %>%
-#   left_join(Actions, by=c('date' = 'data')) %>%
-#   filter(action == 'buy'|action =='sell') %>%
-#   spread(key=action,value=close)
+
+Profits <- Combined %>%
+  mutate(profit = sell-buy) %>%
+  mutate(percent= (sell-buy)/buy*100)  %>%
+  select(company,profit,percent) 
   
 ```
 
 
+```{r}
+refDate = ymd("2005-02-01")
+Reference <- Prices %>%
+  filter(date == refDate) %>%
+  select(company, standard = close)
+```
+
+```{r}
+Prices <- Prices %>%
+  left_join(Reference,by='company')
+```
+
+```{r}
+Prices %>%
+  mutate(standardizedPrice = close / standard)
+```
+
+
+```{r}
+Dividends <- read_stock_prices(companies,what="dividends")
+
+Dividends <- Dividends %>%
+  left_join(Actions,by="date")
+```
 
