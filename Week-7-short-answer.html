@@ -120,12 +120,87 @@ $(document).ready(function () {
 
 <div id="week-7-short-answer-questions" class="section level1">
 <h1>Week 7 Short Answer Questions</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="phuc-nguyen" class="section level2">
+<h2>Phuc Nguyen</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:28:15 2016.</p>
+<p>Compiled on Sat Nov 19 19:17:07 2016.</p>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
+</div>
+<div id="section" class="section level2">
+<h2>15.1</h2>
+<pre class="r"><code>my_bd &lt;- lubridate::dmy(&quot;6 March 1996&quot;)
+a &lt;- lubridate::mdy(&quot;April 30, 1777&quot;)
+my_bd - a</code></pre>
+<pre><code>## Time difference of 79933 days</code></pre>
+<pre class="r"><code>b &lt;- lubridate::mdy(&quot;06-23-1912&quot;)
+my_bd - b</code></pre>
+<pre><code>## Time difference of 30572 days</code></pre>
+<pre class="r"><code>c &lt;- lubridate::dmy(&quot;3 March 1847&quot;)
+my_bd - c</code></pre>
+<pre><code>## Time difference of 54425 days</code></pre>
+<pre class="r"><code>d &lt;- lubridate::mdy_hm(&quot;11:00 am on Nov. 11th, 1918 at 11:00 am&quot;)</code></pre>
+<pre><code>## Warning: All formats failed to parse. No formats found.</code></pre>
+<pre class="r"><code>my_bd - d</code></pre>
+<pre><code>## Time difference of NA secs</code></pre>
+<pre class="r"><code>e &lt;- lubridate::mdy(&quot;July 20, 1960&quot;)
+my_bd - e</code></pre>
+<pre><code>## Time difference of 13013 days</code></pre>
+</div>
+<div id="section-1" class="section level2">
+<h2>15.2</h2>
+<ol style="list-style-type: lower-alpha">
+<li>tidyr::extract_numeric()</li>
+<li>tidyr::extract_numeric()</li>
+<li>none</li>
+<li>tidyr::extract_numeric()</li>
+<li>tidyr::extract_numeric()</li>
+<li>tidyr::extract_numeric()</li>
+<li>tidyr::extract_numeric()</li>
+<li>as.numeric</li>
+<li>tidyr::extract_numeric()</li>
+</ol>
+</div>
+<div id="section-2" class="section level2">
+<h2>16.1</h2>
+<pre class="r"><code>pattern &lt;- &quot;[aeiou]$&quot;
+BabyNames %&gt;%
+  group_by(name) %&gt;%
+  filter(sex == &quot;M&quot; &amp; grepl(pattern, name)) %&gt;%
+  summarise(total = sum(count))%&gt;%
+  arrange(desc(total)) %&gt;%
+  head(10)</code></pre>
+<pre><code>## # A tibble: 10 × 2
+##        name   total
+##       &lt;chr&gt;   &lt;int&gt;
+## 1    George 1451408
+## 2    Joshua 1163815
+## 3      Jose  539924
+## 4      Kyle  469045
+## 5  Lawrence  454323
+## 6       Joe  448953
+## 7    Willie  447403
+## 8     Jesse  407183
+## 9     Bruce  379233
+## 10   Eugene  377338</code></pre>
+<pre class="r"><code>pattern &lt;- &quot;joe$|jo$&quot;
+joe &lt;- BabyNames %&gt;%
+  filter(grepl(pattern, tolower(name)))
+head(joe)</code></pre>
+<pre><code>##   name sex count year
+## 1  Joe   F     5 1880
+## 2  Joe   M   731 1880
+## 3  Joe   F    10 1881
+## 4   Jo   F     5 1881
+## 5  Joe   M   639 1881
+## 6  Joe   F    15 1882</code></pre>
+</div>
+<div id="section-3" class="section level2">
+<h2>16.2</h2>
+<p>The regular expression extracts phone numbers. The numbers are the only components to be extracted.</p>
+</div>
+<div id="section-4" class="section level2">
+<h2>16.3</h2>
+<p>The strings can be any length greater or equal to two (letters).</p>
 </div>
 </div>
 

@@ -1,6 +1,6 @@
 # Week 7 Short Answer Questions
 
-## Your name should appear here!
+## Phuc Nguyen
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,52 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+##15.1
+```{r}
+my_bd <- lubridate::dmy("6 March 1996")
+a <- lubridate::mdy("April 30, 1777")
+my_bd - a
+b <- lubridate::mdy("06-23-1912")
+my_bd - b
+c <- lubridate::dmy("3 March 1847")
+my_bd - c
+d <- lubridate::mdy_hm("11:00 am on Nov. 11th, 1918 at 11:00 am")
+my_bd - d
+e <- lubridate::mdy("July 20, 1960")
+my_bd - e
+```
+
+##15.2
+a. tidyr::extract_numeric()
+b. tidyr::extract_numeric()
+c. none
+d. tidyr::extract_numeric()
+e. tidyr::extract_numeric()
+f. tidyr::extract_numeric()
+g. tidyr::extract_numeric()
+h. as.numeric
+i. tidyr::extract_numeric()
+
+##16.1
+```{r}
+pattern <- "[aeiou]$"
+BabyNames %>%
+  group_by(name) %>%
+  filter(sex == "M" & grepl(pattern, name)) %>%
+  summarise(total = sum(count))%>%
+  arrange(desc(total)) %>%
+  head(10)
+```
+
+```{r}
+pattern <- "joe$|jo$"
+joe <- BabyNames %>%
+  filter(grepl(pattern, tolower(name)))
+head(joe)
+```
+
+##16.2
+The regular expression extracts phone numbers. The numbers are the only components to be extracted.
+
+##16.3
+The strings can be any length greater or equal to two (letters).
