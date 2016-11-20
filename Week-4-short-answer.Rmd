@@ -1,6 +1,6 @@
 # Week 4 Short Answer Questions
 
-## Your name should appear here!
+## Phuc Nguyen
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,78 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+##8.1
+1. construct the graphic frame: ggplot()
+2. add a layer of glyphs: geom_point(), geom_segment(), geom_histogram()
+3. set an axis label: ylab(), xlim()
+4. divide the frame into facets: facet_wrap()
+5. change the scale for the frame: scale_y_log10()
+
+##8.2
+1.
+```{r}
+mosaicData::CPS85 %>%
+  ggplot(aes(age,wage)) + geom_point(aes(shape = married)) + facet_wrap(~sector)
+
+```
+2.
+```{r}
+mosaicData::CPS85 %>%
+  ggplot(aes(age, wage)) + geom_point() + facet_grid(sex~married)
+```
+
+##8.3
+(A)
+```{r}
+mosaicData::CPS85 %>%
+  ggplot(aes(age, wage)) + geom_point()
+```
+
+(B)
+```{r}
+mosaicData::CPS85 %>%
+  ggplot(aes(age, wage)) + geom_point(aes(shape = sex))
+```
+
+(C)
+```{r}
+mosaicData::CPS85 %>%
+  ggplot(aes(age, wage)) + geom_point(aes(shape = sex)) + facet_grid(married~.)
+```
+
+(D)
+```{r}
+mosaicData::CPS85 %>%
+  ggplot(aes(age, wage)) + geom_point(aes(shape = married))
+```
+
+##9.1
+a. str(): quick presentation
+b. group_by(): data verb
+c. rank(): comparison expression
+d. mean(): summary function
+e. filter(): data verb
+f. summary(): quick presentation
+g. summarise(): data verb
+h. anti_join(): data verb
+i. glimpse(): quick presentation
+
+##9.3
+1. Which color larges on avg
+```{r}
+diamonds %>%
+  group_by(color) %>%
+  summarise(avg_carat = mean(carat)) %>%
+  arrange(desc(avg_carat)) %>%
+  head(1)
+```
+
+2. Which clarity has largest avg table per carat
+```{r}
+diamonds %>%
+  group_by(clarity) %>%
+  mutate(table_per_carat = table/carat) %>%
+  summarise(mean_table = mean(table_per_carat)) %>%
+  arrange(desc(mean_table)) %>%
+  head(1)
+```
