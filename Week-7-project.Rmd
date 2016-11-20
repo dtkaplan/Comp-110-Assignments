@@ -27,9 +27,29 @@ head(Medicare,15)
 ```
 
 ```{r}
-pattern <- "ST|RD|ROAD" # Defines a string, ST or RD or ROAD
+pattern <- "ST|RD|ROAD|CIR|CIRCLE|WAY|LN|TRAIL|COURT|DR|DRIVE|BLVD|AVE|AVENUE|PKWY|HALL|PLACE|PL|PARKWA|LOOP|PATH|TERRACE|BLV|FARM|LANE|CT|NCSU|TRL" # Defines a string, ST or RD or ROAD
 LeftOvers <-   # Defines new object
   Wake_county %>%   # operate on Wake_county data
-  filter( ! grepl(pattern,address), ! grepl(" BOX ", address))  # Keep only terms for which ST, RD, or ROAD do not appear in the address, nor do they include ' Box '. 
+  filter( ! grepl(pattern,address), ! grepl(("BOX |BX |BO | BOX"), address))  # Keep only terms for which ST, RD, or ROAD do not appear in the address, nor do they include ' Box '. 
 ```
+
+
+**#--------- Sam's Implementation ------------- #**
+
+```{r}
+pattern <- "(ST|RD|ROAD|CIR|CIRCLE|WAY|LN|TRAIL|COURT|DR|DRIVE|BLVD|AVE|AVENUE|PKWY|HALL|PLACE|PL|PARKWA|LOOP|PATH|TERRACE|BLV|FARM|LANE|CT|NCSU|TRL)" # This regex matches with any entry that has any of the included phrases. The parenthensis is necessary for the extract function.
+Wake_county_stWords <-  #define new dataframe
+  Wake_county %>% # operate on Wake_county date
+  filter(!grepl(("BOX |BX |BO | BOX"), address)) %>% # remove entries that are post office boxes
+  tidyr::extract(address,into="street_word",regex=pattern,remove=FALSE) # create new variable called street_word which contains the recognized and extracted string
+```
+
+```{r}
+Wake_county_stWords %>%
+group_by(street_word) %>% # for each identified street word
+summarize(count = tally(street_word)) %>% # count the number of each and display in new table
+arrange(desc(count)) # arrange by number
+```
+
+It appears that ST is the most common, with 885 addresses including that term, followed by DR with 745. The least common was the BLV spelling of boulevard.
 

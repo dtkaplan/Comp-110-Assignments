@@ -93,6 +93,7 @@ button.code-folding-btn:focus {
 </style>
 
 
+
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
@@ -120,12 +121,61 @@ $(document).ready(function () {
 
 <div id="week-7-project" class="section level1">
 <h1>Week 7 Project</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="sam-erickson" class="section level2">
+<h2>Sam Erickson</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:32:15 2016.</p>
+<p>Compiled on Sun Nov 20 13:32:45 2016.</p>
 <!-- put your content after this line -->
 <p>Here is my content!</p>
+<pre class="r"><code>Wake_county &lt;- read.csv(&quot;http://tiny.cc/dcf/street-addresses.csv&quot;,stringsAsFactors = FALSE)</code></pre>
+<pre class="r"><code>download.file(url=&quot;http://tiny.cc/dcf/CMS_ProvidersSimple.rds&quot;,destfile=&quot;serviceProviders.rds&quot;)
+Medicare &lt;- readRDS(&quot;serviceProviders.rds&quot;)</code></pre>
+<pre class="r"><code>head(Medicare,15)</code></pre>
+<pre><code>##                       address first_name sex
+## 1                900 SETON DR    ARDALAN   M
+## 2              2650 RIDGE AVE     THOMAS   M
+## 3  4126 N HOLLAND SYLVANIA RD     RASHID   M
+## 4               456 MAGEE AVE      DAVID   M
+## 5            11100 EUCLID AVE   JENNIFER   F
+## 6            12605 E 16TH AVE      KEVIN   M
+## 7     1565 SAXON BLVD STE 202  FREDERICK   M
+## 8               1021 PARK AVE     AMANDA   F
+## 9        11035 E RICHFIELD RD      DIANE   F
+## 10             800 BUFFALO ST     DENNIS   M
+## 11     1867 E FIR AVE STE 104     SHEILA   F
+## 12            4410 W 16TH AVE     OTNIEL   M
+## 13               7401 S. MAIN   JULIETTE   F
+## 14            501 N GRAHAM ST      JAMES   M
+## 15          2215 PORTLAND AVE   JAIVANTI   F</code></pre>
+<pre class="r"><code>pattern &lt;- &quot;ST|RD|ROAD|CIR|CIRCLE|WAY|LN|TRAIL|COURT|DR|DRIVE|BLVD|AVE|AVENUE|PKWY|HALL|PLACE|PL|PARKWA|LOOP|PATH|TERRACE|BLV|FARM|LANE|CT|NCSU|TRL&quot; # Defines a string, ST or RD or ROAD
+LeftOvers &lt;-   # Defines new object
+  Wake_county %&gt;%   # operate on Wake_county data
+  filter( ! grepl(pattern,address), ! grepl((&quot;BOX |BX |BO | BOX&quot;), address))  # Keep only terms for which ST, RD, or ROAD do not appear in the address, nor do they include ' Box '. </code></pre>
+<p><strong>#——— Sam’s Implementation ————- #</strong></p>
+<pre class="r"><code>pattern &lt;- &quot;(ST|RD|ROAD|CIR|CIRCLE|WAY|LN|TRAIL|COURT|DR|DRIVE|BLVD|AVE|AVENUE|PKWY|HALL|PLACE|PL|PARKWA|LOOP|PATH|TERRACE|BLV|FARM|LANE|CT|NCSU|TRL)&quot; # This regex matches with any entry that has any of the included phrases. The parenthensis is necessary for the extract function.
+Wake_county_stWords &lt;-  #define new dataframe
+  Wake_county %&gt;% # operate on Wake_county date
+  filter(!grepl((&quot;BOX |BX |BO | BOX&quot;), address)) %&gt;% # remove entries that are post office boxes
+  tidyr::extract(address,into=&quot;street_word&quot;,regex=pattern,remove=FALSE) # create new variable called street_word which contains the recognized and extracted string</code></pre>
+<pre class="r"><code>Wake_county_stWords %&gt;%
+group_by(street_word) %&gt;% # for each identified street word
+summarize(count = tally(street_word)) %&gt;% # count the number of each and display in new table
+arrange(desc(count)) # arrange by number</code></pre>
+<pre><code>## # A tibble: 26 × 2
+##    street_word       count
+##          &lt;chr&gt; &lt;S3: table&gt;
+## 1           ST         885
+## 2           DR         745
+## 3           RD         717
+## 4          AVE         269
+## 5         &lt;NA&gt;         267
+## 6           CT         210
+## 7         ROAD         180
+## 8           LN         149
+## 9          WAY         133
+## 10        LANE         128
+## # ... with 16 more rows</code></pre>
+<p>It appears that ST is the most common, with 885 addresses including that term, followed by DR with 745. The least common was the BLV spelling of boulevard.</p>
 </div>
 </div>
 
@@ -140,6 +190,7 @@ $(document).ready(function () {
 $(document).ready(function () {
   $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
 });
+
 
 </script>
 
