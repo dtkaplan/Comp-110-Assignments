@@ -1,6 +1,6 @@
 # Week 3 Short Answer Questions
 
-## Your name should appear here!
+## Phuc Nguyen
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,75 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+##5.1
+```{r}
+library(mosaicData)
+#barGraphHelper(CPS85)
+```
+
+##5.2
+```{r}
+HappinessIndex %>%
+  WorldMap(key="country", fill="corruption")
+```
+
+##6.5
+States and Polling Organizations
+
+##6.6
+d.
+
+##6.7
+d.
+
+##6.8
+```{r}
+Small <- NCHS %>% sample_n(size=5000)
+#scatterGraphHelper(Small)
+```
+
+bmi: x-axis
+weight: y-axis
+smoker: color
+
+##7.1
+a. mean()
+b. mutate()
+c. arrange(desc())
+d. filter()
+e. select()
+f. group_by(), summarise(), max()
+
+##7.4
+a. group_by("First") -- remove quotation marks
+b. summarise(Tmp, totalBirths = sum(count)) -- remove Tmp since this in a pipe
+c. after group_by add '%>%'
+
+##7.5
+Table A: arrange(sex, count)
+Table B: filter(sex == "F")
+Table C: filter(sex == "M" & count >= 20)
+Table D: summarise(total = sum(count))
+Table E: select(name, count)
+
+##7.7
+a. BabyNames %>% group_by(year, sex) %>% summarise(total = sum(count))
+b. ZipGeography %>% group_by(State) %>% summarise(pop = sum(Population))
+c. Minneapolis2013 %>% group_by(First) %>% summarise(voteReceived = n())
+d. Minneapolis2013 %>% group_by(First) %>% summarise(voteReceived = n())
+
+##7.11
+a. sex, count, meanAge
+b. diagnosis, count, meanAge
+c. sex, diagnosis, count, meanAge
+d. age, diagnosis, count, meanAge
+e. age, count, meanAge (the same as age)
+
+##7.12
+1. n()
+2. names()
+3. help()
+4. library()
+5. group_by()
+6. summarise(sum())
+
