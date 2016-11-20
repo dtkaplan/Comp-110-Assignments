@@ -1,6 +1,6 @@
 # Week 8 Short Answer Questions
 
-## Your name should appear here!
+## Phuc Nguyen
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,26 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+##17.2
+1. Variables are living_area and bathrooms.
+2. No
+3. The difference is about $28,372
+4.
+```{r}
+library(DataComputing)
+Houses <- read.csv("http://tiny.cc/dcf/houses-for-sale.csv")
+```
+
+```{r}
+mod <- party::ctree(price ~ living_area + bathrooms + fireplaces, data=Houses)
+plot(mod, type="simple")
+```
+
+Fireplace only has effects on price for houses whose living area is greater than 2816 square feet.
+
+```{r}
+mod1 <- party::ctree(price ~., data = Houses)
+plot(mod1, type = "simple")
+```
+
+Land values, age, air conditioning, bedrooms, lot size and percent residents with college degree also affect price.
