@@ -1,6 +1,6 @@
 # Week 2 Short Answer Questions
 
-## Your name should appear here!
+## Katrin O'Grady
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,90 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+###Problem 1.1
+a) Taffy- value of the variable for a particular case
+b) year- quantitative variable
+c) sex- categorical variable
+d) name- categorical variable
+e) count- quantitative variable
+
+###Problem 1.2
+The number of states variable is neither quanitative nor categorical. Most of the values are numbers but one of them is "it depends" do the values are not uniform.
+
+###Problem 1.4
+The variables in A are year, Algeria, Brazil, and Coumbia. In B they are country, 2000, and 2001. In C they are country, year, and value. For A, a case is a year. For B a case is a country in a year, and for C, a case is a country.
+###Problem 2.2
+The name of an argument in a named argument.
+###Problem 2.3
+CPS stands for current population survey.
+###Problem 2.4
+You don't need to use the naming function of package <- "NHANES" within the help function. If you've already introduced and downdloaded the package to r, you can just input help("NHANES")
+###Problem 2.6
+essay14 - legitimate
+first-essay - can't use a - symbol
+"MyData" - don't need ""
+third_essay - legitimate
+small smaple - can't use a space
+functionList - legitimate
+FuNcTi0nLiSt - legitimate
+.MyData. - legitimate
+sqrt() - can't use ()
+###Problem 2.7
+```{r}
+install.packages("nycflights13")
+data(flights, package = "nycflights13")
+```
+1. 19 variables
+2. 336773 cases
+3. a case is a specific flight
+4. all of the variables are quantitative except for origin, tailnumber, destination, carrier
+###Problem 2.8
+a. improper syntax for function argument
+b. no assignment operator
+c. invalid object name
+d. unmatched quotes in character string
+e. no mistake
+###Problem 2.9
+in an object name a . and an _ can be used. In a quoted character string all can be used.
+###Problem 2.10
+- 75 variables
+- mass of trunk fat
+- 23018 cases
+- count
+- DEM=Democratic, LIB=Libertarian,REP=Republican,UNA=Unaffiliated
+###Problem 3.1
+1. Fireplace %>%
+2. fireplace()
+3. "fireplace"
+4. (fireplace)
+###Problem 3.2
+Before the %>%, there needs to be the name of the data set, and that is missing in this sentence. 
+###Problem 3.3
+The package <- "NHANES" is not necessary in this statment. You should introduce the data first and then just input help(NHANES)
+###Problem 3.5
+- brain weight in kilograms
+- 83 cases
+- a species of mammal 
+- carnivore, omnivore, or herbivore
+###Problem 3.6
+Statement a. 
+###Problem 4.1
+- *one* is in italics
+- **two** is bolded
+- *three moves to the line above it
+- #Four - four will become the largest section heading
+- `five`has no change
+- ##six - six will become the second largest section heading
+
+###Problem 4.2
+a) the wrong dashes are used
+b) the wrong parenthesis are used
+c) only 2 dashes are used on teh bottom
+d) the second three dashes should be underneath the top level with the input in between
+e) there are four dashes in the bottom layer
+###Problem 4.3
+The introduction would be the heading. 
+Underneath, the word easy would be in italics. Then, the 3+2 would appear in a box and the answer 5 would appear below in another box
+
+
+
