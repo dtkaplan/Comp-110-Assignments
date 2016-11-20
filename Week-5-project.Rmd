@@ -12,7 +12,45 @@ library(DataComputing)
 
 ```{r}
 file = download.file("http://tiny.cc/dcf/ScorecardSmall.Rda",destfile = "ScorecardSmall.Rda")
-load("ScorecardSmall.Rda")
+load("C:/Users/Becky Honnold/Downloads/ScorecardSmall.Rda")
+
+translations <- read.csv("http://tiny.cc/dcf/NPT4-names.csv")
 ```
 
+
+##Question 1
+
+```{r}
+ScorecardSmall_n <-
+  ScorecardSmall %>%
+  select(CONTROL,INSTNM,ADM_RATE,NPT4_PUB,NPT4_PRIV,NPT41_PUB,NPT42_PUB,NPT43_PUB,NPT44_PUB,NPT45_PUB,NPT41_PRIV,NPT42_PRIV,NPT43_PRIV,NPT44_PRIV,NPT45_PRIV)
+
+head(ScorecardSmall_n)
+```
+
+
+##Question 2
+
+```{r}
+ScorecardSmall_n2 <-
+  ScorecardSmall_n %>%
+  gather(key = income, value = amount,NPT41_PUB,NPT42_PUB,NPT43_PUB,NPT44_PUB,NPT45_PUB,NPT41_PRIV,NPT42_PRIV,NPT43_PRIV,NPT44_PRIV,NPT45_PRIV)
+
+head(ScorecardSmall_n2)
+```
+
+##Question 3
+
+```{r}
+ScorecardSmall_n3 <-
+  ScorecardSmall_n2 %>%
+  left_join(translations,by = c("income" = "long_name")) %>%
+  filter(short_name == "Q1" | short_name == "Q3" | short_name == "Q5") %>%
+  filter(CONTROL == 1 | CONTROL == 2)
+
+head(ScorecardSmall_n3)
+
+ggplot(data=ScorecardSmall_n3,aes(x=ADM_RATE,y=NPT4_PRIV))+geom_point()+facet_wrap(~short_name,ncol=4) + stat_smooth(method=loess) 
+  
+```
 
