@@ -17,5 +17,4 @@ load("ScorecardSmall.Rda")
 ```
 
 ```{r}
-
-
+Scorcardselect <- ScorecardSmall %>% select(NPT41_PUB, NPT43_PUB, NPT45_PUB, NPT41_PRIV, NPT43_PRIV, NPT45_PRIV, ADM_RATE, CCSIZSET) 

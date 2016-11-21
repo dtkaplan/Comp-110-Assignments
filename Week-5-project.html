@@ -123,10 +123,11 @@ $(document).ready(function () {
 <div id="katie-jolly" class="section level2">
 <h2>Katie Jolly</h2>
 <!-- leave this material as is -->
-<p>Compiled on Wed Oct 5 20:36:53 2016.</p>
+<p>Compiled on Sun Nov 20 23:14:08 2016.</p>
 <!-- put your content after this line -->
 <pre class="r"><code>download.file(&quot;http://tiny.cc/dcf/ScorecardSmall.Rda&quot;, destfile=&quot;ScorecardSmall.Rda&quot;)
 load(&quot;ScorecardSmall.Rda&quot;)</code></pre>
+<pre class="r"><code>Scorcardselect &lt;- ScorecardSmall %&gt;% select(NPT41_PUB, NPT43_PUB, NPT45_PUB, NPT41_PRIV, NPT43_PRIV, NPT45_PRIV, ADM_RATE, CCSIZSET) </code></pre>
 </div>
 </div>
 
