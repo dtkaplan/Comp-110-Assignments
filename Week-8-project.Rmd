@@ -1,13 +1,79 @@
 # Week 8 Project
 
-## Your name should appear here!
+## Sam Erickson
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+```{r}
+Dists <- dist(mtcars)
+```
+
+```{r}
+Dendrogram <- hclust(Dists)
+
+```
+```{r}
+library(ggdendro)
+ddata <- dendro_data(Dendrogram)
+```
+```{r}
+ggdendrogram(Dendrogram,rotate=TRUE) +
+  geom_text(data=ddata$labels,aes(x=x,y=y,label=label),vjust=0)
+```
+
+```{r}
+cellData <- NCI60
+```
+
+```{r}
+cellDataMod <- cellData %>%
+  gather(cellLine,expression,2:61) %>%
+    group_by(Probe,cellLine) %>%
+  summarize(expression=mean(expression)) %>%
+  ungroup()
+
+head(cellDataMod,10)
+```
+
+
+```{r}
+cellDataMod2 <- cellDataMod %>%
+  group_by(Probe) %>%
+  summarize(spread=sd(expression)) %>%
+  ungroup() %>%
+  filter(spread>=4)# %>%
+  #arrange(cellLine)
+ # spread(key=Probe,value=cellLine,expression,spread)
+
+head(cellDataMod2,10)
+```
+
+```{r}
+cellDataJoin <- cellDataMod2 %>%
+  left_join(cellDataMod,by="Probe") %>%
+  select(Probe,cellLine,expression) %>%
+    spread(key=Probe,value=expression) 
+
+head(cellDataJoin,15)
+```
+
+
+
+
+```{r}
+dists_NCI <- dist(select(cellDataJoin,-cellLine))
+Dendrogram_NCI <- hclust(dists_NCI)
+ddata_NCI <- dendro_data(Dendrogram_NCI)
+ggdendrogram(Dendrogram_NCI, rotate=TRUE)  #geom_text(data=ddata$labels,aes(x=x,y=y,label=label),vjust=0)
+```
+
+
+
+
