@@ -35,7 +35,7 @@ c. A is wide, C is narrow
 
 11.4,
 
-Do this one!
+I drew a picture in my notebook. The problem is that subject should NOT be passed as a value argument, so you get "subject" appearing as cases under the when column, and the initials for subjects as well as sbp values showing up under the sbp column. It doesn't really make sense.
 
 11.5
 ```{r}
