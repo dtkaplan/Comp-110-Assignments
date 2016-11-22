@@ -1,6 +1,6 @@
 # Week 8 Short Answer Questions
 
-## Your name should appear here!
+## Wendy Chu
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,9 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+
+17.2
+1. response: house price; explanatory: bathrooms, living area, bedrooms, fireplace
+2. no
+3. $28372
+4. for large house, fireplaces increase price
