@@ -120,12 +120,30 @@ $(document).ready(function () {
 
 <div id="week-2-project" class="section level1">
 <h1>Week 2 Project</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="joseph-goodson-gregg" class="section level2">
+<h2>Joseph Goodson-Gregg</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:30:09 2016.</p>
+<p>Compiled on Tue Nov 22 15:01:46 2016.</p>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
+<ol style="list-style-type: decimal">
+<li>My data was downloaded from: <a href="http://tiny.cc/dcf/Library-small.rda" class="uri">http://tiny.cc/dcf/Library-small.rda</a> Within that address dest = “Library-small.rda” specified where exactly to download from.</li>
+</ol>
+</div>
+<div id="basics" class="section level2">
+<h2>Basics</h2>
+<pre><code>load(&quot;~/Comp-110-Assignments/Library-small.rda&quot;)
+View(Inv)
+View(Bks)</code></pre>
+<pre><code>nrow(Inv)
+names(Inv)
+The Inv data describes where books are in the library, as well as if they are available.
+nrow(Bks)
+names(Bks)
+The Bks data describes each book in the library, and offers a wide range of identifying information. Such as ISBN and Year.</code></pre>
+<pre><code>Inv %&gt;% group_by(Current.Status) %&gt;% tally()
+This command displays the total number of books in the following categories: AVAILABLE, MISSING, ON_LOAN, WITHDRAWN.</code></pre>
+<pre><code>Inv %&gt;% group_by(Issued.Count) %&gt;% tally()
+This command displays the total number times books have been checked out. The cases are number of times checked out.</code></pre>
 </div>
 </div>
 

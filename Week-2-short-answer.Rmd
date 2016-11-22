@@ -162,8 +162,84 @@ Problem 3.5:
 2. 83.
 3. These are for species of animal.
 4. insectivore, carnivore, herbivore, carnivore, NA.
+
 Problem 3.6:
 c.
 
+Chapter 4: (4.1, 4.2, 4.3, 4.4, 4.5)
+4.1
+*one* is italicized
+**two** is bold
+* three is a bulleted part of an unordered list
+# four is header type 1
+`five` is inline r code
+## six is header type 2
+[seven](http://tiny.cc/dcf/index.html) is a link with a corresponding url
+
+
+4.2
+a. uses ' instead of ` for its r chunk
+b. uses " instead of ` for its r chunk
+c. is missing a ` at the end of its r chunk
+d. Does not have proper \n (newline character) formatting
+e. has an extra ` at the end of its r chunk
+
+
+4.3
+It will look like
+HEADER An Introduction
+
+
+Arithmetic is easy(italics)! For instance
+3+2
+5
+
+### An Introduction
+
+Arithmetic is *easy*! For instance
+```{r}
+3+2
+```
+
+
+
+
+4.4
+1. Possible URL
+2. Possible file
+3. Neither
+4. Possible URL
+5. Neither
+6. Possible URL
+
+4.5
+# Copied from original file, which looks exactly as it should. (If pasted into a new file it will work great.)
+---
+title: "Birds of the World"
+author: "JJ Audobon"
+output: 
+  html_document:
+    fig_height: 3
+    fig_width: 5
+---
+<!-- Don't edit in between this line and the one below -->
+```{r include=FALSE}
+# Don't delete this chunk if you are using the DataComputing package
+library(DataComputing)
+```
+*Source file* 
+```{r, results='asis', echo=FALSE}
+includeSourceDocuments()
+```
+<!-- Don't edit the material above this line -->
+
+
+There are many species of birds in the world. From my studio, I can see
+
+* Blue Jays
+* Cardinals
+* Robins
+* Crows
+* Sparrows
 
 

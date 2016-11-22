@@ -120,12 +120,26 @@ $(document).ready(function () {
 
 <div id="week-3-short-answer-questions" class="section level1">
 <h1>Week 3 Short Answer Questions</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="joseph-goodson-gregg" class="section level2">
+<h2>Joseph Goodson-Gregg</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:26:06 2016.</p>
+<p>Compiled on Sat Nov 19 19:09:16 2016.</p>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
+<p>Chapter 5: (5.1, 5.2): 5.1 ggplot(data=CPS85,aes(x=sex,y=wage ,fill=married))+geom_bar(stat=‘identity’,position=‘dodge’, width=.9)+scale_fill_brewer(type=‘seq’,palette=“Greys”)+ facet_wrap(~race,ncol=3)</p>
+<p>5.2 WorldMap(HappinessIndex, key=country, fill=“corruption”) #My output is clearly incorrect, or corrupted somehow</p>
+<p>Chapter 6: (6.5, 6.6, 6.7, 6.8) 6.5 b.)</p>
+<p>6.6 d.)</p>
+<p>6.7 d.)</p>
+<p>6.8 x axis: bmi, y axis: weight, Color: smoker. ggplot(data=Small,aes(x=bmi,y=weight))+geom_point()+aes(colour=smoker)</p>
+<p>Chapter 7: (7.1, 7.4, 7.5, 7.7, 7.11, 7.12) 7.1 a.) summarise(something = mean(variable_of_interest) b.) mutate(new_variable= oldvariabl1/ oldvariable2) c.) arrange(desc(variable)) d.) filter( variable_to_be_filtered &gt; condition_to_meet , sex == “M”) e.) select(variables_of_interest) f.) mutate()</p>
+<p>7.4 a.) “First” is not a variable, it is a string. This will not work. Also, the votesReceived variable is not part of the BabyNames data set. b.) summarise( Tmp, totalBirths=sum(count)). sum(count) should be n(). totalBirths is also not part of the Tmp data table. c.) Lacks the %&gt;% to connect to the summarise line</p>
+<p>7.5 a.) arrange(desc(sex)) b.) filter(sex == “F”) c.) filter(sex == “M”) d.) summarise(total = sum(count)) e.) select(-sex)</p>
+<p>7.7 a.) These statements already have BabyNames as an input for group_by and summarise since they used the %&gt;% piping in. Thus BabyNames is passed as an input twice and will return an error message. BabyNames %&gt;% group_by(year, sex) %&gt;% summarise(total = sum(count))</p>
+<p>b.) A variable was set instead of using the pipeline. Thus group_by did not properly receive a data table as an input. ZipGeography %&gt;% group_by(State) %&gt;% summarise(pop = sum(Population))</p>
+<p>c.) Improperly used the –&gt; instead of the pipe %&gt;% Minneapolis2013 %&gt;% group_by(First) %&gt;% summarise(voteReceived = n())</p>
+<p>d.) The variable should be set equivalent to what follows it, not pointing backwards. That will not work. And in this case the Data Table should be passed in as an input at the beginning. Minneapolis2013 %&gt;% summarise(votesReceived = n()) %&lt;% group_by(First)</p>
+<p>7.11 a.) sex, count, meanAge b.) diagnosis, count, meanAge c.) sex, diagnosis, count, meanAge d.) age, diagnosis, count, meanAge e.) age, count, meanAge</p>
+<p>7.12 1.) nrow() 2.) ls(datatable) 3.) help(“datatable”) 4.) library(mosaic_etc) 5.) group_by 6.) group_by(variable of interest) chained into summarise(newvar = n())</p>
 </div>
 </div>
 

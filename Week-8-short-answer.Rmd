@@ -1,13 +1,75 @@
 # Week 8 Short Answer Questions
 
-## Your name should appear here!
+## Joseph Goodson-Gregg
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
 ```{r include = FALSE}
 library(DataComputing)
+#install.packages("party") #Ran to be able to use library(party)
+library(party)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+# Actual homework at bottom
+
+```{r}
+#Textbook examples of functions
+whoIsPregnant <-
+  ctree(pregnant == "yes" ~ age + income + sex, data=NCHS)
+#f <- funCT(whoIsPregnant)
+#f(age = 25, income = 6, sex = "female")
+plot(whoIsPregnant, type = "simple")
+
+```
+
+```{r}
+#Textbook examples of functions
+Houses <-
+  read.file("http://tiny.cc/dcf/houses-for-sale.csv")
+Houses <-
+  ctree(pregnant == "yes" ~ age + income + sex, data=NCHS)
+#f <- funCT(whoIsPregnant)
+#f(age = 25, income = 6, sex = "female")
+plot(whoIsPregnant, type = "simple")
+
+```
+
+```{r}
+BigCities <-
+  WorldCities %>%
+  arrange(desc(population)) %>%
+  head( 4000 ) %>% select(longitude, latitude)
+clusts2 <-
+  BigCities %>%
+  kmeans(centers = 6) %>%
+  fitted("classes") %>% as.character()
+BigCities <-
+  BigCities %>% mutate(cluster = clusts2)
+BigCities %>%
+  ggplot(aes(x=longitude, y=latitude)) +
+  geom_point(aes(color=cluster, shape=cluster) )
+```
+
+#Actual homework
+
+17.2
+
+part 1.
+
+living_area, bathrooms, bedrooms, fireplaces.
+
+part 2.
+
+Yes it does, as indicated by p-value < 0.001.
+
+part 3.
+
+151424 vs 179796 for 1.5 vs 2 bathrooms. Difference of 28372.
+
+part 4.
+
+Yes. living_area
+
+

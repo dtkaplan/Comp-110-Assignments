@@ -120,12 +120,84 @@ $(document).ready(function () {
 
 <div id="week-7-short-answer-questions" class="section level1">
 <h1>Week 7 Short Answer Questions</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="joseph-goodson-gregg" class="section level2">
+<h2>Joseph Goodson-Gregg</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:28:15 2016.</p>
+<p>Compiled on Sun Nov 20 20:45:50 2016.</p>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
+<p>Chapter 15 Questions: (15.1, 15.2)</p>
+<p>15.1</p>
+<p>a.) ”April 30, 1777&quot; mdy(”April 30, 1777”)</p>
+<p>b.) ”06-23-1912&quot; mdy(”06-23-1912”)</p>
+<p>c.) ”3 March 1847&quot; dmy(”3 March 1847”)</p>
+<p>d.) ”11:00 am on Nov. 11th, 1918 at 11:00 am&quot; mdy_hm(“11:00 am on Nov. 11th, 1918 at 11:00 am”) #This did not work</p>
+<p>e.) ”July 20, 1969&quot; mdy(”July 20, 1969”)</p>
+<p>15.2</p>
+<p>Generally it makes sense to use as.numeric() with the input is in number format, but identified as a different type of data. eg “25”. as.numeric(“25”) will output the number 25. tidyr::extract_numeric() makes sense when there is punctuation to deal with.</p>
+<p>a.) “42,659.30”</p>
+<p>as.numeric(“42,659.30”) #does not work tidyr::extract_numeric(“42,659.30”) #works</p>
+<p>b.) “17%” as.numeric(“17%”) #does not work tidyr::extract_numeric(“17%”) #works, returns 17 not .17 though, good to note</p>
+<p>c.) “Nineteen” as.numeric(“Nineteen”) #does not work tidyr::extract_numeric(“Nineteen”) #does not work</p>
+<p>d.) “£100” as.numeric(“£100”) #does not work tidyr::extract_numeric(“£100”) #returns 100</p>
+<p>e.) “9.8 m/seconds-square” as.numeric(“9.8 m/seconds-square”) # does not work. tidyr::extract_numeric(“9.8 m/seconds-square”) #did not work, unsure why</p>
+<p>f.) “9.8 m/sˆ2” as.numeric(“9.8 m/sˆ2”) #did not work tidyr::extract_numeric(“9.8 m/sˆ2”) #worked, returned 9.8</p>
+<p>g.) “6.62606957 Å~ 10ˆ-34 m2 kg / s” as.numeric(“6.62606957 * 10^-34 m2 kg / s”) #does not work tidyr::extract_numeric(“6.62606957 * 10^-34 m2 kg / s”) #does not work</p>
+<p>h.) “6.62606957e-34” as.numeric(“6.62606957e-34”) #e is a number, returned a number, valid format! tidyr::extract_numeric(“6.62606957e-34”) #Interestingly, did not work.</p>
+<p>i.) “42.659,30” (A European style) as.numeric(“42.659,30”) #did not work tidyr::extract_numeric(“42.659,30”) #‘worked’, but returned 42.659.</p>
+<p>Chapter 16 Questions: (16.1, 16.2, 16.3)</p>
+<p>16.1</p>
+<pre class="r"><code>pattern &lt;- &quot;[aeiou]$&quot;
+BoyNamesVowel &lt;-
+  BabyNames %&gt;%
+  filter(grepl(pattern, name)) %&gt;%
+  filter(sex == &quot;M&quot;) %&gt;%
+  group_by(name) %&gt;%
+  summarise(total = n()) %&gt;%
+  arrange(desc(total))
+BoyNamesVowel %&gt;%
+  head(10)</code></pre>
+<pre><code>## # A tibble: 10 × 2
+##        name total
+##       &lt;chr&gt; &lt;int&gt;
+## 1       Abe   134
+## 2    Alonzo   134
+## 3  Alphonse   134
+## 4   Ambrose   134
+## 5   Antonio   134
+## 6    Archie   134
+## 7       Asa   134
+## 8    Bennie   134
+## 9     Bruce   134
+## 10  Charlie   134</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre class="r"><code>pattern &lt;- &quot;(joe|jo)$&quot;
+NamesWithJo &lt;-
+  BabyNames %&gt;%
+  filter(grepl(pattern, name)) %&gt;%
+  group_by(name) %&gt;%
+  summarise(total = n()) %&gt;%
+  arrange(desc(total))
+NamesWithJo %&gt;%
+  head(10)</code></pre>
+<pre><code>## # A tibble: 10 × 2
+##        name total
+##       &lt;chr&gt; &lt;int&gt;
+## 1    Maryjo    99
+## 2     Alejo    88
+## 3    Marijo    73
+## 4   Bettyjo    66
+## 5  Billiejo    48
+## 6   Bobbijo    47
+## 7  Bobbiejo    40
+## 8      Jojo    40
+## 9  Billyjoe    35
+## 10     Kojo    34</code></pre>
+<p>16.2</p>
+<p>“([2-9][0-9]{2})<a href="%5B0-9%5D%7B3%7D">- .</a><a href="%5B0-9%5D%7B4%7D">- .</a>” number 2-9 then another number 0-9. Then either a space period or dash. Then three numbers in a row that are between 0 and 9, then either a space period or dash, finally four more numbers consecutively between 0 and 9. This is the format of a telephone number. eg. 319-541-9809</p>
+<p>16.3</p>
+<p>Consider this regex: (A[LKSZRAP]|C[AOT]|D[EC]|F[LM]|G[AU]|HI|I[ADLN]| K[SY]|LA|M[ADEHINOPST]|N[CDEHJMVY]|O[HKR]|P[ARW]| RI|S[CD]|T[NX]|UT|V[AIT]|W[AIVY]) (Ignore the line breaks) 1. How long will the strings be that match the pattern? Two characters. 2. How many different strings will match? 7+3+2+2+2+1+4+2+1+10+8+3+3+1+2+2+1+3+4=68 3. People living in the United States may be able to figure out what the pattern is meant to express. Give it a try. I assume these are state abbreviations. It is a list of accepted states, and perhaps a few territories. I see that PR (Puerto Rico) is included, as is PW (Palau).</p>
 </div>
 </div>
 

@@ -10,7 +10,7 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-1. My data was downloaded from. http://tiny.cc/dcf/Library-small.rda
+1. My data was downloaded from: http://tiny.cc/dcf/Library-small.rda
 Within that address dest = "Library-small.rda" specified where exactly to download from.
 
 ##Basics

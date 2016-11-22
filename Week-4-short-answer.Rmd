@@ -1,6 +1,6 @@
 # Week 4 Short Answer Questions
 
-## Your name should appear here!
+## Joseph Goodson-Gregg
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -11,3 +11,76 @@ library(DataComputing)
 <!-- put your content after this line -->
 
 Here is my content!
+
+Chapter 8: (8.1, 8.2, 8.3)
+
+8.1
+a) 2.
+b) 1.
+c) 1.
+d) 5.
+e) 3.
+f) 4.
+g) 1.
+h) 1.
+i) 4.
+
+8.2
+1.
+ggplot(data=CPS85,aes(x=age,y=wage))+geom_point()+aes(colour=married) +facet_wrap(~sector,ncol=4) + ylim(0,30) + xlim(10,70)
+2.
+ggplot(data=CPS85,aes(x=age,y=wage))+geom_point()+facet_wrap(~sex + married)
+
+
+8.3
+(A)
+ggplot(data=CPS85,aes(x=age,y=wage))+geom_point()
+(B)
+WorldMap(data = HappinessIndex, key="country", fill="corruption")
+(C)
+ggplot(data=CPS85,aes(x=age,y=wage,shape=sex))+geom_point()+facet_wrap(~married)
+(D)
+ggplot(data=CPS85,aes(x=age,y=wage,shape=married))+geom_point()+ylim(0,30)
+
+Chapter 9: (9.1, 9.3)
+
+9.1
+Identify each of these functions as either a Data Verb, a Transformation, a Summary Function, or a Quick Presentation or a Comparison Expression
+a) str() 
+Summary Function.
+b) group_by() 
+Data Verb.
+c) rank() 
+Comparison Expression.
+d) mean() 
+Comparison Expression.
+e) filter()
+Data Verb.
+f) summary() 
+Summary Function.
+g) summarise() 
+Data Verb.
+h) anti_join() 
+Data Verb.
+i) glimpse()
+Quick Presentation.
+
+
+9.3
+1.
+diamonds %>%
+group_by(color, carat) %>%
+summarise(typical = mean(carat, na.rm = TRUE)) %>%
+arrange(desc(typical))
+
+
+Best quality (D)
+
+
+2.
+diamonds %>% 
+group_by(clarity) %>%
+summarise(avgTypical = base::mean(table/carat)) %>% 
+arrange(desc(avgTypical)) %>%
+head(1)
+VVS1, third best quality.

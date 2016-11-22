@@ -1,13 +1,57 @@
 # Week 7 Project
 
-## Your name should appear here!
+## Joseph Goodson-Gregg 
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
 
-```{r include = FALSE}
+```{r setup, include=FALSE}
 library(DataComputing)
+library(mosaic)
+library(fetch)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+```{r}
+#Wake_county <- read.csv("http.cc/dcf/street-addresses.csv")
+download.file(url="http://tiny.cc/dcf/CMS_ProvidersSimple.rds", destfile = "addresses.rds")
+Medicare <- readRDS("addresses.rds")
+```
+
+```{r}
+pattern <- "ST|RD|ROAD|AVE|BLVD|DR|WAY|PKWY|HWY|PL|CT|CTR|PLAZA|PARK|LN|TRL|PIKE|FWY|LOOP|XING|TURNPIKE|PIKE|CSWY|CIR|CIRCLE|TPKE|TRAIL|LOOP|AVENUE|TER|LANE|MALL|TER|EXPY|CROSSING|COURT|AVUENE|COURT|PASS|SQUARE|MAIN|TVC|SQ|ROW|BLUFF|CONCOURSE|ROUTE|WALK|PKY|RUN|PORTAL|REAL"
+LeftOvers <-
+  Medicare %>%
+  filter(! grepl(pattern, address),
+         ! grepl(" BOX ", address))
+#! means not
+#View(LeftOvers)
+```
+
+```{r}
+pattern <- "(ST|RD|ROAD|AVE|BLVD|DR|WAY|PKWY|HWY|PL|CT|CTR|PLAZA|PARK|LN|TRL|PIKE|FWY|LOOP|XING|TURNPIKE|PIKE|CSWY|CIR|CIRCLE|TPKE|TRAIL|LOOP|AVENUE|TER|LANE|MALL|TER|EXPY|CROSSING|COURT|AVUENE|COURT|PASS|SQUARE|MAIN|TVC|SQ|ROW|BLUFF|CONCOURSE|ROUTE|WALK|PKY|RUN|PORTAL|REAL)"
+Medicare %>%
+  tidyr::extract(address,into="street_word", regex = pattern, remove = FALSE) %>%
+  head(20)
+```
+
+```{r}
+pattern <- "(ST|RD|ROAD|AVE|BLVD|DR|WAY|PKWY|HWY|PL|CT|CTR|PLAZA|PARK|LN|TRL|PIKE|FWY|LOOP|XING|TURNPIKE|PIKE|CSWY|CIR|CIRCLE|TPKE|TRAIL|LOOP|AVENUE|TER|LANE|MALL|TER|EXPY|CROSSING|COURT|AVUENE|COURT|PASS|SQUARE|MAIN|TVC|SQ|ROW|BLUFF|CONCOURSE|ROUTE|WALK|PKY|RUN|PORTAL|REAL)"
+RoadWords <-
+  Medicare %>%
+  tidyr::extract(address,into="street_word", regex = pattern, remove = FALSE)
+RoadWordsTotals <-
+  RoadWords %>%
+  group_by(street_word) %>%
+  summarise(total = n()) %>%
+  arrange(desc(total))
+RoadWordsTotals %>%
+  head(20)
+```
+
+
+First I create a data table called RoadWords. This table has a new variable that contains the 'road word' for each address case. It does this by extracting the word from my given list of words, which is stored as a regex.
+
+Then I use that data table with the street_words, and create a new data table called RoadWordTotals that is grouped by the street_words, then I total these street word chunks to find out how many instances of each street word there are then I arrange the table from highest street word counts first.
+
+A note to myself: The group_by function takes every instance of that variable that is the same as other instances of the same variable, and groups them together. For example, group_by name would take all the Josephs and put them together. If I group_by name, sex it would group all the Josephs that are male together. That way when I sum up, it will add up all the things that are grouped together.

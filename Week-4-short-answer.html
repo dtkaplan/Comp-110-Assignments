@@ -120,12 +120,22 @@ $(document).ready(function () {
 
 <div id="week-4-short-answer-questions" class="section level1">
 <h1>Week 4 Short Answer Questions</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="joseph-goodson-gregg" class="section level2">
+<h2>Joseph Goodson-Gregg</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:26:48 2016.</p>
+<p>Compiled on Sat Nov 19 19:26:55 2016.</p>
 <!-- put your content after this line -->
 <p>Here is my content!</p>
+<p>Chapter 8: (8.1, 8.2, 8.3)</p>
+<p>8.1 a) 2. b) 1. c) 1. d) 5. e) 3. f) 4. g) 1. h) 1. i) 4.</p>
+<p>8.2 1. ggplot(data=CPS85,aes(x=age,y=wage))+geom_point()+aes(colour=married) +facet_wrap(~sector,ncol=4) + ylim(0,30) + xlim(10,70) 2. ggplot(data=CPS85,aes(x=age,y=wage))+geom_point()+facet_wrap(~sex + married)</p>
+<p>8.3 (A) ggplot(data=CPS85,aes(x=age,y=wage))+geom_point() (B) WorldMap(data = HappinessIndex, key=“country”, fill=“corruption”) (C) ggplot(data=CPS85,aes(x=age,y=wage,shape=sex))+geom_point()+facet_wrap(~married) (D) ggplot(data=CPS85,aes(x=age,y=wage,shape=married))+geom_point()+ylim(0,30)</p>
+<p>Chapter 9: (9.1, 9.3) 9.1 Identify each of these functions as either a Data Verb, a Transformation, a Summary Function, or a Quick Presentation or a Comparison Expression a) str() Summary Function. b) group_by() Data Verb. c) rank() Comparison Expression. d) mean() Comparison Expression. e) filter() Data Verb. f) summary() Summary Function. g) summarise() Data Verb. h) anti_join() Data Verb. i) glimpse() Quick Presentation.</p>
+<p>9.3 1. diamonds %&gt;% group_by(color, carat) %&gt;% summarise(typical = mean(carat, na.rm = TRUE)) %&gt;% arrange(desc(typical))</p>
+<p>Best quality (D)</p>
+<ol start="2" style="list-style-type: decimal">
+<li>diamonds %&gt;% group_by(clarity) %&gt;% summarise(avgTypical = base::mean(table/carat)) %&gt;% arrange(desc(avgTypical)) %&gt;% head(1) VVS1, third best quality.</li>
+</ol>
 </div>
 </div>
 

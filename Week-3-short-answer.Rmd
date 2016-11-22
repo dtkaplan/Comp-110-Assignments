@@ -34,19 +34,66 @@ ggplot(data=Small,aes(x=bmi,y=weight))+geom_point()+aes(colour=smoker)
 
 Chapter 7: (7.1, 7.4, 7.5, 7.7, 7.11, 7.12)
 7.1
-a.)
-b.)
-c.)
-d.)
-e.)
-f.)
+a.) summarise(something = mean(variable_of_interest) 
+b.) mutate(new_variable= oldvariabl1/ oldvariable2)
+c.) arrange(desc(variable))
+d.) filter( variable_to_be_filtered > condition_to_meet , sex == "M")
+e.) select(variables_of_interest)
+f.) mutate()
+
 
 7.4
 a.) "First" is not a variable, it is a string. This will not work. Also, the votesReceived variable is not part of the BabyNames data set.
 b.) summarise( Tmp, totalBirths=sum(count)). sum(count) should be n(). totalBirths is also not part of the Tmp data table.
-c.) Lacks the %>% to connect to the summarise line,
+c.) Lacks the %>% to connect to the summarise line
+
 
 7.5
+a.) arrange(desc(sex))
+b.) filter(sex == "F")
+c.) filter(sex == "M")
+d.) summarise(total = sum(count))
+e.) select(-sex)
 
 
-
+7.7
+a.) These statements already have BabyNames as an input for group_by and summarise since they used the %>% piping in. Thus BabyNames is passed as an input twice and will return an error message.
+BabyNames %>%
+group_by(year, sex) %>%
+summarise(total = sum(count))
+
+
+b.) A variable was set instead of using the pipeline. Thus group_by did not properly receive a data table as an input.
+ZipGeography %>%
+group_by(State) %>%
+summarise(pop = sum(Population))
+
+
+c.) Improperly used the --> instead of the pipe %>%
+Minneapolis2013 %>%
+group_by(First) %>% 
+summarise(voteReceived = n())
+
+
+d.) The variable should be set equivalent to what follows it, not pointing backwards. That will not work. And in this case the Data Table should be passed in as an input at the beginning.
+Minneapolis2013 %>%
+	summarise(votesReceived = n()) %<%
+group_by(First)
+
+
+7.11
+a.) sex, count, meanAge
+b.) diagnosis, count, meanAge
+c.) sex, diagnosis, count, meanAge
+d.) age, diagnosis, count, meanAge
+e.) age, count, meanAge
+
+
+7.12
+1.) nrow()
+2.) ls(datatable)
+3.) help("datatable")
+4.) library(mosaic_etc)
+5.) group_by
+6.) group_by(variable of interest) chained into summarise(newvar = n())
+ 

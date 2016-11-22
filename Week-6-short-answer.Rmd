@@ -1,6 +1,6 @@
 # Week 6 Short Answer Questions
 
-## Your name should appear here!
+## Joseph Goodson-Gregg
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -11,3 +11,128 @@ library(DataComputing)
 <!-- put your content after this line -->
 
 Here is my content!
+
+Chapter 12 Questions: (12.1, 12.2, 12.3)
+
+12.1
+```{r}
+BabyNames %>%
+  group_by(name) %>%
+  filter(sex == "M") %>%
+  summarise(total = sum(count)) %>%
+  arrange(desc(total)) %>%
+  head(5)
+```
+```{r}
+BabyNames %>%
+  group_by(name) %>%
+  filter(sex == "F") %>%
+  summarise(total = sum(count)) %>%
+  arrange(desc(total)) %>%
+  head(5)
+```
+
+12.2
+
+```{r}
+tabletwelvetwo <-
+  BabyNames %>%
+  group_by(year) %>%
+  mutate(frac_in_top_100 = rank(desc(count)) <= 100)
+
+tabletwelvetwo %>%
+  head(5)
+```
+
+```{r}
+tabletwelvetwo <-
+  tabletwelvetwo %>%
+  group_by(year, frac_in_top_100) %>%
+  summarise(total = sum(count))
+
+tabletwelvetwo %>%
+  head(5)
+```
+
+```{r}
+GlyphReady <-
+tabletwelvetwo %>%
+  spread(frac_in_top_100, total) %>%
+  mutate(frac_in_top_100 = (`TRUE`/(`TRUE`+`FALSE`)))
+         
+GlyphReady %>%
+  head(5)
+```
+
+12.3
+
+a. summary
+
+b. summary
+
+c. summary
+
+d. transform
+
+e. transform
+
+f. summarise
+
+g. transform
+
+h. summarise
+
+Chapter 13 Questions: (13.1, 13.2, 13.3, 13.4)
+13.1
+
+part 1: 8
+
+part 2: 9
+
+13.2
+
+part 1: A, B, C, D
+
+part 2: Table 2
+
+part 3: Table 1 incorrectly shows an edge between B and C instead of C and D. Table 3 improperly shows an edge as connections between three vertices instead of two.
+
+13.3
+
+Table 2
+
+13.4
+
+part 1: exports
+
+part 2: pop
+
+Chapter 14 Questions: (14.1, 14.3, 14.7, 14.10)
+
+14.1
+
+```{r}
+CPS85 %>%
+  ggplot(aes(y = wage, x = sex )) +
+  geom_boxplot(aes(fill = sex),
+               position = position_dodge(width=0.8))
+```
+
+14.3
+
+Approximately 1.6 m for women and 1.8 m for men.
+
+14.7
+
+```{r}
+CPS85 %>%
+  ggplot(aes(x=educ,y=wage))+geom_point()+aes(colour=sex)+stat_smooth(method = lm) +geom_point(alpha = 0.02)+xlim(0,20)+ylim(0,15)
+```
+
+14.10
+
+```{r}
+mosaicData::Galton %>%
+  ggplot(aes(x=height))+geom_density(aes(fill=sex), color=NA)
+```
+

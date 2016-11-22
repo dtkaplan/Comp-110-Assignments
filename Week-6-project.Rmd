@@ -1,6 +1,6 @@
 # Week 6 Project
 
-## Your name should appear here!
+## Joseph Goodson-Gregg
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,73 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+As the share dividends go up, so do share prices. As dividends go down, share prices go down.
+
+```{r}
+companies <- c("F", "TM", "HMC")
+Prices <- read_stock_prices(companies, what = "daily",
+                            start_year = 2000, end_year = 2015)
+```
+
+```{r}
+ggplot(data=Prices,
+       aes(x=date,y=close))+
+  geom_line(aes(colour=company))
+```
+
+```{r}
+Actions <- 
+  data.frame(action = c("buy", "sell"), 
+             date=ymd(c("2006-01-03", "2014-12-30")))
+```
+
+```{r}
+Prices_Actions <-
+  Actions %>%
+    left_join(Prices)
+```
+
+```{r}
+BuySell <-
+    Prices_Actions %>%
+    select(-date,-open, -high, -low, -close, -volume) %>%
+    spread(key=action, value=adj_close)
+```
+
+```{r}
+AmountProfit <-
+  BuySell %>%
+  mutate(profit = (sell-buy)) %>%
+  mutate(percent = ((sell-buy)/sell*100)) %>%
+  select(-buy,-sell)
+```
+
+```{r}
+ref_date <- ymd("2005-01-03")
+Reference <- Prices %>%
+  filter(date == ref_date) %>%
+  select(company, standard = close)
+```
+
+```{r}
+IndexedPrices <-
+  Reference %>%
+  left_join(Prices)
+```
+
+```{r}
+IndexedPrices <-
+  Prices %>%
+    select(-open,-high,-low,-volume,-adj_close) %>%
+    left_join(Reference)
+
+IndexedPrices <-
+  IndexedPrices %>%
+  mutate(Index = close/standard)
+```
+
+```{r}
+ggplot(data=IndexedPrices,
+      aes(x=date,y=Index))+
+    geom_line(aes(colour=company))
+```

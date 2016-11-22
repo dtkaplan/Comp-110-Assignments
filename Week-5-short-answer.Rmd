@@ -1,6 +1,6 @@
 # Week 5 Short Answer Questions
 
-## Your name should appear here!
+## Joseph Goodson-Gregg
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -11,3 +11,75 @@ library(DataComputing)
 <!-- put your content after this line -->
 
 Here is my content!
+
+10.1
+The join family of data verbs is modifying one table by adding a component/entire other data table. As a result, one of the arguments must be a data table so that the other data table can be added to with respect to the argumental data table. For the other data verbs, the arguments in the parenthesis would be components of a data table, now we are working with entire data tables.
+
+10.2
+
+The cases are not lined up. For examples Akrotiri and Aland are both the second cases. Thus simply adding the tables together side by side would have data misaligned with its cases.
+
+10.3
+
+1. 
+Table B. I would group by the Country, then I would find the difference between Y2001 and Y2000, and save this as a new variable, via a transform().
+
+2.
+Table A. I would add the tables together with a join() data verb, then find a summarise() with a sum of each Country.
+
+11.1
+
+
+a. For case one a case represents the number of babies of a certain gender born in a certain year
+
+
+For case two a case represents for a given year the number of male and female babies born of a given name.
+
+
+For case three a case represents the number of babies born in each year for a given name and gender.
+
+
+b. Version one is narrow, and version two is wide.
+
+
+c. sex
+
+
+d. When the narrow table was spread into two new variables, 'M' and 'F', some years some names of a certain gender have no entries.The same is true for when the year is spread. Some years of a certain gender and name have no entries.
+
+
+e. Version two actually has twelve cases. The same information was conveyed by spreading over year.
+
+
+f. year
+
+
+g.
+
+
+part 1. 'F' and 'M'
+
+
+part 2. 'sex'
+
+
+part 3. "F" and "M"
+
+
+11.4
+
+
+a. C is narrow. A is wide.
+
+
+b. C is narrow. B is wide.
+
+
+c. C is narrow, A is wide.
+
+
+11.5
+
+Data did not load in properly.
+
+
