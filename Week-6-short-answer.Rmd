@@ -97,10 +97,20 @@ Male: ~1.65
 Female: ~1.6
 
 14.7, 
+```{r}
+ggplot(CPS85,aes(x=educ,y=wage)) +
+  geom_point(aes(color=sex)) + 
+  stat_smooth(method=lm) +
+  ylim(0,15)
+```
 
 
 
 14.10
+```{r}
+ggplot(Galton,aes(x=height)) +
+  geom_density(aes(fill=sex),alpha=0.5)
+```
 
 
 
