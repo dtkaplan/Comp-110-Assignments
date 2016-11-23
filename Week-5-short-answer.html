@@ -93,6 +93,7 @@ button.code-folding-btn:focus {
 </style>
 
 
+
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
@@ -123,9 +124,26 @@ $(document).ready(function () {
 <div id="your-name-should-appear-here" class="section level2">
 <h2>Your name should appear here!</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:27:09 2016.</p>
+<p>Compiled on Wed Nov 23 14:52:00 2016.</p>
 <!-- put your content after this line -->
 <p>Here is my content!</p>
+<p>10.1, Note that join data verbs take TWO tables as input, so you can’t just use chaining syntax apply it to a single table, that doesn’t make sense.</p>
+<p>10.2, The two tables have different numbers of cases, and the cases do not “line up.”</p>
+<p>10.3 1. I think format B is the best. You can simply take the difference of the 2nd and 3rd column using the mutate data verb and store the results in a new variable. 2. I think table C is the best form. You can use group_by() to sort cases by continent and summarize to sum over the values.</p>
+<p>11.1, Version One: A name, sex, and year Version Two: A name and year Version Three: A name and sex</p>
+<p>11.3, a. A is wide, C is narrow b. B is wide, C is narrow c. A is wide, C is narrow</p>
+<p>11.4,</p>
+<p>I drew a picture in my notebook. The problem is that subject should NOT be passed as a value argument, so you get “subject” appearing as cases under the when column, and the initials for subjects as well as sbp values showing up under the sbp column. It doesn’t really make sense.</p>
+<p>11.5</p>
+<p>** I had difficulty loading the data for some reason, so I downloaded the rda file to my own computer to do these commands. Everything is commented because the HTML file won’t knit unless everything works. If you download the file, then everything works.**</p>
+<pre class="r"><code>#&quot;http://tiny.cc/dcf/MeasTreatTables.rda&quot;%&gt;%
+ # url() %&gt;% load()</code></pre>
+<pre class="r"><code>#head(Measurements)
+#head(Treatments)</code></pre>
+<pre class="r"><code>#Combined &lt;- Measurements %&gt;%
+ # left_join(Treatments,by=c(&quot;subject&quot;)) %&gt;%
+  #spread(key = what,value= value) %&gt;%
+  #mutate(when = treatment_date&gt;date)</code></pre>
 </div>
 </div>
 
@@ -140,6 +158,7 @@ $(document).ready(function () {
 $(document).ready(function () {
   $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
 });
+
 
 </script>
 

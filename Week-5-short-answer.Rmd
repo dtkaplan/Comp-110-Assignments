@@ -38,20 +38,23 @@ c. A is wide, C is narrow
 I drew a picture in my notebook. The problem is that subject should NOT be passed as a value argument, so you get "subject" appearing as cases under the when column, and the initials for subjects as well as sbp values showing up under the sbp column. It doesn't really make sense.
 
 11.5
+
+** I had difficulty loading the data for some reason, so I downloaded the rda file to my own computer to do these commands. Everything is commented because the HTML file won't knit unless everything works. If you download the file, then everything works.**
+
 ```{r}
-"http://tiny.cc/dcf/MeasTreatTables.rda"%>%
-  url() %>% load()
+#"http://tiny.cc/dcf/MeasTreatTables.rda"%>%
+ # url() %>% load()
 ```
 
 ```{r}
-head(Measurements)
-head(Treatments)
+#head(Measurements)
+#head(Treatments)
 ```
 ```{r}
-Combined <- Measurements %>%
-  left_join(Treatments,by=c("subject")) %>%
-  spread(key = what,value= value) %>%
-  mutate(when = treatment_date>date)
+#Combined <- Measurements %>%
+ # left_join(Treatments,by=c("subject")) %>%
+  #spread(key = what,value= value) %>%
+  #mutate(when = treatment_date>date)
 
 
 ```
