@@ -93,6 +93,7 @@ button.code-folding-btn:focus {
 </style>
 
 
+
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
@@ -120,12 +121,100 @@ $(document).ready(function () {
 
 <div id="week-7-short-answer-questions" class="section level1">
 <h1>Week 7 Short Answer Questions</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="sam-erickson" class="section level2">
+<h2>Sam Erickson</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:28:15 2016.</p>
+<p>Compiled on Wed Nov 23 14:41:27 2016.</p>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
+<p>15.1</p>
+<pre class="r"><code>library(lubridate)
+myBirthday = &quot;December 16, 1994&quot;
+myBirthday = mdy(myBirthday)
+str1 = &quot;April 30, 1777&quot;
+str2 = &quot;06-23-1912&quot;
+str3 = &quot;3 March 1847&quot;
+str4 = &quot;Nov. 11th, 1918 at 11:00 AM&quot; # HOW THIS??
+str5 = &quot;July 20, 1969&quot;
+date1 = mdy(str1)
+date2 = mdy(str2)
+
+gauss = as.Date(myBirthday) - date1
+turing = myBirthday - date2
+bell = myBirthday - dmy(str3)
+wwi = as.POSIXct(myBirthday) - mdy_hm(str4)
+moonLanding = myBirthday - mdy(str5)</code></pre>
+<p>15.2</p>
+<pre class="r"><code>a = &quot;42,659.30&quot;
+b = &quot;17%&quot;
+c = &quot;Nineteen&quot;
+d = &quot;$100&quot;
+e = &quot;9.8 m/seconds-square&quot;
+f = &quot;9.8 m/s^2&quot;
+g = &quot;6.62606957 x 10^-34 m2 kg / s&quot;
+h = &quot;6.62606957e-34&quot;
+i = &quot;42.659,30&quot;
+
+list = c(a,b,c,d,e,f,g,h,i)
+numbers = as.numeric(list)</code></pre>
+<pre><code>## Warning: NAs introduced by coercion</code></pre>
+<pre class="r"><code>numbers</code></pre>
+<pre><code>## [1]          NA          NA          NA          NA          NA          NA
+## [7]          NA 6.62607e-34          NA</code></pre>
+<pre class="r"><code>numbers2 = tidyr::extract_numeric(list)</code></pre>
+<pre><code>## extract_numeric() is deprecated: please use readr::parse_numeric() instead</code></pre>
+<pre><code>## Warning in tidyr::extract_numeric(list): NAs introduced by coercion</code></pre>
+<pre class="r"><code>numbers2</code></pre>
+<pre><code>## [1] 42659.3000    17.0000         NA   100.0000         NA     9.8200
+## [7]         NA         NA    42.6593</code></pre>
+<p>The as.numeric() function only worked for “6.62606957e-34”.</p>
+<p>tidyr::extract_numeric() worked for everything except “Nineteen”, “9.8 m/seconds-square”, “6.62606957 x 10^-34 m2 kg / s”,“6.62606957e-34”, and it added an extra 0.02 to “9.8 m/s^2” for some reason’</p>
+<p>16.1,</p>
+<pre class="r"><code>BabyNames %&gt;%
+  filter(sex==&quot;M&quot;) %&gt;%
+  group_by(name) %&gt;%
+  filter(grepl(&quot;[aeiou]$&quot;,name)) %&gt;%
+  summarise(Total = sum(count)) %&gt;%
+  arrange(desc(Total)) %&gt;%
+  filter(rank(desc(Total))&lt;=10)</code></pre>
+<pre><code>## # A tibble: 10 × 2
+##        name   Total
+##       &lt;chr&gt;   &lt;int&gt;
+## 1    George 1451408
+## 2    Joshua 1163815
+## 3      Jose  539924
+## 4      Kyle  469045
+## 5  Lawrence  454323
+## 6       Joe  448953
+## 7    Willie  447403
+## 8     Jesse  407183
+## 9     Bruce  379233
+## 10   Eugene  377338</code></pre>
+<pre class="r"><code>BabyNames %&gt;%
+  group_by(name) %&gt;%
+  filter(grepl(&quot;joe$|jo$&quot;,name)) %&gt;%
+  summarise(Total = sum(count)) %&gt;%
+  arrange(desc(Total)) %&gt;%
+  filter(rank(desc(Total))&lt;=10)</code></pre>
+<pre><code>## # A tibble: 10 × 2
+##        name Total
+##       &lt;chr&gt; &lt;int&gt;
+## 1    Maryjo  6973
+## 2  Billiejo  1455
+## 3    Marijo  1275
+## 4   Bobbijo  1230
+## 5  Bobbiejo  1009
+## 6   Bettyjo   764
+## 7     Alejo   751
+## 8     Amyjo   486
+## 9  Billyjoe   393
+## 10     Jojo   303</code></pre>
+<p>16.2, This expression would match an American phone number.</p>
+<p>16.3</p>
+<ol style="list-style-type: decimal">
+<li>Strings will be two characters long</li>
+<li>About 52- 56 strings will match. I didn’t count, but that’s about the amount of states + territories</li>
+<li>I think that these are all possible US state codes, including PR for puerto rico.</li>
+</ol>
 </div>
 </div>
 
@@ -140,6 +229,7 @@ $(document).ready(function () {
 $(document).ready(function () {
   $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
 });
+
 
 </script>
 

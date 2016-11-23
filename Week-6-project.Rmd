@@ -53,15 +53,21 @@ Prices <- Prices %>%
 ```
 
 ```{r}
-Prices %>%
-  mutate(standardizedPrice = close / standard)
+Prices <- Prices %>%
+  mutate(Index = close / standard)
+
+ggplot(Prices,aes(x=date,y=Index)) + 
+  geom_line(aes(color=company))
 ```
 
 
 ```{r}
 Dividends <- read_stock_prices(companies,what="dividends")
 
-Dividends <- Dividends %>%
-  left_join(Actions,by="date")
+#Dividends <- Dividends %>%
+  #left_join(Actions,by="date")
+
+Actions
+Dividends
 ```
 

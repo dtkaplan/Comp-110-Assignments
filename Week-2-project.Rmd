@@ -1,13 +1,65 @@
 # Week 2 Project
 
-## Your name should appear here!
+## Sam Erickson
 
-<!-- leave this material as is -->
-Compiled on `r date()`.
 
-```{r include = FALSE}
+<!-- Don't edit in between this line and the one below -->
+```{r include=FALSE}
+# Don't delete this chunk if you are using the DataComputing package
 library(DataComputing)
 ```
-<!-- put your content after this line -->
+*Source file* 
+```{r, results='asis', echo=FALSE}
+includeSourceDocuments()
+```
+<!-- Don't edit the material above this line -->
 
-Here is my content!
+
+
+```{r}
+url = "http://tiny.cc/dcf/Library-small.rda"
+destination = "Library-small.rda"
+download.file(url,dest=destination)
+```
+
+**Basics**
+
+```{r}
+load(destination)
+```
+
+First I will take a look at Inv, the library's collection.
+
+```{r}
+names(Inv)
+dim(Inv)
+head(Inv,25)
+```
+
+This data table contains 2000 cases, representing individual items in the inventory. Each case is characterized by 18 variables, including the location, title, ISBN, cost, availability, barcode, and more.
+
+Now let's look at Bks, a data table of books that may or may not be in the collection.
+
+```{r}
+names(Bks)
+dim(Bks)
+head(Bks)
+```
+
+3764 cases describe individual books using 15 variables inlcuding title, author, publication date, edition language, Dewey Decimal system designation, and more.
+
+```{r}
+Inv %>%
+  group_by(Current.Status) %>%
+  tally()
+```
+
+Of all the library books described in Inv, 1866 are currently on shelves and ready to be checked out, 1 is missing, 18 are currently on loan, and 115 are withdrawn. I'm not sure what "withdrawn" means, but I imagine they are in the library's possesion but not currently on the shelf, perhaps for sorting or other purposes.
+
+```{r}
+Inv %>%
+  group_by(Issued.Count) %>%
+  tally()
+```
+
+I'm not sure, but I think that the the Issued.Count variable describes the number of times a book has been checked out, because there is another variable called Last.Issued.Date that seems to describe the last time it was checked out. It seems there are 996 items in the library catalog that have never been checked out, 337 that have been checked out once, and one exceptionally popular item that has been checked out 239 times.
