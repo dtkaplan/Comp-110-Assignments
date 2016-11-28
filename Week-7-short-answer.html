@@ -120,12 +120,99 @@ $(document).ready(function () {
 
 <div id="week-7-short-answer-questions" class="section level1">
 <h1>Week 7 Short Answer Questions</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="yujin-jang" class="section level2">
+<h2>Yujin Jang</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:28:15 2016.</p>
+<p>Compiled on Sun Nov 27 20:09:09 2016.</p>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
+</div>
+<div id="section" class="section level2">
+<h2>15.1</h2>
+<pre class="r"><code>library(lubridate)
+#1
+lubridate::mdy(&quot;April 30, 1777&quot;)</code></pre>
+<pre><code>## [1] &quot;1777-04-30 UTC&quot;</code></pre>
+<pre class="r"><code>lubridate::mdy(&quot;September 28, 1995&quot;)-lubridate::mdy(&quot;April 30, 1777&quot;)</code></pre>
+<pre><code>## Time difference of 79773 days</code></pre>
+<pre class="r"><code>#2
+lubridate::mdy(&quot;06-23-1912&quot;)</code></pre>
+<pre><code>## [1] &quot;1912-06-23 UTC&quot;</code></pre>
+<pre class="r"><code>lubridate::mdy(&quot;09-28-1995&quot;)-lubridate::mdy(&quot;06-23-1912&quot;)</code></pre>
+<pre><code>## Time difference of 30412 days</code></pre>
+<pre class="r"><code>#3
+lubridate::dmy(&quot;3 March 1847&quot;)</code></pre>
+<pre><code>## [1] &quot;1847-03-03 UTC&quot;</code></pre>
+<pre class="r"><code>lubridate::dmy(&quot;28 September 1995&quot;)-lubridate::dmy(&quot;3 March 1847&quot;)</code></pre>
+<pre><code>## Time difference of 54265 days</code></pre>
+<pre class="r"><code>#4
+lubridate::mdy_h(&quot;November 11th, 1918 at 11&quot;)</code></pre>
+<pre><code>## [1] &quot;1918-11-11 11:00:00 UTC&quot;</code></pre>
+<pre class="r"><code>lubridate::mdy_h(&quot;September 28th, 1995 at 11&quot;)-lubridate::mdy_h(&quot;November 11th, 1918 at 11&quot;)</code></pre>
+<pre><code>## Time difference of 28080 days</code></pre>
+<pre class="r"><code>#5
+lubridate::mdy(&quot;July 20, 1969&quot;)</code></pre>
+<pre><code>## [1] &quot;1969-07-20 UTC&quot;</code></pre>
+<pre class="r"><code>lubridate::mdy(&quot;September 28, 1995&quot;)-lubridate::mdy(&quot;July 20, 1969&quot;)</code></pre>
+<pre><code>## Time difference of 9566 days</code></pre>
+</div>
+<div id="section-1" class="section level2">
+<h2>15.2</h2>
+<p>as.numeric()= h tidyr::extract_numeric()= a,d,i</p>
+</div>
+<div id="section-2" class="section level2">
+<h2>16.1</h2>
+<ol style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre class="r"><code>New&lt;-
+  BabyNames%&gt;%
+  filter(sex!=&quot;F&quot;)%&gt;%
+  group_by(name)%&gt;%
+  summarise(total=sum(count))%&gt;%
+  extractMatches(&quot;([aeiou])$&quot;,name)%&gt;%
+  arrange(desc(total))
+New%&gt;%
+head(10)</code></pre>
+<pre><code>##       name   total match1
+## 1    James 5091189   &lt;NA&gt;
+## 2     John 5073958   &lt;NA&gt;
+## 3   Robert 4789776   &lt;NA&gt;
+## 4  Michael 4293460   &lt;NA&gt;
+## 5  William 4038447   &lt;NA&gt;
+## 6    David 3565229   &lt;NA&gt;
+## 7   Joseph 2557792   &lt;NA&gt;
+## 8  Richard 2552302   &lt;NA&gt;
+## 9  Charles 2356886   &lt;NA&gt;
+## 10  Thomas 2275889   &lt;NA&gt;</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre class="r"><code>New1&lt;-
+  BabyNames%&gt;%
+  filter(grepl(&quot;(joe|jo)$&quot;,name))%&gt;%
+  group_by (name)
+
+New1%&gt;%
+  head()</code></pre>
+<pre><code>## Source: local data frame [6 x 4]
+## Groups: name [4]
+## 
+##     name   sex count  year
+##    &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt;
+## 1 Navajo     M     5  1891
+## 2  Alejo     M     5  1909
+## 3 Maryjo     F     6  1915
+## 4  Alejo     M     7  1915
+## 5 Maryjo     F    10  1916
+## 6  Wiljo     M     6  1916</code></pre>
+</div>
+<div id="section-3" class="section level2">
+<h2>16.2</h2>
+<p>telephone number</p>
+</div>
+<div id="section-4" class="section level2">
+<h2>16.3</h2>
+<p>1.two letters 2.61 3.</p>
 </div>
 </div>
 

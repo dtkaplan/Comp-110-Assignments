@@ -1,6 +1,6 @@
 # Week 7 Short Answer Questions
 
-## Your name should appear here!
+## Yujin Jang
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,66 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+##15.1 
+```{r}
+library(lubridate)
+#1
+lubridate::mdy("April 30, 1777")
+lubridate::mdy("September 28, 1995")-lubridate::mdy("April 30, 1777")
+
+#2
+lubridate::mdy("06-23-1912")
+lubridate::mdy("09-28-1995")-lubridate::mdy("06-23-1912")
+
+#3
+lubridate::dmy("3 March 1847")
+lubridate::dmy("28 September 1995")-lubridate::dmy("3 March 1847")
+
+#4
+lubridate::mdy_h("November 11th, 1918 at 11")
+lubridate::mdy_h("September 28th, 1995 at 11")-lubridate::mdy_h("November 11th, 1918 at 11")
+
+#5
+lubridate::mdy("July 20, 1969")
+lubridate::mdy("September 28, 1995")-lubridate::mdy("July 20, 1969")
+
+```
+
+
+##15.2
+as.numeric()= h
+tidyr::extract_numeric()= a,d,i
+
+##16.1
+1.
+```{r}
+New<-
+  BabyNames%>%
+  filter(sex!="F")%>%
+  group_by(name)%>%
+  summarise(total=sum(count))%>%
+  extractMatches("([aeiou])$",name)%>%
+  arrange(desc(total))
+New%>%
+head(10)
+```
+
+2.
+```{r}
+New1<-
+  BabyNames%>%
+  filter(grepl("(joe|jo)$",name))%>%
+  group_by (name)
+
+New1%>%
+  head()
+```
+
+##16.2
+telephone number
+
+
+##16.3
+1.two letters
+2.61
+3.
