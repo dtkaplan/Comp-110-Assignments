@@ -1,6 +1,6 @@
 # Week 8 Short Answer Questions
 
-## Your name should appear here!
+## Yujin Jang
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,16 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+##17.2
+```{r}
+House<-
+  read.file("http://tiny.cc/dcf/houses-for-sale.csv")
+```
+1. living_area, bathrooms, fireplaces
+
+2.NO
+
+3.difference of 3/2 bathrooms=32824
+difference of 2 bathrooms=78548
+
+4.yes; also living area size and number of bathrooms.
