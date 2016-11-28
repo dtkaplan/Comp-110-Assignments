@@ -1,6 +1,6 @@
 # Week 4 Short Answer Questions
 
-## Your name should appear here!
+## Yujin Jang
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,67 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+##8.1
+1.c
+2.g
+3.e
+4.f
+5.d
+
+##8.2
+1.
+Data<-
+  mosaicData%>%
+  ggplot2(aes(x=age, y=wage, shape=married)
+  geom_point()
+  facet_wrap(~job)
+2.
+Data2<-
+  mosaicData%<%
+  ggplot2(aes(x=age, y=wage)
+  geom_point()
+  facet_wrap(~married, gender)
+
+#8.3)
+DataA<-
+  ggplot2(aes(x=age, y=wage)
+  geom_point()
+
+DataB<-
+  ggplot2(aes(x=age, y=wage, shaep=sex)
+  geom_point()
+
+DataC<-
+  ggplot2(aes(x=age, y=wage, shape=sex)
+  geom_point()
+  facet_wrap(~married)
+  
+DataD<-
+  ggplot2(aes(x=age, y=wage, shape=married)
+  geom_point()
+
+##9.1
+a.Quick Presentation
+b.Data Verb_Transformation
+c.Data Verb_summary Function
+d.Reduction
+e.Filter
+f.Quick Presentation
+g.Transformation
+h.Summary Function
+i.Quick Presentation
+
+##9.3
+1.
+verb1=group_by
+args1=color
+verb2=summarise
+args2=average= mean(carat)
+args3=average
+
+2.
+verb1=group_by
+args1=clarity
+verb2=summarise
+args2=average= mean(table)
+args3=average
