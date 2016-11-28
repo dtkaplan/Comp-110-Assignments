@@ -1,6 +1,6 @@
 # Week 5 Short Answer Questions
 
-## Your name should appear here!
+## Yujin Jang
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,28 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+##10.1
+Because instead of pulling the variables from one table, join family pulls the variables from two tables.
+
+##10.2
+Because "country" variable from Demographics is diffrent from "name" variable from CountryCenteroids, meaning that the country names does not exactly match up.
+
+##10.3
+1. Data table B
+2. Data table C
+
+##11.1
+a.
+Version 1-name,sex, and year
+Version 2- name, year
+Version 3- name, sex
+
+##11.3
+a.B wide; A narrow
+b.B wide; C narrow
+c.A wide; C narrow
+
+##11.4
+with paper and pen
+
+##11.5
