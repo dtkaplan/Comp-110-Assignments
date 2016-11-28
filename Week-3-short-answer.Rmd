@@ -1,6 +1,6 @@
 # Week 3 Short Answer Questions
 
-## Your name should appear here!
+## Yujin Jang
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,87 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+##5.1
+
+Clean<-
+  CPS85%>%
+  group_by(sex)%>%
+  summarise(total=n())
+Clean1<-
+  CPS85%>%
+  group_by(race)%>%
+  summarise(total=n())
+barGraphHelper(Clean)
+
+*I don't know why it wouldn't knit, so I just got rid of ```.
+
+
+##5.2
+```{r}
+WorldMap(HappinessIndex,key="country",fill="corruption")
+```
+
+##6.5
+b
+
+##6.6
+d
+
+##6.7
+d
+
+##6.8
+
+Small<-
+  NCHS%>%
+  sample_n(size=5000)
+scatterGraphHelper(Small)
+
+*I don't know why it wouldn't knit, so I just got rid of ```.
+
+##7.1
+a. mean(), b. c. 
+##7.4
+a. no "", 
+b. you cannot us %>% like that get rid of it, 
+c. you have to indent the second line.
+
+##7.5
+a. group_by (sex)
+b.
+c.
+d.
+e.
+
+##7.7
+a.
+BabyNames %>%
+  group_by(year, sex) %>%
+  summarise(total=sum(count))
+b.
+ZipGeography %>%
+  group_by(State) %>%
+  summarise(pop=sum(Population))
+c.
+Minneapolis2013 %>%
+  group_by(First) %>%
+  summarise(voteReceived = n())
+d.
+Minneapolis2013 %>%
+  group_by(First) %>%
+  summarise(voteReceived = n())
+
+##7.11
+a.sex, count, meanAge
+b.diagnosis, count, meanAge
+c.sex, diagnosis, count, meanAge
+d.age, diagnosis, count, meanAge
+e.age, count, meanAge
+
+##7.12
+1.n()
+2.
+3.
+4.library()
+5.group_by()
+6.
