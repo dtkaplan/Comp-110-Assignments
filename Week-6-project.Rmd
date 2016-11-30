@@ -1,6 +1,6 @@
 # Week 6 Project
 
-## Your name should appear here!
+## Yujin Jang
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -11,3 +11,16 @@ library(DataComputing)
 <!-- put your content after this line -->
 
 Here is my content!
+#{r}
+companies<-c("F","TM","HMC")
+Prices<- read_stock_prices(companeis, what = "daily", start_year = 2000, end_year=2015)
+
+Actions<- data.frame(action=c("buy,"sell"),date=ymd(c("2006-01-03", "2014-12-30")))
+
+ref_date<- ymd("2005-01-03")
+Reference<- Prices%>% filter (date==ref_date)%>%
+  select(company, standard=close)
+  
+Dividends<- read_stock_prices (companies, what="dividends")
+
+```

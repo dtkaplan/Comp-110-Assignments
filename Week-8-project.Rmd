@@ -1,6 +1,6 @@
 # Week 8 Project
 
-## Your name should appear here!
+## Yujin Jang
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -9,5 +9,17 @@ Compiled on `r date()`.
 library(DataComputing)
 ```
 <!-- put your content after this line -->
+#{r}
+#1
+Dists<-dist(mtcars)
 
-Here is my content!
+#2
+Dendrogram<-hclust(Dists)
+ddata<-dendro_data(Dendrogram)
+
+#3
+ggdendrogram(Dendrogram, rotate=TRUE)+ geom_text(data=ddata$labels,
+                                                 aes(x=x,y=y,label=label),vjust=0)
+```
+
+
