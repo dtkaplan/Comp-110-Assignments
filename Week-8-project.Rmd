@@ -9,8 +9,9 @@ Compiled on `r date()`.
 library(DataComputing)
 ```
 <!-- put your content after this line -->
-#{r}
+#```{r}
 #1
+data("NCI60", package = "DataComputing")
 Dists<-dist(mtcars)
 
 #2
