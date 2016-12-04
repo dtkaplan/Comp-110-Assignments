@@ -11,3 +11,51 @@ library(DataComputing)
 <!-- put your content after this line -->
 
 Here is my content!
+
+```{r  cache = TRUE}
+data_site <- "http://tiny.cc/dcf/2014-Q4-Trips-History-Data-Small.rds"
+Trips <- readRDS(gzcon(url(data_site)))
+```
+
+```{r}
+Trips %>%
+  ggplot(aes(x=sdate))+geom_density()
+
+Trips %>%
+  mutate(time_of_day=
+           lubridate::hour(sdate)+(lubridate::minute(sdate))/60) %>%
+  ggplot(aes(x=time_of_day))+geom_density()
+
+Trips %>%
+  mutate(day_of_week=
+           lubridate::wday(sdate),
+         time_of_day=
+           lubridate::hour(sdate)+(lubridate::minute(sdate))/60) %>%
+  ggplot(aes(x=time_of_day))+geom_density()+ facet_wrap( ~ day_of_week) 
+
+Trips %>%
+  mutate(day_of_week=
+           lubridate::wday(sdate),
+         time_of_day=
+           lubridate::hour(sdate)+(lubridate::minute(sdate))/60) %>% 
+  ggplot(aes(x=time_of_day))+geom_density(aes(fill=client),color=NA)+ facet_wrap( ~ day_of_week)
+
+
+Trips %>%
+  mutate(day_of_week=
+           lubridate::wday(sdate),
+         time_of_day=
+           lubridate::hour(sdate)+(lubridate::minute(sdate))/60) %>% 
+  ggplot(aes(x=time_of_day))+geom_density(aes(fill=client),color=NA,position=position_stack())+ facet_wrap( ~ day_of_week)
+
+
+Trips %>%
+  mutate(time_of_day=
+           lubridate::hour(sdate)+(lubridate::minute(sdate))/60,
+         wday = 
+           ifelse(lubridate::wday(sdate) %in% c(1,7), "weekend", "weekday"))  %>% 
+  ggplot(aes(x=time_of_day))+geom_density(aes(fill=client),color=NA,position=position_stack())+ facet_wrap( ~ wday)
+
+```
+Graph 4 is the most effective.
+It is better to facet with weekday vs. weekend.

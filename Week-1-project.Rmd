@@ -10,4 +10,15 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+Here is my content to maek sure everything is working! 
+
+I am going to put in some random content to make sure things are working well.
+
+```{r}
+data_site <- "http://tiny.cc/dcf/2014-Q4-Trips-History-Data-Small.rds"
+Trips <- readRDS(gzcon(url(data_site)))
+ggplot(data=Trips,aes(x=sdate))+geom_density()
+```
+
+Here I am writing about a historical event. The French revolution happened in 1789. It was a period of far-reaching social and political upheaval in France that lasted from 1789 until 1799, and was partially carried forward by Napoleon during the later expansion of the French Empire. The Revolution overthrew the monarchy, established a republic, experienced violent periods of political turmoil, and finally culminated in a dictatorship under Napoleon that rapidly brought many of its principles to Western Europe and beyond. Inspired by liberal and radical ideas, the Revolution profoundly altered the course of modern history, triggering the global decline of absolute monarchies while replacing them with republics and liberal democracies.[1] Through the Revolutionary Wars, it unleashed a wave of global conflicts that extended from the Caribbean to the Middle East. Historians widely regard the Revolution as one of the most important events in human history
+

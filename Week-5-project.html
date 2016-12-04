@@ -120,12 +120,30 @@ $(document).ready(function () {
 
 <div id="week-5-project" class="section level1">
 <h1>Week 5 Project</h1>
-<div id="your-name-should-appear-here" class="section level2">
-<h2>Your name should appear here!</h2>
+<div id="henry-zuo" class="section level2">
+<h2>HENRY ZUO!</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:31:30 2016.</p>
+<p>Compiled on Sat Dec 3 15:37:55 2016.</p>
 <!-- put your content after this line -->
 <p>Here is my content!</p>
+<pre class="r"><code>download.file(&quot;http://tiny.cc/dcf/ScorecardSmall.Rda&quot;,destfile=&quot;ScorecardSmall.Rda&quot;)
+load(&quot;ScorecardSmall.Rda&quot;)</code></pre>
+<pre class="r"><code>Names &lt;- read.csv(&quot;http://tiny.cc/dcf/NPT4-names.csv&quot;)
+
+IntInc&lt;-ScorecardSmall %&gt;%
+  select(starts_with(&quot;NPT4&quot;),CONTROL) %&gt;%
+  gather(key=income, value=count, -CONTROL) %&gt;%
+  left_join(Names,by=c(income=&quot;long_name&quot;))</code></pre>
+<pre><code>## Warning in left_join_impl(x, y, by$x, by$y, suffix$x, suffix$y): joining
+## factor and character vector, coercing into character vector</code></pre>
+<pre class="r"><code>head(IntInc)</code></pre>
+<pre><code>##   CONTROL   income count short_name
+## 1       1 NPT4_PUB 13415       &lt;NA&gt;
+## 2       1 NPT4_PUB 14805       &lt;NA&gt;
+## 3       2 NPT4_PUB    NA       &lt;NA&gt;
+## 4       1 NPT4_PUB 17520       &lt;NA&gt;
+## 5       1 NPT4_PUB 11936       &lt;NA&gt;
+## 6       1 NPT4_PUB 20916       &lt;NA&gt;</code></pre>
 </div>
 </div>
 

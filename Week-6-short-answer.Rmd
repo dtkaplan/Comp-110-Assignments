@@ -11,3 +11,100 @@ library(DataComputing)
 <!-- put your content after this line -->
 
 Here is my content!
+
+12.1
+```{r}
+BabyNames %>%
+  group_by(name) %>%
+  summarise(toltal=sum(count)) %>%
+  filter(rank(desc(toltal))<=5)
+```
+
+
+12.2
+```{r}
+BabyNames %>%
+  group_by(year) %>%
+  mutate(in_top_100=(rank(desc(count))<=100)) %>%
+  group_by(year,in_top_100) %>%
+  summarise(total=sum(count)) %>%
+  spread(key=in_top_100,value=total) %>%
+  mutate(frac=`TRUE`/(`FALSE`+`TRUE`)) %>%
+  ggplot(aes(year,frac))+geom_smooth()
+
+```
+
+12.3
+
+neither
+
+neither
+
+summary
+
+transformation
+
+neither
+
+summary
+
+transformation
+
+neither
+
+
+13.1
+
+eight distinct vertices
+
+nine edges
+
+
+13.2
+
+ABCD are vertices
+
+Table 2
+
+Table A missed the CD edge, while
+Table C treated two edges as one
+
+
+13.3
+
+Table 2
+
+
+13.4
+
+exports
+
+pop
+
+
+14.1
+
+```{r}
+CPS85 %>%
+  ggplot(aes(sex,wage))+geom_boxplot(aes(fill=sex))
+```
+
+
+14.3
+
+1.6 for female, 1.7 for male
+
+
+14.7
+
+```{r}
+CPS85 %>%
+  ggplot(aes(educ,wage,color=sex))+geom_point()+ylim(0,15)+stat_smooth(method = lm)
+```
+
+
+14.10
+```{r}
+Galton %>%
+  ggplot(aes(height,fill=sex))+geom_density()
+```

@@ -11,3 +11,141 @@ library(DataComputing)
 <!-- put your content after this line -->
 
 Here is my content!
+
+1.1
+a): 1
+b): 2
+c): 1
+d): 3
+e): 2
+
+1.2
+The "number of cases" variable is not consistent
+
+1.4
+Variables are: Year Country Value
+
+Table A
+A year
+
+Table B
+A country
+
+Table C
+A country in a year
+
+1.5
+6 variables
+
+A case represents an airport
+
+faa FAA airport code: particular case
+name Usual name of the aiport: particular case
+lat,lon Location of airport: categorical
+alt Altitude, in feet: quantitative
+tz Timezone offset from GMT: quantitative (time)
+dst Daylight savings time zone: categorical
+ends on the first Sunday of November: categorical 
+
+2.2
+option 3
+
+2.3
+Current Population Survey 
+
+2.4
+cannot assign new objects within argument of a function
+
+2.6
+"MyData" is not because of the ""
+small sample is not because of the space
+sprt() is not because of the brackets
+
+2.7
+19 variables
+336776 rows
+A case is a flight
+"carrier", "flight", "tailnum", "origin", "dest" are categorical.
+The rest are not.
+Units are minutes and miles respectively
+
+2.8
+a -- 3
+b -- 3
+c -- 4
+d -- 2
+e -- 3
+
+2.9
+. , ; _ - 
+all can be in quoted string
+
+2.10
+76
+mass of trunk fat
+23018
+count
+Party affiliation: DEM=Democratic,LIB=Libertarian,REP=Republican,UNA=Unaffiliated
+
+3.1
+nrow(fireplace)
+fireplace(34)
+haha(fireplace, 34)
+haha%fireplace
+
+3.2
+Can't do this " <- %>% "
+
+3.3
+assignment cannot happen in a function
+
+3.4
+a -- 2, 5, 8, 10, 12, 13, 16, 18, 
+b -- 1, 
+c -- 6, 7, 9, 11, 
+d -- 3, 14, 15, 17, 19, 
+
+3.5
+brain weight in kilograms
+83
+an animal
+carni    omni     herbi     
+
+3.6
+d)
+
+4.1
+*one*
+**two**
+* three
+# Four
+`five`
+## Six
+
+
+4.2
+all of them have wrong syntax
+
+4.3
+sketched on paper
+
+4.4
+1 file
+2 neither
+3 neither
+4 url
+5 neither
+6 url
+
+4.5
+
+# Birds of the World
+
+## JJ Audubon
+
+*Source file* => [Google](google.com)
+
+There are many species of birds in the world. From my studio, I can see
+
+* Blue Jays
+* Cardinals

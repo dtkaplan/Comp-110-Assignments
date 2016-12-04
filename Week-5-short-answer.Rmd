@@ -11,3 +11,72 @@ library(DataComputing)
 <!-- put your content after this line -->
 
 Here is my content!
+
+
+10.1
+
+we are joining two tables, so we need another table in our argument.
+
+
+10.2
+
+The individual cases in two tables are not one-to-one. They are different things. Can't put information of different things together and call it one thing.
+
+
+10.3
+
+Table B. mutate(diff=Y2001-Y2000)
+
+Table C. left join, followed by a group_by sum
+
+
+11.1
+
+One: numer of babiies of a name in a year with a sex
+
+Two: number of babies of a name in a year of each sex respectively
+
+Three: numer of babiies of a name of a sex in each one of the two year options
+
+One is narrow. Two is wide.
+
+Key: sex. Value: nbabies.
+
+Some names do not have one of the two sex in some years. In narrow form, these cases are excluded.
+
+By being wider.
+
+year
+
+F, M
+
+sex
+
+nbabies
+
+
+11.3
+
+A is wide and C is narrow
+
+B is wide and C is narrow
+
+
+11.5
+
+```{r}
+load(url("http://tiny.cc/dcf/MeasTreatTables.rda"))
+
+Combined <-
+  Measurements %>%
+  left_join(Treatments,"subject"="subject") 
+
+Reconstruction <-
+  Combined %>%
+  mutate(when=ifelse(date<=treatment_date,"before","after")) %>%
+  spread(key=what,value=value) %>%
+  select(subject,when,sbp,dbp,date)
+
+head(Reconstruction)
+
+```

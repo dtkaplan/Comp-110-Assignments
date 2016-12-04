@@ -11,3 +11,92 @@ library(DataComputing)
 <!-- put your content after this line -->
 
 Here is my content!
+
+8.1
+
+a 2
+
+b 2
+
+c 1
+
+d 5
+
+e 3
+
+f 4
+
+g 2
+
+h 1
+
+i 2
+
+
+8.2
+```{r}
+ggplot(data=CPS85,aes(x=age,y=wage, shape=married))+geom_point()+facet_wrap(~sector,ncol=3)+ylim(0,30)
+
+```
+
+```{r}
+
+ggplot(data=CPS85,aes(x=age,y=wage))+geom_point()+facet_grid(married~sex)
+```
+
+8.3
+```{r}
+ggplot(data=CPS85,aes(age,wage))+geom_point()
+
+```
+
+```{r}
+ggplot(data=CPS85,aes(age,wage,shape=sex))+geom_point()+facet_grid(married~.)
+
+```
+
+```{r}
+ggplot(data=CPS85,aes(age,wage,shape=married))+geom_point()+ylim(0,30)
+
+```
+
+9.1
+
+Data Verb,a Transformation,
+Summary Function, or a Quick Presentation or a Comparison 
+a) str() Quick Presentation
+
+b) group_by() Transformation
+
+c) rank() Comparison
+
+d) mean() Summary
+
+e) filter() Data Verb
+
+f) summary() Quick presentation
+
+g) summarise() Data Verb 
+
+h) anti_join() Transformation
+
+i) glimpse() Quick Presentation
+
+
+9.3
+
+```{r}
+diamonds %>%
+  group_by(color) %>%
+  summarise(size=mean(carat)) %>%
+  arrange(desc(size)) %>%
+  head(1)
+```
+
+```{r}
+diamonds %>%
+  group_by(clarity) %>%
+  summarise(size=mean(table)) %>%
+  arrange(desc(size)) %>%
+  head(1)
+```
