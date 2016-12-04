@@ -123,9 +123,83 @@ $(document).ready(function () {
 <div id="your-name-should-appear-here" class="section level2">
 <h2>Your name should appear here!</h2>
 <!-- leave this material as is -->
-<p>Compiled on Tue Aug 30 21:28:15 2016.</p>
+<p>Compiled on Sat Dec 3 22:26:33 2016.</p>
 <!-- put your content after this line -->
-<p>Here is my content!</p>
+<p>15.1</p>
+<p>• “April 30, 1777” Johann Carl Friedrich Gauss • “06-23-1912” Alan Turing’s birthday • “3 March 1847” Alexander Graham Bell’s birthday • “11:00 am on Nov. 11th, 1918 at 11:00 am” Armistice ending World War I on the Western Front. • “July 20, 1969” First manned moon landing</p>
+<pre class="r"><code>lubridate::mdy(&quot;April 30, 1777&quot;)-lubridate::ymd(&quot;1992-12-21&quot;)</code></pre>
+<pre><code>## Time difference of -78762 days</code></pre>
+<pre class="r"><code>lubridate::mdy(&quot;06-23-1912&quot;)-lubridate::ymd(&quot;1992-12-21&quot;)</code></pre>
+<pre><code>## Time difference of -29401 days</code></pre>
+<pre class="r"><code>lubridate::dmy(&quot;3 March 1847&quot;)-lubridate::ymd(&quot;1992-12-21&quot;)</code></pre>
+<pre><code>## Time difference of -53254 days</code></pre>
+<pre class="r"><code>lubridate::mdy(&quot;Nov. 11th, 1918&quot;)-lubridate::ymd(&quot;1992-12-21&quot;)</code></pre>
+<pre><code>## Time difference of -27069 days</code></pre>
+<pre class="r"><code>lubridate::mdy(&quot;July 20, 1969&quot;)-lubridate::ymd(&quot;1992-12-21&quot;)</code></pre>
+<pre><code>## Time difference of -8555 days</code></pre>
+<p>15.2</p>
+<pre class="r"><code>tidyr::extract_numeric(&quot;42,659.30&quot;)</code></pre>
+<pre><code>## [1] 42659.3</code></pre>
+<pre class="r"><code>&quot;Neither works for b.&quot;</code></pre>
+<pre><code>## [1] &quot;Neither works for b.&quot;</code></pre>
+<pre class="r"><code>tidyr::extract_numeric(&quot;Nineteen&quot;)</code></pre>
+<pre><code>## [1] NA</code></pre>
+<pre class="r"><code>tidyr::extract_numeric(&quot;£100&quot;)</code></pre>
+<pre><code>## [1] 100</code></pre>
+<pre class="r"><code>&quot;Neither works for e.&quot;</code></pre>
+<pre><code>## [1] &quot;Neither works for e.&quot;</code></pre>
+<pre class="r"><code>tidyr::extract_numeric(&quot;9.8 m/sˆ2&quot;)</code></pre>
+<pre><code>## [1] 9.82</code></pre>
+<pre class="r"><code>&quot;Neither works for g.&quot;</code></pre>
+<pre><code>## [1] &quot;Neither works for g.&quot;</code></pre>
+<pre class="r"><code>&quot;Neither works for h.&quot;</code></pre>
+<pre><code>## [1] &quot;Neither works for h.&quot;</code></pre>
+<pre class="r"><code>tidyr::extract_numeric( &quot;42.659,30&quot;)</code></pre>
+<pre><code>## [1] 42.6593</code></pre>
+<p>16.1</p>
+<pre class="r"><code>BabyNames %&gt;%
+  filter(sex==&quot;M&quot;,grepl(&quot;[(aeiou)]$&quot;,name)) %&gt;%
+  group_by(name) %&gt;%
+  summarise(total = sum(count)) %&gt;%
+  filter(rank(desc(total))&lt;=10)</code></pre>
+<pre><code>## # A tibble: 10 × 2
+##        name   total
+##       &lt;chr&gt;   &lt;int&gt;
+## 1     Bruce  379233
+## 2    Eugene  377338
+## 3    George 1451408
+## 4     Jesse  407183
+## 5       Joe  448953
+## 6      Jose  539924
+## 7    Joshua 1163815
+## 8      Kyle  469045
+## 9  Lawrence  454323
+## 10   Willie  447403</code></pre>
+<pre class="r"><code>BabyNames %&gt;%
+  filter(grepl(&quot;joe|jo$&quot;,name)) %&gt;%
+  group_by(name) %&gt;%
+  summarise(total = sum(count)) %&gt;%
+  filter(rank(desc(total))&lt;=10)</code></pre>
+<pre><code>## # A tibble: 10 × 2
+##        name total
+##       &lt;chr&gt; &lt;int&gt;
+## 1     Alejo   751
+## 2     Amyjo   486
+## 3   Bettyjo   764
+## 4  Billiejo  1455
+## 5  Billyjoe   393
+## 6  Bobbiejo  1009
+## 7   Bobbijo  1230
+## 8      Jojo   303
+## 9    Marijo  1275
+## 10   Maryjo  6973</code></pre>
+<p>16.2</p>
+<p>This would match to a phone number</p>
+<p>16.3</p>
+<p>2 characters</p>
+<pre class="r"><code>7+3+2+2+2+1+4+2+1+10+8+3+3+1+2+2+1+3+4</code></pre>
+<pre><code>## [1] 61</code></pre>
+<p>Many of these are States, but not all of them</p>
 </div>
 </div>
 

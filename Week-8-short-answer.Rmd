@@ -11,3 +11,14 @@ library(DataComputing)
 <!-- put your content after this line -->
 
 Here is my content!
+
+17.2
+
+Below are the variables:
+
+"price"        "lot_size"     "waterfront"   "age"          "land_value"  
+"construction" "air_cond"     "fuel"         "heat"         "sewer"       
+"living_area"  "pct_college"  "bedrooms"     "fireplaces"   "bathrooms"   
+"rooms"     
+
+The graph in the question was not the correct one. We cannot complete this question.
