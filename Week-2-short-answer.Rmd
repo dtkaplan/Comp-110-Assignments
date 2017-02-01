@@ -1,6 +1,6 @@
 # Week 2 Short Answer Questions
 
-## Your name should appear here!
+## Brett Graham
 
 <!-- leave this material as is -->
 Compiled on `r date()`.
@@ -10,4 +10,65 @@ library(DataComputing)
 ```
 <!-- put your content after this line -->
 
-Here is my content!
+### 1.1
+a) 3 b) 2 c) 1 d) 1 e) 2
+
+### 1.2
+"it depends"
+
+### 1.4 
+1. A) Year, Country names B) Country, years C)Country, Year, Value
+2. A) country in a year B)country in a year C) country
+
+### 1.5
+1.7 2.code,name,location,altitude,timezone,daylightSavings,IANA timezone. 3. qual,qual, quant,quant,quant,qual,quant.
+
+### 2.2
+2,3,4
+
+### 2.3
+Current Population Survey
+
+### 2.4 
+help("NHANES")
+
+### 2.6
+1. legit 2. no - 3. No "" 4. legit 5. no space 6. legit 7. poor form 8. legit 
+9. a function, not an object
+
+### 2.7
+1. 19
+2. 336776
+3. one specific flight
+4. All quant except carrier- origin
+5. minutes, miles
+
+### 2.8
+1.b
+2.d
+3.a
+4.c
+5.e
+
+### 2.9
+._
+[space],.;_-^()
+
+### 2.10
+1. 76
+2. mass of trunk fat
+3.23015
+4.count
+5. democratic, republican, libertarian, unaffiliated
+### 3.1 
+
+### 3.2
+### 3.3
+### 3.4 
+### 3.5
+### 3.6
+### 4.1
+### 4.2 
+### 4.3
+### 4.4 
+### 4.5
